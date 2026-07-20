@@ -1,0 +1,5393 @@
+{
+  "A1": [
+    {
+      "word": "apple",
+      "translation": "manzana",
+      "example": "I eat an apple every day."
+    },
+    {
+      "word": "banana",
+      "translation": "platano",
+      "example": "She likes bananas."
+    },
+    {
+      "word": "book",
+      "translation": "libro",
+      "example": "I read a book every night."
+    },
+    {
+      "word": "cat",
+      "translation": "gato",
+      "example": "The cat is sleeping."
+    },
+    {
+      "word": "dog",
+      "translation": "perro",
+      "example": "My dog is very friendly."
+    },
+    {
+      "word": "door",
+      "translation": "puerta",
+      "example": "Please close the door."
+    },
+    {
+      "word": "eye",
+      "translation": "ojo",
+      "example": "She has blue eyes."
+    },
+    {
+      "word": "face",
+      "translation": "cara",
+      "example": "He has a kind face."
+    },
+    {
+      "word": "family",
+      "translation": "familia",
+      "example": "My family is very big."
+    },
+    {
+      "word": "father",
+      "translation": "padre",
+      "example": "My father works in an office."
+    },
+    {
+      "word": "fish",
+      "translation": "pez / pescado",
+      "example": "I eat fish on Fridays."
+    },
+    {
+      "word": "food",
+      "translation": "comida",
+      "example": "The food here is delicious."
+    },
+    {
+      "word": "friend",
+      "translation": "amigo/a",
+      "example": "She is my best friend."
+    },
+    {
+      "word": "girl",
+      "translation": "chica",
+      "example": "The girl is playing outside."
+    },
+    {
+      "word": "hand",
+      "translation": "mano",
+      "example": "Wash your hands before eating."
+    },
+    {
+      "word": "happy",
+      "translation": "feliz",
+      "example": "I am very happy today."
+    },
+    {
+      "word": "house",
+      "translation": "casa",
+      "example": "We live in a big house."
+    },
+    {
+      "word": "hungry",
+      "translation": "hambriento/a",
+      "example": "Are you hungry? Let's eat."
+    },
+    {
+      "word": "key",
+      "translation": "llave",
+      "example": "I lost my keys."
+    },
+    {
+      "word": "letter",
+      "translation": "carta / letra",
+      "example": "She wrote a letter to her friend."
+    },
+    {
+      "word": "milk",
+      "translation": "leche",
+      "example": "I drink milk every morning."
+    },
+    {
+      "word": "money",
+      "translation": "dinero",
+      "example": "Do you have any money?"
+    },
+    {
+      "word": "mother",
+      "translation": "madre",
+      "example": "My mother is a teacher."
+    },
+    {
+      "word": "name",
+      "translation": "nombre",
+      "example": "What is your name?"
+    },
+    {
+      "word": "night",
+      "translation": "noche",
+      "example": "I sleep at night."
+    },
+    {
+      "word": "number",
+      "translation": "numero",
+      "example": "What is your phone number?"
+    },
+    {
+      "word": "orange",
+      "translation": "naranja",
+      "example": "I drink orange juice every morning."
+    },
+    {
+      "word": "pen",
+      "translation": "boligrafo",
+      "example": "Can I borrow your pen?"
+    },
+    {
+      "word": "phone",
+      "translation": "telefono",
+      "example": "She is talking on the phone."
+    },
+    {
+      "word": "school",
+      "translation": "colegio",
+      "example": "I go to school every day."
+    },
+    {
+      "word": "sun",
+      "translation": "sol",
+      "example": "The sun is shining today."
+    },
+    {
+      "word": "table",
+      "translation": "mesa",
+      "example": "Put the books on the table."
+    },
+    {
+      "word": "teacher",
+      "translation": "profesor/a",
+      "example": "My teacher is very kind."
+    },
+    {
+      "word": "time",
+      "translation": "tiempo / hora",
+      "example": "What time is it?"
+    },
+    {
+      "word": "tree",
+      "translation": "arbol",
+      "example": "There is a big tree in the garden."
+    },
+    {
+      "word": "water",
+      "translation": "agua",
+      "example": "Drink more water every day."
+    },
+    {
+      "word": "window",
+      "translation": "ventana",
+      "example": "Open the window, please."
+    },
+    {
+      "word": "year",
+      "translation": "año",
+      "example": "I was born in the year 2000."
+    },
+    {
+      "word": "bed",
+      "translation": "cama",
+      "example": "I go to bed at ten."
+    },
+    {
+      "word": "bird",
+      "translation": "pajaro",
+      "example": "A bird is singing outside."
+    },
+    {
+      "word": "boat",
+      "translation": "barco",
+      "example": "We took a boat to the island."
+    },
+    {
+      "word": "boy",
+      "translation": "chico",
+      "example": "The boy is playing football."
+    },
+    {
+      "word": "bread",
+      "translation": "pan",
+      "example": "We need to buy bread."
+    },
+    {
+      "word": "brother",
+      "translation": "hermano",
+      "example": "My brother is older than me."
+    },
+    {
+      "word": "bus",
+      "translation": "autobus",
+      "example": "I take the bus to work."
+    },
+    {
+      "word": "chair",
+      "translation": "silla",
+      "example": "Sit on the chair."
+    },
+    {
+      "word": "child",
+      "translation": "niño/a",
+      "example": "Every child needs love."
+    },
+    {
+      "word": "city",
+      "translation": "ciudad",
+      "example": "Madrid is a big city."
+    },
+    {
+      "word": "class",
+      "translation": "clase",
+      "example": "The class starts at nine."
+    },
+    {
+      "word": "clock",
+      "translation": "reloj",
+      "example": "The clock on the wall is broken."
+    },
+    {
+      "word": "coffee",
+      "translation": "cafe",
+      "example": "I drink coffee every morning."
+    },
+    {
+      "word": "cold",
+      "translation": "frio",
+      "example": "It is very cold today."
+    },
+    {
+      "word": "color",
+      "translation": "color",
+      "example": "What is your favourite color?"
+    },
+    {
+      "word": "computer",
+      "translation": "ordenador",
+      "example": "I use a computer at work."
+    },
+    {
+      "word": "country",
+      "translation": "pais",
+      "example": "Spain is a beautiful country."
+    },
+    {
+      "word": "day",
+      "translation": "dia",
+      "example": "Have a nice day!"
+    },
+    {
+      "word": "desk",
+      "translation": "escritorio",
+      "example": "My desk is very messy."
+    },
+    {
+      "word": "drink",
+      "translation": "bebida / beber",
+      "example": "What would you like to drink?"
+    },
+    {
+      "word": "egg",
+      "translation": "huevo",
+      "example": "I have eggs for breakfast."
+    },
+    {
+      "word": "evening",
+      "translation": "tarde / noche",
+      "example": "Good evening!"
+    },
+    {
+      "word": "fast",
+      "translation": "rapido/a",
+      "example": "He is a fast runner."
+    },
+    {
+      "word": "floor",
+      "translation": "suelo / piso",
+      "example": "The floor is very clean."
+    },
+    {
+      "word": "flower",
+      "translation": "flor",
+      "example": "She gave me a beautiful flower."
+    },
+    {
+      "word": "garden",
+      "translation": "jardin",
+      "example": "We sit in the garden."
+    },
+    {
+      "word": "good",
+      "translation": "bueno/a",
+      "example": "This is a good book."
+    },
+    {
+      "word": "green",
+      "translation": "verde",
+      "example": "The grass is green."
+    },
+    {
+      "word": "hat",
+      "translation": "sombrero",
+      "example": "She wears a red hat."
+    },
+    {
+      "word": "head",
+      "translation": "cabeza",
+      "example": "I have a headache."
+    },
+    {
+      "word": "hot",
+      "translation": "caliente / caluroso",
+      "example": "It is hot today."
+    },
+    {
+      "word": "idea",
+      "translation": "idea",
+      "example": "That is a great idea."
+    },
+    {
+      "word": "job",
+      "translation": "trabajo",
+      "example": "She has a good job."
+    },
+    {
+      "word": "kitchen",
+      "translation": "cocina",
+      "example": "I cook in the kitchen."
+    },
+    {
+      "word": "language",
+      "translation": "idioma",
+      "example": "English is a useful language."
+    },
+    {
+      "word": "leg",
+      "translation": "pierna",
+      "example": "He broke his leg."
+    },
+    {
+      "word": "library",
+      "translation": "biblioteca",
+      "example": "I study in the library."
+    },
+    {
+      "word": "light",
+      "translation": "luz / ligero",
+      "example": "Turn on the light."
+    },
+    {
+      "word": "lunch",
+      "translation": "almuerzo",
+      "example": "We have lunch at one."
+    },
+    {
+      "word": "man",
+      "translation": "hombre",
+      "example": "The man is reading a newspaper."
+    },
+    {
+      "word": "map",
+      "translation": "mapa",
+      "example": "Do you have a map of the city?"
+    },
+    {
+      "word": "market",
+      "translation": "mercado",
+      "example": "I buy fruit at the market."
+    },
+    {
+      "word": "morning",
+      "translation": "mañana",
+      "example": "Good morning!"
+    },
+    {
+      "word": "mouth",
+      "translation": "boca",
+      "example": "Open your mouth."
+    },
+    {
+      "word": "music",
+      "translation": "musica",
+      "example": "I love listening to music."
+    },
+    {
+      "word": "new",
+      "translation": "nuevo/a",
+      "example": "I have a new phone."
+    },
+    {
+      "word": "nose",
+      "translation": "nariz",
+      "example": "She has a small nose."
+    },
+    {
+      "word": "office",
+      "translation": "oficina",
+      "example": "He works in an office."
+    },
+    {
+      "word": "old",
+      "translation": "viejo/a / mayor",
+      "example": "This building is very old."
+    },
+    {
+      "word": "park",
+      "translation": "parque",
+      "example": "Children play in the park."
+    },
+    {
+      "word": "party",
+      "translation": "fiesta",
+      "example": "We are having a party tonight."
+    },
+    {
+      "word": "picture",
+      "translation": "imagen / foto",
+      "example": "I took a picture of the sunset."
+    },
+    {
+      "word": "place",
+      "translation": "lugar",
+      "example": "This is a beautiful place."
+    },
+    {
+      "word": "plane",
+      "translation": "avion",
+      "example": "We took a plane to London."
+    },
+    {
+      "word": "plate",
+      "translation": "plato",
+      "example": "Put the food on the plate."
+    },
+    {
+      "word": "rain",
+      "translation": "lluvia / llover",
+      "example": "It rains a lot in winter."
+    },
+    {
+      "word": "read",
+      "translation": "leer",
+      "example": "I like to read books."
+    },
+    {
+      "word": "red",
+      "translation": "rojo/a",
+      "example": "She is wearing a red dress."
+    },
+    {
+      "word": "rice",
+      "translation": "arroz",
+      "example": "We eat rice every day."
+    },
+    {
+      "word": "road",
+      "translation": "carretera",
+      "example": "The road is very long."
+    },
+    {
+      "word": "room",
+      "translation": "habitacion",
+      "example": "My room is very small."
+    },
+    {
+      "word": "run",
+      "translation": "correr",
+      "example": "I run every morning."
+    },
+    {
+      "word": "shoes",
+      "translation": "zapatos",
+      "example": "I need new shoes."
+    },
+    {
+      "word": "shop",
+      "translation": "tienda",
+      "example": "There is a shop near here."
+    },
+    {
+      "word": "sister",
+      "translation": "hermana",
+      "example": "My sister is younger than me."
+    },
+    {
+      "word": "sky",
+      "translation": "cielo",
+      "example": "The sky is blue today."
+    },
+    {
+      "word": "sleep",
+      "translation": "dormir",
+      "example": "I sleep eight hours a night."
+    },
+    {
+      "word": "slow",
+      "translation": "lento/a",
+      "example": "The bus is very slow."
+    },
+    {
+      "word": "small",
+      "translation": "pequeño/a",
+      "example": "My apartment is small."
+    },
+    {
+      "word": "son",
+      "translation": "hijo",
+      "example": "My son is five years old."
+    },
+    {
+      "word": "soup",
+      "translation": "sopa",
+      "example": "I have soup for lunch."
+    },
+    {
+      "word": "sport",
+      "translation": "deporte",
+      "example": "Football is a popular sport."
+    },
+    {
+      "word": "street",
+      "translation": "calle",
+      "example": "We live on a quiet street."
+    },
+    {
+      "word": "swim",
+      "translation": "nadar",
+      "example": "I swim every weekend."
+    },
+    {
+      "word": "tall",
+      "translation": "alto/a",
+      "example": "He is very tall."
+    },
+    {
+      "word": "tea",
+      "translation": "te",
+      "example": "Would you like some tea?"
+    },
+    {
+      "word": "think",
+      "translation": "pensar",
+      "example": "I think you are right."
+    },
+    {
+      "word": "tired",
+      "translation": "cansado/a",
+      "example": "I am very tired today."
+    },
+    {
+      "word": "today",
+      "translation": "hoy",
+      "example": "What are you doing today?"
+    },
+    {
+      "word": "train",
+      "translation": "tren",
+      "example": "I take the train to work."
+    },
+    {
+      "word": "understand",
+      "translation": "entender",
+      "example": "I don't understand this word."
+    },
+    {
+      "word": "walk",
+      "translation": "caminar",
+      "example": "I walk to work every day."
+    },
+    {
+      "word": "white",
+      "translation": "blanco/a",
+      "example": "She is wearing a white shirt."
+    },
+    {
+      "word": "woman",
+      "translation": "mujer",
+      "example": "The woman is reading a book."
+    },
+    {
+      "word": "work",
+      "translation": "trabajar / trabajo",
+      "example": "I work in an office."
+    },
+    {
+      "word": "write",
+      "translation": "escribir",
+      "example": "I write in my diary every day."
+    },
+    {
+      "word": "yellow",
+      "translation": "amarillo/a",
+      "example": "The sun is yellow."
+    },
+    {
+      "word": "young",
+      "translation": "joven",
+      "example": "She is very young."
+    },
+    {
+      "word": "afternoon",
+      "translation": "tarde",
+      "example": "Good afternoon!"
+    },
+    {
+      "word": "age",
+      "translation": "edad",
+      "example": "What is your age?"
+    },
+    {
+      "word": "air",
+      "translation": "aire",
+      "example": "The air is very fresh here."
+    },
+    {
+      "word": "arm",
+      "translation": "brazo",
+      "example": "She broke her arm."
+    },
+    {
+      "word": "arrive",
+      "translation": "llegar",
+      "example": "What time do you arrive?"
+    },
+    {
+      "word": "ask",
+      "translation": "preguntar",
+      "example": "Can I ask you something?"
+    },
+    {
+      "word": "back",
+      "translation": "espalda / atras",
+      "example": "My back hurts."
+    },
+    {
+      "word": "bad",
+      "translation": "malo/a",
+      "example": "That is a bad idea."
+    },
+    {
+      "word": "bag",
+      "translation": "bolsa / bolso",
+      "example": "She carries a big bag."
+    },
+    {
+      "word": "ball",
+      "translation": "pelota",
+      "example": "Kick the ball."
+    },
+    {
+      "word": "bathroom",
+      "translation": "baño",
+      "example": "The bathroom is on the left."
+    },
+    {
+      "word": "beach",
+      "translation": "playa",
+      "example": "We go to the beach in summer."
+    },
+    {
+      "word": "beautiful",
+      "translation": "bonito/a",
+      "example": "What a beautiful day!"
+    },
+    {
+      "word": "big",
+      "translation": "grande",
+      "example": "That is a big house."
+    },
+    {
+      "word": "black",
+      "translation": "negro/a",
+      "example": "He has black hair."
+    },
+    {
+      "word": "blue",
+      "translation": "azul",
+      "example": "The sky is blue."
+    },
+    {
+      "word": "body",
+      "translation": "cuerpo",
+      "example": "Exercise is good for your body."
+    },
+    {
+      "word": "bored",
+      "translation": "aburrido/a",
+      "example": "I am bored at home."
+    },
+    {
+      "word": "born",
+      "translation": "nacer",
+      "example": "I was born in Madrid."
+    },
+    {
+      "word": "bottle",
+      "translation": "botella",
+      "example": "Give me a bottle of water."
+    },
+    {
+      "word": "box",
+      "translation": "caja",
+      "example": "Put it in the box."
+    },
+    {
+      "word": "buy",
+      "translation": "comprar",
+      "example": "I need to buy some food."
+    },
+    {
+      "word": "cake",
+      "translation": "pastel",
+      "example": "She baked a chocolate cake."
+    },
+    {
+      "word": "call",
+      "translation": "llamar",
+      "example": "I will call you later."
+    },
+    {
+      "word": "car",
+      "translation": "coche",
+      "example": "My car is blue."
+    },
+    {
+      "word": "carry",
+      "translation": "llevar",
+      "example": "Can you carry this bag?"
+    },
+    {
+      "word": "cheese",
+      "translation": "queso",
+      "example": "I like cheese on my pizza."
+    },
+    {
+      "word": "chicken",
+      "translation": "pollo",
+      "example": "We had chicken for dinner."
+    },
+    {
+      "word": "clean",
+      "translation": "limpio/a / limpiar",
+      "example": "Keep your room clean."
+    },
+    {
+      "word": "close",
+      "translation": "cerrar / cerca",
+      "example": "Close the door."
+    },
+    {
+      "word": "come",
+      "translation": "venir",
+      "example": "Come here, please."
+    },
+    {
+      "word": "cook",
+      "translation": "cocinar / cocinero/a",
+      "example": "I cook dinner every evening."
+    },
+    {
+      "word": "correct",
+      "translation": "correcto/a",
+      "example": "That answer is correct."
+    },
+    {
+      "word": "cry",
+      "translation": "llorar",
+      "example": "The baby is crying."
+    },
+    {
+      "word": "cup",
+      "translation": "taza",
+      "example": "Can I have a cup of tea?"
+    },
+    {
+      "word": "cut",
+      "translation": "cortar",
+      "example": "Be careful not to cut yourself."
+    },
+    {
+      "word": "dance",
+      "translation": "bailar",
+      "example": "I love to dance."
+    },
+    {
+      "word": "daughter",
+      "translation": "hija",
+      "example": "My daughter is ten years old."
+    },
+    {
+      "word": "dinner",
+      "translation": "cena",
+      "example": "What are we having for dinner?"
+    },
+    {
+      "word": "dirty",
+      "translation": "sucio/a",
+      "example": "Your hands are dirty."
+    },
+    {
+      "word": "draw",
+      "translation": "dibujar",
+      "example": "She can draw very well."
+    },
+    {
+      "word": "dress",
+      "translation": "vestido / vestirse",
+      "example": "She is wearing a red dress."
+    },
+    {
+      "word": "drive",
+      "translation": "conducir",
+      "example": "He drives to work every day."
+    },
+    {
+      "word": "eat",
+      "translation": "comer",
+      "example": "I eat breakfast at eight."
+    },
+    {
+      "word": "early",
+      "translation": "temprano",
+      "example": "I wake up early every day."
+    },
+    {
+      "word": "easy",
+      "translation": "facil",
+      "example": "This exercise is easy."
+    },
+    {
+      "word": "end",
+      "translation": "fin / terminar",
+      "example": "The end of the film was sad."
+    },
+    {
+      "word": "enough",
+      "translation": "suficiente",
+      "example": "I have had enough to eat."
+    },
+    {
+      "word": "enter",
+      "translation": "entrar",
+      "example": "Please enter through the main door."
+    },
+    {
+      "word": "every",
+      "translation": "cada",
+      "example": "I brush my teeth every morning."
+    },
+    {
+      "word": "exercise",
+      "translation": "ejercicio",
+      "example": "Exercise is good for your health."
+    },
+    {
+      "word": "expensive",
+      "translation": "caro/a",
+      "example": "This jacket is too expensive."
+    },
+    {
+      "word": "far",
+      "translation": "lejos",
+      "example": "The school is not far from here."
+    },
+    {
+      "word": "feel",
+      "translation": "sentir",
+      "example": "How do you feel today?"
+    },
+    {
+      "word": "find",
+      "translation": "encontrar",
+      "example": "I can't find my keys."
+    },
+    {
+      "word": "first",
+      "translation": "primero/a",
+      "example": "She was the first to arrive."
+    },
+    {
+      "word": "football",
+      "translation": "futbol",
+      "example": "I play football on weekends."
+    },
+    {
+      "word": "forget",
+      "translation": "olvidar",
+      "example": "Don't forget your umbrella."
+    },
+    {
+      "word": "free",
+      "translation": "libre / gratis",
+      "example": "Are you free tonight?"
+    },
+    {
+      "word": "fruit",
+      "translation": "fruta",
+      "example": "Eat more fruit and vegetables."
+    },
+    {
+      "word": "get",
+      "translation": "obtener / llegar",
+      "example": "I get up at seven."
+    },
+    {
+      "word": "give",
+      "translation": "dar",
+      "example": "Can you give me some water?"
+    },
+    {
+      "word": "glass",
+      "translation": "vaso / cristal",
+      "example": "Give me a glass of water."
+    },
+    {
+      "word": "go",
+      "translation": "ir",
+      "example": "I go to school by bus."
+    },
+    {
+      "word": "great",
+      "translation": "genial / estupendo",
+      "example": "That is a great idea!"
+    },
+    {
+      "word": "hear",
+      "translation": "oir",
+      "example": "I can hear music."
+    },
+    {
+      "word": "help",
+      "translation": "ayudar / ayuda",
+      "example": "Can you help me?"
+    },
+    {
+      "word": "here",
+      "translation": "aqui",
+      "example": "Come here, please."
+    },
+    {
+      "word": "home",
+      "translation": "hogar / casa",
+      "example": "I am going home now."
+    },
+    {
+      "word": "hospital",
+      "translation": "hospital",
+      "example": "She works in a hospital."
+    },
+    {
+      "word": "hotel",
+      "translation": "hotel",
+      "example": "We stayed in a nice hotel."
+    },
+    {
+      "word": "hour",
+      "translation": "hora",
+      "example": "I wait for an hour."
+    },
+    {
+      "word": "important",
+      "translation": "importante",
+      "example": "This is very important."
+    },
+    {
+      "word": "interesting",
+      "translation": "interesante",
+      "example": "This book is very interesting."
+    },
+    {
+      "word": "know",
+      "translation": "saber / conocer",
+      "example": "Do you know his name?"
+    },
+    {
+      "word": "lake",
+      "translation": "lago",
+      "example": "We swam in the lake."
+    },
+    {
+      "word": "late",
+      "translation": "tarde",
+      "example": "Sorry I am late."
+    },
+    {
+      "word": "learn",
+      "translation": "aprender",
+      "example": "I want to learn English."
+    },
+    {
+      "word": "leave",
+      "translation": "salir / dejar",
+      "example": "I leave home at eight."
+    },
+    {
+      "word": "like",
+      "translation": "gustar / parecerse",
+      "example": "I like chocolate ice cream."
+    },
+    {
+      "word": "listen",
+      "translation": "escuchar",
+      "example": "Listen to the teacher."
+    },
+    {
+      "word": "live",
+      "translation": "vivir",
+      "example": "I live in Madrid."
+    },
+    {
+      "word": "long",
+      "translation": "largo/a",
+      "example": "It was a long journey."
+    },
+    {
+      "word": "look",
+      "translation": "mirar / parecer",
+      "example": "Look at that beautiful view."
+    },
+    {
+      "word": "love",
+      "translation": "amor / amar",
+      "example": "I love spending time with family."
+    },
+    {
+      "word": "make",
+      "translation": "hacer / fabricar",
+      "example": "I make my bed every morning."
+    },
+    {
+      "word": "meet",
+      "translation": "conocer / quedar",
+      "example": "Nice to meet you."
+    },
+    {
+      "word": "minute",
+      "translation": "minuto",
+      "example": "Wait a minute, please."
+    },
+    {
+      "word": "month",
+      "translation": "mes",
+      "example": "January is the first month of the year."
+    },
+    {
+      "word": "near",
+      "translation": "cerca",
+      "example": "The station is near here."
+    },
+    {
+      "word": "need",
+      "translation": "necesitar",
+      "example": "I need some help."
+    },
+    {
+      "word": "never",
+      "translation": "nunca",
+      "example": "I never eat fast food."
+    },
+    {
+      "word": "nice",
+      "translation": "agradable / bonito",
+      "example": "What a nice day!"
+    },
+    {
+      "word": "open",
+      "translation": "abrir / abierto",
+      "example": "Open the window, please."
+    },
+    {
+      "word": "page",
+      "translation": "pagina",
+      "example": "Turn to page ten."
+    },
+    {
+      "word": "pay",
+      "translation": "pagar",
+      "example": "Can I pay by card?"
+    },
+    {
+      "word": "people",
+      "translation": "gente / personas",
+      "example": "Many people live here."
+    },
+    {
+      "word": "play",
+      "translation": "jugar / tocar",
+      "example": "Children love to play."
+    },
+    {
+      "word": "please",
+      "translation": "por favor",
+      "example": "Pass the salt, please."
+    },
+    {
+      "word": "problem",
+      "translation": "problema",
+      "example": "I have a small problem."
+    },
+    {
+      "word": "question",
+      "translation": "pregunta",
+      "example": "Can I ask a question?"
+    },
+    {
+      "word": "quick",
+      "translation": "rapido/a",
+      "example": "Be quick, we are late!"
+    },
+    {
+      "word": "quiet",
+      "translation": "tranquilo/a / silencioso/a",
+      "example": "Please be quiet."
+    },
+    {
+      "word": "right",
+      "translation": "derecha / correcto",
+      "example": "Turn right at the corner."
+    },
+    {
+      "word": "sad",
+      "translation": "triste",
+      "example": "She looks sad today."
+    },
+    {
+      "word": "say",
+      "translation": "decir",
+      "example": "What did you say?"
+    },
+    {
+      "word": "see",
+      "translation": "ver",
+      "example": "Can you see that mountain?"
+    },
+    {
+      "word": "send",
+      "translation": "enviar",
+      "example": "I will send you an email."
+    },
+    {
+      "word": "short",
+      "translation": "corto/a / bajo/a",
+      "example": "She has short hair."
+    },
+    {
+      "word": "sing",
+      "translation": "cantar",
+      "example": "She loves to sing."
+    },
+    {
+      "word": "sit",
+      "translation": "sentarse",
+      "example": "Please sit down."
+    },
+    {
+      "word": "some",
+      "translation": "algo de / unos/as",
+      "example": "Would you like some tea?"
+    },
+    {
+      "word": "sorry",
+      "translation": "lo siento / perdon",
+      "example": "I am sorry I am late."
+    },
+    {
+      "word": "speak",
+      "translation": "hablar",
+      "example": "Do you speak English?"
+    },
+    {
+      "word": "stand",
+      "translation": "estar de pie / aguantar",
+      "example": "I can't stand the cold."
+    },
+    {
+      "word": "start",
+      "translation": "empezar",
+      "example": "The class starts at nine."
+    },
+    {
+      "word": "stay",
+      "translation": "quedarse",
+      "example": "I will stay at home tonight."
+    },
+    {
+      "word": "stop",
+      "translation": "parar / dejar de",
+      "example": "Stop talking!"
+    },
+    {
+      "word": "study",
+      "translation": "estudiar",
+      "example": "I study every evening."
+    },
+    {
+      "word": "take",
+      "translation": "tomar / coger",
+      "example": "Take an umbrella."
+    },
+    {
+      "word": "talk",
+      "translation": "hablar / charlar",
+      "example": "We talked for hours."
+    },
+    {
+      "word": "tell",
+      "translation": "contar / decir",
+      "example": "Tell me about your day."
+    },
+    {
+      "word": "thank",
+      "translation": "agradecer",
+      "example": "Thank you very much."
+    },
+    {
+      "word": "there",
+      "translation": "alli / hay",
+      "example": "There is a park near here."
+    },
+    {
+      "word": "thing",
+      "translation": "cosa",
+      "example": "What is that thing?"
+    },
+    {
+      "word": "town",
+      "translation": "pueblo / ciudad pequena",
+      "example": "I grew up in a small town."
+    },
+    {
+      "word": "try",
+      "translation": "intentar",
+      "example": "Try again!"
+    },
+    {
+      "word": "turn",
+      "translation": "girar / turno",
+      "example": "Turn left here."
+    },
+    {
+      "word": "use",
+      "translation": "usar / uso",
+      "example": "How do you use this?"
+    },
+    {
+      "word": "very",
+      "translation": "muy",
+      "example": "I am very happy."
+    },
+    {
+      "word": "wait",
+      "translation": "esperar",
+      "example": "Wait for me!"
+    },
+    {
+      "word": "want",
+      "translation": "querer",
+      "example": "I want a glass of water."
+    },
+    {
+      "word": "watch",
+      "translation": "ver / reloj",
+      "example": "I watch TV every evening."
+    },
+    {
+      "word": "way",
+      "translation": "camino / manera",
+      "example": "Which way is the station?"
+    },
+    {
+      "word": "weather",
+      "translation": "tiempo atmosferico",
+      "example": "The weather is beautiful today."
+    },
+    {
+      "word": "week",
+      "translation": "semana",
+      "example": "I work five days a week."
+    },
+    {
+      "word": "where",
+      "translation": "donde",
+      "example": "Where do you live?"
+    },
+    {
+      "word": "which",
+      "translation": "cual / que",
+      "example": "Which colour do you prefer?"
+    },
+    {
+      "word": "who",
+      "translation": "quien",
+      "example": "Who is that?"
+    },
+    {
+      "word": "why",
+      "translation": "por que",
+      "example": "Why are you late?"
+    },
+    {
+      "word": "word",
+      "translation": "palabra",
+      "example": "I don't know this word."
+    },
+    {
+      "word": "world",
+      "translation": "mundo",
+      "example": "She wants to travel the world."
+    },
+    {
+      "word": "address",
+      "translation": "direccion",
+      "example": "What is your address?"
+    },
+    {
+      "word": "airport",
+      "translation": "aeropuerto",
+      "example": "The airport is far from the city."
+    },
+    {
+      "word": "alarm",
+      "translation": "alarma",
+      "example": "The alarm goes off at seven."
+    },
+    {
+      "word": "animal",
+      "translation": "animal",
+      "example": "My favourite animal is the dog."
+    },
+    {
+      "word": "aunt",
+      "translation": "tia",
+      "example": "My aunt lives in Barcelona."
+    },
+    {
+      "word": "baby",
+      "translation": "bebe",
+      "example": "The baby is sleeping."
+    },
+    {
+      "word": "bank",
+      "translation": "banco",
+      "example": "I need to go to the bank."
+    },
+    {
+      "word": "basement",
+      "translation": "sotano",
+      "example": "The washing machine is in the basement."
+    },
+    {
+      "word": "bicycle",
+      "translation": "bicicleta",
+      "example": "I ride my bicycle to school."
+    },
+    {
+      "word": "blanket",
+      "translation": "manta",
+      "example": "I need an extra blanket."
+    },
+    {
+      "word": "building",
+      "translation": "edificio",
+      "example": "That is a tall building."
+    },
+    {
+      "word": "butter",
+      "translation": "mantequilla",
+      "example": "I put butter on my bread."
+    },
+    {
+      "word": "button",
+      "translation": "boton",
+      "example": "Press the button."
+    },
+    {
+      "word": "candle",
+      "translation": "vela",
+      "example": "She lit a candle."
+    },
+    {
+      "word": "cinema",
+      "translation": "cine",
+      "example": "Let us go to the cinema tonight."
+    },
+    {
+      "word": "circle",
+      "translation": "circulo",
+      "example": "Draw a circle."
+    },
+    {
+      "word": "cloud",
+      "translation": "nube",
+      "example": "There are clouds in the sky."
+    },
+    {
+      "word": "corner",
+      "translation": "esquina",
+      "example": "Turn left at the corner."
+    },
+    {
+      "word": "cousin",
+      "translation": "primo/a",
+      "example": "I have three cousins."
+    },
+    {
+      "word": "credit card",
+      "translation": "tarjeta de credito",
+      "example": "Can I pay by credit card?"
+    },
+    {
+      "word": "curtain",
+      "translation": "cortina",
+      "example": "Open the curtains."
+    },
+    {
+      "word": "dance",
+      "translation": "bailar",
+      "example": "Do you like to dance?"
+    },
+    {
+      "word": "dark",
+      "translation": "oscuro/a",
+      "example": "It is dark outside."
+    },
+    {
+      "word": "dictionary",
+      "translation": "diccionario",
+      "example": "Look it up in the dictionary."
+    },
+    {
+      "word": "different",
+      "translation": "diferente",
+      "example": "We have different opinions."
+    },
+    {
+      "word": "difficult",
+      "translation": "dificil",
+      "example": "This exercise is difficult."
+    },
+    {
+      "word": "direction",
+      "translation": "direccion",
+      "example": "Can you give me directions?"
+    },
+    {
+      "word": "dream",
+      "translation": "sueno / soñar",
+      "example": "I had a strange dream last night."
+    },
+    {
+      "word": "drive",
+      "translation": "conducir",
+      "example": "She drives very carefully."
+    },
+    {
+      "word": "dry",
+      "translation": "seco/a / secar",
+      "example": "The clothes are dry now."
+    },
+    {
+      "word": "email",
+      "translation": "correo electronico",
+      "example": "Send me an email."
+    },
+    {
+      "word": "empty",
+      "translation": "vacio/a",
+      "example": "The bottle is empty."
+    },
+    {
+      "word": "fall",
+      "translation": "caer / otoño",
+      "example": "Be careful not to fall."
+    },
+    {
+      "word": "famous",
+      "translation": "famoso/a",
+      "example": "She is a famous singer."
+    },
+    {
+      "word": "film",
+      "translation": "pelicula / filmar",
+      "example": "I watched a great film yesterday."
+    },
+    {
+      "word": "finger",
+      "translation": "dedo",
+      "example": "She cut her finger."
+    },
+    {
+      "word": "fire",
+      "translation": "fuego / incendio",
+      "example": "There is a fire in the kitchen."
+    },
+    {
+      "word": "flat",
+      "translation": "piso / plano",
+      "example": "I live in a flat."
+    },
+    {
+      "word": "fly",
+      "translation": "volar / mosca",
+      "example": "Birds can fly."
+    },
+    {
+      "word": "forest",
+      "translation": "bosque",
+      "example": "We walked through the forest."
+    },
+    {
+      "word": "funny",
+      "translation": "gracioso/a / divertido",
+      "example": "He is very funny."
+    },
+    {
+      "word": "glasses",
+      "translation": "gafas",
+      "example": "I need my glasses to read."
+    },
+    {
+      "word": "grandfather",
+      "translation": "abuelo",
+      "example": "My grandfather is 80 years old."
+    },
+    {
+      "word": "grandmother",
+      "translation": "abuela",
+      "example": "My grandmother makes great soup."
+    },
+    {
+      "word": "grass",
+      "translation": "hierba",
+      "example": "The grass is green."
+    },
+    {
+      "word": "hair",
+      "translation": "pelo / cabello",
+      "example": "She has long hair."
+    },
+    {
+      "word": "heart",
+      "translation": "corazon",
+      "example": "Exercise is good for your heart."
+    },
+    {
+      "word": "hill",
+      "translation": "colina",
+      "example": "We walked up the hill."
+    },
+    {
+      "word": "holiday",
+      "translation": "vacaciones / festivo",
+      "example": "I am going on holiday next week."
+    },
+    {
+      "word": "homework",
+      "translation": "deberes / tarea",
+      "example": "Have you done your homework?"
+    },
+    {
+      "word": "horse",
+      "translation": "caballo",
+      "example": "She rides horses every weekend."
+    },
+    {
+      "word": "ice",
+      "translation": "hielo",
+      "example": "Put some ice in my drink."
+    },
+    {
+      "word": "juice",
+      "translation": "zumo / jugo",
+      "example": "I drink orange juice every morning."
+    },
+    {
+      "word": "jump",
+      "translation": "saltar",
+      "example": "The children love to jump."
+    },
+    {
+      "word": "kilometer",
+      "translation": "kilometro",
+      "example": "The beach is two kilometres away."
+    },
+    {
+      "word": "lamp",
+      "translation": "lampara",
+      "example": "Turn on the lamp."
+    },
+    {
+      "word": "landscape",
+      "translation": "paisaje",
+      "example": "The landscape is beautiful."
+    },
+    {
+      "word": "laugh",
+      "translation": "reir",
+      "example": "That joke made me laugh."
+    },
+    {
+      "word": "leaf",
+      "translation": "hoja",
+      "example": "The leaves are falling."
+    },
+    {
+      "word": "left",
+      "translation": "izquierda / izquierdo",
+      "example": "Turn left at the traffic lights."
+    },
+    {
+      "word": "lemon",
+      "translation": "limon",
+      "example": "She added lemon to her tea."
+    },
+    {
+      "word": "lesson",
+      "translation": "leccion / clase",
+      "example": "The lesson starts at nine."
+    },
+    {
+      "word": "lift",
+      "translation": "ascensor / llevar en coche",
+      "example": "Take the lift to the third floor."
+    },
+    {
+      "word": "lion",
+      "translation": "leon",
+      "example": "The lion is the king of the jungle."
+    },
+    {
+      "word": "loud",
+      "translation": "ruidoso/a / alto",
+      "example": "The music is too loud."
+    },
+    {
+      "word": "match",
+      "translation": "partido / cerilla / combinar",
+      "example": "Did you watch the match last night?"
+    },
+    {
+      "word": "meat",
+      "translation": "carne",
+      "example": "I do not eat meat."
+    },
+    {
+      "word": "message",
+      "translation": "mensaje",
+      "example": "Did you get my message?"
+    },
+    {
+      "word": "mirror",
+      "translation": "espejo",
+      "example": "Look in the mirror."
+    },
+    {
+      "word": "mountain",
+      "translation": "montaña",
+      "example": "We hiked up the mountain."
+    },
+    {
+      "word": "mouse",
+      "translation": "raton",
+      "example": "The cat caught a mouse."
+    },
+    {
+      "word": "move",
+      "translation": "mover / mudarse",
+      "example": "Move the chair closer."
+    },
+    {
+      "word": "nephew",
+      "translation": "sobrino",
+      "example": "My nephew is five years old."
+    },
+    {
+      "word": "nice",
+      "translation": "agradable",
+      "example": "What a nice day!"
+    },
+    {
+      "word": "niece",
+      "translation": "sobrina",
+      "example": "My niece loves dancing."
+    },
+    {
+      "word": "noise",
+      "translation": "ruido",
+      "example": "There is a lot of noise outside."
+    },
+    {
+      "word": "notebook",
+      "translation": "cuaderno",
+      "example": "Write it in your notebook."
+    },
+    {
+      "word": "outside",
+      "translation": "fuera / exterior",
+      "example": "Let us sit outside."
+    },
+    {
+      "word": "oven",
+      "translation": "horno",
+      "example": "Put the pizza in the oven."
+    },
+    {
+      "word": "pair",
+      "translation": "par",
+      "example": "I need a new pair of shoes."
+    },
+    {
+      "word": "pants",
+      "translation": "pantalones",
+      "example": "Those pants look great on you."
+    },
+    {
+      "word": "paper",
+      "translation": "papel",
+      "example": "Give me a piece of paper."
+    },
+    {
+      "word": "parents",
+      "translation": "padres",
+      "example": "My parents live in Seville."
+    },
+    {
+      "word": "passport",
+      "translation": "pasaporte",
+      "example": "Do not forget your passport."
+    },
+    {
+      "word": "pepper",
+      "translation": "pimienta / pimiento",
+      "example": "Pass the pepper, please."
+    },
+    {
+      "word": "piece",
+      "translation": "trozo / pieza",
+      "example": "Can I have a piece of cake?"
+    },
+    {
+      "word": "pill",
+      "translation": "pastilla / pildora",
+      "example": "Take one pill a day."
+    },
+    {
+      "word": "pilot",
+      "translation": "piloto",
+      "example": "She wants to be a pilot."
+    },
+    {
+      "word": "pizza",
+      "translation": "pizza",
+      "example": "Let us order pizza tonight."
+    },
+    {
+      "word": "planet",
+      "translation": "planeta",
+      "example": "Earth is a planet."
+    },
+    {
+      "word": "plant",
+      "translation": "planta / plantar",
+      "example": "Water the plants every day."
+    },
+    {
+      "word": "pocket",
+      "translation": "bolsillo",
+      "example": "My keys are in my pocket."
+    },
+    {
+      "word": "potato",
+      "translation": "patata",
+      "example": "I love mashed potatoes."
+    },
+    {
+      "word": "pretty",
+      "translation": "bonita / bastante",
+      "example": "She is very pretty."
+    },
+    {
+      "word": "pull",
+      "translation": "tirar / jalar",
+      "example": "Pull the door to open it."
+    },
+    {
+      "word": "push",
+      "translation": "empujar",
+      "example": "Push the door to open it."
+    },
+    {
+      "word": "rabbit",
+      "translation": "conejo",
+      "example": "She has a pet rabbit."
+    },
+    {
+      "word": "radio",
+      "translation": "radio",
+      "example": "I listen to the radio in the car."
+    },
+    {
+      "word": "rain",
+      "translation": "lluvia / llover",
+      "example": "It looks like rain."
+    },
+    {
+      "word": "ready",
+      "translation": "listo/a",
+      "example": "Are you ready to go?"
+    },
+    {
+      "word": "receipt",
+      "translation": "recibo",
+      "example": "Keep the receipt."
+    },
+    {
+      "word": "refrigerator",
+      "translation": "nevera / refrigerador",
+      "example": "Put the milk in the refrigerator."
+    },
+    {
+      "word": "river",
+      "translation": "rio",
+      "example": "We swam in the river."
+    },
+    {
+      "word": "rock",
+      "translation": "roca / piedra",
+      "example": "She sat on a rock."
+    },
+    {
+      "word": "roof",
+      "translation": "tejado",
+      "example": "The roof needs repairing."
+    },
+    {
+      "word": "salt",
+      "translation": "sal",
+      "example": "Pass the salt, please."
+    },
+    {
+      "word": "sandwich",
+      "translation": "bocadillo / sandwich",
+      "example": "I had a sandwich for lunch."
+    },
+    {
+      "word": "season",
+      "translation": "estacion / temporada",
+      "example": "What is your favourite season?"
+    },
+    {
+      "word": "sentence",
+      "translation": "oracion / frase",
+      "example": "Write a sentence using this word."
+    },
+    {
+      "word": "shelf",
+      "translation": "estanteria",
+      "example": "Put the books on the shelf."
+    },
+    {
+      "word": "shirt",
+      "translation": "camisa",
+      "example": "He is wearing a blue shirt."
+    },
+    {
+      "word": "shoulder",
+      "translation": "hombro",
+      "example": "She tapped me on the shoulder."
+    },
+    {
+      "word": "shower",
+      "translation": "ducha / ducharse",
+      "example": "I take a shower every morning."
+    },
+    {
+      "word": "sign",
+      "translation": "señal / firmar",
+      "example": "Follow the signs."
+    },
+    {
+      "word": "snow",
+      "translation": "nieve / nevar",
+      "example": "It snows a lot in winter."
+    },
+    {
+      "word": "socks",
+      "translation": "calcetines",
+      "example": "I need clean socks."
+    },
+    {
+      "word": "square",
+      "translation": "plaza / cuadrado",
+      "example": "We met in the main square."
+    },
+    {
+      "word": "stairs",
+      "translation": "escaleras",
+      "example": "Take the stairs."
+    },
+    {
+      "word": "station",
+      "translation": "estacion",
+      "example": "I will meet you at the station."
+    },
+    {
+      "word": "stomach",
+      "translation": "estomago / barriga",
+      "example": "I have a stomach ache."
+    },
+    {
+      "word": "strong",
+      "translation": "fuerte",
+      "example": "She is very strong."
+    },
+    {
+      "word": "suitcase",
+      "translation": "maleta",
+      "example": "Pack your suitcase tonight."
+    },
+    {
+      "word": "supermarket",
+      "translation": "supermercado",
+      "example": "I need to go to the supermarket."
+    },
+    {
+      "word": "sweater",
+      "translation": "jersey / sueter",
+      "example": "Wear a sweater, it is cold."
+    },
+    {
+      "word": "sweet",
+      "translation": "dulce",
+      "example": "This cake is very sweet."
+    },
+    {
+      "word": "ticket",
+      "translation": "entrada / billete",
+      "example": "I bought two tickets for the concert."
+    },
+    {
+      "word": "tidy",
+      "translation": "ordenado/a / ordenar",
+      "example": "Keep your room tidy."
+    },
+    {
+      "word": "tie",
+      "translation": "corbata / atar",
+      "example": "He is wearing a tie."
+    },
+    {
+      "word": "together",
+      "translation": "juntos",
+      "example": "We work well together."
+    },
+    {
+      "word": "tomato",
+      "translation": "tomate",
+      "example": "Add tomatoes to the salad."
+    },
+    {
+      "word": "tongue",
+      "translation": "lengua",
+      "example": "She bit her tongue."
+    },
+    {
+      "word": "tooth",
+      "translation": "diente",
+      "example": "Brush your teeth twice a day."
+    },
+    {
+      "word": "trousers",
+      "translation": "pantalones",
+      "example": "Those trousers are too long."
+    },
+    {
+      "word": "uncle",
+      "translation": "tio",
+      "example": "My uncle is a doctor."
+    },
+    {
+      "word": "uniform",
+      "translation": "uniforme",
+      "example": "Students must wear a uniform."
+    },
+    {
+      "word": "university",
+      "translation": "universidad",
+      "example": "She is studying at university."
+    },
+    {
+      "word": "vacation",
+      "translation": "vacaciones",
+      "example": "We are going on vacation."
+    },
+    {
+      "word": "vegetable",
+      "translation": "verdura",
+      "example": "Eat more vegetables."
+    },
+    {
+      "word": "village",
+      "translation": "pueblo / aldea",
+      "example": "She grew up in a small village."
+    },
+    {
+      "word": "visit",
+      "translation": "visitar / visita",
+      "example": "We visited Rome last summer."
+    },
+    {
+      "word": "voice",
+      "translation": "voz",
+      "example": "She has a beautiful voice."
+    },
+    {
+      "word": "warm",
+      "translation": "calido/a / caliente",
+      "example": "The weather is warm today."
+    },
+    {
+      "word": "watch",
+      "translation": "reloj de pulsera / ver",
+      "example": "I watch TV in the evenings."
+    },
+    {
+      "word": "wet",
+      "translation": "mojado/a",
+      "example": "My clothes are wet."
+    },
+    {
+      "word": "wide",
+      "translation": "ancho/a",
+      "example": "The road is very wide."
+    },
+    {
+      "word": "wife",
+      "translation": "esposa",
+      "example": "His wife is a nurse."
+    },
+    {
+      "word": "win",
+      "translation": "ganar",
+      "example": "Did you win the game?"
+    },
+    {
+      "word": "wind",
+      "translation": "viento",
+      "example": "The wind is very strong today."
+    },
+    {
+      "word": "wish",
+      "translation": "desear / deseo",
+      "example": "I wish you luck."
+    },
+    {
+      "word": "wonderful",
+      "translation": "maravilloso/a",
+      "example": "What a wonderful day!"
+    },
+    {
+      "word": "wood",
+      "translation": "madera / bosque",
+      "example": "The table is made of wood."
+    },
+    {
+      "word": "wrong",
+      "translation": "incorrecto/a / equivocado",
+      "example": "That answer is wrong."
+    },
+    {
+      "word": "zebra",
+      "translation": "cebra",
+      "example": "A zebra has black and white stripes."
+    },
+    {
+      "word": "zero",
+      "translation": "cero",
+      "example": "The temperature is below zero."
+    },
+    {
+      "word": "zoo",
+      "translation": "zoo / zoologico",
+      "example": "We went to the zoo on Sunday."
+    }
+  ],
+  "B1": [
+    {
+      "word": "achieve",
+      "translation": "lograr / alcanzar",
+      "example": "She worked hard to achieve her goals."
+    },
+    {
+      "word": "actually",
+      "translation": "en realidad / de hecho",
+      "example": "I actually enjoyed the film."
+    },
+    {
+      "word": "advice",
+      "translation": "consejo",
+      "example": "Can you give me some advice?"
+    },
+    {
+      "word": "affect",
+      "translation": "afectar",
+      "example": "The weather affects my mood."
+    },
+    {
+      "word": "afford",
+      "translation": "permitirse",
+      "example": "I can't afford a new car."
+    },
+    {
+      "word": "agree",
+      "translation": "estar de acuerdo",
+      "example": "I agree with your point."
+    },
+    {
+      "word": "although",
+      "translation": "aunque",
+      "example": "Although it was late, we stayed."
+    },
+    {
+      "word": "ambitious",
+      "translation": "ambicioso/a",
+      "example": "She is very ambitious about her career."
+    },
+    {
+      "word": "announce",
+      "translation": "anunciar",
+      "example": "They will announce the results tomorrow."
+    },
+    {
+      "word": "anxiety",
+      "translation": "ansiedad",
+      "example": "She suffers from anxiety."
+    },
+    {
+      "word": "apologise",
+      "translation": "disculparse",
+      "example": "I apologise for being late."
+    },
+    {
+      "word": "appearance",
+      "translation": "apariencia",
+      "example": "First impressions are about appearance."
+    },
+    {
+      "word": "appreciate",
+      "translation": "apreciar",
+      "example": "I really appreciate your help."
+    },
+    {
+      "word": "argue",
+      "translation": "discutir / argumentar",
+      "example": "They always argue about money."
+    },
+    {
+      "word": "atmosphere",
+      "translation": "atmosfera / ambiente",
+      "example": "The restaurant has a great atmosphere."
+    },
+    {
+      "word": "attitude",
+      "translation": "actitud",
+      "example": "She has a positive attitude."
+    },
+    {
+      "word": "attract",
+      "translation": "atraer",
+      "example": "The city attracts millions of tourists."
+    },
+    {
+      "word": "available",
+      "translation": "disponible",
+      "example": "Is this table available?"
+    },
+    {
+      "word": "average",
+      "translation": "promedio / medio",
+      "example": "The average temperature in summer is 30 degrees."
+    },
+    {
+      "word": "avoid",
+      "translation": "evitar",
+      "example": "Try to avoid eating too much sugar."
+    },
+    {
+      "word": "aware",
+      "translation": "consciente / enterado",
+      "example": "Are you aware of the risks?"
+    },
+    {
+      "word": "behavior",
+      "translation": "comportamiento",
+      "example": "His behavior was unacceptable."
+    },
+    {
+      "word": "benefit",
+      "translation": "beneficio / beneficiar",
+      "example": "Exercise has many health benefits."
+    },
+    {
+      "word": "besides",
+      "translation": "ademas",
+      "example": "Besides English, she speaks French."
+    },
+    {
+      "word": "blame",
+      "translation": "culpar / culpa",
+      "example": "Don't blame me for the mistake."
+    },
+    {
+      "word": "borrow",
+      "translation": "pedir prestado",
+      "example": "Can I borrow your pen?"
+    },
+    {
+      "word": "boss",
+      "translation": "jefe/a",
+      "example": "My boss is very strict."
+    },
+    {
+      "word": "both",
+      "translation": "ambos",
+      "example": "Both options are good."
+    },
+    {
+      "word": "brave",
+      "translation": "valiente",
+      "example": "She was very brave during the storm."
+    },
+    {
+      "word": "break",
+      "translation": "romper / descanso",
+      "example": "Let's take a break."
+    },
+    {
+      "word": "breakthrough",
+      "translation": "avance / logro",
+      "example": "Scientists made a breakthrough."
+    },
+    {
+      "word": "bright",
+      "translation": "brillante / inteligente",
+      "example": "She is a very bright student."
+    },
+    {
+      "word": "budget",
+      "translation": "presupuesto",
+      "example": "We need to stick to the budget."
+    },
+    {
+      "word": "busy",
+      "translation": "ocupado/a",
+      "example": "I am very busy this week."
+    },
+    {
+      "word": "calm",
+      "translation": "tranquilo/a / calmarse",
+      "example": "Stay calm and think clearly."
+    },
+    {
+      "word": "campaign",
+      "translation": "campaña",
+      "example": "The company launched a new campaign."
+    },
+    {
+      "word": "capable",
+      "translation": "capaz",
+      "example": "She is capable of doing it."
+    },
+    {
+      "word": "career",
+      "translation": "carrera profesional",
+      "example": "She has a successful career."
+    },
+    {
+      "word": "cause",
+      "translation": "causar / causa",
+      "example": "What caused the accident?"
+    },
+    {
+      "word": "challenge",
+      "translation": "desafio / retar",
+      "example": "Learning a language is a challenge."
+    },
+    {
+      "word": "chance",
+      "translation": "oportunidad / posibilidad",
+      "example": "Give me a chance to explain."
+    },
+    {
+      "word": "change",
+      "translation": "cambiar / cambio",
+      "example": "Things change over time."
+    },
+    {
+      "word": "character",
+      "translation": "caracter / personaje",
+      "example": "He has a strong character."
+    },
+    {
+      "word": "choice",
+      "translation": "eleccion",
+      "example": "You have to make a choice."
+    },
+    {
+      "word": "clearly",
+      "translation": "claramente",
+      "example": "Please speak more clearly."
+    },
+    {
+      "word": "climate",
+      "translation": "clima",
+      "example": "Climate change is a serious issue."
+    },
+    {
+      "word": "colleague",
+      "translation": "colega / compañero/a",
+      "example": "My colleague is very helpful."
+    },
+    {
+      "word": "communicate",
+      "translation": "comunicar",
+      "example": "It is important to communicate clearly."
+    },
+    {
+      "word": "community",
+      "translation": "comunidad",
+      "example": "She is active in her community."
+    },
+    {
+      "word": "compare",
+      "translation": "comparar",
+      "example": "Compare the prices before buying."
+    },
+    {
+      "word": "complain",
+      "translation": "quejarse",
+      "example": "He always complains about the weather."
+    },
+    {
+      "word": "complete",
+      "translation": "completar / completo",
+      "example": "Please complete the form."
+    },
+    {
+      "word": "concentrate",
+      "translation": "concentrarse",
+      "example": "I can't concentrate with this noise."
+    },
+    {
+      "word": "confident",
+      "translation": "seguro/a de si mismo",
+      "example": "She is a confident speaker."
+    },
+    {
+      "word": "confuse",
+      "translation": "confundir",
+      "example": "The instructions are very confusing."
+    },
+    {
+      "word": "consider",
+      "translation": "considerar",
+      "example": "Consider all your options first."
+    },
+    {
+      "word": "contact",
+      "translation": "contactar / contacto",
+      "example": "I will contact you tomorrow."
+    },
+    {
+      "word": "contribute",
+      "translation": "contribuir",
+      "example": "Everyone should contribute to the team."
+    },
+    {
+      "word": "convenient",
+      "translation": "conveniente / comodo",
+      "example": "The location is very convenient."
+    },
+    {
+      "word": "correct",
+      "translation": "corregir / correcto",
+      "example": "Please correct my mistakes."
+    },
+    {
+      "word": "creative",
+      "translation": "creativo/a",
+      "example": "She is a very creative person."
+    },
+    {
+      "word": "culture",
+      "translation": "cultura",
+      "example": "I enjoy learning about different cultures."
+    },
+    {
+      "word": "current",
+      "translation": "actual / corriente",
+      "example": "What is the current situation?"
+    },
+    {
+      "word": "customer",
+      "translation": "cliente/a",
+      "example": "The customer is always right."
+    },
+    {
+      "word": "damage",
+      "translation": "daño / dañar",
+      "example": "The storm caused a lot of damage."
+    },
+    {
+      "word": "daunting",
+      "translation": "intimidante",
+      "example": "The task seemed daunting at first."
+    },
+    {
+      "word": "deal",
+      "translation": "trato / tratar",
+      "example": "It's a great deal!"
+    },
+    {
+      "word": "decide",
+      "translation": "decidir",
+      "example": "Have you decided what to do?"
+    },
+    {
+      "word": "decrease",
+      "translation": "disminuir / disminucion",
+      "example": "Sales decreased last year."
+    },
+    {
+      "word": "delay",
+      "translation": "retraso / retrasar",
+      "example": "The train was delayed by an hour."
+    },
+    {
+      "word": "deliver",
+      "translation": "entregar / repartir",
+      "example": "They deliver to your door."
+    },
+    {
+      "word": "demand",
+      "translation": "demanda / exigir",
+      "example": "Demand for the product increased."
+    },
+    {
+      "word": "describe",
+      "translation": "describir",
+      "example": "Can you describe what happened?"
+    },
+    {
+      "word": "design",
+      "translation": "diseñar / diseño",
+      "example": "She designed a beautiful logo."
+    },
+    {
+      "word": "despite",
+      "translation": "a pesar de",
+      "example": "Despite the rain, we had fun."
+    },
+    {
+      "word": "determine",
+      "translation": "determinar",
+      "example": "What determined your choice?"
+    },
+    {
+      "word": "develop",
+      "translation": "desarrollar",
+      "example": "We need to develop new skills."
+    },
+    {
+      "word": "difference",
+      "translation": "diferencia",
+      "example": "What is the difference between them?"
+    },
+    {
+      "word": "difficult",
+      "translation": "dificil",
+      "example": "The exam was very difficult."
+    },
+    {
+      "word": "disappear",
+      "translation": "desaparecer",
+      "example": "My phone has disappeared."
+    },
+    {
+      "word": "disappoint",
+      "translation": "decepcionar",
+      "example": "I don't want to disappoint you."
+    },
+    {
+      "word": "discover",
+      "translation": "descubrir",
+      "example": "She discovered a new method."
+    },
+    {
+      "word": "discuss",
+      "translation": "discutir / hablar sobre",
+      "example": "Let's discuss this later."
+    },
+    {
+      "word": "distance",
+      "translation": "distancia",
+      "example": "The distance between cities is large."
+    },
+    {
+      "word": "disturb",
+      "translation": "molestar / perturbar",
+      "example": "Please do not disturb."
+    },
+    {
+      "word": "doubt",
+      "translation": "duda / dudar",
+      "example": "I have no doubt about it."
+    },
+    {
+      "word": "eager",
+      "translation": "ansioso / entusiasta",
+      "example": "He was eager to learn."
+    },
+    {
+      "word": "earn",
+      "translation": "ganar (dinero)",
+      "example": "She earns a good salary."
+    },
+    {
+      "word": "economy",
+      "translation": "economia",
+      "example": "The economy is growing slowly."
+    },
+    {
+      "word": "education",
+      "translation": "educacion",
+      "example": "Education is very important."
+    },
+    {
+      "word": "effective",
+      "translation": "efectivo/a",
+      "example": "This method is very effective."
+    },
+    {
+      "word": "effort",
+      "translation": "esfuerzo",
+      "example": "She put a lot of effort into it."
+    },
+    {
+      "word": "embarrass",
+      "translation": "avergonzar",
+      "example": "I was embarrassed by my mistake."
+    },
+    {
+      "word": "encourage",
+      "translation": "animar / alentar",
+      "example": "Her teacher encouraged her to write."
+    },
+    {
+      "word": "environment",
+      "translation": "medio ambiente / entorno",
+      "example": "We must protect the environment."
+    },
+    {
+      "word": "equal",
+      "translation": "igual",
+      "example": "Everyone deserves equal opportunities."
+    },
+    {
+      "word": "escape",
+      "translation": "escapar",
+      "example": "She managed to escape."
+    },
+    {
+      "word": "establish",
+      "translation": "establecer",
+      "example": "They established a new company."
+    },
+    {
+      "word": "event",
+      "translation": "evento",
+      "example": "What a great event!"
+    },
+    {
+      "word": "eventually",
+      "translation": "finalmente / con el tiempo",
+      "example": "He eventually found a job."
+    },
+    {
+      "word": "evidence",
+      "translation": "evidencia / prueba",
+      "example": "There is no evidence of this."
+    },
+    {
+      "word": "exact",
+      "translation": "exacto/a",
+      "example": "What is the exact time?"
+    },
+    {
+      "word": "exam",
+      "translation": "examen",
+      "example": "I have an exam tomorrow."
+    },
+    {
+      "word": "excellent",
+      "translation": "excelente",
+      "example": "Your work is excellent."
+    },
+    {
+      "word": "except",
+      "translation": "excepto",
+      "example": "Everyone came except Tom."
+    },
+    {
+      "word": "expect",
+      "translation": "esperar / prever",
+      "example": "I expect good results."
+    },
+    {
+      "word": "experience",
+      "translation": "experiencia / experimentar",
+      "example": "I have ten years of experience."
+    },
+    {
+      "word": "explain",
+      "translation": "explicar",
+      "example": "Can you explain this to me?"
+    },
+    {
+      "word": "fail",
+      "translation": "fallar / suspender",
+      "example": "She didn't fail the exam."
+    },
+    {
+      "word": "fair",
+      "translation": "justo/a",
+      "example": "That is not fair!"
+    },
+    {
+      "word": "familiar",
+      "translation": "familiar / conocido",
+      "example": "Are you familiar with this topic?"
+    },
+    {
+      "word": "feature",
+      "translation": "caracteristica",
+      "example": "What are the main features?"
+    },
+    {
+      "word": "finally",
+      "translation": "finalmente",
+      "example": "She finally got the job."
+    },
+    {
+      "word": "fit",
+      "translation": "en forma / encajar",
+      "example": "These shoes don't fit me."
+    },
+    {
+      "word": "flexible",
+      "translation": "flexible",
+      "example": "We need a more flexible schedule."
+    },
+    {
+      "word": "fluent",
+      "translation": "fluido/a",
+      "example": "She speaks fluent French."
+    },
+    {
+      "word": "focus",
+      "translation": "enfocarse / foco",
+      "example": "Focus on what matters most."
+    },
+    {
+      "word": "follow",
+      "translation": "seguir",
+      "example": "Follow the instructions carefully."
+    },
+    {
+      "word": "force",
+      "translation": "forzar / fuerza",
+      "example": "Don't force me to do it."
+    },
+    {
+      "word": "formal",
+      "translation": "formal",
+      "example": "This is a formal event."
+    },
+    {
+      "word": "fortunately",
+      "translation": "afortunadamente",
+      "example": "Fortunately, no one was hurt."
+    },
+    {
+      "word": "frequent",
+      "translation": "frecuente",
+      "example": "He is a frequent traveller."
+    },
+    {
+      "word": "frustrated",
+      "translation": "frustrado/a",
+      "example": "I feel frustrated by this."
+    },
+    {
+      "word": "fun",
+      "translation": "diversion / divertido",
+      "example": "We had so much fun!"
+    },
+    {
+      "word": "further",
+      "translation": "adicional / mas lejos",
+      "example": "I need further information."
+    },
+    {
+      "word": "future",
+      "translation": "futuro",
+      "example": "I am optimistic about the future."
+    },
+    {
+      "word": "general",
+      "translation": "general",
+      "example": "In general, people are kind."
+    },
+    {
+      "word": "global",
+      "translation": "global",
+      "example": "Climate change is a global issue."
+    },
+    {
+      "word": "goal",
+      "translation": "objetivo / meta",
+      "example": "Her goal is to become a doctor."
+    },
+    {
+      "word": "government",
+      "translation": "gobierno",
+      "example": "The government made a new law."
+    },
+    {
+      "word": "grateful",
+      "translation": "agradecido/a",
+      "example": "I am grateful for your help."
+    },
+    {
+      "word": "grow",
+      "translation": "crecer",
+      "example": "The company has grown quickly."
+    },
+    {
+      "word": "guide",
+      "translation": "guia / guiar",
+      "example": "He guided us through the city."
+    },
+    {
+      "word": "handle",
+      "translation": "manejar / tratar",
+      "example": "She handles pressure well."
+    },
+    {
+      "word": "happen",
+      "translation": "pasar / ocurrir",
+      "example": "What happened last night?"
+    },
+    {
+      "word": "hassle",
+      "translation": "lio / molestia",
+      "example": "It's too much of a hassle."
+    },
+    {
+      "word": "health",
+      "translation": "salud",
+      "example": "Good health is very important."
+    },
+    {
+      "word": "hire",
+      "translation": "contratar / alquilar",
+      "example": "They hired a new manager."
+    },
+    {
+      "word": "honest",
+      "translation": "honesto/a",
+      "example": "Be honest with me."
+    },
+    {
+      "word": "however",
+      "translation": "sin embargo",
+      "example": "However, there are some problems."
+    },
+    {
+      "word": "human",
+      "translation": "humano/a",
+      "example": "We all make human mistakes."
+    },
+    {
+      "word": "identify",
+      "translation": "identificar",
+      "example": "Can you identify the problem?"
+    },
+    {
+      "word": "ignore",
+      "translation": "ignorar",
+      "example": "Don't ignore the warning signs."
+    },
+    {
+      "word": "imagine",
+      "translation": "imaginar",
+      "example": "Imagine living in Paris."
+    },
+    {
+      "word": "improve",
+      "translation": "mejorar",
+      "example": "I want to improve my English."
+    },
+    {
+      "word": "include",
+      "translation": "incluir",
+      "example": "Does the price include breakfast?"
+    },
+    {
+      "word": "increase",
+      "translation": "aumentar / aumento",
+      "example": "Sales increased by 20%."
+    },
+    {
+      "word": "independence",
+      "translation": "independencia",
+      "example": "She values her independence."
+    },
+    {
+      "word": "influence",
+      "translation": "influencia / influir",
+      "example": "Music has a great influence on me."
+    },
+    {
+      "word": "inform",
+      "translation": "informar",
+      "example": "Please inform me of any changes."
+    },
+    {
+      "word": "insight",
+      "translation": "perspicacia / vision",
+      "example": "The book offers great insights."
+    },
+    {
+      "word": "instead",
+      "translation": "en su lugar / en vez de",
+      "example": "Have water instead of juice."
+    },
+    {
+      "word": "intend",
+      "translation": "tener la intencion de",
+      "example": "I intend to finish this today."
+    },
+    {
+      "word": "introduce",
+      "translation": "introducir / presentar",
+      "example": "Let me introduce my colleague."
+    },
+    {
+      "word": "involve",
+      "translation": "involucrar",
+      "example": "The project involves many people."
+    },
+    {
+      "word": "issue",
+      "translation": "asunto / problema",
+      "example": "This is a serious issue."
+    },
+    {
+      "word": "join",
+      "translation": "unirse / unir",
+      "example": "Can I join your team?"
+    },
+    {
+      "word": "judge",
+      "translation": "juzgar / juez",
+      "example": "Don't judge people too quickly."
+    },
+    {
+      "word": "knowledge",
+      "translation": "conocimiento",
+      "example": "She has great knowledge of history."
+    },
+    {
+      "word": "lack",
+      "translation": "falta / carecer de",
+      "example": "There is a lack of evidence."
+    },
+    {
+      "word": "lead",
+      "translation": "liderar / llevar",
+      "example": "She leads the project team."
+    },
+    {
+      "word": "limit",
+      "translation": "limite / limitar",
+      "example": "There is a limit to what I can do."
+    },
+    {
+      "word": "local",
+      "translation": "local",
+      "example": "I prefer local restaurants."
+    },
+    {
+      "word": "manage",
+      "translation": "gestionar / lograr",
+      "example": "She manages a team of ten."
+    },
+    {
+      "word": "mention",
+      "translation": "mencionar",
+      "example": "He mentioned your name."
+    },
+    {
+      "word": "method",
+      "translation": "metodo",
+      "example": "This method works very well."
+    },
+    {
+      "word": "miss",
+      "translation": "echar de menos / perderse",
+      "example": "I miss my family."
+    },
+    {
+      "word": "mistake",
+      "translation": "error",
+      "example": "Everyone makes mistakes."
+    },
+    {
+      "word": "modern",
+      "translation": "moderno/a",
+      "example": "She lives in a modern apartment."
+    },
+    {
+      "word": "move",
+      "translation": "mover / mudarse",
+      "example": "We are moving house next month."
+    },
+    {
+      "word": "natural",
+      "translation": "natural",
+      "example": "This product is made from natural materials."
+    },
+    {
+      "word": "necessary",
+      "translation": "necesario/a",
+      "example": "Is it necessary to bring a passport?"
+    },
+    {
+      "word": "notice",
+      "translation": "notar / aviso",
+      "example": "Did you notice anything strange?"
+    },
+    {
+      "word": "object",
+      "translation": "objetar / objeto",
+      "example": "I object to this proposal."
+    },
+    {
+      "word": "obtain",
+      "translation": "obtener",
+      "example": "She obtained a degree in science."
+    },
+    {
+      "word": "offer",
+      "translation": "ofrecer / oferta",
+      "example": "They offered me a job."
+    },
+    {
+      "word": "opinion",
+      "translation": "opinion",
+      "example": "In my opinion, she is right."
+    },
+    {
+      "word": "opportunity",
+      "translation": "oportunidad",
+      "example": "This is a great opportunity."
+    },
+    {
+      "word": "option",
+      "translation": "opcion",
+      "example": "There are several options available."
+    },
+    {
+      "word": "ordinary",
+      "translation": "ordinario/a / normal",
+      "example": "It was an ordinary day."
+    },
+    {
+      "word": "organize",
+      "translation": "organizar",
+      "example": "She organized the whole event."
+    },
+    {
+      "word": "otherwise",
+      "translation": "de lo contrario",
+      "example": "Hurry up, otherwise we'll be late."
+    },
+    {
+      "word": "overcome",
+      "translation": "superar",
+      "example": "She overcame many challenges."
+    },
+    {
+      "word": "own",
+      "translation": "propio/a / poseer",
+      "example": "She owns a small business."
+    },
+    {
+      "word": "participate",
+      "translation": "participar",
+      "example": "Everyone should participate."
+    },
+    {
+      "word": "particular",
+      "translation": "particular / especifico",
+      "example": "Is there a particular reason?"
+    },
+    {
+      "word": "patient",
+      "translation": "paciente",
+      "example": "Be patient, it takes time."
+    },
+    {
+      "word": "permanent",
+      "translation": "permanente",
+      "example": "Is this a permanent position?"
+    },
+    {
+      "word": "permit",
+      "translation": "permitir / permiso",
+      "example": "Photography is not permitted here."
+    },
+    {
+      "word": "personal",
+      "translation": "personal",
+      "example": "This is a personal matter."
+    },
+    {
+      "word": "plan",
+      "translation": "planear / plan",
+      "example": "What is your plan for tomorrow?"
+    },
+    {
+      "word": "polite",
+      "translation": "educado/a",
+      "example": "Always be polite to others."
+    },
+    {
+      "word": "popular",
+      "translation": "popular",
+      "example": "This is a very popular restaurant."
+    },
+    {
+      "word": "positive",
+      "translation": "positivo/a",
+      "example": "Try to stay positive."
+    },
+    {
+      "word": "possible",
+      "translation": "posible",
+      "example": "Is it possible to change the date?"
+    },
+    {
+      "word": "practice",
+      "translation": "practicar / practica",
+      "example": "Practice makes perfect."
+    },
+    {
+      "word": "prepare",
+      "translation": "preparar",
+      "example": "Prepare well for the interview."
+    },
+    {
+      "word": "prevent",
+      "translation": "prevenir / impedir",
+      "example": "We must prevent further damage."
+    },
+    {
+      "word": "previous",
+      "translation": "anterior / previo",
+      "example": "My previous job was in a bank."
+    },
+    {
+      "word": "price",
+      "translation": "precio",
+      "example": "What is the price of this?"
+    },
+    {
+      "word": "process",
+      "translation": "proceso / procesar",
+      "example": "The process takes two weeks."
+    },
+    {
+      "word": "produce",
+      "translation": "producir",
+      "example": "They produce organic vegetables."
+    },
+    {
+      "word": "progress",
+      "translation": "progreso / avanzar",
+      "example": "She is making great progress."
+    },
+    {
+      "word": "project",
+      "translation": "proyecto",
+      "example": "We are working on a new project."
+    },
+    {
+      "word": "promise",
+      "translation": "promesa / prometer",
+      "example": "I promise I will be on time."
+    },
+    {
+      "word": "prove",
+      "translation": "demostrar / probar",
+      "example": "Can you prove it?"
+    },
+    {
+      "word": "provide",
+      "translation": "proporcionar",
+      "example": "The company provides free training."
+    },
+    {
+      "word": "purpose",
+      "translation": "proposito",
+      "example": "What is the purpose of this meeting?"
+    },
+    {
+      "word": "quality",
+      "translation": "calidad / cualidad",
+      "example": "The quality of the product is high."
+    },
+    {
+      "word": "raise",
+      "translation": "levantar / aumentar",
+      "example": "They raised their hands."
+    },
+    {
+      "word": "reach",
+      "translation": "llegar / alcanzar",
+      "example": "We finally reached our destination."
+    },
+    {
+      "word": "reason",
+      "translation": "razon",
+      "example": "What is the reason for your visit?"
+    },
+    {
+      "word": "recently",
+      "translation": "recientemente",
+      "example": "I recently started a new job."
+    },
+    {
+      "word": "reduce",
+      "translation": "reducir",
+      "example": "We need to reduce waste."
+    },
+    {
+      "word": "refuse",
+      "translation": "negarse / rechazar",
+      "example": "She refused to answer the question."
+    },
+    {
+      "word": "relate",
+      "translation": "relacionar",
+      "example": "How does this relate to the topic?"
+    },
+    {
+      "word": "relevant",
+      "translation": "relevante",
+      "example": "This information is very relevant."
+    },
+    {
+      "word": "reliable",
+      "translation": "fiable / de confianza",
+      "example": "She is a very reliable person."
+    },
+    {
+      "word": "remind",
+      "translation": "recordar (a alguien)",
+      "example": "Remind me to call him."
+    },
+    {
+      "word": "replace",
+      "translation": "reemplazar",
+      "example": "We need to replace the battery."
+    },
+    {
+      "word": "require",
+      "translation": "requerir / necesitar",
+      "example": "This task requires patience."
+    },
+    {
+      "word": "research",
+      "translation": "investigacion / investigar",
+      "example": "She is doing research on climate change."
+    },
+    {
+      "word": "resolve",
+      "translation": "resolver",
+      "example": "Let's try to resolve this problem."
+    },
+    {
+      "word": "respect",
+      "translation": "respetar / respeto",
+      "example": "Always respect others."
+    },
+    {
+      "word": "responsible",
+      "translation": "responsable",
+      "example": "She is responsible for the project."
+    },
+    {
+      "word": "result",
+      "translation": "resultado",
+      "example": "What were the results of the test?"
+    },
+    {
+      "word": "review",
+      "translation": "revisar / resena",
+      "example": "I wrote a review of the restaurant."
+    },
+    {
+      "word": "reward",
+      "translation": "recompensa / recompensar",
+      "example": "Hard work brings its own reward."
+    },
+    {
+      "word": "rise",
+      "translation": "subir / aumento",
+      "example": "Prices continue to rise."
+    },
+    {
+      "word": "risk",
+      "translation": "riesgo / arriesgarse",
+      "example": "There is a risk of failure."
+    },
+    {
+      "word": "role",
+      "translation": "papel / rol",
+      "example": "She plays an important role in the team."
+    },
+    {
+      "word": "routine",
+      "translation": "rutina",
+      "example": "My morning routine takes 30 minutes."
+    },
+    {
+      "word": "rule",
+      "translation": "regla / norma",
+      "example": "Follow the rules."
+    },
+    {
+      "word": "safe",
+      "translation": "seguro/a",
+      "example": "Is it safe to swim here?"
+    },
+    {
+      "word": "salary",
+      "translation": "salario",
+      "example": "She earns a good salary."
+    },
+    {
+      "word": "save",
+      "translation": "guardar / ahorrar",
+      "example": "I am saving money for a holiday."
+    },
+    {
+      "word": "schedule",
+      "translation": "horario / programar",
+      "example": "What is your schedule this week?"
+    },
+    {
+      "word": "serious",
+      "translation": "serio/a",
+      "example": "This is a serious problem."
+    },
+    {
+      "word": "share",
+      "translation": "compartir",
+      "example": "Share your ideas with the team."
+    },
+    {
+      "word": "significant",
+      "translation": "significativo/a",
+      "example": "There was a significant improvement."
+    },
+    {
+      "word": "similar",
+      "translation": "similar",
+      "example": "These two products are very similar."
+    },
+    {
+      "word": "simple",
+      "translation": "simple / sencillo",
+      "example": "The solution is simple."
+    },
+    {
+      "word": "situation",
+      "translation": "situacion",
+      "example": "This is a difficult situation."
+    },
+    {
+      "word": "skill",
+      "translation": "habilidad",
+      "example": "She has excellent communication skills."
+    },
+    {
+      "word": "society",
+      "translation": "sociedad",
+      "example": "We all have a role in society."
+    },
+    {
+      "word": "solve",
+      "translation": "resolver",
+      "example": "Can you solve this problem?"
+    },
+    {
+      "word": "specific",
+      "translation": "especifico/a",
+      "example": "Can you be more specific?"
+    },
+    {
+      "word": "stress",
+      "translation": "estres / estresar",
+      "example": "Too much stress is bad for you."
+    },
+    {
+      "word": "success",
+      "translation": "exito",
+      "example": "Success requires hard work."
+    },
+    {
+      "word": "suggest",
+      "translation": "sugerir",
+      "example": "I suggest we take a break."
+    },
+    {
+      "word": "support",
+      "translation": "apoyar / apoyo",
+      "example": "She supports her team."
+    },
+    {
+      "word": "suppose",
+      "translation": "suponer",
+      "example": "I suppose you are right."
+    },
+    {
+      "word": "surprise",
+      "translation": "sorpresa / sorprender",
+      "example": "What a surprise to see you here!"
+    },
+    {
+      "word": "technology",
+      "translation": "tecnologia",
+      "example": "Technology changes very fast."
+    },
+    {
+      "word": "tend",
+      "translation": "tender a",
+      "example": "She tends to arrive early."
+    },
+    {
+      "word": "therefore",
+      "translation": "por lo tanto",
+      "example": "He was ill; therefore, he stayed home."
+    },
+    {
+      "word": "training",
+      "translation": "formacion / entrenamiento",
+      "example": "The job includes paid training."
+    },
+    {
+      "word": "trust",
+      "translation": "confiar / confianza",
+      "example": "I trust her completely."
+    },
+    {
+      "word": "typical",
+      "translation": "tipico/a",
+      "example": "This is a typical English breakfast."
+    },
+    {
+      "word": "unfortunately",
+      "translation": "desafortunadamente",
+      "example": "Unfortunately, we missed the bus."
+    },
+    {
+      "word": "unique",
+      "translation": "unico/a",
+      "example": "She has a unique style."
+    },
+    {
+      "word": "unless",
+      "translation": "a menos que",
+      "example": "Don't go unless you are ready."
+    },
+    {
+      "word": "upset",
+      "translation": "disgustado/a / molestar",
+      "example": "She was upset about the news."
+    },
+    {
+      "word": "usual",
+      "translation": "habitual",
+      "example": "I arrived at the usual time."
+    },
+    {
+      "word": "value",
+      "translation": "valor / valorar",
+      "example": "She values honesty above all."
+    },
+    {
+      "word": "variety",
+      "translation": "variedad",
+      "example": "There is a great variety of food here."
+    },
+    {
+      "word": "view",
+      "translation": "vista / opinion",
+      "example": "What is your view on this?"
+    },
+    {
+      "word": "volunteer",
+      "translation": "voluntario/a / voluntariarse",
+      "example": "She volunteers at a local charity."
+    },
+    {
+      "word": "waste",
+      "translation": "desperdiciar / residuo",
+      "example": "Don't waste food."
+    },
+    {
+      "word": "whole",
+      "translation": "entero/a / todo",
+      "example": "I read the whole book in one day."
+    },
+    {
+      "word": "willing",
+      "translation": "dispuesto/a",
+      "example": "Are you willing to help?"
+    },
+    {
+      "word": "worth",
+      "translation": "valer la pena / valor",
+      "example": "It is worth trying."
+    },
+    {
+      "word": "absence",
+      "translation": "ausencia",
+      "example": "Her absence was noticed."
+    },
+    {
+      "word": "absorb",
+      "translation": "absorber",
+      "example": "The sponge absorbs water."
+    },
+    {
+      "word": "abstract",
+      "translation": "resumen / abstracto",
+      "example": "Write an abstract of the article."
+    },
+    {
+      "word": "access",
+      "translation": "acceso / acceder",
+      "example": "Do you have access to the system?"
+    },
+    {
+      "word": "accurate",
+      "translation": "preciso/a / exacto",
+      "example": "The report must be accurate."
+    },
+    {
+      "word": "adapt",
+      "translation": "adaptarse",
+      "example": "She adapted quickly to the new job."
+    },
+    {
+      "word": "address",
+      "translation": "direccion / abordar",
+      "example": "We must address this issue."
+    },
+    {
+      "word": "adequate",
+      "translation": "adecuado/a",
+      "example": "The resources are not adequate."
+    },
+    {
+      "word": "adjust",
+      "translation": "ajustar / adaptarse",
+      "example": "Adjust the settings as needed."
+    },
+    {
+      "word": "administration",
+      "translation": "administracion",
+      "example": "She works in administration."
+    },
+    {
+      "word": "adopt",
+      "translation": "adoptar",
+      "example": "They adopted a new approach."
+    },
+    {
+      "word": "advantage",
+      "translation": "ventaja",
+      "example": "What are the advantages?"
+    },
+    {
+      "word": "agency",
+      "translation": "agencia",
+      "example": "She works for a travel agency."
+    },
+    {
+      "word": "aggressive",
+      "translation": "agresivo/a",
+      "example": "Don't be so aggressive."
+    },
+    {
+      "word": "aid",
+      "translation": "ayuda / ayudar",
+      "example": "First aid is very important."
+    },
+    {
+      "word": "alternative",
+      "translation": "alternativa",
+      "example": "Is there an alternative solution?"
+    },
+    {
+      "word": "analysis",
+      "translation": "analisis",
+      "example": "The analysis showed positive results."
+    },
+    {
+      "word": "apply",
+      "translation": "solicitar / aplicar",
+      "example": "I applied for the job."
+    },
+    {
+      "word": "approach",
+      "translation": "enfoque / acercarse",
+      "example": "Try a different approach."
+    },
+    {
+      "word": "appropriate",
+      "translation": "apropiado/a",
+      "example": "Is this appropriate for the occasion?"
+    },
+    {
+      "word": "approximately",
+      "translation": "aproximadamente",
+      "example": "It costs approximately 50 euros."
+    },
+    {
+      "word": "aspect",
+      "translation": "aspecto",
+      "example": "Consider all aspects of the problem."
+    },
+    {
+      "word": "assess",
+      "translation": "evaluar",
+      "example": "We need to assess the situation."
+    },
+    {
+      "word": "assignment",
+      "translation": "tarea / asignacion",
+      "example": "I have an assignment due tomorrow."
+    },
+    {
+      "word": "assume",
+      "translation": "asumir / suponer",
+      "example": "Don't assume anything."
+    },
+    {
+      "word": "attach",
+      "translation": "adjuntar / atar",
+      "example": "Please attach the document."
+    },
+    {
+      "word": "attempt",
+      "translation": "intento / intentar",
+      "example": "She made another attempt."
+    },
+    {
+      "word": "attend",
+      "translation": "asistir",
+      "example": "I will attend the meeting."
+    },
+    {
+      "word": "authority",
+      "translation": "autoridad",
+      "example": "She has authority over the team."
+    },
+    {
+      "word": "base",
+      "translation": "base / basar",
+      "example": "Base your argument on facts."
+    },
+    {
+      "word": "brief",
+      "translation": "breve / informar",
+      "example": "Please be brief."
+    },
+    {
+      "word": "capable",
+      "translation": "capaz",
+      "example": "She is capable of great things."
+    },
+    {
+      "word": "clarify",
+      "translation": "aclarar",
+      "example": "Can you clarify your point?"
+    },
+    {
+      "word": "commitment",
+      "translation": "compromiso",
+      "example": "She showed great commitment."
+    },
+    {
+      "word": "compensation",
+      "translation": "compensacion",
+      "example": "She received compensation for the damage."
+    },
+    {
+      "word": "conflict",
+      "translation": "conflicto",
+      "example": "There was a conflict of interest."
+    },
+    {
+      "word": "consequence",
+      "translation": "consecuencia",
+      "example": "Consider the consequences."
+    },
+    {
+      "word": "consistent",
+      "translation": "consistente",
+      "example": "Be consistent in your approach."
+    },
+    {
+      "word": "context",
+      "translation": "contexto",
+      "example": "Read the text in context."
+    },
+    {
+      "word": "cope",
+      "translation": "hacer frente a",
+      "example": "How do you cope with stress?"
+    },
+    {
+      "word": "criteria",
+      "translation": "criterios",
+      "example": "What are the criteria for selection?"
+    },
+    {
+      "word": "debate",
+      "translation": "debate / debatir",
+      "example": "There was a lively debate."
+    },
+    {
+      "word": "demonstrate",
+      "translation": "demostrar",
+      "example": "Can you demonstrate the technique?"
+    },
+    {
+      "word": "deny",
+      "translation": "negar",
+      "example": "She denied the accusation."
+    },
+    {
+      "word": "depend",
+      "translation": "depender",
+      "example": "It depends on the weather."
+    },
+    {
+      "word": "distribution",
+      "translation": "distribucion",
+      "example": "The distribution of wealth is unequal."
+    },
+    {
+      "word": "domestic",
+      "translation": "domestico/a",
+      "example": "Domestic flights are cheaper."
+    },
+    {
+      "word": "dominate",
+      "translation": "dominar",
+      "example": "She dominated the conversation."
+    },
+    {
+      "word": "due",
+      "translation": "debido a / vencido",
+      "example": "The report is due tomorrow."
+    },
+    {
+      "word": "efficient",
+      "translation": "eficiente",
+      "example": "We need a more efficient system."
+    },
+    {
+      "word": "emerge",
+      "translation": "surgir",
+      "example": "A solution finally emerged."
+    },
+    {
+      "word": "emphasis",
+      "translation": "enfasis",
+      "example": "She put emphasis on teamwork."
+    },
+    {
+      "word": "enable",
+      "translation": "permitir / posibilitar",
+      "example": "This app enables remote working."
+    },
+    {
+      "word": "engage",
+      "translation": "involucrar / comprometerse",
+      "example": "Try to engage with the audience."
+    },
+    {
+      "word": "enhance",
+      "translation": "mejorar",
+      "example": "This product enhances performance."
+    },
+    {
+      "word": "ensure",
+      "translation": "asegurar",
+      "example": "Please ensure you save your work."
+    },
+    {
+      "word": "evaluate",
+      "translation": "evaluar",
+      "example": "Evaluate the pros and cons."
+    },
+    {
+      "word": "evident",
+      "translation": "evidente",
+      "example": "It is evident she is talented."
+    },
+    {
+      "word": "evolve",
+      "translation": "evolucionar",
+      "example": "Businesses must evolve."
+    },
+    {
+      "word": "expand",
+      "translation": "expandir",
+      "example": "The company plans to expand."
+    },
+    {
+      "word": "expert",
+      "translation": "experto/a",
+      "example": "She is an expert in her field."
+    },
+    {
+      "word": "expose",
+      "translation": "exponer",
+      "example": "Children should be exposed to art."
+    },
+    {
+      "word": "extend",
+      "translation": "extender / ampliar",
+      "example": "Can we extend the deadline?"
+    },
+    {
+      "word": "factor",
+      "translation": "factor",
+      "example": "What are the main factors?"
+    },
+    {
+      "word": "feedback",
+      "translation": "retroalimentacion",
+      "example": "I need feedback on my work."
+    },
+    {
+      "word": "finance",
+      "translation": "finanzas / financiar",
+      "example": "She works in finance."
+    },
+    {
+      "word": "foundation",
+      "translation": "fundacion / base",
+      "example": "This is the foundation of the argument."
+    },
+    {
+      "word": "framework",
+      "translation": "marco / estructura",
+      "example": "We need a clear framework."
+    },
+    {
+      "word": "function",
+      "translation": "funcion / funcionar",
+      "example": "What is the function of this tool?"
+    },
+    {
+      "word": "fund",
+      "translation": "fondo / financiar",
+      "example": "The project was funded by the state."
+    },
+    {
+      "word": "grant",
+      "translation": "subvencion / conceder",
+      "example": "She was granted a scholarship."
+    },
+    {
+      "word": "impact",
+      "translation": "impacto / impactar",
+      "example": "What is the impact of this decision?"
+    },
+    {
+      "word": "implement",
+      "translation": "implementar",
+      "example": "We need to implement the plan."
+    },
+    {
+      "word": "imply",
+      "translation": "implicar / sugerir",
+      "example": "What does this imply?"
+    },
+    {
+      "word": "indicate",
+      "translation": "indicar",
+      "example": "The data indicates a positive trend."
+    },
+    {
+      "word": "input",
+      "translation": "aportacion / entrada",
+      "example": "I need your input on this."
+    },
+    {
+      "word": "interact",
+      "translation": "interactuar",
+      "example": "Children interact through play."
+    },
+    {
+      "word": "investigate",
+      "translation": "investigar",
+      "example": "The police investigated the case."
+    },
+    {
+      "word": "maintain",
+      "translation": "mantener",
+      "example": "It is hard to maintain a balance."
+    },
+    {
+      "word": "majority",
+      "translation": "mayoria",
+      "example": "The majority agreed."
+    },
+    {
+      "word": "mechanism",
+      "translation": "mecanismo",
+      "example": "What is the mechanism behind this?"
+    },
+    {
+      "word": "minimise",
+      "translation": "minimizar",
+      "example": "Try to minimise the risks."
+    },
+    {
+      "word": "monitor",
+      "translation": "monitorear / control",
+      "example": "We need to monitor the situation."
+    },
+    {
+      "word": "motive",
+      "translation": "motivo",
+      "example": "What was the motive?"
+    },
+    {
+      "word": "network",
+      "translation": "red / establecer contactos",
+      "example": "She has a wide professional network."
+    },
+    {
+      "word": "neutral",
+      "translation": "neutral",
+      "example": "Try to remain neutral."
+    },
+    {
+      "word": "obstacle",
+      "translation": "obstaculo",
+      "example": "She overcame every obstacle."
+    },
+    {
+      "word": "outcome",
+      "translation": "resultado / desenlace",
+      "example": "What was the outcome?"
+    },
+    {
+      "word": "outline",
+      "translation": "esquema / esbozar",
+      "example": "Outline your main points."
+    },
+    {
+      "word": "output",
+      "translation": "produccion / resultado",
+      "example": "The output was lower than expected."
+    },
+    {
+      "word": "perspective",
+      "translation": "perspectiva",
+      "example": "Try to see it from her perspective."
+    },
+    {
+      "word": "phase",
+      "translation": "fase",
+      "example": "We are in the first phase of the project."
+    },
+    {
+      "word": "policy",
+      "translation": "politica / norma",
+      "example": "The company has a strict policy."
+    },
+    {
+      "word": "potential",
+      "translation": "potencial",
+      "example": "She has great potential."
+    },
+    {
+      "word": "principle",
+      "translation": "principio",
+      "example": "Stick to your principles."
+    },
+    {
+      "word": "priority",
+      "translation": "prioridad",
+      "example": "What is your priority right now?"
+    },
+    {
+      "word": "promote",
+      "translation": "promover / ascender",
+      "example": "She was promoted last month."
+    },
+    {
+      "word": "propose",
+      "translation": "proponer",
+      "example": "I propose a different solution."
+    },
+    {
+      "word": "pursue",
+      "translation": "perseguir / seguir",
+      "example": "She pursued her dream of becoming a writer."
+    },
+    {
+      "word": "recover",
+      "translation": "recuperarse",
+      "example": "She recovered quickly from the illness."
+    },
+    {
+      "word": "reform",
+      "translation": "reforma / reformar",
+      "example": "The system needs reform."
+    },
+    {
+      "word": "regulate",
+      "translation": "regular / controlar",
+      "example": "The industry is regulated by law."
+    },
+    {
+      "word": "reinforce",
+      "translation": "reforzar",
+      "example": "This reinforces the argument."
+    },
+    {
+      "word": "release",
+      "translation": "lanzar / liberar",
+      "example": "The report was released yesterday."
+    },
+    {
+      "word": "rely",
+      "translation": "depender / confiar en",
+      "example": "I rely on my team completely."
+    },
+    {
+      "word": "revenue",
+      "translation": "ingresos",
+      "example": "Revenue increased by 15%."
+    },
+    {
+      "word": "revise",
+      "translation": "revisar",
+      "example": "Please revise your essay."
+    },
+    {
+      "word": "sector",
+      "translation": "sector",
+      "example": "She works in the public sector."
+    },
+    {
+      "word": "strategy",
+      "translation": "estrategia",
+      "example": "We need a clear strategy."
+    },
+    {
+      "word": "structure",
+      "translation": "estructura / estructurar",
+      "example": "The report lacks structure."
+    },
+    {
+      "word": "submission",
+      "translation": "envio / entrega",
+      "example": "The submission deadline is Friday."
+    },
+    {
+      "word": "substantial",
+      "translation": "sustancial",
+      "example": "There is substantial evidence."
+    },
+    {
+      "word": "summary",
+      "translation": "resumen",
+      "example": "Write a summary of the article."
+    },
+    {
+      "word": "target",
+      "translation": "objetivo / apuntar a",
+      "example": "We met our sales target."
+    },
+    {
+      "word": "task",
+      "translation": "tarea",
+      "example": "Complete each task carefully."
+    },
+    {
+      "word": "technique",
+      "translation": "tecnica",
+      "example": "This technique is very effective."
+    },
+    {
+      "word": "tension",
+      "translation": "tension",
+      "example": "There is tension between the two teams."
+    },
+    {
+      "word": "theory",
+      "translation": "teoria",
+      "example": "She proposed a new theory."
+    },
+    {
+      "word": "topic",
+      "translation": "tema",
+      "example": "What is the topic of the essay?"
+    },
+    {
+      "word": "transfer",
+      "translation": "transferir / traslado",
+      "example": "She transferred to another department."
+    },
+    {
+      "word": "transition",
+      "translation": "transicion",
+      "example": "The transition was smooth."
+    },
+    {
+      "word": "trend",
+      "translation": "tendencia",
+      "example": "This is a growing trend."
+    },
+    {
+      "word": "underlying",
+      "translation": "subyacente",
+      "example": "What is the underlying cause?"
+    },
+    {
+      "word": "update",
+      "translation": "actualizar / actualizacion",
+      "example": "Please update your profile."
+    },
+    {
+      "word": "valid",
+      "translation": "valido/a",
+      "example": "This is a valid argument."
+    },
+    {
+      "word": "version",
+      "translation": "version",
+      "example": "Which version do you have?"
+    },
+    {
+      "word": "whereas",
+      "translation": "mientras que / por el contrario",
+      "example": "She is outgoing, whereas he is shy."
+    }
+  ],
+  "C1": [
+    {
+      "word": "abstract",
+      "translation": "abstracto/a",
+      "example": "Her paintings are very abstract."
+    },
+    {
+      "word": "accommodate",
+      "translation": "acomodar / dar cabida",
+      "example": "The hotel can accommodate 200 guests."
+    },
+    {
+      "word": "accountable",
+      "translation": "responsable / que debe rendir cuentas",
+      "example": "Leaders must be accountable for their decisions."
+    },
+    {
+      "word": "adamant",
+      "translation": "firme / inflexible",
+      "example": "She was adamant about her decision."
+    },
+    {
+      "word": "adept",
+      "translation": "habil / diestro/a",
+      "example": "He is adept at solving complex problems."
+    },
+    {
+      "word": "adequate",
+      "translation": "adecuado/a / suficiente",
+      "example": "The evidence is not adequate to prove the case."
+    },
+    {
+      "word": "advocate",
+      "translation": "abogar / defensor/a",
+      "example": "She advocates for human rights."
+    },
+    {
+      "word": "albeit",
+      "translation": "aunque / si bien",
+      "example": "It was a success, albeit a modest one."
+    },
+    {
+      "word": "alleviate",
+      "translation": "aliviar",
+      "example": "This medicine will alleviate the pain."
+    },
+    {
+      "word": "allocate",
+      "translation": "asignar / destinar",
+      "example": "We need to allocate more resources."
+    },
+    {
+      "word": "ambiguous",
+      "translation": "ambiguo/a",
+      "example": "The message was ambiguous."
+    },
+    {
+      "word": "ambivalent",
+      "translation": "ambivalente",
+      "example": "I feel ambivalent about the decision."
+    },
+    {
+      "word": "anticipate",
+      "translation": "anticipar / prever",
+      "example": "We anticipate strong demand."
+    },
+    {
+      "word": "apparent",
+      "translation": "aparente / evidente",
+      "example": "It was apparent that she was nervous."
+    },
+    {
+      "word": "assertive",
+      "translation": "asertivo/a",
+      "example": "You need to be more assertive in meetings."
+    },
+    {
+      "word": "assumption",
+      "translation": "suposicion / hipotesis",
+      "example": "Don't make assumptions without evidence."
+    },
+    {
+      "word": "candid",
+      "translation": "sincero/a / franco/a",
+      "example": "She gave a candid assessment."
+    },
+    {
+      "word": "coherent",
+      "translation": "coherente",
+      "example": "Please give a coherent explanation."
+    },
+    {
+      "word": "compelling",
+      "translation": "convincente / atractivo",
+      "example": "She made a compelling argument."
+    },
+    {
+      "word": "complex",
+      "translation": "complejo/a",
+      "example": "This is a very complex situation."
+    },
+    {
+      "word": "concede",
+      "translation": "conceder / admitir",
+      "example": "He conceded that he was wrong."
+    },
+    {
+      "word": "concise",
+      "translation": "conciso/a",
+      "example": "Please be concise in your answer."
+    },
+    {
+      "word": "conclusive",
+      "translation": "concluyente",
+      "example": "There is no conclusive evidence."
+    },
+    {
+      "word": "conform",
+      "translation": "conformarse / ajustarse",
+      "example": "She refused to conform to expectations."
+    },
+    {
+      "word": "consequence",
+      "translation": "consecuencia",
+      "example": "Think about the consequences of your actions."
+    },
+    {
+      "word": "consolidate",
+      "translation": "consolidar",
+      "example": "We need to consolidate our position."
+    },
+    {
+      "word": "constraint",
+      "translation": "limitacion / restriccion",
+      "example": "There are budget constraints."
+    },
+    {
+      "word": "contemplate",
+      "translation": "contemplar / plantearse",
+      "example": "I am contemplating a career change."
+    },
+    {
+      "word": "contradict",
+      "translation": "contradecir",
+      "example": "Your actions contradict your words."
+    },
+    {
+      "word": "controversy",
+      "translation": "controversia",
+      "example": "The decision caused a lot of controversy."
+    },
+    {
+      "word": "conventional",
+      "translation": "convencional",
+      "example": "She took a less conventional approach."
+    },
+    {
+      "word": "credible",
+      "translation": "creible",
+      "example": "Is this a credible source?"
+    },
+    {
+      "word": "crucial",
+      "translation": "crucial",
+      "example": "This is a crucial moment."
+    },
+    {
+      "word": "cynical",
+      "translation": "cinico/a",
+      "example": "He is very cynical about politics."
+    },
+    {
+      "word": "dedicate",
+      "translation": "dedicar",
+      "example": "She dedicated her life to science."
+    },
+    {
+      "word": "deliberate",
+      "translation": "deliberado/a / deliberar",
+      "example": "It was a deliberate choice."
+    },
+    {
+      "word": "derive",
+      "translation": "derivar / obtener",
+      "example": "She derives great pleasure from reading."
+    },
+    {
+      "word": "devastating",
+      "translation": "devastador/a",
+      "example": "The storm was devastating."
+    },
+    {
+      "word": "diverse",
+      "translation": "diverso/a",
+      "example": "The city has a diverse population."
+    },
+    {
+      "word": "dominant",
+      "translation": "dominante",
+      "example": "She is the dominant force in the team."
+    },
+    {
+      "word": "dubious",
+      "translation": "dudoso/a",
+      "example": "I am dubious about his motives."
+    },
+    {
+      "word": "elaborate",
+      "translation": "elaborado/a / elaborar",
+      "example": "She gave an elaborate explanation."
+    },
+    {
+      "word": "elusive",
+      "translation": "esquivo/a",
+      "example": "Success can be elusive."
+    },
+    {
+      "word": "emerge",
+      "translation": "surgir / emerger",
+      "example": "A new idea emerged from the discussion."
+    },
+    {
+      "word": "emphasise",
+      "translation": "enfatizar / hacer hincapie en",
+      "example": "She emphasised the importance of teamwork."
+    },
+    {
+      "word": "empower",
+      "translation": "empoderar",
+      "example": "Education empowers people."
+    },
+    {
+      "word": "encompass",
+      "translation": "abarcar / incluir",
+      "example": "The project encompasses many topics."
+    },
+    {
+      "word": "enforce",
+      "translation": "hacer cumplir / imponer",
+      "example": "The rules must be enforced."
+    },
+    {
+      "word": "enhance",
+      "translation": "mejorar / realzar",
+      "example": "Exercise enhances your mood."
+    },
+    {
+      "word": "enormous",
+      "translation": "enorme",
+      "example": "There is an enormous amount of work to do."
+    },
+    {
+      "word": "ensure",
+      "translation": "asegurar / garantizar",
+      "example": "Please ensure the door is locked."
+    },
+    {
+      "word": "evident",
+      "translation": "evidente",
+      "example": "It is evident that she is talented."
+    },
+    {
+      "word": "evolve",
+      "translation": "evolucionar",
+      "example": "Languages evolve over time."
+    },
+    {
+      "word": "exaggerate",
+      "translation": "exagerar",
+      "example": "Don't exaggerate the problem."
+    },
+    {
+      "word": "exclude",
+      "translation": "excluir",
+      "example": "No one should be excluded."
+    },
+    {
+      "word": "explicit",
+      "translation": "explicito/a",
+      "example": "Please be more explicit."
+    },
+    {
+      "word": "exploit",
+      "translation": "explotar / aprovechar",
+      "example": "We should exploit this opportunity."
+    },
+    {
+      "word": "facilitate",
+      "translation": "facilitar",
+      "example": "Technology facilitates communication."
+    },
+    {
+      "word": "fluctuate",
+      "translation": "fluctuar",
+      "example": "Prices fluctuate according to demand."
+    },
+    {
+      "word": "forthcoming",
+      "translation": "proximo/a / comunicativo/a",
+      "example": "He wasn't forthcoming with details."
+    },
+    {
+      "word": "foster",
+      "translation": "fomentar / promover",
+      "example": "Schools should foster creativity."
+    },
+    {
+      "word": "fragile",
+      "translation": "fragil",
+      "example": "The situation is very fragile."
+    },
+    {
+      "word": "fundamental",
+      "translation": "fundamental",
+      "example": "This is a fundamental right."
+    },
+    {
+      "word": "generate",
+      "translation": "generar",
+      "example": "The project will generate new jobs."
+    },
+    {
+      "word": "genuine",
+      "translation": "genuino/a / autentico",
+      "example": "Is this a genuine concern?"
+    },
+    {
+      "word": "grasp",
+      "translation": "comprender / captar",
+      "example": "She grasped the concept quickly."
+    },
+    {
+      "word": "groundbreaking",
+      "translation": "revolucionario/a",
+      "example": "This is groundbreaking research."
+    },
+    {
+      "word": "hierarchy",
+      "translation": "jerarquia",
+      "example": "The company has a strict hierarchy."
+    },
+    {
+      "word": "highlight",
+      "translation": "destacar",
+      "example": "I want to highlight the key points."
+    },
+    {
+      "word": "hypothesis",
+      "translation": "hipotesis",
+      "example": "The hypothesis was proven correct."
+    },
+    {
+      "word": "ideology",
+      "translation": "ideologia",
+      "example": "Political ideology shapes policy."
+    },
+    {
+      "word": "implication",
+      "translation": "implicacion",
+      "example": "What are the implications of this?"
+    },
+    {
+      "word": "impose",
+      "translation": "imponer",
+      "example": "New taxes were imposed."
+    },
+    {
+      "word": "incentive",
+      "translation": "incentivo",
+      "example": "There is no incentive to work harder."
+    },
+    {
+      "word": "inconsistent",
+      "translation": "inconsistente",
+      "example": "Her behaviour is inconsistent."
+    },
+    {
+      "word": "indispensable",
+      "translation": "indispensable",
+      "example": "She is indispensable to the team."
+    },
+    {
+      "word": "inevitable",
+      "translation": "inevitable",
+      "example": "Change is inevitable."
+    },
+    {
+      "word": "inherent",
+      "translation": "inherente",
+      "example": "There are inherent risks in every project."
+    },
+    {
+      "word": "initiative",
+      "translation": "iniciativa",
+      "example": "She took the initiative to solve it."
+    },
+    {
+      "word": "innate",
+      "translation": "innato/a",
+      "example": "She has an innate talent for languages."
+    },
+    {
+      "word": "integral",
+      "translation": "integral / esencial",
+      "example": "She is an integral part of the team."
+    },
+    {
+      "word": "intricate",
+      "translation": "intrincado/a / complejo",
+      "example": "The pattern is very intricate."
+    },
+    {
+      "word": "justify",
+      "translation": "justificar",
+      "example": "Can you justify this decision?"
+    },
+    {
+      "word": "legitimate",
+      "translation": "legitimo/a",
+      "example": "Is this a legitimate concern?"
+    },
+    {
+      "word": "lengthy",
+      "translation": "largo/a / extenso",
+      "example": "The report is very lengthy."
+    },
+    {
+      "word": "leverage",
+      "translation": "aprovechar / apalancamiento",
+      "example": "We can leverage this opportunity."
+    },
+    {
+      "word": "lucid",
+      "translation": "lucido/a / claro",
+      "example": "Her explanation was lucid."
+    },
+    {
+      "word": "manipulate",
+      "translation": "manipular",
+      "example": "He tried to manipulate the results."
+    },
+    {
+      "word": "meticulous",
+      "translation": "meticuloso/a",
+      "example": "He is meticulous about his work."
+    },
+    {
+      "word": "mitigate",
+      "translation": "mitigar",
+      "example": "We need to mitigate the risks."
+    },
+    {
+      "word": "nuance",
+      "translation": "matiz",
+      "example": "There is a lot of nuance in this argument."
+    },
+    {
+      "word": "objective",
+      "translation": "objetivo / imparcial",
+      "example": "Try to be objective in your assessment."
+    },
+    {
+      "word": "obsolete",
+      "translation": "obsoleto/a",
+      "example": "This technology is becoming obsolete."
+    },
+    {
+      "word": "omnipresent",
+      "translation": "omnipresente",
+      "example": "Social media is omnipresent."
+    },
+    {
+      "word": "paramount",
+      "translation": "primordial",
+      "example": "Safety is paramount."
+    },
+    {
+      "word": "perceive",
+      "translation": "percibir",
+      "example": "How do you perceive the situation?"
+    },
+    {
+      "word": "pervasive",
+      "translation": "generalizado/a",
+      "example": "Social media has a pervasive influence."
+    },
+    {
+      "word": "pragmatic",
+      "translation": "pragmatico/a",
+      "example": "She takes a pragmatic approach."
+    },
+    {
+      "word": "precedent",
+      "translation": "precedente",
+      "example": "This sets a dangerous precedent."
+    },
+    {
+      "word": "predominantly",
+      "translation": "predominantemente",
+      "example": "The population is predominantly young."
+    },
+    {
+      "word": "profound",
+      "translation": "profundo/a",
+      "example": "She had a profound impact on my life."
+    },
+    {
+      "word": "prominent",
+      "translation": "prominente / destacado",
+      "example": "She is a prominent scientist."
+    },
+    {
+      "word": "prone",
+      "translation": "propenso/a",
+      "example": "He is prone to making mistakes."
+    },
+    {
+      "word": "rationale",
+      "translation": "razonamiento / logica",
+      "example": "What is the rationale behind this?"
+    },
+    {
+      "word": "reconcile",
+      "translation": "reconciliar",
+      "example": "It is hard to reconcile these two views."
+    },
+    {
+      "word": "refine",
+      "translation": "refinar / perfeccionar",
+      "example": "She refined her technique."
+    },
+    {
+      "word": "reinforce",
+      "translation": "reforzar",
+      "example": "This reinforces my argument."
+    },
+    {
+      "word": "relentless",
+      "translation": "implacable / incesante",
+      "example": "She is relentless in her pursuit of excellence."
+    },
+    {
+      "word": "remedy",
+      "translation": "remedio / remediar",
+      "example": "What is the remedy for this problem?"
+    },
+    {
+      "word": "resilience",
+      "translation": "resiliencia",
+      "example": "She showed great resilience."
+    },
+    {
+      "word": "rhetoric",
+      "translation": "retorica",
+      "example": "His speech was full of empty rhetoric."
+    },
+    {
+      "word": "rigorous",
+      "translation": "riguroso/a",
+      "example": "The selection process is very rigorous."
+    },
+    {
+      "word": "scrutiny",
+      "translation": "escrutinio",
+      "example": "The decision came under scrutiny."
+    },
+    {
+      "word": "sophisticated",
+      "translation": "sofisticado/a",
+      "example": "She has a sophisticated taste."
+    },
+    {
+      "word": "speculate",
+      "translation": "especular",
+      "example": "I don't want to speculate."
+    },
+    {
+      "word": "straightforward",
+      "translation": "sencillo/a / directo",
+      "example": "The process is fairly straightforward."
+    },
+    {
+      "word": "substantial",
+      "translation": "sustancial / considerable",
+      "example": "There was a substantial improvement."
+    },
+    {
+      "word": "subtle",
+      "translation": "sutil",
+      "example": "There are subtle differences between them."
+    },
+    {
+      "word": "sufficient",
+      "translation": "suficiente",
+      "example": "Is there sufficient evidence?"
+    },
+    {
+      "word": "sustain",
+      "translation": "sostener / mantener",
+      "example": "Can we sustain this level of growth?"
+    },
+    {
+      "word": "tangible",
+      "translation": "tangible",
+      "example": "We need tangible results."
+    },
+    {
+      "word": "tenacious",
+      "translation": "tenaz / persistente",
+      "example": "She is tenacious in pursuing her goals."
+    },
+    {
+      "word": "transparent",
+      "translation": "transparente",
+      "example": "The process should be transparent."
+    },
+    {
+      "word": "ultimately",
+      "translation": "en ultima instancia",
+      "example": "Ultimately, the decision is yours."
+    },
+    {
+      "word": "undermine",
+      "translation": "socavar / minar",
+      "example": "This undermines our efforts."
+    },
+    {
+      "word": "unprecedented",
+      "translation": "sin precedentes",
+      "example": "This is an unprecedented situation."
+    },
+    {
+      "word": "validate",
+      "translation": "validar",
+      "example": "The results validate our hypothesis."
+    },
+    {
+      "word": "viable",
+      "translation": "viable",
+      "example": "Is this a viable solution?"
+    },
+    {
+      "word": "virtually",
+      "translation": "virtualmente / practicamente",
+      "example": "It is virtually impossible."
+    },
+    {
+      "word": "volatile",
+      "translation": "volatil",
+      "example": "The market is very volatile."
+    },
+    {
+      "word": "vulnerable",
+      "translation": "vulnerable",
+      "example": "Children are the most vulnerable."
+    },
+    {
+      "word": "widespread",
+      "translation": "generalizado/a / extendido",
+      "example": "There is widespread support for the plan."
+    },
+    {
+      "word": "withstand",
+      "translation": "resistir / soportar",
+      "example": "The building must withstand earthquakes."
+    },
+    {
+      "word": "aberration",
+      "translation": "aberracion / anomalia",
+      "example": "This result is an aberration."
+    },
+    {
+      "word": "accentuate",
+      "translation": "acentuar",
+      "example": "The lighting accentuates her features."
+    },
+    {
+      "word": "acrimony",
+      "translation": "acritud / amargura",
+      "example": "The dispute ended in acrimony."
+    },
+    {
+      "word": "ambivalence",
+      "translation": "ambivalencia",
+      "example": "She felt ambivalence about the move."
+    },
+    {
+      "word": "anachronistic",
+      "translation": "anacronico/a",
+      "example": "His views seem anachronistic today."
+    },
+    {
+      "word": "arduous",
+      "translation": "arduo/a",
+      "example": "It was an arduous journey."
+    },
+    {
+      "word": "articulate",
+      "translation": "articular / elocuente",
+      "example": "She is very articulate."
+    },
+    {
+      "word": "aspire",
+      "translation": "aspirar a",
+      "example": "She aspires to lead the company."
+    },
+    {
+      "word": "astute",
+      "translation": "astuto/a / perspicaz",
+      "example": "She made an astute observation."
+    },
+    {
+      "word": "augment",
+      "translation": "aumentar / incrementar",
+      "example": "Technology augments human ability."
+    },
+    {
+      "word": "autonomous",
+      "translation": "autonomo/a",
+      "example": "She values her autonomous lifestyle."
+    },
+    {
+      "word": "axiom",
+      "translation": "axioma",
+      "example": "This is a basic axiom of the theory."
+    },
+    {
+      "word": "benevolent",
+      "translation": "benevolente",
+      "example": "She is a benevolent leader."
+    },
+    {
+      "word": "brevity",
+      "translation": "brevedad",
+      "example": "Brevity is the soul of wit."
+    },
+    {
+      "word": "catalyst",
+      "translation": "catalizador",
+      "example": "Her speech was a catalyst for change."
+    },
+    {
+      "word": "circumvent",
+      "translation": "eludir / evitar",
+      "example": "He tried to circumvent the rules."
+    },
+    {
+      "word": "clandestine",
+      "translation": "clandestino/a",
+      "example": "They held clandestine meetings."
+    },
+    {
+      "word": "cognizant",
+      "translation": "consciente / al tanto",
+      "example": "She is cognizant of the risks."
+    },
+    {
+      "word": "convoluted",
+      "translation": "complicado/a / enrevesado",
+      "example": "His argument was very convoluted."
+    },
+    {
+      "word": "corroborate",
+      "translation": "corroborar",
+      "example": "Can you corroborate this claim?"
+    },
+    {
+      "word": "curtail",
+      "translation": "reducir / limitar",
+      "example": "We need to curtail spending."
+    },
+    {
+      "word": "dearth",
+      "translation": "escasez / falta",
+      "example": "There is a dearth of evidence."
+    },
+    {
+      "word": "delineate",
+      "translation": "delinear / trazar",
+      "example": "She delineated the key issues."
+    },
+    {
+      "word": "denigrate",
+      "translation": "denigrar",
+      "example": "He tried to denigrate her work."
+    },
+    {
+      "word": "depict",
+      "translation": "representar / describir",
+      "example": "The painting depicts a rural scene."
+    },
+    {
+      "word": "diffuse",
+      "translation": "difundir / difuso",
+      "example": "The light was diffused through the curtains."
+    },
+    {
+      "word": "discern",
+      "translation": "discernir / percibir",
+      "example": "She could discern a pattern."
+    },
+    {
+      "word": "discrepancy",
+      "translation": "discrepancia",
+      "example": "There is a discrepancy in the figures."
+    },
+    {
+      "word": "disproportionate",
+      "translation": "desproporcionado/a",
+      "example": "The response was disproportionate."
+    },
+    {
+      "word": "dissent",
+      "translation": "disentir / disidencia",
+      "example": "There was widespread dissent."
+    },
+    {
+      "word": "diverge",
+      "translation": "divergir",
+      "example": "Their opinions diverged sharply."
+    },
+    {
+      "word": "eccentric",
+      "translation": "excentrico/a",
+      "example": "He is known for his eccentric behaviour."
+    },
+    {
+      "word": "efficacy",
+      "translation": "eficacia",
+      "example": "The efficacy of the treatment is proven."
+    },
+    {
+      "word": "eloquent",
+      "translation": "elocuente",
+      "example": "She gave an eloquent speech."
+    },
+    {
+      "word": "empirical",
+      "translation": "empirico/a",
+      "example": "The study is based on empirical data."
+    },
+    {
+      "word": "enumerate",
+      "translation": "enumerar",
+      "example": "She enumerated the key points."
+    },
+    {
+      "word": "equivocal",
+      "translation": "equivoco/a / ambiguo",
+      "example": "His answer was equivocal."
+    },
+    {
+      "word": "eradicate",
+      "translation": "erradicar",
+      "example": "The goal is to eradicate poverty."
+    },
+    {
+      "word": "exacerbate",
+      "translation": "empeorar / exacerbar",
+      "example": "The drought exacerbated the crisis."
+    },
+    {
+      "word": "exemplify",
+      "translation": "ejemplificar",
+      "example": "This case exemplifies the problem."
+    },
+    {
+      "word": "exhaustive",
+      "translation": "exhaustivo/a",
+      "example": "She conducted an exhaustive review."
+    },
+    {
+      "word": "expedite",
+      "translation": "acelerar / agilizar",
+      "example": "We need to expedite the process."
+    },
+    {
+      "word": "explicit",
+      "translation": "explicito/a / claro",
+      "example": "Please be more explicit."
+    },
+    {
+      "word": "formidable",
+      "translation": "formidable",
+      "example": "She is a formidable opponent."
+    },
+    {
+      "word": "fracture",
+      "translation": "fractura / fracturar",
+      "example": "The crisis fractured the team."
+    },
+    {
+      "word": "futile",
+      "translation": "inutil / vano",
+      "example": "It was a futile attempt."
+    },
+    {
+      "word": "herald",
+      "translation": "anunciar / precursor",
+      "example": "This heralds a new era."
+    },
+    {
+      "word": "hinder",
+      "translation": "obstaculizar",
+      "example": "Lack of funding hindered progress."
+    },
+    {
+      "word": "holistic",
+      "translation": "holistico/a",
+      "example": "We need a holistic approach."
+    },
+    {
+      "word": "imperative",
+      "translation": "imperativo / esencial",
+      "example": "It is imperative to act now."
+    },
+    {
+      "word": "implicit",
+      "translation": "implicito/a",
+      "example": "There is an implicit assumption here."
+    },
+    {
+      "word": "inaugurate",
+      "translation": "inaugurar",
+      "example": "The president inaugurated the new bridge."
+    },
+    {
+      "word": "incessant",
+      "translation": "incesante",
+      "example": "The incessant noise was unbearable."
+    },
+    {
+      "word": "inclined",
+      "translation": "inclinado/a / propenso",
+      "example": "I am inclined to agree."
+    },
+    {
+      "word": "inconclusive",
+      "translation": "no concluyente",
+      "example": "The results were inconclusive."
+    },
+    {
+      "word": "induce",
+      "translation": "inducir / provocar",
+      "example": "What induced this change?"
+    },
+    {
+      "word": "infer",
+      "translation": "inferir / deducir",
+      "example": "What can we infer from this data?"
+    },
+    {
+      "word": "ingenuity",
+      "translation": "ingenio / creatividad",
+      "example": "She showed great ingenuity."
+    },
+    {
+      "word": "instil",
+      "translation": "inculcar / infundir",
+      "example": "She instilled confidence in her team."
+    },
+    {
+      "word": "intangible",
+      "translation": "intangible",
+      "example": "The benefits are largely intangible."
+    },
+    {
+      "word": "intermittent",
+      "translation": "intermitente",
+      "example": "The signal was intermittent."
+    },
+    {
+      "word": "introspective",
+      "translation": "introspectivo/a",
+      "example": "He is very introspective."
+    },
+    {
+      "word": "irrefutable",
+      "translation": "irrefutable",
+      "example": "The evidence is irrefutable."
+    },
+    {
+      "word": "jeopardise",
+      "translation": "poner en peligro",
+      "example": "Don't jeopardise your future."
+    },
+    {
+      "word": "juxtapose",
+      "translation": "yuxtaponer",
+      "example": "The artist juxtaposed light and shadow."
+    },
+    {
+      "word": "lament",
+      "translation": "lamentar / lamento",
+      "example": "She lamented the lack of support."
+    },
+    {
+      "word": "latent",
+      "translation": "latente",
+      "example": "There is latent talent in the team."
+    },
+    {
+      "word": "lucrative",
+      "translation": "lucrativo/a",
+      "example": "It is a very lucrative business."
+    },
+    {
+      "word": "magnitude",
+      "translation": "magnitud",
+      "example": "The magnitude of the problem is huge."
+    },
+    {
+      "word": "malleable",
+      "translation": "maleable",
+      "example": "Young minds are very malleable."
+    },
+    {
+      "word": "mandate",
+      "translation": "mandato / ordenar",
+      "example": "The law mandates regular inspections."
+    },
+    {
+      "word": "methodical",
+      "translation": "metodico/a",
+      "example": "She is very methodical in her work."
+    },
+    {
+      "word": "meticulous",
+      "translation": "meticuloso/a",
+      "example": "His meticulous attention to detail is impressive."
+    },
+    {
+      "word": "notion",
+      "translation": "nocion / idea",
+      "example": "I have no notion of what happened."
+    },
+    {
+      "word": "nurture",
+      "translation": "fomentar / criar",
+      "example": "We must nurture young talent."
+    },
+    {
+      "word": "obscure",
+      "translation": "obscuro/a / oscurecer",
+      "example": "The meaning is obscure."
+    },
+    {
+      "word": "ominous",
+      "translation": "amenazante / siniestro",
+      "example": "There were ominous signs of trouble."
+    },
+    {
+      "word": "ostensibly",
+      "translation": "aparentemente",
+      "example": "Ostensibly, the plan seemed sound."
+    },
+    {
+      "word": "outweigh",
+      "translation": "superar / pesar mas que",
+      "example": "The benefits outweigh the risks."
+    },
+    {
+      "word": "overarching",
+      "translation": "general / primordial",
+      "example": "What is the overarching goal?"
+    },
+    {
+      "word": "paradox",
+      "translation": "paradoja",
+      "example": "It is a paradox that more choice leads to less happiness."
+    },
+    {
+      "word": "paraphrase",
+      "translation": "parafrasear",
+      "example": "Paraphrase the sentence in your own words."
+    },
+    {
+      "word": "partisan",
+      "translation": "partidista / seguidor",
+      "example": "The debate was very partisan."
+    },
+    {
+      "word": "peripheral",
+      "translation": "periferico/a / secundario",
+      "example": "This is a peripheral issue."
+    },
+    {
+      "word": "perpetuate",
+      "translation": "perpetuar",
+      "example": "We must not perpetuate the cycle."
+    },
+    {
+      "word": "plausible",
+      "translation": "plausible / creible",
+      "example": "Is this a plausible explanation?"
+    },
+    {
+      "word": "precarious",
+      "translation": "precario/a",
+      "example": "The situation is precarious."
+    },
+    {
+      "word": "presuppose",
+      "translation": "presuponer",
+      "example": "This argument presupposes agreement."
+    },
+    {
+      "word": "prolific",
+      "translation": "prolifico/a",
+      "example": "She is a prolific writer."
+    },
+    {
+      "word": "proliferate",
+      "translation": "proliferar",
+      "example": "New technologies continue to proliferate."
+    },
+    {
+      "word": "provoke",
+      "translation": "provocar",
+      "example": "His comments provoked a strong reaction."
+    },
+    {
+      "word": "ratify",
+      "translation": "ratificar",
+      "example": "The agreement was ratified by all parties."
+    },
+    {
+      "word": "rationalize",
+      "translation": "racionalizar",
+      "example": "She tried to rationalize her decision."
+    },
+    {
+      "word": "reluctant",
+      "translation": "reticente / reacio",
+      "example": "He was reluctant to admit the mistake."
+    },
+    {
+      "word": "repercussion",
+      "translation": "repercusion",
+      "example": "The decision had serious repercussions."
+    },
+    {
+      "word": "repudiate",
+      "translation": "repudiar",
+      "example": "She repudiated the claims."
+    },
+    {
+      "word": "reticent",
+      "translation": "reservado/a",
+      "example": "She was reticent about her past."
+    },
+    {
+      "word": "rigorous",
+      "translation": "riguroso/a",
+      "example": "The study followed a rigorous methodology."
+    },
+    {
+      "word": "rampant",
+      "translation": "desenfrenado/a",
+      "example": "Corruption was rampant."
+    },
+    {
+      "word": "salient",
+      "translation": "destacado/a / sobresaliente",
+      "example": "What are the salient points?"
+    },
+    {
+      "word": "scrupulous",
+      "translation": "escrupuloso/a",
+      "example": "She is scrupulous in her approach."
+    },
+    {
+      "word": "seminal",
+      "translation": "fundamental / influyente",
+      "example": "This is a seminal work in the field."
+    },
+    {
+      "word": "spur",
+      "translation": "impulsar / espuela",
+      "example": "Success spurred her to work harder."
+    },
+    {
+      "word": "subordinate",
+      "translation": "subordinar / subordinado",
+      "example": "He subordinated his needs to others."
+    },
+    {
+      "word": "succinct",
+      "translation": "sucinto/a / conciso",
+      "example": "Her answer was succinct and clear."
+    },
+    {
+      "word": "superficial",
+      "translation": "superficial",
+      "example": "His understanding is superficial."
+    },
+    {
+      "word": "suppress",
+      "translation": "suprimir",
+      "example": "She suppressed her emotions."
+    },
+    {
+      "word": "surpass",
+      "translation": "superar / sobrepasar",
+      "example": "She surpassed all expectations."
+    },
+    {
+      "word": "symbiotic",
+      "translation": "simbiotico/a",
+      "example": "They have a symbiotic relationship."
+    },
+    {
+      "word": "tacit",
+      "translation": "tacito/a / implicito",
+      "example": "There was a tacit agreement."
+    },
+    {
+      "word": "truncate",
+      "translation": "truncar / acortar",
+      "example": "The report was truncated."
+    },
+    {
+      "word": "ubiquitous",
+      "translation": "ubicuo/a / omnipresente",
+      "example": "Smartphones are now ubiquitous."
+    },
+    {
+      "word": "unequivocal",
+      "translation": "inequivoco/a",
+      "example": "Her support was unequivocal."
+    },
+    {
+      "word": "unfounded",
+      "translation": "infundado/a",
+      "example": "The accusation was unfounded."
+    },
+    {
+      "word": "unilateral",
+      "translation": "unilateral",
+      "example": "It was a unilateral decision."
+    },
+    {
+      "word": "unravel",
+      "translation": "desenredar / desmoronarse",
+      "example": "The truth began to unravel."
+    },
+    {
+      "word": "vague",
+      "translation": "vago/a / impreciso",
+      "example": "Your answer is too vague."
+    },
+    {
+      "word": "versatile",
+      "translation": "versatil",
+      "example": "She is a very versatile employee."
+    },
+    {
+      "word": "vindicate",
+      "translation": "vindicar / justificar",
+      "example": "The results vindicated her approach."
+    },
+    {
+      "word": "wane",
+      "translation": "menguar / disminuir",
+      "example": "Her enthusiasm began to wane."
+    },
+    {
+      "word": "warranted",
+      "translation": "justificado/a",
+      "example": "Is this reaction warranted?"
+    },
+    {
+      "word": "zealous",
+      "translation": "entusiasta / fervoroso",
+      "example": "She is zealous in her pursuit of justice."
+    }
+  ]
+}

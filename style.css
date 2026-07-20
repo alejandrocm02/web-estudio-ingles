@@ -1,0 +1,653 @@
+/* ============================================================
+   VARIABLES GLOBALES
+   Colores y medidas reutilizables en todo el proyecto
+   ============================================================ */
+:root {
+  --blue-50: #E6F1FB;
+  --blue-100: #B5D4F4;
+  --blue-500: #2563eb;
+  --blue-600: #185FA5;
+  --blue-800: #0C447C;
+  --blue-900: #042C53;
+  --teal-50: #E1F5EE;
+  --teal-500: #1D9E75;
+  --teal-800: #085041;
+  --amber-50: #FAEEDA;
+  --amber-500: #BA7517;
+  --amber-800: #633806;
+  --coral-50: #FAECE7;
+  --coral-500: #D85A30;
+  --coral-800: #4A1B0C;
+  --gray-50: #F7F6F2;
+  --gray-100: #EEECE5;
+  --gray-300: #C8C6BE;
+  --gray-500: #888780;
+  --gray-700: #444441;
+  --gray-900: #1a1a18;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* Variables semanticas (tema claro) */
+  --bg: var(--gray-50);
+  --surface: #ffffff;
+  --text: var(--gray-900);
+  --text-muted: var(--gray-500);
+  --border: var(--gray-100);
+  --border-strong: var(--gray-300);
+  --ink-button-bg: var(--gray-900);
+  --ink-button-text: #ffffff;
+  --table-head-bg: var(--gray-50);
+}
+
+/* ============================================================
+   TEMA OSCURO
+   ============================================================ */
+html[data-theme="dark"] {
+  --bg: #14161c;
+  --surface: #1c1f27;
+  --text: #f2f1ec;
+  --text-muted: #a8a7a0;
+  --border: #2a2d35;
+  --border-strong: #3d414c;
+  --ink-button-bg: #f2f1ec;
+  --ink-button-text: #14161c;
+  --table-head-bg: #20232b;
+}
+
+html[data-theme="dark"] .overlay {
+  background: rgba(0,0,0,0.7);
+}
+
+/* ============================================================
+   RESET BÁSICO
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  color-scheme: light;
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+header {
+  background: var(--blue-900);
+  padding: 60px 40px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto de luz sutil en el fondo del header */
+header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 20% 50%, rgba(255,255,255,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 80% 20%, rgba(255,255,255,0.03) 0%, transparent 50%);
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 0.5px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 17px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, transform 0.15s;
+  z-index: 2;
+}
+.theme-toggle:hover { background: rgba(255,255,255,0.2); transform: scale(1.06); }
+
+/* Cabecera compacta de las paginas de seccion (grammar.html, etc.) */
+header.header-compact {
+  padding: 36px 40px 64px;
+}
+
+.back-link {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  color: var(--blue-100);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 2;
+  padding: 6px 10px;
+  border-radius: 99px;
+  transition: background 0.15s;
+}
+.back-link:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+/* Contenedor de las paginas de seccion */
+.page-main {
+  max-width: 720px;
+  margin: -40px auto 60px;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.page-content {
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+  border: 0.5px solid var(--border);
+}
+
+@media (max-width: 640px) {
+  header.header-compact { padding: 30px 20px 54px; }
+  .page-content { padding: 20px; }
+}
+
+.streak-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  background: rgba(255,255,255,0.08);
+  border: 0.5px solid rgba(255,255,255,0.15);
+  color: var(--blue-100);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 99px;
+  position: relative;
+}
+
+header .badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.1);
+  color: var(--blue-100);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 99px;
+  border: 0.5px solid rgba(255,255,255,0.15);
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(36px, 6vw, 64px); /* Tamaño fluido según pantalla */
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+header h1 em {
+  font-style: italic;
+  color: var(--blue-100);
+}
+
+header p {
+  color: var(--blue-100);
+  font-size: 17px;
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+/* ============================================================
+   GRID DE CARDS
+   ============================================================ */
+main {
+  max-width: 1100px;
+  margin: -40px auto 60px; /* Sube 40px para solapar con el header */
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 0.5px solid var(--border);
+  padding: 28px 24px 24px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s, background 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: cardIn 0.45s ease forwards;
+  text-decoration: none;
+  color: inherit;
+}
+
+@keyframes cardIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+  border-color: var(--border-strong);
+}
+
+/* Color del icono según sección */
+.card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+.card[data-section="grammar"]    .card-icon { background: var(--blue-50); }
+.card[data-section="vocabulary"] .card-icon { background: var(--teal-50); }
+.card[data-section="tests"]      .card-icon { background: var(--amber-50); }
+.card[data-section="listening"]  .card-icon { background: var(--coral-50); }
+
+.card:nth-child(1) { animation-delay: 0.02s; }
+.card:nth-child(2) { animation-delay: 0.08s; }
+.card:nth-child(3) { animation-delay: 0.14s; }
+.card:nth-child(4) { animation-delay: 0.2s; }
+.card:nth-child(5) { animation-delay: 0.26s; }
+
+.card h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--text);
+}
+
+.card p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  flex: 1;
+}
+
+/* Barra de progreso en cada card */
+.card-progress {
+  height: 5px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.card-progress-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+.card[data-section="grammar"]    .card-progress-fill { background: var(--blue-500); }
+.card[data-section="vocabulary"] .card-progress-fill { background: var(--teal-500); }
+.card[data-section="tests"]      .card-progress-fill { background: var(--amber-500); }
+.card[data-section="listening"]  .card-progress-fill { background: var(--coral-500); }
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 0.5px solid var(--border);
+  margin-top: 4px;
+}
+
+.card-footer .count {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.card-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--ink-button-bg);
+  color: var(--ink-button-text);
+  border: none;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.card-btn:hover { background: var(--blue-800); color: #fff; }
+.card-btn svg { width: 14px; height: 14px; }
+
+/* ============================================================
+   MODAL (ventana emergente)
+   ============================================================ */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10,15,30,0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.overlay.open { display: flex; }
+
+.modal {
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 560px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 32px;
+  position: relative;
+  animation: popIn 0.2s ease;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--border);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: background 0.15s;
+}
+.modal-close:hover { background: var(--border-strong); }
+
+.modal h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.modal .subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+
+/* ============================================================
+   GRAMÁTICA — ejercicios con input
+   ============================================================ */
+.exercise-block {
+  background: var(--bg);
+  border-radius: var(--radius-md);
+  border: 0.5px solid var(--border);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.exercise-block .question {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.feedback-msg {
+  display: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  margin-top: 8px;
+}
+.feedback-msg.show { display: block; }
+.feedback-msg.ok   { background: #EAF3DE; color: #27500A; }
+.feedback-msg.ko   { background: #FCEBEB; color: #501313; }
+
+/* ============================================================
+   VOCABULARY — tarjetas de palabras
+   ============================================================ */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.vocab-card {
+  background: var(--teal-50);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  cursor: pointer;
+  transition: transform 0.15s;
+  border: 0.5px solid rgba(29,158,117,0.2);
+}
+.vocab-card:hover { transform: scale(1.02); }
+
+.vocab-card .word {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  color: var(--teal-800);
+}
+
+.vocab-card .translation {
+  font-size: 13px;
+  color: var(--teal-500);
+  margin-top: 4px;
+  display: none; /* Oculto por defecto, se muestra al hacer clic */
+}
+
+.vocab-card.revealed .translation { display: block; }
+
+.vocab-card .hint {
+  font-size: 11px;
+  color: var(--teal-500);
+  margin-top: 8px;
+  opacity: 0.7;
+}
+
+/* ============================================================
+   TESTS — preguntas tipo quiz
+   ============================================================ */
+.option-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: var(--surface);
+  border: 0.5px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  color: var(--text);
+}
+.option-btn:hover:not(:disabled) { background: var(--blue-50); border-color: var(--blue-600); }
+.option-btn.correct { background: #EAF3DE; border-color: #639922; color: #27500A; font-weight: 500; }
+.option-btn.wrong   { background: #FCEBEB; border-color: #E24B4A; color: #501313; }
+.option-btn:disabled { cursor: default; }
+
+.next-btn {
+  margin-top: 16px;
+  background: var(--ink-button-bg);
+  color: var(--ink-button-text);
+  border: none;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: none;
+  transition: background 0.15s;
+}
+.next-btn:hover { background: var(--blue-800); color: #fff; }
+.next-btn.visible { display: inline-block; }
+
+/* ============================================================
+   LISTENING — bloques de audio
+   ============================================================ */
+.audio-block {
+  background: var(--coral-50);
+  border-radius: var(--radius-md);
+  border: 0.5px solid rgba(216,90,48,0.2);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.audio-block .audio-title {
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--coral-800);
+  margin-bottom: 6px;
+}
+
+.audio-block .audio-desc {
+  font-size: 13px;
+  color: var(--coral-500);
+  margin-bottom: 14px;
+}
+
+.play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--coral-500);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 8px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.play-btn:hover { opacity: 0.85; }
+
+/* Barra de progreso del audio */
+.progress-bar {
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-top: 10px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--blue-500);
+  border-radius: 2px;
+  transition: width 0.3s;
+}
+
+/* ============================================================
+   VOCABULARY EXTRA — boton "ya la se" y transcript listening
+   ============================================================ */
+.vocab-card {
+  position: relative;
+}
+.know-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.15);
+  background: rgba(255,255,255,0.6);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+.know-btn:hover { transform: scale(1.1); }
+.know-btn.known {
+  background: var(--teal-500);
+  border-color: var(--teal-500);
+  color: #fff;
+}
+
+.transcript-box {
+  background: var(--bg);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-top: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text);
+  display: none;
+}
+.transcript-box.show { display: block; }
+
+.transcript-toggle {
+  background: none;
+  border: none;
+  color: var(--coral-500);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-left: 10px;
+  text-decoration: underline;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 640px) {
+  header { padding: 44px 20px 70px; }
+  main { margin-top: -30px; padding: 0 16px; gap: 14px; }
+  .modal { padding: 22px; max-height: 90vh; }
+  .vocab-grid { grid-template-columns: 1fr; }
+  .theme-toggle { top: 14px; right: 14px; width: 34px; height: 34px; font-size: 15px; }
+  .streak-badge { font-size: 11px; padding: 5px 12px; }
+}
+
+@media (max-width: 400px) {
+  .exercise-block { padding: 14px; }
+  .modal h2 { font-size: 24px; }
+}
