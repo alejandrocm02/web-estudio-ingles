@@ -426,9 +426,9 @@ function renderGrammar(levelIndex = 0) {
     <h2>📐 ${s.title}</h2>
     <p class="subtitle">Escribe la respuesta correcta en cada campo · agrupado por tema</p>
     ${renderLevelSelector(levelKeys, levelIndex, 'grammar')}
-    <div style="display:inline-block; background:${c.bg}; color:${c.text};
+    <div id="grammar-progress-badge" style="display:inline-block; background:${c.bg}; color:${c.text};
                 padding:4px 12px; border-radius:99px; font-size:12px; font-weight:600;
-                margin-bottom:16px">Nivel ${lvl.level} · ${doneCount}/${lvl.exercises.length} completados</div>
+                margin-bottom:16px">Nivel ${lvl.level} · <span id="grammar-done-count">${doneCount}</span>/${lvl.exercises.length} completados</div>
   `;
 
   topicOrder.forEach(topic => {
@@ -442,7 +442,7 @@ function renderGrammar(levelIndex = 0) {
       const isDone = !!doneArr[i];
       html += `
         <div class="exercise-block">
-          <p class="question">${i + 1}. ${ex.question} ${isDone ? '<span style="color:var(--teal-500)">✓</span>' : ''}</p>
+          <p class="question">${i + 1}. ${ex.question} <span id="qmark-${i}" style="color:var(--teal-500)">${isDone ? '✓' : ''}</span></p>
           <div style="display:flex; gap:8px; align-items:center">
             <input type="text" id="inp-${i}" placeholder="Tu respuesta..."
               style="flex:1; padding:9px 12px; border:0.5px solid var(--border-strong); background:var(--surface); color:var(--text);
@@ -480,9 +480,18 @@ function checkGrammar(i, levelIndex) {
 
   const progress = loadProgress();
   if (!progress.grammar[lvl.level]) progress.grammar[lvl.level] = [];
+  const wasAlreadyDone = !!progress.grammar[lvl.level][i];
   if (isCorrect) progress.grammar[lvl.level][i] = true;
   saveProgress(progress);
   updateCardProgress('grammar');
+
+  if (isCorrect && !wasAlreadyDone) {
+    const mark = document.getElementById(`qmark-${i}`);
+    if (mark) mark.textContent = '✓';
+    const doneArr = progress.grammar[lvl.level] || [];
+    const countEl = document.getElementById('grammar-done-count');
+    if (countEl) countEl.textContent = doneArr.filter(Boolean).length;
+  }
 }
 
 
@@ -552,7 +561,7 @@ function buildVocabHTML(levelIndex = 0) {
 
   let html = `
     <h2>📚 Vocabulary</h2>
-    <p class="subtitle">${allWords.length} palabras · ${knownInLevel} aprendidas · Haz clic para ver la traduccion</p>
+    <p class="subtitle">${allWords.length} palabras · <span id="vocab-known-count">${knownInLevel}</span> aprendidas · Haz clic para ver la traduccion</p>
     ${renderLevelSelector(levelKeys, levelIndex, 'vocabulary')}
 
     <!-- Filtro por categoria tematica -->
@@ -696,6 +705,11 @@ function toggleKnown(word, btnEl, event) {
   }
   saveProgress(progress);
   updateCardProgress('vocabulary');
+
+  const allWords = vocabularyIndexed[currentVocabLevel] || [];
+  const knownInLevel = allWords.filter(w => progress.vocabKnown[w.word.toLowerCase()]).length;
+  const countEl = document.getElementById('vocab-known-count');
+  if (countEl) countEl.textContent = knownInLevel;
 }
 
 
@@ -902,40 +916,64 @@ function toggleListen(i, levelIndex) {
     return;
   }
 
-  window.speechSynthesis.cancel();
+  // Chrome tiene un fallo conocido: si se llama a cancel() justo antes de
+  // speak(), la nueva locucion puede fallar en silencio (dispara onerror).
+  // Solo cancelamos si realmente habia algo sonando, y damos un pequeño
+  // margen antes de empezar la nueva locucion.
+  const wasBusy = window.speechSynthesis.speaking || window.speechSynthesis.pending;
+  if (wasBusy) window.speechSynthesis.cancel();
+
   currentSpeechId = thisId;
   btn.textContent = '⏸ Detener';
   prog.style.width = '0%';
 
   const text = track.script || track.desc;
-  const utter = new SpeechSynthesisUtterance(text);
-  utter.lang = 'en-US';
-  utter.rate = 0.95;
+  let retried = false;
 
-  utter.onboundary = (e) => {
-    if (!text.length) return;
-    const pct = Math.min(100, Math.round((e.charIndex / text.length) * 100));
-    prog.style.width = pct + '%';
+  const speakNow = () => {
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US';
+    utter.rate = 0.95;
+
+    utter.onboundary = (e) => {
+      if (!text.length) return;
+      const pct = Math.min(100, Math.round((e.charIndex / text.length) * 100));
+      prog.style.width = pct + '%';
+    };
+
+    utter.onend = () => {
+      prog.style.width = '100%';
+      btn.textContent = '▶ Reproducir';
+      currentSpeechId = null;
+
+      const progress = loadProgress();
+      if (!progress.listening[lvl.level]) progress.listening[lvl.level] = [];
+      progress.listening[lvl.level][i] = true;
+      saveProgress(progress);
+      updateCardProgress('listening');
+    };
+
+    utter.onerror = () => {
+      // Reintenta una vez (mitiga el fallo intermitente de Chrome);
+      // si vuelve a fallar, deja la tarjeta lista para intentarlo a mano.
+      if (!retried && currentSpeechId === thisId) {
+        retried = true;
+        setTimeout(speakNow, 150);
+        return;
+      }
+      prog.style.width = '0%';
+      btn.textContent = '▶ Reproducir';
+      currentSpeechId = null;
+    };
+
+    window.speechSynthesis.speak(utter);
   };
 
-  utter.onend = () => {
-    prog.style.width = '100%';
-    btn.textContent = '▶ Reproducir';
-    currentSpeechId = null;
-
-    const progress = loadProgress();
-    if (!progress.listening[lvl.level]) progress.listening[lvl.level] = [];
-    progress.listening[lvl.level][i] = true;
-    saveProgress(progress);
-    updateCardProgress('listening');
-  };
-
-  utter.onerror = () => {
-    btn.textContent = '▶ Reproducir';
-    currentSpeechId = null;
-  };
-
-  window.speechSynthesis.speak(utter);
+  if (wasBusy) {
+    setTimeout(speakNow, 120);
+  } else {
+    speakNow();
+  }
 }
 
 
