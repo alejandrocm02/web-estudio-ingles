@@ -31,6 +31,28 @@ function saveProgress(p) {
   localStorage.setItem(PROGRESS_KEY, JSON.stringify(p));
 }
 
+function getLocalDateKey(date = new Date()) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+function recordStudyActivity() {
+  const progress = loadProgress();
+  const today = getLocalDateKey();
+  if (progress.streak.lastDate === today) return;
+
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  progress.streak.count = progress.streak.lastDate === getLocalDateKey(yesterday)
+    ? progress.streak.count + 1
+    : 1;
+  progress.streak.lastDate = today;
+  saveProgress(progress);
+  updateStreakDisplay();
+}
+
 function getTotals() {
   const grammar = data.grammar.levels.reduce((a, l) => a + l.exercises.length, 0);
   const tests = data.tests.levels.reduce((a, l) => a + l.questions.length, 0);
@@ -66,24 +88,37 @@ function updateCardProgress(key) {
 
 function updateAllCardProgress() {
   ['grammar', 'vocabulary', 'tests', 'listening'].forEach(updateCardProgress);
+  updateProgressOverview();
+}
+
+function updateProgressOverview() {
+  const value = document.getElementById('overall-progress-value');
+  const fill = document.getElementById('overall-progress-fill');
+  const summary = document.getElementById('progress-summary');
+  if (!value || !fill || !summary) return;
+
+  const totals = getTotals();
+  const done = getDone(loadProgress());
+  const totalCount = Object.values(totals).reduce((sum, n) => sum + n, 0);
+  const doneCount = Object.values(done).reduce((sum, n) => sum + n, 0);
+  const pct = totalCount ? Math.round((doneCount / totalCount) * 100) : 0;
+
+  value.textContent = `${pct}%`;
+  fill.style.width = `${pct}%`;
+  summary.textContent = doneCount
+    ? `${doneCount} actividades completadas de ${totalCount}. ¡Sigue así!`
+    : 'Empieza una actividad para ver aquí tu avance.';
 }
 
 function updateStreakDisplay() {
   const progress = loadProgress();
-  const today = new Date().toISOString().slice(0, 10);
-
-  if (progress.streak.lastDate !== today) {
-    const last = progress.streak.lastDate ? new Date(progress.streak.lastDate) : null;
-    const diffDays = last ? Math.round((new Date(today) - last) / 86400000) : null;
-    progress.streak.count = diffDays === 1 ? progress.streak.count + 1 : 1;
-    progress.streak.lastDate = today;
-    saveProgress(progress);
-  }
 
   const badge = document.getElementById('streak-badge');
   if (badge) {
     const n = progress.streak.count;
-    badge.textContent = `🔥 Racha de estudio: ${n} día${n === 1 ? '' : 's'}`;
+    badge.textContent = n
+      ? `🔥 Racha de estudio: ${n} día${n === 1 ? '' : 's'}`
+      : '✨ Tu primera actividad empieza hoy';
   }
 }
 
@@ -97,6 +132,7 @@ function initTheme() {
   const updateIcon = () => {
     const theme = document.documentElement.getAttribute('data-theme');
     btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+    btn.setAttribute('aria-label', theme === 'dark' ? 'Activar tema claro' : 'Activar tema oscuro');
   };
   updateIcon();
 
@@ -311,6 +347,7 @@ async function loadVocabulary() {
   }
   indexVocabulary();
   updateCardProgress('vocabulary');
+  updateProgressOverview();
 }
 
 
@@ -342,12 +379,12 @@ function renderCards() {
       ${progressHTML}
       <div class="card-footer">
         <span class="count">${key === 'vocabulary' ? '1000+ palabras' : s.count}</span>
-        <button class="card-btn" aria-label="Abrir ${s.title}" tabindex="-1">
+        <span class="card-btn" aria-hidden="true">
           Entrar
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M3 8h10M9 4l4 4-4 4"/>
           </svg>
-        </button>
+        </span>
       </div>
     `;
 
@@ -469,6 +506,7 @@ function checkGrammar(i, levelIndex) {
 
   fb.className = 'feedback-msg show';
   if (isCorrect) {
+    recordStudyActivity();
     fb.classList.add('ok');
     fb.textContent = 'Correcto!';
     input.style.borderColor = '#639922';
@@ -694,6 +732,7 @@ function toggleKnown(word, btnEl, event) {
   event.stopPropagation();
   const progress = loadProgress();
   const key = word.toLowerCase();
+  const isLearning = !progress.vocabKnown[key];
   if (progress.vocabKnown[key]) {
     delete progress.vocabKnown[key];
     btnEl.classList.remove('known');
@@ -704,6 +743,7 @@ function toggleKnown(word, btnEl, event) {
     btnEl.textContent = '✓';
   }
   saveProgress(progress);
+  if (isLearning) recordStudyActivity();
   updateCardProgress('vocabulary');
 
   const allWords = vocabularyIndexed[currentVocabLevel] || [];
@@ -746,6 +786,7 @@ function renderQuestion(levelIndex) {
     const prevBest = (progress.tests[lvl.level] && progress.tests[lvl.level].best) || 0;
     progress.tests[lvl.level] = { best: Math.max(prevBest, score), total };
     saveProgress(progress);
+    recordStudyActivity();
     updateCardProgress('tests');
     const isNewBest = score > prevBest;
 
@@ -950,6 +991,7 @@ function toggleListen(i, levelIndex) {
       if (!progress.listening[lvl.level]) progress.listening[lvl.level] = [];
       progress.listening[lvl.level][i] = true;
       saveProgress(progress);
+      recordStudyActivity();
       updateCardProgress('listening');
     };
 

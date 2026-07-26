@@ -23,18 +23,49 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Saltar al contenido</a>
 
   <!-- CABECERA -->
-  <header>
-    <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema claro/oscuro">🌙</button>
-    <div class="badge">Learn English. Level Up!</div>
+  <header class="hero">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Activar tema oscuro" title="Cambiar tema">🌙</button>
+    <div class="badge">Tu espacio para aprender inglés</div>
     <h1>Aprende inglés<br><em>desde cero</em></h1>
-    <p>Gramática, vocabulario, tests y listening en un solo lugar</p>
+    <p>Lecciones claras, práctica a tu ritmo y progreso guardado en este dispositivo.</p>
+    <a class="hero-cta" href="#learning-paths">Explorar lecciones <span aria-hidden="true">↓</span></a>
     <div class="streak-badge" id="streak-badge"></div>
   </header>
 
-  <!-- Las cards se generan aquí desde script.js. Cada una es un enlace a su propia pagina -->
-  <main id="cards-grid"></main>
+  <main class="home-main" id="main-content">
+    <section class="progress-overview" aria-labelledby="progress-title">
+      <div>
+        <span class="eyebrow">Tu progreso</span>
+        <h2 id="progress-title">Un paso cada día</h2>
+        <p id="progress-summary">Empieza una actividad para ver aquí tu avance.</p>
+      </div>
+      <div class="overall-progress" aria-label="Progreso total">
+        <strong id="overall-progress-value">0%</strong>
+        <div class="overall-progress-track">
+          <span id="overall-progress-fill"></span>
+        </div>
+      </div>
+    </section>
+
+    <section id="learning-paths" aria-labelledby="paths-title">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Elige tu práctica</span>
+          <h2 id="paths-title">¿Qué quieres aprender hoy?</h2>
+        </div>
+        <p>Combina teoría y ejercicios para avanzar de A1 a C1.</p>
+      </div>
+      <!-- Las cards se generan aquí desde script.js -->
+      <div id="cards-grid" class="cards-grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p><strong>StudyEnglish</strong> · Aprende, practica y mide tu progreso.</p>
+  </footer>
 
   <!-- IMPORTANTE: data.js siempre antes que script.js -->
   <script src="data.js"></script>
