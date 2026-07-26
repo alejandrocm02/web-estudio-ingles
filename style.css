@@ -39,6 +39,8 @@
   --ink-button-bg: var(--gray-900);
   --ink-button-text: #ffffff;
   --table-head-bg: var(--gray-50);
+  --shadow-sm: 0 8px 24px rgba(18, 35, 54, 0.07);
+  --shadow-lg: 0 24px 60px rgba(10, 30, 55, 0.12);
 }
 
 /* ============================================================
@@ -54,6 +56,8 @@ html[data-theme="dark"] {
   --ink-button-bg: #f2f1ec;
   --ink-button-text: #14161c;
   --table-head-bg: #20232b;
+  --shadow-sm: 0 8px 24px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.32);
 }
 
 html[data-theme="dark"] .overlay {
@@ -82,7 +86,36 @@ body {
   color: var(--text);
   min-height: 100vh;
   transition: background 0.2s ease, color 0.2s ease;
+  line-height: 1.5;
 }
+
+button,
+a,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 3px solid #f5b942;
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  background: #fff;
+  color: var(--blue-900);
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-150%);
+  transition: transform 0.2s;
+}
+
+.skip-link:focus { transform: translateY(0); }
 
 /* ============================================================
    HEADER
@@ -165,6 +198,12 @@ header.header-compact {
   border: 0.5px solid var(--border);
 }
 
+.page-content > h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(26px, 4vw, 34px);
+  font-weight: 400;
+}
+
 @media (max-width: 640px) {
   header.header-compact { padding: 30px 20px 54px; }
   .page-content { padding: 20px; }
@@ -221,18 +260,133 @@ header p {
 }
 
 /* ============================================================
-   GRID DE CARDS
+   PORTADA Y GRID DE CARDS
    ============================================================ */
-main {
+.hero-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  padding: 11px 18px;
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 99px;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.hero-cta:hover {
+  background: rgba(255,255,255,0.18);
+  transform: translateY(-2px);
+}
+
+.home-main {
   max-width: 1100px;
-  margin: -40px auto 60px; /* Sube 40px para solapar con el header */
+  margin: -56px auto 60px;
   padding: 0 24px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
   position: relative;
   z-index: 1;
 }
+
+.progress-overview {
+  display: grid;
+  grid-template-columns: 1fr minmax(210px, 300px);
+  align-items: center;
+  gap: 32px;
+  padding: 26px 30px;
+  margin-bottom: 52px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+}
+
+.eyebrow {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--blue-600);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.progress-overview h2,
+.section-heading h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(25px, 3vw, 34px);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.progress-overview p,
+.section-heading p {
+  margin-top: 7px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.overall-progress {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 14px;
+}
+
+.overall-progress strong {
+  font-family: 'DM Serif Display', serif;
+  color: var(--blue-600);
+  font-size: 34px;
+  font-weight: 400;
+}
+
+.overall-progress-track {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: var(--border);
+}
+
+.overall-progress-track span {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--blue-500), var(--teal-500));
+  transition: width 0.6s ease;
+}
+
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 22px;
+}
+
+.section-heading > p {
+  max-width: 330px;
+  text-align: right;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.site-footer {
+  padding: 0 24px 34px;
+  color: var(--text-muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+.site-footer strong { color: var(--text); }
 
 /* ============================================================
    CARDS
@@ -264,6 +418,11 @@ main {
   border-color: var(--border-strong);
 }
 
+.card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-sm);
+}
+
 /* Color del icono según sección */
 .card-icon {
   width: 48px;
@@ -279,6 +438,7 @@ main {
 .card[data-section="vocabulary"] .card-icon { background: var(--teal-50); }
 .card[data-section="tests"]      .card-icon { background: var(--amber-50); }
 .card[data-section="listening"]  .card-icon { background: var(--coral-50); }
+.card[data-section="theory"]     .card-icon { background: #efe8fb; }
 
 .card:nth-child(1) { animation-delay: 0.02s; }
 .card:nth-child(2) { animation-delay: 0.08s; }
@@ -640,7 +800,17 @@ main {
    ============================================================ */
 @media (max-width: 640px) {
   header { padding: 44px 20px 70px; }
-  main { margin-top: -30px; padding: 0 16px; gap: 14px; }
+  header.hero { padding-bottom: 82px; }
+  .home-main { margin-top: -38px; padding: 0 16px; }
+  .progress-overview {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 22px;
+    margin-bottom: 40px;
+  }
+  .section-heading { align-items: start; flex-direction: column; gap: 4px; }
+  .section-heading > p { text-align: left; }
+  .cards-grid { grid-template-columns: 1fr; gap: 14px; }
   .modal { padding: 22px; max-height: 90vh; }
   .vocab-grid { grid-template-columns: 1fr; }
   .theme-toggle { top: 14px; right: 14px; width: 34px; height: 34px; font-size: 15px; }
@@ -651,3 +821,16 @@ main {
   .exercise-block { padding: 14px; }
   .modal h2 { font-size: 24px; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+header.hero { padding-bottom: 104px; }
