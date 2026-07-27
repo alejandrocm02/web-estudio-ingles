@@ -355,7 +355,7 @@ async function loadVocabulary() {
 //  Cada card es un enlace real a su propia pagina (grammar.html, etc.)
 
 const grid = document.getElementById('cards-grid');
-const sections = ['grammar', 'vocabulary', 'tests', 'listening', 'theory'];
+const sections = ['grammar', 'vocabulary', 'game', 'tests', 'listening', 'theory'];
 
 function renderCards() {
   grid.innerHTML = '';
@@ -367,7 +367,7 @@ function renderCards() {
     card.href = `${key}.html`;
     card.dataset.section = key;
 
-    const progressHTML = key === 'theory' ? '' : `
+    const progressHTML = key === 'theory' || key === 'game' ? '' : `
       <div class="card-progress">
         <div class="card-progress-fill" id="progress-fill-${key}" style="width:0%"></div>
       </div>`;

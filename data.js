@@ -8,6 +8,16 @@
 const data = {
 
   // ----------------------------------------------------------
+  //  JUEGO DE FICHAS
+  // ----------------------------------------------------------
+  game: {
+    title: "Flashcards",
+    icon: "🃏",
+    description: "Adivina vocabulario, verbos y pronombres en español e inglés",
+    count: "3 modos de juego"
+  },
+
+  // ----------------------------------------------------------
   //  GRAMATICA
   // ----------------------------------------------------------
   grammar: {
