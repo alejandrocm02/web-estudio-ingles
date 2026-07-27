@@ -11,10 +11,10 @@ const data = {
   //  GRAMATICA
   // ----------------------------------------------------------
   grammar: {
-    title: "Gramatica",
+    title: "Gramática",
     icon: "📐",
-    description: "Ejercicios agrupados por tema (presente, pasado, condicionales...) dentro de cada nivel",
-    count: "18 ejercicios",
+    description: "45 retos guiados para dominar tiempos verbales, estructuras y patrones de A1 a C1",
+    count: "45 ejercicios",
     levels: [
       {
         level: "A1",
@@ -56,6 +56,60 @@ const data = {
             question: "Escribe la forma correcta: 'We ___ (go) to the cinema last Friday.'",
             answer: "went",
             hint: "Past Simple irregular del verbo 'go'"
+          },
+          {
+            topic: "Artículos",
+            question: "Completa: 'I have ___ umbrella.'",
+            answer: "an",
+            hint: "Usa an delante de un sonido vocálico"
+          },
+          {
+            topic: "Presente simple",
+            question: "Completa: 'He ___ (study) English every day.'",
+            answer: "studies",
+            hint: "Con he/she/it, consonante + y cambia a -ies"
+          },
+          {
+            topic: "Presente continuo",
+            question: "Completa: 'They ___ (play) football right now.'",
+            answer: "are playing",
+            hint: "Present Continuous: am/is/are + verbo-ing"
+          },
+          {
+            topic: "Preguntas",
+            question: "Completa: '___ you live in Madrid?'",
+            answer: "Do",
+            hint: "Las preguntas en Present Simple usan do con you"
+          },
+          {
+            topic: "Preposiciones",
+            question: "Completa: 'The lesson starts ___ nine o'clock.'",
+            answer: "at",
+            hint: "Usa at con horas concretas"
+          },
+          {
+            topic: "Can / can't",
+            question: "Completa: 'My sister ___ swim very well.'",
+            answer: "can",
+            hint: "Can expresa habilidad y no cambia con la persona"
+          },
+          {
+            topic: "Comparativos",
+            question: "Completa: 'A train is ___ (fast) than a bus.'",
+            answer: "faster",
+            hint: "Adjetivo corto + -er + than"
+          },
+          {
+            topic: "Cuantificadores",
+            question: "Completa: 'There aren't ___ chairs in the room.'",
+            answer: "any",
+            hint: "Any es habitual en negativas y preguntas"
+          },
+          {
+            topic: "Pasado simple",
+            question: "Forma la pregunta: '___ she call you yesterday?'",
+            answer: "Did",
+            hint: "Did + sujeto + infinitivo"
           }
         ]
       },
@@ -99,6 +153,60 @@ const data = {
             question: "Convierte a voz pasiva: 'They are building a new bridge.' -> A new bridge ___",
             answer: "is being built",
             hint: "Present Continuous pasivo: is/are being + participio"
+          },
+          {
+            topic: "Present Perfect",
+            question: "Completa: 'I ___ (know) her since 2020.'",
+            answer: "have known",
+            hint: "Since marca el inicio de una situación que continúa"
+          },
+          {
+            topic: "Gerundio e infinitivo",
+            question: "Completa: 'She enjoys ___ (read) before bed.'",
+            answer: "reading",
+            hint: "Enjoy va seguido de gerundio"
+          },
+          {
+            topic: "Modales de deducción",
+            question: "Completa: 'The lights are on. They ___ be home.'",
+            answer: "must",
+            hint: "Must expresa una deducción muy probable"
+          },
+          {
+            topic: "Oraciones de relativo",
+            question: "Completa: 'That's the woman ___ helped me.'",
+            answer: "who",
+            hint: "Who se refiere a personas"
+          },
+          {
+            topic: "Used to",
+            question: "Completa: 'I ___ play outside every afternoon as a child.'",
+            answer: "used to",
+            hint: "Used to describe hábitos pasados que ya no ocurren"
+          },
+          {
+            topic: "First conditional",
+            question: "Completa: 'If it rains, we ___ (stay) at home.'",
+            answer: "will stay",
+            hint: "If + Present Simple, will + infinitivo"
+          },
+          {
+            topic: "Phrasal verbs",
+            question: "Completa: 'Please ___ the form before the interview.'",
+            answer: "fill in",
+            hint: "Fill in significa completar un formulario"
+          },
+          {
+            topic: "Estilo indirecto",
+            question: "Completa: 'I will call you.' -> She said she ___ call me.",
+            answer: "would",
+            hint: "Will suele retroceder a would en reported speech"
+          },
+          {
+            topic: "Conectores",
+            question: "Completa: 'I was tired; ___, I finished the report.'",
+            answer: "however",
+            hint: "However introduce un contraste entre dos ideas"
           }
         ]
       },
@@ -142,6 +250,60 @@ const data = {
             question: "Reescribe usando 'It': 'People say that he is very talented.' ->",
             answer: "It is said that he is very talented.",
             hint: "Estructura pasiva impersonal: It is said that..."
+          },
+          {
+            topic: "Inversión",
+            question: "Completa: 'Not only ___ she apologise, but she also offered a refund.'",
+            answer: "did",
+            hint: "Tras Not only, usa inversión auxiliar + sujeto"
+          },
+          {
+            topic: "Cleft sentences",
+            question: "Completa: '___ I need is a little more time.'",
+            answer: "What",
+            hint: "What-cleft: What + sujeto + verbo + be..."
+          },
+          {
+            topic: "Modales en el pasado",
+            question: "Completa: 'You ___ (tell) me earlier; I could have helped.'",
+            answer: "should have told",
+            hint: "Should have + participio expresa crítica o arrepentimiento"
+          },
+          {
+            topic: "Participle clauses",
+            question: "Completa: '___ (finish) the report, she sent it to the client.'",
+            answer: "Having finished",
+            hint: "Having + participio marca una acción anterior"
+          },
+          {
+            topic: "Énfasis",
+            question: "Completa: 'I ___ appreciate your honesty.'",
+            answer: "do",
+            hint: "Do/does/did delante del infinitivo añade énfasis"
+          },
+          {
+            topic: "Nominalización",
+            question: "Forma el sustantivo de 'resilient':",
+            answer: "resilience",
+            hint: "El sustantivo abstracto se forma con -ence"
+          },
+          {
+            topic: "Concesión",
+            question: "Completa: 'Much ___ I admire her, I disagree with the proposal.'",
+            answer: "as",
+            hint: "Much as + sujeto + verbo expresa concesión formal"
+          },
+          {
+            topic: "Mixed conditionals",
+            question: "Completa: 'If I had taken that job, I ___ in London now.'",
+            answer: "would be",
+            hint: "Causa pasada + resultado presente: if + Past Perfect, would + infinitivo"
+          },
+          {
+            topic: "Subjuntivo formal",
+            question: "Completa: 'The committee recommended that he ___ immediately.'",
+            answer: "resign",
+            hint: "Tras recommend that se usa la forma base en inglés formal"
           }
         ]
       }
@@ -154,8 +316,8 @@ const data = {
   vocabulary: {
     title: "Vocabulary",
     icon: "📚",
-    description: "Explora por categoria tematica (comida, viajes, trabajo...) y nivel",
-    count: "24 palabras",
+    description: "Más de 1.100 palabras y expresiones con ejemplo, pronunciación y seguimiento",
+    count: "1100+ palabras y expresiones",
     levels: [
       {
         level: "A1",
@@ -214,7 +376,7 @@ const data = {
   tests: {
     title: "Tests",
     icon: "✏️",
-    description: "Preguntas tipo examen con desglose de resultados por tema",
+    description: "Preguntas tipo examen, feedback inmediato y desglose de resultados por tema",
     count: "21 preguntas",
     levels: [
       {
@@ -414,8 +576,8 @@ const data = {
   listening: {
     title: "Listening",
     icon: "🎧",
-    description: "Audios por contexto (trabajo, viajes, noticias...) y nivel",
-    count: "9 audios",
+    description: "Escucha voces inglesas naturales, regula la velocidad y comprueba qué has entendido",
+    count: "15 audios",
     levels: [
       {
         level: "A1",
@@ -426,22 +588,51 @@ const data = {
             title: "Greetings and Introductions",
             desc: "Dialogo basico de presentaciones. Nivel A1.",
             context: "Conversación cotidiana",
-            url: null,
-            script: "Hi! My name is Anna. Nice to meet you. Hi Anna, I'm Tom. Nice to meet you too. Where are you from? I'm from Italy. And you? I'm from Canada."
+            accent: "US",
+            script: "Hi! My name is Anna. Nice to meet you. Hi Anna, I'm Tom. Nice to meet you too. Where are you from? I'm from Italy. And you? I'm from Canada.",
+            question: "Where is Anna from?",
+            options: ["Canada", "Italy", "Spain"],
+            correct: 1
           },
           {
             title: "Numbers and Colors",
             desc: "Practica numeros, colores y objetos cotidianos. Nivel A1.",
             context: "Vocabulario práctico",
-            url: null,
-            script: "Look at this box. It has five red apples, three blue balls, and two green books. How many things are there in total? Let's count together: one, two, three, four, five."
+            accent: "GB",
+            script: "Look at this box. It has five red apples, three blue balls, and two green books. There are ten things in total. The apples are next to the books.",
+            question: "How many objects are in the box?",
+            options: ["Five", "Eight", "Ten"],
+            correct: 2
           },
           {
             title: "Daily Routines",
             desc: "Una persona describe su dia a dia. Nivel A1-A2.",
             context: "Vida diaria",
-            url: null,
-            script: "Every morning I wake up at seven o'clock. I have breakfast, then I go to work by bus. In the evening, I cook dinner and watch TV before going to bed."
+            accent: "US",
+            script: "Every morning I wake up at seven o'clock. I have breakfast, then I go to work by bus. In the evening, I cook dinner and watch TV before going to bed.",
+            question: "How does the speaker travel to work?",
+            options: ["By car", "By bus", "By train"],
+            correct: 1
+          },
+          {
+            title: "At the Café",
+            desc: "Un pedido sencillo con precios y expresiones de cortesía.",
+            context: "Situaciones reales",
+            accent: "GB",
+            script: "Good morning. Can I have a cheese sandwich and a cup of tea, please? Of course. That's six pounds fifty. Here you are. Thank you. Your order will be ready in five minutes.",
+            question: "How much is the order?",
+            options: ["Five pounds", "Six pounds fifty", "Seven pounds"],
+            correct: 1
+          },
+          {
+            title: "Weekend Weather",
+            desc: "Una previsión breve para organizar el fin de semana.",
+            context: "El tiempo",
+            accent: "US",
+            script: "Saturday will be sunny and warm, with a high of twenty-four degrees. On Sunday, it will be cooler and rainy, so remember to take an umbrella.",
+            question: "What will the weather be like on Sunday?",
+            options: ["Sunny and warm", "Snowy", "Cool and rainy"],
+            correct: 2
           }
         ]
       },
@@ -454,22 +645,51 @@ const data = {
             title: "Job Interview",
             desc: "Dialogo en una entrevista de trabajo. Nivel B1-B2.",
             context: "Entorno laboral",
-            url: null,
-            script: "Good morning, thank you for coming. Can you tell me about your previous experience? Of course. I worked as a customer service assistant for two years, and I really enjoyed helping people solve problems."
+            accent: "GB",
+            script: "Good morning, thank you for coming. Can you tell me about your previous experience? Of course. I worked as a customer service assistant for two years, and I really enjoyed helping people solve problems.",
+            question: "What did the candidate do previously?",
+            options: ["She managed a hotel", "She worked in customer service", "She taught English"],
+            correct: 1
           },
           {
             title: "Talking About the Future",
             desc: "Conversacion sobre planes y predicciones. Nivel B1.",
             context: "Conversación cotidiana",
-            url: null,
-            script: "What are your plans for next year? I'm planning to travel around Europe. I think I'll visit Portugal first, and then maybe France. I'm really looking forward to it."
+            accent: "US",
+            script: "What are your plans for next year? I'm planning to travel around Europe. I think I'll visit Portugal first, and then maybe France. I'm really looking forward to it.",
+            question: "Which country will the speaker probably visit first?",
+            options: ["France", "Portugal", "Italy"],
+            correct: 1
           },
           {
             title: "Describing a City",
             desc: "Alguien describe su ciudad favorita. Nivel B1-B2.",
             context: "Viajes y lugares",
-            url: null,
-            script: "My favourite city is Barcelona. It has amazing architecture, beautiful beaches, and delicious food. There's always something interesting to do, day or night."
+            accent: "GB",
+            script: "My favourite city is Barcelona. It has remarkable architecture, lively neighbourhoods, beautiful beaches, and excellent food. What I enjoy most is that there is always something interesting to do, day or night.",
+            question: "What does the speaker value most?",
+            options: ["The cheap hotels", "The variety of activities", "The public transport"],
+            correct: 1
+          },
+          {
+            title: "A Missed Connection",
+            desc: "Un anuncio de estación y un cambio de viaje inesperado.",
+            context: "Viajes",
+            accent: "GB",
+            script: "We regret to announce that the eleven fifteen service to Manchester has been delayed by forty minutes. Passengers for Leeds should take the train from platform six and change at Sheffield.",
+            question: "What should passengers for Leeds do?",
+            options: ["Wait forty minutes", "Use platform six and change trains", "Take a bus to Sheffield"],
+            correct: 1
+          },
+          {
+            title: "Remote Work Discussion",
+            desc: "Dos argumentos sobre productividad y trabajo híbrido.",
+            context: "Trabajo",
+            accent: "US",
+            script: "Working from home saves me nearly two hours of commuting every day. However, I miss the spontaneous conversations we used to have at the office. A hybrid schedule gives me the focus of home and the collaboration of in-person work.",
+            question: "Why does the speaker prefer a hybrid schedule?",
+            options: ["It offers focus and collaboration", "It means fewer working hours", "It eliminates online meetings"],
+            correct: 0
           }
         ]
       },
@@ -479,25 +699,54 @@ const data = {
         textColor: "#633806",
         tracks: [
           {
-            title: "BBC News Summary",
-            desc: "Extracto de noticias con acento britanico. Nivel C1.",
+            title: "Newsroom Briefing",
+            desc: "Extracto informativo con ritmo y acento británico.",
             context: "Noticias",
-            url: null,
-            script: "Good evening. Tonight's main story: scientists have announced a significant breakthrough in renewable energy technology, which could reduce carbon emissions considerably over the next decade."
+            accent: "GB",
+            script: "Good evening. Tonight's main story: scientists have announced a significant breakthrough in renewable energy storage which, if deployed at scale, could reduce carbon emissions considerably over the coming decade.",
+            question: "What condition is attached to the predicted reduction?",
+            options: ["Lower consumer demand", "Large-scale deployment", "New government subsidies"],
+            correct: 1
           },
           {
             title: "Academic Lecture Extract",
             desc: "Fragmento de una conferencia universitaria. Nivel C1.",
             context: "Ámbito académico",
-            url: null,
-            script: "Today we will examine the relationship between cognitive development and language acquisition, focusing particularly on the critical period hypothesis proposed in the mid twentieth century."
+            accent: "GB",
+            script: "Today we will examine the relationship between cognitive development and language acquisition, focusing particularly on the critical period hypothesis. Although the theory remains influential, recent evidence suggests that adult learning outcomes are more nuanced than the original model implied.",
+            question: "How does recent evidence affect the original theory?",
+            options: ["It fully disproves it", "It confirms every detail", "It suggests a more complex picture"],
+            correct: 2
           },
           {
             title: "Debate: Technology and Society",
             desc: "Debate formal entre dos ponentes. Nivel C1-C2.",
             context: "Debate formal",
-            url: null,
-            script: "While technology has undoubtedly improved our quality of life, one must also consider its pervasive influence on mental health, particularly among younger generations who have grown up entirely online."
+            accent: "US",
+            script: "While technology has undoubtedly improved our quality of life, one must also consider its pervasive influence on mental health. This is particularly relevant among younger generations, for whom the boundary between online and offline identity has become increasingly blurred.",
+            question: "What concern does the speaker emphasise?",
+            options: ["The cost of new devices", "The effect on mental health and identity", "The decline of technical skills"],
+            correct: 1
+          },
+          {
+            title: "Behavioural Economics",
+            desc: "Explicación de cómo el contexto altera nuestras decisiones.",
+            context: "Podcast académico",
+            accent: "US",
+            script: "Contrary to the assumption that consumers make consistently rational choices, behavioural economics shows that seemingly minor details can shape our decisions. The way options are framed may be just as influential as the options themselves.",
+            question: "What does the speaker claim about framing?",
+            options: ["It has little measurable effect", "It can influence decisions strongly", "It only affects financial experts"],
+            correct: 1
+          },
+          {
+            title: "Urban Futures",
+            desc: "Análisis sobre ciudades compactas y calidad de vida.",
+            context: "Reportaje",
+            accent: "GB",
+            script: "Advocates of the fifteen-minute city argue that proximity to essential services reduces car dependency and strengthens neighbourhood ties. Critics, however, caution that without affordable housing, such improvements may accelerate displacement rather than foster inclusion.",
+            question: "What risk do critics identify?",
+            options: ["Longer commuting times", "The loss of public services", "Displacement caused by rising costs"],
+            correct: 2
           }
         ]
       }
@@ -508,10 +757,10 @@ const data = {
   //  TEORIA
   // ----------------------------------------------------------
   theory: {
-    title: "Teoria",
+    title: "Teoría",
     icon: "📖",
-    description: "Resumenes agrupados en bloques tematicos con indice de navegacion",
-    count: "8 temas",
+    description: "15 módulos visuales con fórmulas, ejemplos, atajos y errores frecuentes",
+    count: "15 temas",
     topics: [
       {
         group: "Tiempos verbales",
@@ -631,6 +880,132 @@ const data = {
             ["Relative pronouns", "who, which, that, whose, whom", "Introducen oraciones de relativo"],
             ["Demonstrative pronouns", "this, that, these, those", "Señalan algo en el espacio/tiempo"],
             ["Indefinite pronouns", "someone, nobody, everything, any...", "Referencia no especifica"]
+          ]
+        }
+      },
+      {
+        group: "Elementos gramaticales",
+        title: "Artículos y determinantes",
+        level: "A1–B1",
+        formula: "a / an · the · artículo cero",
+        tip: "Piensa si el sustantivo es conocido, contable y singular antes de elegir.",
+        pitfall: "No uses artículo para hablar en general con plurales: Dogs are friendly.",
+        intro: "Los artículos indican si hablamos de algo por primera vez, de algo ya identificado o de una categoría en general.",
+        table: {
+          headers: ["Forma", "Cuándo se usa", "Ejemplo"],
+          rows: [
+            ["a / an", "Singular contable, primera mención", "I saw a film."],
+            ["the", "Referencia conocida o única", "The film was excellent."],
+            ["Sin artículo", "Plural o incontable en general", "Music helps me focus."],
+            ["some / any", "Cantidad indefinida", "We need some water. / Is there any?"]
+          ]
+        }
+      },
+      {
+        group: "Elementos gramaticales",
+        title: "Cuantificadores",
+        level: "A1–B2",
+        formula: "many / few + contable · much / little + incontable",
+        tip: "A few y a little tienen sentido positivo; few y little sugieren insuficiencia.",
+        pitfall: "Money, advice, information y furniture son incontables en inglés.",
+        intro: "Los cuantificadores expresan cantidad y cambian según el sustantivo sea contable o incontable.",
+        table: {
+          headers: ["Cuantificador", "Tipo", "Ejemplo"],
+          rows: [
+            ["many / a few / few", "Contables", "We have a few options."],
+            ["much / a little / little", "Incontables", "There is little time left."],
+            ["a lot of / enough", "Ambos", "Do we have enough chairs?"],
+            ["too many / too much", "Exceso", "There is too much traffic."]
+          ]
+        }
+      },
+      {
+        group: "Voz y estructuras",
+        title: "Verbos modales",
+        level: "A2–C1",
+        formula: "modal + infinitivo sin to",
+        tip: "El significado depende de la certeza: might < may/could < must.",
+        pitfall: "Después de un modal no añadas -s ni uses to: She can swim.",
+        intro: "Los modales expresan capacidad, obligación, permiso, consejo, posibilidad y deducción sin conjugarse por persona.",
+        table: {
+          headers: ["Función", "Modales", "Ejemplo"],
+          rows: [
+            ["Capacidad / permiso", "can, could, may", "Could I open the window?"],
+            ["Obligación", "must, have to, should", "You must wear a helmet."],
+            ["Posibilidad", "might, may, could", "It might rain later."],
+            ["Deducción", "must, can't, might", "She must be at work."]
+          ]
+        }
+      },
+      {
+        group: "Voz y estructuras",
+        title: "Gerundio e infinitivo",
+        level: "B1–C1",
+        formula: "verb + -ing · verb + to + infinitivo",
+        tip: "Aprende el patrón junto al verbo: avoid doing, decide to do.",
+        pitfall: "Stop doing significa dejar una actividad; stop to do, parar para hacer otra.",
+        intro: "Algunos verbos exigen gerundio, otros infinitivo y unos pocos cambian de significado según la forma elegida.",
+        table: {
+          headers: ["Patrón", "Verbos frecuentes", "Ejemplo"],
+          rows: [
+            ["+ gerundio", "enjoy, avoid, mind, suggest", "She suggested taking a taxi."],
+            ["+ to-infinitivo", "want, decide, hope, manage", "We managed to finish."],
+            ["Ambos, mismo sentido", "begin, start, continue", "It started raining / to rain."],
+            ["Ambos, sentido distinto", "remember, stop, try", "Remember to call her."]
+          ]
+        }
+      },
+      {
+        group: "Conectores y discurso",
+        title: "Conectores para escribir mejor",
+        level: "B1–C1",
+        formula: "idea + conector + relación lógica",
+        tip: "No elijas por traducción: decide primero si añades, contrastas, causas o concluyes.",
+        pitfall: "Despite va con nombre o -ing; although introduce una oración completa.",
+        intro: "Los conectores hacen explícita la relación entre ideas y mejoran la cohesión de textos y presentaciones.",
+        table: {
+          headers: ["Relación", "Conectores", "Ejemplo"],
+          rows: [
+            ["Adición", "moreover, furthermore, in addition", "Moreover, costs have fallen."],
+            ["Contraste", "however, whereas, nevertheless", "However, demand remains low."],
+            ["Causa / resultado", "since, therefore, consequently", "Demand rose; therefore, prices increased."],
+            ["Concesión", "although, despite, even though", "Despite the rain, we left."]
+          ]
+        }
+      },
+      {
+        group: "Gramática avanzada",
+        title: "Inversión y énfasis",
+        level: "C1",
+        formula: "expresión negativa + auxiliar + sujeto + verbo",
+        tip: "Localiza el auxiliar; si no existe, añade do/does/did.",
+        pitfall: "La inversión solo aparece cuando la expresión restrictiva abre la oración.",
+        intro: "La inversión cambia el orden habitual para aportar énfasis, especialmente después de expresiones negativas o restrictivas.",
+        table: {
+          headers: ["Inicio", "Patrón", "Ejemplo"],
+          rows: [
+            ["Never / Rarely", "auxiliar + sujeto", "Rarely have I seen such care."],
+            ["Not only", "inversión + but also", "Not only did she win, but she broke the record."],
+            ["No sooner", "had + sujeto + pp + than", "No sooner had we left than it rained."],
+            ["Only after", "auxiliar + sujeto", "Only after lunch did he call."]
+          ]
+        }
+      },
+      {
+        group: "Gramática avanzada",
+        title: "Cleft sentences y nominalización",
+        level: "C1",
+        formula: "It is/was ... that · What ... is/was ...",
+        tip: "Usa estas estructuras con moderación para dirigir la atención del lector.",
+        pitfall: "Una nominalización excesiva hace que el texto resulte denso y distante.",
+        intro: "Las cleft sentences enfocan una parte de la oración; la nominalización convierte acciones o cualidades en conceptos.",
+        table: {
+          headers: ["Recurso", "Transformación", "Ejemplo"],
+          rows: [
+            ["It-cleft", "enfatiza un elemento", "It was Maya who solved it."],
+            ["What-cleft", "enfatiza información nueva", "What we need is clarity."],
+            ["Nominalización", "decide → decision", "They decided → Their decision"],
+            ["Nominalización", "effective → effectiveness", "The policy's effectiveness"]
           ]
         }
       }
