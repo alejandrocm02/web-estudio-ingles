@@ -20,10 +20,11 @@ function loadProgress() {
     p.tests      = p.tests      || {};
     p.vocabKnown = p.vocabKnown || {};
     p.listening  = p.listening  || {};
+    p.reading    = p.reading    || {};
     p.streak     = p.streak     || { count: 0, lastDate: '' };
     return p;
   } catch (e) {
-    return { grammar: {}, tests: {}, vocabKnown: {}, listening: {}, streak: { count: 0, lastDate: '' } };
+    return { grammar: {}, tests: {}, vocabKnown: {}, listening: {}, reading: {}, streak: { count: 0, lastDate: '' } };
   }
 }
 
@@ -57,19 +58,21 @@ function getTotals() {
   const grammar = data.grammar.levels.reduce((a, l) => a + l.exercises.length, 0);
   const tests = data.tests.levels.reduce((a, l) => a + l.questions.length, 0);
   const listening = data.listening.levels.reduce((a, l) => a + l.tracks.length, 0);
+  const reading = data.reading.levels.reduce((a, l) => a + l.texts.length, 0);
   let vocabulary = data.vocabulary.levels.reduce((a, l) => a + l.words.length, 0);
   if (vocabularyData) {
     vocabulary = Object.values(vocabularyData).reduce((a, arr) => a + arr.length, 0);
   }
-  return { grammar, tests, listening, vocabulary };
+  return { grammar, tests, listening, reading, vocabulary };
 }
 
 function getDone(progress) {
   const grammar = Object.values(progress.grammar).reduce((a, arr) => a + arr.filter(Boolean).length, 0);
   const tests = Object.values(progress.tests).reduce((a, o) => a + (o.best || 0), 0);
   const listening = Object.values(progress.listening).reduce((a, arr) => a + arr.filter(Boolean).length, 0);
+  const reading = Object.values(progress.reading).reduce((a, arr) => a + arr.filter(Boolean).length, 0);
   const vocabulary = Object.keys(progress.vocabKnown).length;
-  return { grammar, tests, listening, vocabulary };
+  return { grammar, tests, listening, reading, vocabulary };
 }
 
 function updateCardProgress(key) {
@@ -87,7 +90,7 @@ function updateCardProgress(key) {
 }
 
 function updateAllCardProgress() {
-  ['grammar', 'vocabulary', 'tests', 'listening'].forEach(updateCardProgress);
+  ['grammar', 'vocabulary', 'tests', 'listening', 'reading'].forEach(updateCardProgress);
   updateProgressOverview();
 }
 
@@ -99,14 +102,20 @@ function updateProgressOverview() {
 
   const totals = getTotals();
   const done = getDone(loadProgress());
-  const totalCount = Object.values(totals).reduce((sum, n) => sum + n, 0);
   const doneCount = Object.values(done).reduce((sum, n) => sum + n, 0);
-  const pct = totalCount ? Math.round((doneCount / totalCount) * 100) : 0;
+  // Cada habilidad pesa lo mismo para que las 1.100+ palabras no oculten el
+  // progreso conseguido en gramática, tests, listening o reading.
+  const sectionPercentages = Object.keys(totals).map(key =>
+    totals[key] ? Math.min(1, (done[key] || 0) / totals[key]) : 0
+  );
+  const pct = Math.round(
+    sectionPercentages.reduce((sum, value) => sum + value, 0) / sectionPercentages.length * 100
+  );
 
   value.textContent = `${pct}%`;
   fill.style.width = `${pct}%`;
   summary.textContent = doneCount
-    ? `${doneCount} actividades completadas de ${totalCount}. ¡Sigue así!`
+    ? `${doneCount} actividades completadas · progreso equilibrado entre 5 habilidades.`
     : 'Empieza una actividad para ver aquí tu avance.';
 }
 
@@ -320,10 +329,70 @@ function getCategoryInfo(key) {
 let vocabularyData = null;
 let vocabularyIndexed = null; // { A1: [{word,translation,example,category}], ... }
 
+// Expresiones de alta frecuencia que complementan el diccionario con lenguaje
+// listo para usar. Se mantienen separadas para que el JSON siga siendo fácil
+// de actualizar.
+const EXTRA_VOCABULARY = {
+  A1: [
+    ["How are you?", "¿Cómo estás?", "Hi, Mia. How are you?"],
+    ["See you later", "Hasta luego", "I have to go. See you later!"],
+    ["Excuse me", "Perdona / disculpe", "Excuse me, is this seat free?"],
+    ["You're welcome", "De nada", "You're welcome. I'm happy to help."],
+    ["I don't understand", "No entiendo", "Sorry, I don't understand."],
+    ["Could you repeat that?", "¿Podrías repetirlo?", "Could you repeat that, please?"],
+    ["How much is it?", "¿Cuánto cuesta?", "I like this shirt. How much is it?"],
+    ["I'm looking for...", "Estoy buscando...", "I'm looking for the train station."],
+    ["What time is it?", "¿Qué hora es?", "Excuse me, what time is it?"],
+    ["Have a good day", "Que tengas un buen día", "Thank you. Have a good day!"],
+    ["It doesn't matter", "No importa", "It doesn't matter. We can try again."],
+    ["I'm not sure", "No estoy seguro/a", "I'm not sure about the answer."],
+    ["A little bit", "Un poco", "I speak a little bit of English."],
+    ["Right now", "Ahora mismo", "I am studying right now."],
+    ["On the left", "A la izquierda", "The bank is on the left."]
+  ],
+  B1: [
+    ["It depends on", "Depende de", "It depends on the weather."],
+    ["As far as I know", "Por lo que sé", "As far as I know, the meeting is online."],
+    ["I'm used to", "Estoy acostumbrado/a a", "I'm used to working from home."],
+    ["To be honest", "Sinceramente", "To be honest, I expected more."],
+    ["That makes sense", "Eso tiene sentido", "Your explanation makes sense."],
+    ["Keep in touch", "Mantener el contacto", "Let's keep in touch after the course."],
+    ["Take your time", "Tómate tu tiempo", "Take your time; there is no rush."],
+    ["Run out of", "Quedarse sin", "We've run out of coffee."],
+    ["Look forward to", "Tener ganas de", "I look forward to hearing from you."],
+    ["Make up your mind", "Decidirse", "You need to make up your mind."],
+    ["Get along with", "Llevarse bien con", "I get along with my colleagues."],
+    ["It's worth it", "Merece la pena", "The walk is long, but it's worth it."],
+    ["From my point of view", "Desde mi punto de vista", "From my point of view, flexibility matters."],
+    ["In the long run", "A largo plazo", "This habit will help in the long run."],
+    ["By the way", "Por cierto", "By the way, have you called Sam?"]
+  ],
+  C1: [
+    ["Bear in mind", "Ten en cuenta", "Bear in mind that the figures are provisional."],
+    ["By and large", "En general", "By and large, the policy has been effective."],
+    ["A far cry from", "Muy distinto de", "The result is a far cry from what was promised."],
+    ["In light of", "A la vista de", "In light of the evidence, we changed course."],
+    ["To a certain extent", "Hasta cierto punto", "I agree with you to a certain extent."],
+    ["It stands to reason", "Es lógico", "It stands to reason that demand will rise."],
+    ["On the grounds that", "Con el argumento de que", "They rejected it on the grounds that it was unsafe."],
+    ["All things considered", "Considerándolo todo", "All things considered, it was the right decision."],
+    ["Be that as it may", "Sea como fuere", "Be that as it may, we still need a solution."],
+    ["At odds with", "En desacuerdo con", "The findings are at odds with earlier research."],
+    ["Call into question", "Poner en duda", "The error calls the entire analysis into question."],
+    ["Pave the way for", "Allanar el camino para", "The agreement paved the way for reform."],
+    ["Rule out", "Descartar", "We cannot rule out further delays."],
+    ["Strike a balance", "Encontrar un equilibrio", "We must strike a balance between speed and care."],
+    ["With hindsight", "Visto en retrospectiva", "With hindsight, the warning signs were obvious."]
+  ]
+};
+
 function indexVocabulary() {
   vocabularyIndexed = {};
   Object.keys(vocabularyData).forEach(level => {
-    vocabularyIndexed[level] = vocabularyData[level].map(w => ({
+    const expressions = (EXTRA_VOCABULARY[level] || []).map(([word, translation, example]) => ({
+      word, translation, example
+    }));
+    vocabularyIndexed[level] = [...vocabularyData[level], ...expressions].map(w => ({
       ...w,
       category: categorizeWord(w.word, w.translation)
     }));
@@ -355,7 +424,7 @@ async function loadVocabulary() {
 //  Cada card es un enlace real a su propia pagina (grammar.html, etc.)
 
 const grid = document.getElementById('cards-grid');
-const sections = ['grammar', 'vocabulary', 'game', 'tests', 'listening', 'theory'];
+const sections = ['grammar', 'reading', 'vocabulary', 'game', 'tests', 'listening', 'theory'];
 
 function renderCards() {
   grid.innerHTML = '';
@@ -378,7 +447,7 @@ function renderCards() {
       <p>${s.description}</p>
       ${progressHTML}
       <div class="card-footer">
-        <span class="count">${key === 'vocabulary' ? '1000+ palabras' : s.count}</span>
+        <span class="count">${key === 'vocabulary' ? '1100+ palabras y expresiones' : s.count}</span>
         <span class="card-btn" aria-hidden="true">
           Entrar
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
@@ -405,9 +474,13 @@ const content = document.getElementById('page-content');
 // ─── 5. SELECTOR DE NIVEL ──────────────────────────────────────────────────
 
 const levelColors = {
+  A0: { bg: '#EEF2FF', text: '#4338CA' },
   A1: { bg: '#E1F5EE', text: '#085041' },
+  A2: { bg: '#ECFDF5', text: '#047857' },
   B1: { bg: '#E6F1FB', text: '#0C447C' },
+  B2: { bg: '#EDE9FE', text: '#6D28D9' },
   C1: { bg: '#FAEEDA', text: '#633806' },
+  C2: { bg: '#FDF2F8', text: '#BE185D' },
 };
 
 function renderLevelSelector(levelKeys, activeIndex, sectionKey) {
@@ -423,7 +496,7 @@ function renderLevelSelector(levelKeys, activeIndex, sectionKey) {
                border:${active ? '1.5px solid ' + c.text : '0.5px solid var(--border-strong)'};
                background:${active ? c.bg : 'var(--surface)'};
                color:${active ? c.text : 'var(--text-muted)'};
-               font-family:'DM Sans',sans-serif;
+               font-family:'Manrope',sans-serif;
                font-size:13px; font-weight:${active ? '600' : '400'};
                cursor:pointer; transition:all 0.15s;">
         ${lvlKey}
@@ -435,6 +508,8 @@ function renderLevelSelector(levelKeys, activeIndex, sectionKey) {
 }
 
 function switchLevel(sectionKey, levelIndex) {
+  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+  if (typeof currentSpeechId !== 'undefined') currentSpeechId = null;
   content.innerHTML = renderSection(sectionKey, levelIndex);
 }
 
@@ -444,13 +519,13 @@ function switchLevel(sectionKey, levelIndex) {
 function renderGrammar(levelIndex = 0) {
   const s = data.grammar;
   const lvl = s.levels[levelIndex];
-  const c = levelColors[lvl.level];
   const levelKeys = s.levels.map(l => l.level);
   const progress = loadProgress();
   const doneArr = progress.grammar[lvl.level] || [];
   const doneCount = doneArr.filter(Boolean).length;
+  const lessons = lvl.lessons || [];
 
-  // Agrupar ejercicios por tema, conservando el orden de aparicion
+  // Agrupar ejercicios por tema, conservando el orden de aparición.
   const topicOrder = [];
   const byTopic = {};
   lvl.exercises.forEach((ex, i) => {
@@ -460,18 +535,79 @@ function renderGrammar(levelIndex = 0) {
   });
 
   let html = `
-    <h2>📐 ${s.title}</h2>
-    <p class="subtitle">Escribe la respuesta correcta en cada campo · agrupado por tema</p>
+    <div class="section-intro">
+      <span class="section-code">GRAMMAR COURSE / ${lvl.level}</span>
+      <h2>${lvl.level === 'A0' ? 'Empieza desde cero' : `Domina el nivel ${lvl.level}`}</h2>
+      <p class="subtitle">${lessons.length} fichas paso a paso y ${lvl.exercises.length} ejercicios. Primero entiende la estructura; después practica sin mirar el solucionario.</p>
+    </div>
     ${renderLevelSelector(levelKeys, levelIndex, 'grammar')}
-    <div id="grammar-progress-badge" style="display:inline-block; background:${c.bg}; color:${c.text};
-                padding:4px 12px; border-radius:99px; font-size:12px; font-weight:600;
-                margin-bottom:16px">Nivel ${lvl.level} · <span id="grammar-done-count">${doneCount}</span>/${lvl.exercises.length} completados</div>
+    <div class="grammar-roadmap" aria-label="Ruta de esta hoja">
+      <div><span>01</span><strong>Comprende</strong><small>Estructura y uso</small></div>
+      <div><span>02</span><strong>Observa</strong><small>Ejemplos traducidos</small></div>
+      <div><span>03</span><strong>Practica</strong><small>${lvl.exercises.length} retos</small></div>
+      <div><span>04</span><strong>Corrige</strong><small>Soluciones al final</small></div>
+    </div>
+
+    <section class="grammar-theory" aria-labelledby="grammar-theory-title">
+      <div class="content-section-heading">
+        <span class="section-code">TEORÍA POR NIVEL · ${lvl.level}</span>
+        <h3 id="grammar-theory-title">Aprende cada estructura</h3>
+        <p>Usa el índice para saltar a una ficha. Cada bloque explica qué construir, cuándo utilizarlo y qué error evitar.</p>
+      </div>
+      <nav class="grammar-lesson-index" aria-label="Índice de gramática">
+        ${lessons.map((lesson, i) => `
+          <button onclick="scrollToGrammarLesson(${i})"><span>${String(i + 1).padStart(2, '0')}</span>${lesson.title}</button>
+        `).join('')}
+      </nav>
+      <div class="grammar-lessons">
+        ${lessons.map((lesson, i) => `
+          <article class="grammar-lesson" id="grammar-lesson-${i}">
+            <div class="grammar-lesson-heading">
+              <span>${String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <small>NIVEL ${lvl.level}</small>
+                <h4>${lesson.title}</h4>
+                <p>${lesson.goal}</p>
+              </div>
+            </div>
+            <div class="grammar-formula">
+              <span>ESTRUCTURA</span>
+              <code>${lesson.structure}</code>
+            </div>
+            <div class="grammar-lesson-grid">
+              <div class="grammar-uses">
+                <span class="control-label">Cuándo se usa</span>
+                <ul>${lesson.uses.map(use => `<li>${use}</li>`).join('')}</ul>
+              </div>
+              <div class="grammar-examples">
+                <span class="control-label">Ejemplos</span>
+                ${lesson.examples.map(example => `
+                  <div><strong>${example.en}</strong><small>${example.es}</small></div>
+                `).join('')}
+              </div>
+            </div>
+            <div class="grammar-mistake"><span>EVITA ESTE ERROR</span><p>${lesson.mistake}</p></div>
+          </article>
+        `).join('')}
+      </div>
+    </section>
+
+    <section class="grammar-practice" aria-labelledby="grammar-practice-title">
+      <div class="content-section-heading">
+        <span class="section-code">PARTE 02 · EJERCICIOS</span>
+        <h3 id="grammar-practice-title">Practica sin mirar las respuestas</h3>
+        <p>Escribe la frase completa cuando sea necesario. Si fallas, revisa la ficha y vuelve a intentarlo; todas las soluciones están al final.</p>
+      </div>
+    <div class="module-progress">
+      <div><span>Nivel ${lvl.level}</span><strong><span id="grammar-done-count">${doneCount}</span> de ${lvl.exercises.length} retos</strong></div>
+      <div class="module-progress-track"><span id="grammar-module-fill" style="width:${Math.round(doneCount / lvl.exercises.length * 100)}%"></span></div>
+    </div>
   `;
 
   topicOrder.forEach(topic => {
-    html += `<div style="display:flex; align-items:center; gap:8px; margin:18px 0 10px">
-      <h3 style="font-family:'DM Serif Display',serif; font-size:16px; font-weight:400; color:${c.text}">${topic}</h3>
-      <div style="flex:1; height:1px; background:var(--border)"></div>
+    html += `<div class="topic-divider">
+      <span>${topic}</span>
+      <div></div>
     </div>`;
 
     byTopic[topic].forEach(i => {
@@ -479,30 +615,66 @@ function renderGrammar(levelIndex = 0) {
       const isDone = !!doneArr[i];
       html += `
         <div class="exercise-block">
-          <p class="question">${i + 1}. ${ex.question} <span id="qmark-${i}" style="color:var(--teal-500)">${isDone ? '✓' : ''}</span></p>
-          <div style="display:flex; gap:8px; align-items:center">
+          <div class="exercise-question">
+            <span>${String(i + 1).padStart(2, '0')}</span>
+            <p class="question">${ex.question} <span id="qmark-${i}" class="completion-mark">${isDone ? '✓' : ''}</span></p>
+          </div>
+          <div class="answer-row">
             <input type="text" id="inp-${i}" placeholder="Tu respuesta..."
-              style="flex:1; padding:9px 12px; border:0.5px solid var(--border-strong); background:var(--surface); color:var(--text);
-                     border-radius:6px; font-family:'DM Sans',sans-serif; font-size:14px; outline:none;"
               onkeydown="if(event.key==='Enter') checkGrammar(${i}, ${levelIndex})">
             <button class="card-btn" onclick="checkGrammar(${i}, ${levelIndex})">Comprobar</button>
           </div>
-          <p style="font-size:12px; color:var(--text-muted); margin-top:6px">💡 ${ex.hint}</p>
+          <p class="exercise-hint"><span>Pista</span>${ex.hint}</p>
           <p id="fb-${i}" class="feedback-msg"></p>
         </div>`;
     });
   });
 
+  html += `
+    </section>
+    <section class="grammar-answer-section" aria-labelledby="grammar-solutions-title">
+      <div class="content-section-heading">
+        <span class="section-code">PARTE 03 · AUTOCORRECCIÓN</span>
+        <h3 id="grammar-solutions-title">Soluciones de la hoja ${lvl.level}</h3>
+        <p>Ábrelas solo después de intentar los ejercicios. La pista explica el patrón que justifica cada respuesta.</p>
+      </div>
+      <details class="grammar-solutions">
+        <summary><span>Mostrar ${lvl.exercises.length} soluciones</span><small>Las respuestas están ocultas</small></summary>
+        <div class="solutions-grid">
+          ${lvl.exercises.map((exercise, i) => `
+            <div class="solution-item">
+              <span>${String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <small>${exercise.topic || 'General'}</small>
+                <strong>${exercise.answer}</strong>
+                <p>${exercise.hint}</p>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </details>
+    </section>`;
+
   return html;
+}
+
+function scrollToGrammarLesson(i) {
+  document.getElementById(`grammar-lesson-${i}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function checkGrammar(i, levelIndex) {
   const lvl = data.grammar.levels[levelIndex];
   const input = document.getElementById(`inp-${i}`);
   const fb    = document.getElementById(`fb-${i}`);
-  const valor = input.value.trim().toLowerCase();
-  const correcta = lvl.exercises[i].answer.toLowerCase();
-  const isCorrect = valor === correcta;
+  const normalizeAnswer = value => value
+    .trim()
+    .toLowerCase()
+    .replace(/[.!?]+$/, '')
+    .replace(/[’‘]/g, "'")
+    .replace(/\s+/g, ' ');
+  const valor = normalizeAnswer(input.value);
+  const accepted = [lvl.exercises[i].answer, ...(lvl.exercises[i].answers || [])].map(normalizeAnswer);
+  const isCorrect = accepted.includes(valor);
 
   fb.className = 'feedback-msg show';
   if (isCorrect) {
@@ -512,7 +684,7 @@ function checkGrammar(i, levelIndex) {
     input.style.borderColor = '#639922';
   } else {
     fb.classList.add('ko');
-    fb.textContent = 'Respuesta correcta: "' + lvl.exercises[i].answer + '"';
+    fb.textContent = 'Todavía no. Revisa la pista, consulta la ficha y vuelve a intentarlo. La solución está al final de la hoja.';
     input.style.borderColor = '#E24B4A';
   }
 
@@ -529,6 +701,8 @@ function checkGrammar(i, levelIndex) {
     const doneArr = progress.grammar[lvl.level] || [];
     const countEl = document.getElementById('grammar-done-count');
     if (countEl) countEl.textContent = doneArr.filter(Boolean).length;
+    const moduleFill = document.getElementById('grammar-module-fill');
+    if (moduleFill) moduleFill.style.width = `${Math.round(doneArr.filter(Boolean).length / lvl.exercises.length * 100)}%`;
   }
 }
 
@@ -598,14 +772,17 @@ function buildVocabHTML(levelIndex = 0) {
   const pageWords  = filtered.slice(vocabPage * WORDS_PER_PAGE, (vocabPage + 1) * WORDS_PER_PAGE);
 
   let html = `
-    <h2>📚 Vocabulary</h2>
-    <p class="subtitle">${allWords.length} palabras · <span id="vocab-known-count">${knownInLevel}</span> aprendidas · Haz clic para ver la traduccion</p>
+    <div class="section-intro">
+      <span class="section-code">LEXICON / ${currentVocabLevel}</span>
+      <h2>Word Explorer</h2>
+      <p class="subtitle">${allWords.length} palabras y expresiones · <span id="vocab-known-count">${knownInLevel}</span> aprendidas · Escucha la pronunciación y revela el significado.</p>
+    </div>
     ${renderLevelSelector(levelKeys, levelIndex, 'vocabulary')}
 
     <!-- Filtro por categoria tematica -->
     <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:14px">
       <button onclick="filterVocabCategory('all', ${levelIndex})"
-        style="padding:5px 12px; border-radius:99px; cursor:pointer; font-family:'DM Sans',sans-serif; font-size:12px;
+        style="padding:5px 12px; border-radius:99px; cursor:pointer; font-family:'Manrope',sans-serif; font-size:12px;
                border:${vocabCategory === 'all' ? '1.5px solid ' + c.text : '0.5px solid var(--border-strong)'};
                background:${vocabCategory === 'all' ? c.bg : 'var(--surface)'};
                color:${vocabCategory === 'all' ? c.text : 'var(--text-muted)'};
@@ -614,7 +791,7 @@ function buildVocabHTML(levelIndex = 0) {
       </button>
       ${categoryOptions.map(cat => `
         <button onclick="filterVocabCategory('${cat.key}', ${levelIndex})"
-          style="padding:5px 12px; border-radius:99px; cursor:pointer; font-family:'DM Sans',sans-serif; font-size:12px;
+          style="padding:5px 12px; border-radius:99px; cursor:pointer; font-family:'Manrope',sans-serif; font-size:12px;
                  border:${vocabCategory === cat.key ? '1.5px solid ' + c.text : '0.5px solid var(--border-strong)'};
                  background:${vocabCategory === cat.key ? c.bg : 'var(--surface)'};
                  color:${vocabCategory === cat.key ? c.text : 'var(--text-muted)'};
@@ -629,7 +806,7 @@ function buildVocabHTML(levelIndex = 0) {
         placeholder="Buscar palabra o traduccion..."
         oninput="searchVocab(this.value, ${levelIndex})"
         style="width:100%; padding:10px 14px 10px 36px; border:0.5px solid var(--border-strong); background:var(--surface); color:var(--text);
-               border-radius:8px; font-family:'DM Sans',sans-serif; font-size:14px; outline:none;">
+               border-radius:8px; font-family:'Manrope',sans-serif; font-size:14px; outline:none;">
       <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--text-muted)">🔍</span>
     </div>
 
@@ -658,6 +835,9 @@ function buildVocabHTML(levelIndex = 0) {
         <div class="vocab-card" id="vc-${i}"
              style="background:${c.bg}; border-color:rgba(0,0,0,0.08)"
              onclick="revealWord(${i})">
+          <button class="speak-word-btn"
+            onclick="speakVocabulary('${escAttr(w.word)}', event)"
+            aria-label="Escuchar ${w.word}">AUDIO</button>
           <button class="know-btn ${isKnown ? 'known' : ''}" id="kb-${i}"
             onclick="toggleKnown('${escAttr(w.word)}', this, event)"
             aria-label="Marcar como aprendida">${isKnown ? '✓' : '☆'}</button>
@@ -678,7 +858,7 @@ function buildVocabHTML(levelIndex = 0) {
         <button onclick="changeVocabPage(${levelIndex}, ${vocabPage - 1})"
           ${vocabPage === 0 ? 'disabled' : ''}
           style="padding:6px 14px; border-radius:6px; border:0.5px solid var(--border-strong);
-                 background:var(--surface); color:var(--text); cursor:pointer; font-size:13px; font-family:'DM Sans',sans-serif;
+                 background:var(--surface); color:var(--text); cursor:pointer; font-size:13px; font-family:'Manrope',sans-serif;
                  opacity:${vocabPage === 0 ? '0.4' : '1'}">
           ← Anterior
         </button>
@@ -688,7 +868,7 @@ function buildVocabHTML(levelIndex = 0) {
         <button onclick="changeVocabPage(${levelIndex}, ${vocabPage + 1})"
           ${vocabPage >= totalPages - 1 ? 'disabled' : ''}
           style="padding:6px 14px; border-radius:6px; border:0.5px solid var(--border-strong);
-                 background:var(--surface); color:var(--text); cursor:pointer; font-size:13px; font-family:'DM Sans',sans-serif;
+                 background:var(--surface); color:var(--text); cursor:pointer; font-size:13px; font-family:'Manrope',sans-serif;
                  opacity:${vocabPage >= totalPages - 1 ? '0.4' : '1'}">
           Siguiente →
         </button>
@@ -750,6 +930,21 @@ function toggleKnown(word, btnEl, event) {
   const knownInLevel = allWords.filter(w => progress.vocabKnown[w.word.toLowerCase()]).length;
   const countEl = document.getElementById('vocab-known-count');
   if (countEl) countEl.textContent = knownInLevel;
+}
+
+function speakVocabulary(word, event) {
+  event.stopPropagation();
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = 'en-GB';
+  utterance.rate = 0.82;
+  const voices = getEnglishVoices();
+  utterance.voice = voices.find(v => /natural|premium|enhanced/i.test(v.name))
+    || voices.find(v => /^en-GB/i.test(v.lang))
+    || voices[0]
+    || null;
+  window.speechSynthesis.speak(utterance);
 }
 
 
@@ -817,7 +1012,7 @@ function renderQuestion(levelIndex) {
       ${renderLevelSelector(levelKeys, levelIndex, 'tests')}
       <div style="text-align:center; padding:32px 20px 12px">
         <div style="font-size:48px; margin-bottom:16px">${emoji}</div>
-        <h3 style="font-family:'DM Serif Display',serif; font-size:26px; font-weight:400; margin-bottom:8px">
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:26px; font-weight:600; margin-bottom:8px">
           ${score} / ${total} correctas
         </h3>
         <p style="color:var(--text-muted); margin-bottom:8px">${msg}</p>
@@ -883,62 +1078,147 @@ function restartTest(levelIndex) {
 }
 
 
-// ─── 9. LISTENING (voz generada por el navegador) ──────────────────────────
+// ─── 9. LISTENING STUDIO ───────────────────────────────────────────────────
 
 let currentSpeechId = null;
+let listeningRate = 0.9;
+let listeningVoiceMode = 'auto';
+
+function getEnglishVoices() {
+  if (!('speechSynthesis' in window)) return [];
+  return window.speechSynthesis.getVoices()
+    .filter(voice => /^en[-_]/i.test(voice.lang))
+    .sort((a, b) => {
+      const score = voice => /natural|premium|enhanced|neural|online/i.test(voice.name) ? 0 : 1;
+      return score(a) - score(b);
+    });
+}
+
+function selectListeningVoice(track) {
+  const voices = getEnglishVoices();
+  const requestedAccent = listeningVoiceMode === 'auto'
+    ? (track.accent || 'GB')
+    : listeningVoiceMode;
+  const locale = requestedAccent === 'US' ? 'en-US' : 'en-GB';
+  return voices.find(v => v.lang.replace('_', '-').toLowerCase() === locale.toLowerCase() &&
+      /natural|premium|enhanced|neural|online/i.test(v.name))
+    || voices.find(v => v.lang.replace('_', '-').toLowerCase() === locale.toLowerCase())
+    || voices.find(v => v.lang.toLowerCase().startsWith(`en-${requestedAccent.toLowerCase()}`))
+    || voices[0]
+    || null;
+}
 
 function renderListening(levelIndex = 0) {
   const s = data.listening;
   const lvl = s.levels[levelIndex];
-  const c = levelColors[lvl.level];
   const levelKeys = s.levels.map(l => l.level);
   const progress = loadProgress();
   const doneArr = progress.listening[lvl.level] || [];
   const supported = 'speechSynthesis' in window;
 
   let html = `
-    <h2>🎧 ${s.title}</h2>
-    <p class="subtitle">Pulsa reproducir para escuchar el audio (voz generada por el navegador)</p>
+    <div class="section-intro">
+      <span class="section-code">LISTEN / 0${levelIndex + 1}</span>
+      <h2>${s.title} Studio</h2>
+      <p class="subtitle">Escucha sin mirar el texto, responde y repite a otra velocidad. El sistema prioriza las voces inglesas de mayor calidad de tu dispositivo.</p>
+    </div>
     ${renderLevelSelector(levelKeys, levelIndex, 'listening')}
-    <div style="display:inline-block; background:${c.bg}; color:${c.text};
-                padding:4px 12px; border-radius:99px; font-size:12px; font-weight:600; margin-bottom:16px">
-      Nivel ${lvl.level}
+    <div class="listening-console">
+      <div>
+        <span class="control-label">Voz</span>
+        <select id="voice-mode" onchange="setListeningVoice(this.value)" aria-label="Acento de la voz">
+          <option value="auto" ${listeningVoiceMode === 'auto' ? 'selected' : ''}>Automática · según pista</option>
+          <option value="GB" ${listeningVoiceMode === 'GB' ? 'selected' : ''}>Inglés británico</option>
+          <option value="US" ${listeningVoiceMode === 'US' ? 'selected' : ''}>Inglés americano</option>
+        </select>
+      </div>
+      <div>
+        <span class="control-label">Velocidad</span>
+        <div class="speed-control" role="group" aria-label="Velocidad de reproducción">
+          ${[0.75, 0.9, 1].map(rate => `
+            <button class="${listeningRate === rate ? 'active' : ''}" onclick="setListeningRate(${rate}, ${levelIndex})">
+              ${rate === 0.75 ? 'Lenta' : rate === 0.9 ? 'Clara' : 'Natural'} · ${rate}×
+            </button>`).join('')}
+        </div>
+      </div>
+      <div class="console-status"><i></i>${supported ? 'Motor de voz disponible' : 'Solo transcripción'}</div>
     </div>`;
 
   if (!supported) {
-    html += `<p style="font-size:13px; color:var(--coral-500); margin-bottom:12px">
-      Tu navegador no soporta sintesis de voz. Aqui tienes las transcripciones para leer.</p>`;
+    html += `<p class="audio-warning">Tu navegador no admite síntesis de voz. Puedes usar las transcripciones y los retos de comprensión.</p>`;
   }
 
-  lvl.tracks.forEach((t, i) => {
+  lvl.tracks.forEach((track, i) => {
     const isDone = !!doneArr[i];
     html += `
-      <div class="audio-block" style="background:${c.bg}; border-color:rgba(0,0,0,0.08)">
-        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:2px">
-          <div class="audio-title" style="color:${c.text}; margin-bottom:0">${t.title} ${isDone ? '✓' : ''}</div>
-          ${t.context ? `<span style="font-size:11px; font-weight:600; color:${c.text}; background:rgba(255,255,255,0.5);
-              padding:2px 9px; border-radius:99px">${t.context}</span>` : ''}
+      <article class="audio-block ${isDone ? 'completed' : ''}">
+        <div class="audio-topline">
+          <span class="track-number">${String(i + 1).padStart(2, '0')}</span>
+          <div class="audio-heading">
+            <div class="audio-title">${track.title}<span id="done-${i}">${isDone ? ' · Completado' : ''}</span></div>
+            <div class="audio-meta">
+              <span>${track.context || 'Listening'}</span>
+              <span>${track.accent === 'US' ? 'US English' : 'UK English'}</span>
+              <span>≈ ${Math.max(1, Math.ceil((track.script || '').split(/\s+/).length / 115))} min</span>
+            </div>
+          </div>
         </div>
-        <div class="audio-desc" style="color:${c.text}; opacity:0.7">${t.desc}</div>
-        ${supported ? `
-        <button class="play-btn" id="play-${i}" style="background:${c.text}" onclick="toggleListen(${i}, ${levelIndex})">
-          ▶ Reproducir
-        </button>
-        <button class="transcript-toggle" style="color:${c.text}" onclick="toggleTranscript(${i}, this)">Ver texto</button>
-        <div class="progress-bar">
+        <p class="audio-desc">${track.desc}</p>
+        <div class="audio-player">
+          ${supported ? `
+            <button class="play-btn" id="play-${i}" onclick="toggleListen(${i}, ${levelIndex})" aria-label="Reproducir ${track.title}">
+              <span class="play-icon">▶</span><span class="play-label">Reproducir</span>
+            </button>
+            <div class="waveform" aria-hidden="true">${Array.from({length: 28}, (_, n) => `<i style="--h:${22 + ((n * 17) % 66)}%"></i>`).join('')}</div>
+          ` : ''}
+          <button class="transcript-toggle" onclick="toggleTranscript(${i}, this)">Ver transcripción</button>
+        </div>
+        <div class="progress-bar" aria-hidden="true">
           <div class="progress-bar-fill" id="prog-${i}" style="width:${isDone ? 100 : 0}%"></div>
-        </div>` : ''}
-        <div class="transcript-box ${!supported ? 'show' : ''}" id="transcript-${i}">${t.script || t.desc}</div>
-      </div>`;
+        </div>
+        <div class="transcript-box ${!supported ? 'show' : ''}" id="transcript-${i}">
+          <span>TRANSCRIPT</span>
+          <p>${track.script || track.desc}</p>
+        </div>
+        <div class="listening-challenge">
+          <span class="control-label">Comprueba tu oído</span>
+          <p>${track.question}</p>
+          <div class="listening-options" id="listen-options-${i}">
+            ${track.options.map((option, optionIndex) => `
+              <button onclick="checkListeningAnswer(${i}, ${levelIndex}, ${optionIndex}, this)">${option}</button>
+            `).join('')}
+          </div>
+          <div class="listening-feedback" id="listen-feedback-${i}" aria-live="polite"></div>
+        </div>
+      </article>`;
   });
 
   return html;
 }
 
+function setListeningVoice(mode) {
+  listeningVoiceMode = mode;
+  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+  currentSpeechId = null;
+}
+
+function setListeningRate(rate, levelIndex) {
+  listeningRate = rate;
+  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+  currentSpeechId = null;
+  content.innerHTML = renderListening(levelIndex);
+}
+
 function toggleTranscript(i, btn) {
   const box = document.getElementById(`transcript-${i}`);
   box.classList.toggle('show');
-  if (btn) btn.textContent = box.classList.contains('show') ? 'Ocultar texto' : 'Ver texto';
+  if (btn) btn.textContent = box.classList.contains('show') ? 'Ocultar transcripción' : 'Ver transcripción';
+}
+
+function resetPlayButton(btn) {
+  if (!btn) return;
+  btn.querySelector('.play-icon').textContent = '▶';
+  btn.querySelector('.play-label').textContent = 'Reproducir';
 }
 
 function toggleListen(i, levelIndex) {
@@ -953,73 +1233,244 @@ function toggleListen(i, levelIndex) {
   if (currentSpeechId === thisId) {
     window.speechSynthesis.cancel();
     currentSpeechId = null;
-    btn.textContent = '▶ Reproducir';
+    resetPlayButton(btn);
     return;
   }
 
-  // Chrome tiene un fallo conocido: si se llama a cancel() justo antes de
-  // speak(), la nueva locucion puede fallar en silencio (dispara onerror).
-  // Solo cancelamos si realmente habia algo sonando, y damos un pequeño
-  // margen antes de empezar la nueva locucion.
+  document.querySelectorAll('.play-btn').forEach(resetPlayButton);
   const wasBusy = window.speechSynthesis.speaking || window.speechSynthesis.pending;
   if (wasBusy) window.speechSynthesis.cancel();
 
   currentSpeechId = thisId;
-  btn.textContent = '⏸ Detener';
+  btn.querySelector('.play-icon').textContent = '■';
+  btn.querySelector('.play-label').textContent = 'Detener';
   prog.style.width = '0%';
 
   const text = track.script || track.desc;
   let retried = false;
 
   const speakNow = () => {
-    const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = 'en-US';
-    utter.rate = 0.95;
+    if (currentSpeechId !== thisId) return;
+    const utterance = new SpeechSynthesisUtterance(text);
+    const voice = selectListeningVoice(track);
+    utterance.lang = voice?.lang || (track.accent === 'US' ? 'en-US' : 'en-GB');
+    utterance.voice = voice;
+    utterance.rate = listeningRate;
+    utterance.pitch = 1;
 
-    utter.onboundary = (e) => {
-      if (!text.length) return;
-      const pct = Math.min(100, Math.round((e.charIndex / text.length) * 100));
-      prog.style.width = pct + '%';
+    utterance.onboundary = event => {
+      if (!text.length || currentSpeechId !== thisId) return;
+      prog.style.width = `${Math.min(100, Math.round((event.charIndex / text.length) * 100))}%`;
     };
 
-    utter.onend = () => {
+    utterance.onend = () => {
+      if (currentSpeechId !== thisId) return;
       prog.style.width = '100%';
-      btn.textContent = '▶ Reproducir';
+      resetPlayButton(btn);
       currentSpeechId = null;
-
-      const progress = loadProgress();
-      if (!progress.listening[lvl.level]) progress.listening[lvl.level] = [];
-      progress.listening[lvl.level][i] = true;
-      saveProgress(progress);
-      recordStudyActivity();
-      updateCardProgress('listening');
+      markListeningComplete(lvl.level, i);
     };
 
-    utter.onerror = () => {
-      // Reintenta una vez (mitiga el fallo intermitente de Chrome);
-      // si vuelve a fallar, deja la tarjeta lista para intentarlo a mano.
+    utterance.onerror = event => {
+      if (event.error === 'canceled' || event.error === 'interrupted') return;
       if (!retried && currentSpeechId === thisId) {
         retried = true;
-        setTimeout(speakNow, 150);
+        setTimeout(speakNow, 180);
         return;
       }
       prog.style.width = '0%';
-      btn.textContent = '▶ Reproducir';
+      resetPlayButton(btn);
       currentSpeechId = null;
     };
 
-    window.speechSynthesis.speak(utter);
+    window.speechSynthesis.speak(utterance);
   };
 
-  if (wasBusy) {
-    setTimeout(speakNow, 120);
+  setTimeout(speakNow, wasBusy ? 140 : 0);
+}
+
+function markListeningComplete(level, i) {
+  const progress = loadProgress();
+  if (!progress.listening[level]) progress.listening[level] = [];
+  const isNew = !progress.listening[level][i];
+  progress.listening[level][i] = true;
+  saveProgress(progress);
+  if (isNew) recordStudyActivity();
+  updateCardProgress('listening');
+  const done = document.getElementById(`done-${i}`);
+  if (done) done.textContent = ' · Completado';
+}
+
+function checkListeningAnswer(i, levelIndex, selected, button) {
+  const track = data.listening.levels[levelIndex].tracks[i];
+  const options = document.querySelectorAll(`#listen-options-${i} button`);
+  const feedback = document.getElementById(`listen-feedback-${i}`);
+  options.forEach((option, index) => {
+    option.disabled = true;
+    if (index === track.correct) option.classList.add('correct');
+  });
+  if (selected === track.correct) {
+    feedback.textContent = 'Correcto. Has captado la idea clave.';
+    feedback.className = 'listening-feedback show ok';
+    markListeningComplete(data.listening.levels[levelIndex].level, i);
   } else {
-    speakNow();
+    button.classList.add('wrong');
+    feedback.textContent = `Casi. La respuesta correcta es: ${track.options[track.correct]}.`;
+    feedback.className = 'listening-feedback show ko';
   }
 }
 
+if ('speechSynthesis' in window) {
+  window.speechSynthesis.addEventListener?.('voiceschanged', getEnglishVoices);
+}
 
-// ─── 10. TEORIA ─────────────────────────────────────────────────────────────
+// ─── 10. READING ────────────────────────────────────────────────────────────
+
+function renderReading(levelIndex = 0) {
+  const section = data.reading;
+  const level = section.levels[levelIndex];
+  const levelKeys = section.levels.map(item => item.level);
+  const done = loadProgress().reading[level.level] || [];
+  const completedCount = done.filter(Boolean).length;
+
+  let html = `
+    <div class="section-intro">
+      <span class="section-code">READING LAB / ${level.level}</span>
+      <h2>Lee, interpreta y responde</h2>
+      <p class="subtitle">Tres textos graduados por hoja. Las preguntas cerradas tienen una respuesta verificable; las abiertas incluyen un modelo orientativo, nunca una única opinión “correcta”.</p>
+    </div>
+    ${renderLevelSelector(levelKeys, levelIndex, 'reading')}
+    <div class="reading-overview">
+      <div><span class="section-code">HOJA ${level.level}</span><strong>${level.texts.length} lecturas · ${level.texts.reduce((sum, text) => sum + text.questions.length, 0)} preguntas</strong></div>
+      <div><span>Completadas</span><strong id="reading-completed-count">${completedCount}/${level.texts.length}</strong></div>
+      <div class="module-progress-track"><span id="reading-module-fill" style="width:${Math.round(completedCount / level.texts.length * 100)}%"></span></div>
+    </div>`;
+
+  level.texts.forEach((text, textIndex) => {
+    const isDone = !!done[textIndex];
+    html += `
+      <article class="reading-sheet ${isDone ? 'completed' : ''}" id="reading-text-${textIndex}">
+        <div class="reading-sheet-header">
+          <span class="reading-number">${String(textIndex + 1).padStart(2, '0')}</span>
+          <div>
+            <div class="reading-meta"><span>${text.genre}</span><span>${text.time}</span><span>Nivel ${level.level}</span></div>
+            <h3>${text.title}</h3>
+            <p id="reading-done-${textIndex}" class="reading-status">${isDone ? 'Lectura completada' : 'Pendiente de responder'}</p>
+          </div>
+        </div>
+        <div class="reading-text">
+          ${text.paragraphs.map((paragraph, paragraphIndex) => `
+            <p><span>${String(paragraphIndex + 1).padStart(2, '0')}</span>${paragraph}</p>
+          `).join('')}
+        </div>
+        <section class="reading-questions" aria-labelledby="reading-questions-${textIndex}">
+          <div class="reading-questions-heading">
+            <span class="control-label">Comprensión</span>
+            <h4 id="reading-questions-${textIndex}">Preguntas sobre el texto</h4>
+          </div>
+          ${text.questions.map((question, questionIndex) => `
+            <div class="reading-question" id="reading-question-${textIndex}-${questionIndex}" data-answered="false">
+              <div class="reading-question-title">
+                <span>${questionIndex + 1}</span>
+                <div><small>${question.type === 'open' ? 'RESPUESTA ABIERTA' : 'ELECCIÓN ÚNICA'}</small><p>${question.q}</p></div>
+              </div>
+              ${question.type === 'choice' ? `
+                <div class="reading-options" id="reading-options-${textIndex}-${questionIndex}">
+                  ${question.options.map((option, optionIndex) => `
+                    <button onclick="checkReadingChoice(${textIndex}, ${questionIndex}, ${levelIndex}, ${optionIndex}, this)">${option}</button>
+                  `).join('')}
+                </div>
+                <div class="reading-feedback" id="reading-feedback-${textIndex}-${questionIndex}" aria-live="polite"></div>
+              ` : `
+                <textarea id="reading-answer-${textIndex}-${questionIndex}" rows="3" placeholder="Escribe tu interpretación con tus propias palabras..."></textarea>
+                <button class="reading-guide-btn" onclick="showReadingGuidance(${textIndex}, ${questionIndex}, ${levelIndex})">Comparar con una respuesta orientativa</button>
+                <div class="reading-guidance" id="reading-guidance-${textIndex}-${questionIndex}"></div>
+              `}
+            </div>
+          `).join('')}
+        </section>
+        <details class="reading-solutions">
+          <summary><span>Ver respuestas y criterios de esta lectura</span><small>Comprueba después de responder</small></summary>
+          <div class="reading-solution-list">
+            ${text.questions.map((question, questionIndex) => `
+              <div>
+                <span>${questionIndex + 1}</span>
+                <p><strong>${question.type === 'choice' ? question.options[question.correct] : 'Respuesta orientativa'}</strong>${question.type === 'choice' ? question.explanation : question.guidance}</p>
+              </div>
+            `).join('')}
+          </div>
+          <p class="orientation-note"><strong>Sobre las preguntas abiertas:</strong> el modelo sirve para comparar argumentos, claridad y evidencias. Una respuesta humana diferente también es válida si está razonada y conectada con el texto.</p>
+        </details>
+      </article>`;
+  });
+
+  return html;
+}
+
+function checkReadingChoice(textIndex, questionIndex, levelIndex, selected, button) {
+  const level = data.reading.levels[levelIndex];
+  const question = level.texts[textIndex].questions[questionIndex];
+  const options = document.querySelectorAll(`#reading-options-${textIndex}-${questionIndex} button`);
+  const feedback = document.getElementById(`reading-feedback-${textIndex}-${questionIndex}`);
+  options.forEach((option, index) => {
+    option.disabled = true;
+    if (index === question.correct) option.classList.add('correct');
+  });
+  if (selected === question.correct) {
+    feedback.className = 'reading-feedback show ok';
+    feedback.textContent = `Correcto. ${question.explanation}`;
+  } else {
+    button.classList.add('wrong');
+    feedback.className = 'reading-feedback show ko';
+    feedback.textContent = `Revisa el fragmento. ${question.explanation}`;
+  }
+  document.getElementById(`reading-question-${textIndex}-${questionIndex}`).dataset.answered = 'true';
+  updateReadingCompletion(textIndex, levelIndex);
+}
+
+function showReadingGuidance(textIndex, questionIndex, levelIndex) {
+  const input = document.getElementById(`reading-answer-${textIndex}-${questionIndex}`);
+  const guidance = document.getElementById(`reading-guidance-${textIndex}-${questionIndex}`);
+  const question = data.reading.levels[levelIndex].texts[textIndex].questions[questionIndex];
+  guidance.className = 'reading-guidance show';
+  guidance.innerHTML = `<span>MODELO ORIENTATIVO</span><p>${question.guidance}</p>`;
+  if (!input.value.trim()) {
+    guidance.insertAdjacentHTML('afterbegin', '<small>Intenta escribir tu respuesta antes de comparar.</small>');
+    return;
+  }
+  document.getElementById(`reading-question-${textIndex}-${questionIndex}`).dataset.answered = 'true';
+  updateReadingCompletion(textIndex, levelIndex);
+}
+
+function updateReadingCompletion(textIndex, levelIndex) {
+  const sheet = document.getElementById(`reading-text-${textIndex}`);
+  const questions = sheet.querySelectorAll('.reading-question');
+  const answered = sheet.querySelectorAll('.reading-question[data-answered="true"]');
+  if (questions.length !== answered.length) return;
+  markReadingComplete(data.reading.levels[levelIndex].level, textIndex);
+}
+
+function markReadingComplete(level, textIndex) {
+  const progress = loadProgress();
+  if (!progress.reading[level]) progress.reading[level] = [];
+  const isNew = !progress.reading[level][textIndex];
+  progress.reading[level][textIndex] = true;
+  saveProgress(progress);
+  if (isNew) recordStudyActivity();
+  updateCardProgress('reading');
+
+  document.getElementById(`reading-text-${textIndex}`)?.classList.add('completed');
+  const status = document.getElementById(`reading-done-${textIndex}`);
+  if (status) status.textContent = 'Lectura completada';
+  const completed = progress.reading[level].filter(Boolean).length;
+  const count = document.getElementById('reading-completed-count');
+  const fill = document.getElementById('reading-module-fill');
+  if (count) count.textContent = `${completed}/${data.reading.levels.find(item => item.level === level).texts.length}`;
+  if (fill) fill.style.width = `${Math.round(completed / data.reading.levels.find(item => item.level === level).texts.length * 100)}%`;
+}
+
+
+// ─── 11. TEORIA ─────────────────────────────────────────────────────────────
 
 function renderTheory() {
   const s = data.theory;
@@ -1034,57 +1485,71 @@ function renderTheory() {
   });
 
   let html = `
-    <h2>📖 ${s.title}</h2>
-    <p class="subtitle">Consulta los resumenes de gramatica cuando quieras</p>
+    <div class="section-intro">
+      <span class="section-code">KNOWLEDGE / ${s.topics.length} MODULES</span>
+      <h2>${s.title} esencial</h2>
+      <p class="subtitle">De la fórmula al uso real: revisa la regla, compara ejemplos y detecta los errores que más se repiten.</p>
+    </div>
 
-    <div class="exercise-block">
-      <p class="question" style="margin-bottom:12px">Índice</p>
+    <div class="theory-index">
+      <div class="theory-index-heading">
+        <div><span class="control-label">Mapa de contenidos</span><strong>Ir directamente a un tema</strong></div>
+        <span>${groupOrder.length} bloques · ${s.topics.length} módulos</span>
+      </div>
       ${groupOrder.map(g => `
-        <p style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.04em;
-                  color:var(--text-muted); margin:12px 0 6px">${g}</p>
-        <div style="display:flex; flex-wrap:wrap; gap:6px">
+        <div class="theory-index-group">
+          <p>${g}</p>
+          <div>
           ${byGroup[g].map(i => `
-            <button onclick="scrollToTheoryTopic(${i})"
-              style="padding:5px 12px; border-radius:99px; border:0.5px solid var(--border-strong);
-                     background:var(--surface); color:var(--text); font-family:'DM Sans',sans-serif;
-                     font-size:12px; cursor:pointer;">
-              ${s.topics[i].title}
+            <button onclick="scrollToTheoryTopic(${i})">
+              <span>${String(i + 1).padStart(2, '0')}</span>${s.topics[i].title}
             </button>`).join('')}
+          </div>
         </div>`).join('')}
     </div>
   `;
 
   groupOrder.forEach(g => {
-    html += `<div style="display:flex; align-items:center; gap:8px; margin:22px 0 10px">
-      <h3 style="font-family:'DM Serif Display',serif; font-size:16px; font-weight:400; color:var(--text)">${g}</h3>
-      <div style="flex:1; height:1px; background:var(--border)"></div>
+    html += `<div class="topic-divider">
+      <span>${g}</span>
+      <div></div>
     </div>`;
 
     byGroup[g].forEach(i => {
       const topic = s.topics[i];
       html += `
-        <div class="exercise-block" id="theory-topic-${i}">
-          <p class="question">${topic.title}</p>
-          <p style="font-size:14px; color:var(--text-muted); margin-bottom:14px; line-height:1.6">${topic.intro}</p>
-          <div style="overflow-x:auto">
-            <table style="width:100%; border-collapse:collapse; font-size:13px">
+        <article class="theory-topic" id="theory-topic-${i}">
+          <div class="theory-topic-heading">
+            <span>${String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <div class="theory-topic-meta"><span>${topic.level || 'A1–C1'}</span><span>${g}</span></div>
+              <h3>${topic.title}</h3>
+            </div>
+          </div>
+          <p class="theory-intro">${topic.intro}</p>
+          ${topic.formula || topic.tip ? `
+            <div class="theory-insights">
+              ${topic.formula ? `<div><span>Fórmula mental</span><strong>${topic.formula}</strong></div>` : ''}
+              ${topic.tip ? `<div><span>Atajo útil</span><p>${topic.tip}</p></div>` : ''}
+              ${topic.pitfall ? `<div class="pitfall"><span>Error frecuente</span><p>${topic.pitfall}</p></div>` : ''}
+            </div>` : ''}
+          <div class="theory-table-wrap">
+            <table class="theory-table">
               <thead>
                 <tr>${topic.table.headers.map(h => `
-                  <th style="text-align:left; padding:8px 10px; background:var(--table-head-bg);
-                             border-bottom:1px solid var(--border); font-weight:600; color:var(--text-muted)">${h}</th>`).join('')}
+                  <th>${h}</th>`).join('')}
                 </tr>
               </thead>
               <tbody>
                 ${topic.table.rows.map((row, i2) => `
-                  <tr style="background:${i2 % 2 === 0 ? 'var(--surface)' : 'var(--bg)'}">
+                  <tr>
                     ${row.map(cell => `
-                      <td style="padding:8px 10px; border-bottom:0.5px solid var(--border);
-                                 color:var(--text); vertical-align:top; line-height:1.5">${cell}</td>`).join('')}
+                      <td>${cell}</td>`).join('')}
                   </tr>`).join('')}
               </tbody>
             </table>
           </div>
-        </div>`;
+        </article>`;
     });
   });
 
@@ -1097,18 +1562,19 @@ function scrollToTheoryTopic(i) {
 }
 
 
-// ─── 11. DESPACHAR SECCION ─────────────────────────────────────────────────
+// ─── 12. DESPACHAR SECCION ─────────────────────────────────────────────────
 
 function renderSection(key, levelIndex) {
   if (key === 'grammar')    return renderGrammar(levelIndex);
   if (key === 'vocabulary') return renderVocabulary(levelIndex);
   if (key === 'tests')      return renderTests(levelIndex);
   if (key === 'listening')  return renderListening(levelIndex);
+  if (key === 'reading')    return renderReading(levelIndex);
   if (key === 'theory')     return renderTheory();
 }
 
 
-// ─── 12. ARRANQUE ───────────────────────────────────────────────────────────
+// ─── 13. ARRANQUE ───────────────────────────────────────────────────────────
 
 initTheme();
 updateStreakDisplay();

@@ -6,10 +6,6 @@
   <meta name="description" content="Mas de 1000 palabras de vocabulario ingles organizadas por categoria tematica y nivel A1, B1, C1.">
   <title>Vocabulary · StudyEnglish</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-
   <!-- Nuestro CSS -->
   <link rel="stylesheet" href="style.css">
 
@@ -27,16 +23,27 @@
 
   <!-- CABECERA -->
   <header class="header-compact">
-    <a href="index.html" class="back-link">← Volver</a>
+    <a href="index.html" class="back-link">← Inicio</a>
     <button class="theme-toggle" id="theme-toggle" aria-label="Activar tema oscuro" title="Cambiar tema">🌙</button>
-    <div class="badge">Learn English. Level Up!</div>
-    <h1>📚 Vocabulary</h1>
+    <div class="badge"><span></span> Word explorer</div>
+    <h1><span aria-hidden="true">V/</span> Vocabulary</h1>
+    <p>Busca, escucha y guarda palabras y expresiones que sí usarás.</p>
   </header>
 
   <!-- El contenido se genera aquí desde script.js -->
   <main class="page-main">
     <div class="page-content" id="page-content"></div>
   </main>
+
+  <footer class="site-footer">
+    <p><strong>StudyEnglish</strong> · Aprende, practica y mide tu progreso.</p>
+    <nav class="site-footer-links" aria-label="Información del sitio">
+      <a href="about.html">Sobre StudyEnglish</a>
+      <a href="methodology.html">Fuente y metodología</a>
+      <a href="privacy.html">Política de privacidad</a>
+      <a href="legal.html">Aviso legal</a>
+    </nav>
+  </footer>
 
   <!-- IMPORTANTE: data.js siempre antes que script.js -->
   <script src="data.js"></script>

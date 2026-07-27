@@ -3,13 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Aprende ingles gratis: gramatica, vocabulario, tests y listening organizados por nivel A1, B1 y C1.">
+  <meta name="description" content="Aprende inglés desde cero con gramática A0–C2, vocabulario, reading, tests y listening.">
   <title>StudyEnglish</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-
   <!-- Nuestro CSS -->
   <link rel="stylesheet" href="style.css">
 
@@ -27,19 +23,41 @@
 
   <!-- CABECERA -->
   <header class="hero">
-    <button class="theme-toggle" id="theme-toggle" aria-label="Activar tema oscuro" title="Cambiar tema">🌙</button>
-    <div class="badge">Tu espacio para aprender inglés</div>
-    <h1>Aprende inglés<br><em>desde cero</em></h1>
-    <p>Lecciones claras, práctica a tu ritmo y progreso guardado en este dispositivo.</p>
-    <a class="hero-cta" href="#learning-paths">Explorar lecciones <span aria-hidden="true">↓</span></a>
-    <div class="streak-badge" id="streak-badge"></div>
+    <nav class="topbar" aria-label="Navegación principal">
+      <a class="brand" href="index.html" aria-label="StudyEnglish, inicio">
+        <span class="brand-mark" aria-hidden="true">SE</span>
+        <span>Study<span>English</span></span>
+      </a>
+      <div class="topbar-actions">
+        <span class="topbar-status"><i aria-hidden="true"></i> Sesión local</span>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Activar tema oscuro" title="Cambiar tema">🌙</button>
+      </div>
+    </nav>
+    <div class="hero-orbit hero-orbit-one" aria-hidden="true"></div>
+    <div class="hero-orbit hero-orbit-two" aria-hidden="true"></div>
+    <div class="hero-content">
+      <div class="badge"><span aria-hidden="true"></span> English learning system</div>
+      <h1>Tu inglés, en<br><em>modo avance.</em></h1>
+      <p>Gramática desde cero, vocabulario real, reading y listening adaptativo. Una ruta completa para avanzar desde A0 hasta C2.</p>
+      <div class="hero-actions">
+        <a class="hero-cta hero-cta-primary" href="#learning-paths">Empezar a aprender <span aria-hidden="true">↗</span></a>
+        <a class="hero-cta" href="theory.html">Explorar teoría</a>
+      </div>
+      <div class="hero-metrics" aria-label="Contenido disponible">
+        <div><strong>151</strong><span>retos de gramática</span></div>
+        <div><strong>56</strong><span>fichas de teoría</span></div>
+        <div><strong>9</strong><span>lecturas graduadas</span></div>
+        <div><strong>1.100+</strong><span>palabras y expresiones</span></div>
+      </div>
+      <div class="streak-badge" id="streak-badge"></div>
+    </div>
   </header>
 
   <main class="home-main" id="main-content">
     <section class="progress-overview" aria-labelledby="progress-title">
       <div>
-        <span class="eyebrow">Tu progreso</span>
-        <h2 id="progress-title">Un paso cada día</h2>
+        <span class="eyebrow">Panel de progreso</span>
+        <h2 id="progress-title">Construye una racha que cuente</h2>
         <p id="progress-summary">Empieza una actividad para ver aquí tu avance.</p>
       </div>
       <div class="overall-progress" aria-label="Progreso total">
@@ -53,10 +71,10 @@
     <section id="learning-paths" aria-labelledby="paths-title">
       <div class="section-heading">
         <div>
-          <span class="eyebrow">Elige tu práctica</span>
-          <h2 id="paths-title">¿Qué quieres aprender hoy?</h2>
+          <span class="eyebrow">Ruta de aprendizaje</span>
+          <h2 id="paths-title">Elige tu próxima misión</h2>
         </div>
-        <p>Combina teoría y ejercicios para avanzar de A1 a C1.</p>
+        <p>Combina comprensión, práctica y repaso para avanzar con contexto.</p>
       </div>
       <!-- Las cards se generan aquí desde script.js -->
       <div id="cards-grid" class="cards-grid"></div>
@@ -65,6 +83,13 @@
 
   <footer class="site-footer">
     <p><strong>StudyEnglish</strong> · Aprende, practica y mide tu progreso.</p>
+    <nav class="site-footer-links" aria-label="Información del sitio">
+      <a href="about.html">Sobre StudyEnglish</a>
+      <a href="methodology.html">Fuente y metodología</a>
+      <a href="privacy.html">Política de privacidad</a>
+      <a href="legal.html">Aviso legal</a>
+    </nav>
+    <p class="site-footer-meta">Proyecto educativo gratuito · Última actualización legal: 27 de julio de 2026</p>
   </footer>
 
   <!-- IMPORTANTE: data.js siempre antes que script.js -->
