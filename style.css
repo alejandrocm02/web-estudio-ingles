@@ -3102,6 +3102,11 @@ html[data-theme="dark"] .reading-feedback.ko {
   scroll-margin-top: 20px;
 }
 
+.tense-masterclass.is-hidden,
+.verb-masterclass.is-hidden {
+  display: none;
+}
+
 .tense-quick-nav {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));

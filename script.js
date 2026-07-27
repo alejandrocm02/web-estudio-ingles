@@ -476,8 +476,11 @@ const content = document.getElementById('page-content');
 const levelColors = {
   A0: { bg: '#EEF2FF', text: '#4338CA' },
   A1: { bg: '#E1F5EE', text: '#085041' },
+  A2: { bg: '#ECFDF5', text: '#047857' },
   B1: { bg: '#E6F1FB', text: '#0C447C' },
+  B2: { bg: '#EDE9FE', text: '#6D28D9' },
   C1: { bg: '#FAEEDA', text: '#633806' },
+  C2: { bg: '#FDF2F8', text: '#BE185D' },
 };
 
 function renderLevelSelector(levelKeys, activeIndex, sectionKey) {
@@ -521,6 +524,10 @@ function renderGrammar(levelIndex = 0) {
   const doneArr = progress.grammar[lvl.level] || [];
   const doneCount = doneArr.filter(Boolean).length;
   const lessons = lvl.lessons || [];
+  const levelTenseGuide = (s.tenseGuide || [])
+    .map(group => ({ ...group, tenses: group.tenses.filter(tense => tense.level === lvl.level) }))
+    .filter(group => group.tenses.length);
+  const showVerbGuide = (s.verbGuide?.levels || []).includes(lvl.level);
 
   // Agrupar ejercicios por tema, conservando el orden de aparición.
   const topicOrder = [];
@@ -545,25 +552,25 @@ function renderGrammar(levelIndex = 0) {
       <div><span>04</span><strong>Corrige</strong><small>Soluciones al final</small></div>
     </div>
 
-    <section class="tense-masterclass" id="twelve-tenses" aria-labelledby="tenses-title">
+    <section class="tense-masterclass ${levelTenseGuide.length ? '' : 'is-hidden'}" id="twelve-tenses" aria-labelledby="tenses-title">
       <div class="content-section-heading">
-        <span class="section-code">MAPA ESENCIAL · 12 TIEMPOS VERBALES</span>
-        <h3 id="tenses-title">Presente, pasado y futuro sin lagunas</h3>
-        <p>Compara las cuatro formas de cada periodo. Cada ficha incluye afirmativa, negativa, pregunta, uso, marcadores y ejemplos traducidos.</p>
+        <span class="section-code">TIEMPOS VERBALES · NIVEL ${lvl.level}</span>
+        <h3 id="tenses-title">Los tiempos que corresponden a ${lvl.level}</h3>
+        <p>La ruta presenta cada tiempo cuando alcanzas el nivel adecuado. Estudia su afirmativa, negativa, pregunta, uso, marcadores y ejemplos antes de practicar.</p>
       </div>
       <div class="tense-quick-nav" aria-label="Navegación de tiempos verbales">
-        ${s.tenseGuide.map((group, groupIndex) => `
-          <a href="#tense-group-${groupIndex}">${group.group.replace(' Tenses', '')}<span>04 formas</span></a>
+        ${levelTenseGuide.map((group, groupIndex) => `
+          <a href="#tense-group-${groupIndex}">${group.group.replace(' Tenses', '')}<span>${String(group.tenses.length).padStart(2, '0')} tiempo${group.tenses.length === 1 ? '' : 's'}</span></a>
         `).join('')}
-        <a href="#verb-forms">Verbos<span>Regular / irregular</span></a>
+        ${showVerbGuide ? '<a href="#verb-forms">Verbos<span>Regular / irregular</span></a>' : ''}
       </div>
       <div class="tense-groups">
-        ${s.tenseGuide.map((group, groupIndex) => `
+        ${levelTenseGuide.map((group, groupIndex) => `
           <details class="tense-group" id="tense-group-${groupIndex}" ${groupIndex === 0 ? 'open' : ''}>
             <summary>
               <span>0${groupIndex + 1}</span>
               <div><h4>${group.group}</h4><p>${group.description}</p></div>
-              <small>4 tiempos</small>
+              <small>${group.tenses.length} tiempo${group.tenses.length === 1 ? '' : 's'}</small>
             </summary>
             <div class="tense-grid">
               ${group.tenses.map((tense, tenseIndex) => `
@@ -590,10 +597,10 @@ function renderGrammar(levelIndex = 0) {
       </div>
     </section>
 
-    <section class="verb-masterclass" id="verb-forms" aria-labelledby="verbs-title">
+    <section class="verb-masterclass ${showVerbGuide ? '' : 'is-hidden'}" id="verb-forms" aria-labelledby="verbs-title">
       <div class="content-section-heading">
-        <span class="section-code">BASE DEL PASADO Y DEL PARTICIPIO</span>
-        <h3 id="verbs-title">${s.verbGuide.title}</h3>
+        <span class="section-code">FORMACIÓN VERBAL · NIVEL ${lvl.level}</span>
+        <h3 id="verbs-title">${s.verbGuide.title} en ${lvl.level}</h3>
         <p>${s.verbGuide.intro}</p>
       </div>
       <div class="verb-guide-grid">

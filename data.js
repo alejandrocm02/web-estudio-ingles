@@ -1157,15 +1157,15 @@ const grammarExpansion = {
         mistake: "No olvides el verbo to be: I studying ✗ → I am studying ✓"
       },
       {
-        title: "Past Simple",
-        goal: "Contar acciones terminadas en un momento pasado.",
-        structure: "afirmativa: verbo-ed/irregular · negativa: didn't + infinitivo",
-        uses: ["Historias y biografías", "Acciones con yesterday, last, ago"],
+        title: "Regular and Irregular Verbs",
+        goal: "Reconocer la forma base y empezar a construir el pasado de los verbos frecuentes.",
+        structure: "regular: base + -ed · irregular: forma propia",
+        uses: ["Identificar verbos regulares", "Aprender infinitivo, pasado y participio juntos"],
         examples: [
-          { en: "We visited Rome last year.", es: "Visitamos Roma el año pasado." },
-          { en: "He didn't see the message.", es: "No vio el mensaje." }
+          { en: "work → worked → worked", es: "trabajar → trabajó → trabajado" },
+          { en: "go → went → gone", es: "ir → fue → ido" }
         ],
-        mistake: "Después de did/didn't usa infinitivo: didn't went ✗"
+        mistake: "No añadas -ed a un verbo irregular: goed ✗ → went ✓"
       },
       {
         title: "Can, could y have to",
@@ -1201,15 +1201,15 @@ const grammarExpansion = {
         mistake: "No mezcles formas: more easier ✗ → easier ✓"
       },
       {
-        title: "Futuro básico",
-        goal: "Diferenciar decisiones, predicciones y planes.",
-        structure: "will + infinitivo · be going to + infinitivo",
-        uses: ["Will para decisión instantánea o predicción", "Going to para plan o evidencia"],
+        title: "Adverbios de frecuencia",
+        goal: "Explicar con qué frecuencia ocurre una rutina.",
+        structure: "sujeto + always/usually/often + verbo · to be + adverbio",
+        uses: ["Describir hábitos", "Responder a How often?", "Matizar una rutina"],
         examples: [
-          { en: "I'll answer the phone.", es: "Yo cogeré el teléfono." },
-          { en: "We're going to travel in June.", es: "Vamos a viajar en junio." }
+          { en: "I usually walk to work.", es: "Normalmente voy andando al trabajo." },
+          { en: "She is never late.", es: "Ella nunca llega tarde." }
         ],
-        mistake: "Tras will no uses to: will go, no will to go."
+        mistake: "Con to be, el adverbio va después: she is always, no she always is."
       },
       {
         title: "Preposiciones de tiempo y lugar",
@@ -1431,6 +1431,351 @@ const grammarExpansion = {
   }
 };
 
+const addedLevelCurriculum = {
+  A2: {
+    lessons: [
+      {
+        title: "Simple Past y formas verbales",
+        goal: "Contar acciones terminadas usando correctamente verbos regulares e irregulares.",
+        structure: "regular: verbo + -ed · irregular: segunda columna · did/didn't + infinitivo",
+        uses: ["Experiencias con fecha terminada", "Biografías", "Secuencias de una historia"],
+        examples: [
+          { en: "We stayed at home and watched a film.", es: "Nos quedamos en casa y vimos una película." },
+          { en: "She went to London but didn't visit the museum.", es: "Fue a Londres, pero no visitó el museo." }
+        ],
+        mistake: "Después de did o didn't usa la forma base: didn't went ✗ → didn't go ✓"
+      },
+      {
+        title: "Past Continuous",
+        goal: "Describir qué estaba ocurriendo en un momento del pasado.",
+        structure: "was/were + verbo-ing · while + acción larga · when + acción breve",
+        uses: ["Contexto narrativo", "Acción en progreso", "Dos acciones simultáneas"],
+        examples: [
+          { en: "I was reading when the lights went out.", es: "Estaba leyendo cuando se apagaron las luces." },
+          { en: "While we were walking, it started to rain.", es: "Mientras caminábamos, empezó a llover." }
+        ],
+        mistake: "La acción breve que interrumpe suele ir en Simple Past."
+      },
+      {
+        title: "Present Perfect: introducción",
+        goal: "Conectar experiencias y resultados pasados con el presente.",
+        structure: "have/has + participio · haven't/hasn't + participio",
+        uses: ["Experiencias sin fecha", "Resultados visibles", "Already, yet, just, ever y never"],
+        examples: [
+          { en: "I have just finished lunch.", es: "Acabo de terminar de comer." },
+          { en: "Have you ever flown in a helicopter?", es: "¿Has volado alguna vez en helicóptero?" }
+        ],
+        mistake: "No lo combines con yesterday o last year; esos marcadores piden Simple Past."
+      },
+      {
+        title: "Simple Future y going to",
+        goal: "Distinguir decisiones espontáneas, predicciones y planes.",
+        structure: "will + infinitivo · am/is/are going to + infinitivo",
+        uses: ["Will: decisión, promesa o predicción", "Going to: plan decidido o evidencia"],
+        examples: [
+          { en: "I'll carry that bag for you.", es: "Te llevaré esa bolsa." },
+          { en: "Look at those clouds. It's going to rain.", es: "Mira esas nubes. Va a llover." }
+        ],
+        mistake: "No añadas to después de will: will to call ✗ → will call ✓"
+      },
+      {
+        title: "First Conditional y tiempo futuro",
+        goal: "Expresar consecuencias posibles y condiciones reales.",
+        structure: "if/when + Present Simple, will + infinitivo",
+        uses: ["Planes sujetos a una condición", "Advertencias", "Promesas"],
+        examples: [
+          { en: "If I finish early, I will call you.", es: "Si termino pronto, te llamaré." },
+          { en: "When she arrives, we will eat.", es: "Cuando llegue, comeremos." }
+        ],
+        mistake: "No uses will normalmente después de if o when."
+      },
+      {
+        title: "Modales cotidianos",
+        goal: "Dar consejos y expresar obligación, posibilidad y permiso.",
+        structure: "should/must/might/can + infinitivo · have to + infinitivo",
+        uses: ["Should: consejo", "Must/have to: obligación", "Might: posibilidad"],
+        examples: [
+          { en: "You should get more sleep.", es: "Deberías dormir más." },
+          { en: "We might be late.", es: "Puede que lleguemos tarde." }
+        ],
+        mistake: "Los modales no llevan -s con he/she/it ni to antes del infinitivo."
+      },
+      {
+        title: "Relative clauses básicas",
+        goal: "Añadir información sobre personas, cosas y lugares.",
+        structure: "person + who · thing + which/that · place + where",
+        uses: ["Definir una persona u objeto", "Unir dos frases relacionadas"],
+        examples: [
+          { en: "The woman who lives next door is a doctor.", es: "La mujer que vive al lado es médica." },
+          { en: "This is the café where we met.", es: "Esta es la cafetería donde nos conocimos." }
+        ],
+        mistake: "Who se refiere a personas; where se refiere a lugares."
+      },
+      {
+        title: "Gerundio e infinitivo básico",
+        goal: "Reconocer qué forma aparece después de verbos frecuentes.",
+        structure: "enjoy/like + -ing · want/need/decide + to + infinitivo",
+        uses: ["Gustos", "Planes", "Necesidades y decisiones"],
+        examples: [
+          { en: "I enjoy cooking for my friends.", es: "Disfruto cocinando para mis amigos." },
+          { en: "They decided to take the bus.", es: "Decidieron tomar el autobús." }
+        ],
+        mistake: "Aprende cada verbo con su patrón: enjoy to cook ✗ → enjoy cooking ✓"
+      }
+    ],
+    exercises: [
+      { topic: "Simple Past", question: "Completa: 'We ___ (stay) in a small hotel last summer.'", answer: "stayed", hint: "Stay es regular: vocal + y mantiene la y." },
+      { topic: "Simple Past", question: "Completa: 'He ___ (buy) a new laptop yesterday.'", answer: "bought", hint: "Buy–bought–bought." },
+      { topic: "Simple Past", question: "Forma la negativa: 'She saw the message.'", answer: "She didn't see the message", answers: ["She did not see the message"], hint: "Didn't + infinitivo." },
+      { topic: "Past Continuous", question: "Completa: 'At eight, I ___ (drive) home.'", answer: "was driving", hint: "I + was + verbo-ing." },
+      { topic: "Past Continuous", question: "Completa: 'While they ___ (play), it started to rain.'", answer: "were playing", hint: "Acción larga en progreso." },
+      { topic: "Contraste de pasado", question: "Completa: 'I ___ (sleep) when you called.'", answer: "was sleeping", hint: "La llamada interrumpe una acción en progreso." },
+      { topic: "Present Perfect", question: "Completa: 'I ___ just ___ (finish).'", answer: "have just finished", hint: "Have + just + participio." },
+      { topic: "Present Perfect", question: "Completa: '___ she ever ___ (see) snow?'", answer: "Has she ever seen", hint: "Pregunta de experiencia sin fecha." },
+      { topic: "Present Perfect", question: "Completa: 'They haven't arrived ___.'", answer: "yet", hint: "Yet suele aparecer al final de negativas y preguntas." },
+      { topic: "Futuro", question: "Decisión instantánea: 'The phone is ringing. I ___ answer it.'", answer: "will", answers: ["'ll"], hint: "Will para una decisión tomada ahora." },
+      { topic: "Futuro", question: "Plan: 'We ___ visit Prague in May.'", answer: "are going to", hint: "Going to expresa un plan decidido." },
+      { topic: "First Conditional", question: "Completa: 'If it rains, we ___ (stay) home.'", answer: "will stay", hint: "If + presente, will + infinitivo." },
+      { topic: "First Conditional", question: "Completa: 'When he ___ (arrive), I will tell him.'", answer: "arrives", hint: "Después de when usamos Present Simple para futuro." },
+      { topic: "Modales", question: "Consejo: 'You ___ drink more water.'", answer: "should", hint: "Should expresa una recomendación." },
+      { topic: "Modales", question: "Posibilidad: 'It ___ snow tonight.'", answer: "might", answers: ["may", "could"], hint: "No es seguro; expresa posibilidad." },
+      { topic: "Relative clauses", question: "Completa: 'The man ___ called is my uncle.'", answer: "who", answers: ["that"], hint: "El antecedente es una persona." },
+      { topic: "Relative clauses", question: "Completa: 'That's the shop ___ I bought it.'", answer: "where", hint: "El antecedente es un lugar." },
+      { topic: "Gerundio", question: "Completa: 'She enjoys ___ (dance).'", answer: "dancing", hint: "Enjoy + verbo-ing." },
+      { topic: "Infinitivo", question: "Completa: 'We decided ___ (leave) early.'", answer: "to leave", hint: "Decide + to-infinitive." },
+      { topic: "Irregular verbs", question: "Completa las formas: go – ___ – ___", answer: "went – gone", answers: ["went - gone", "went gone"], hint: "Aprende las tres columnas juntas." }
+    ]
+  },
+  B2: {
+    lessons: [
+      {
+        title: "Past Perfect Continuous",
+        goal: "Explicar duración o causa antes de otro momento pasado.",
+        structure: "had been + verbo-ing",
+        uses: ["Duración anterior", "Causa de un resultado pasado", "Contexto narrativo"],
+        examples: [
+          { en: "They had been travelling for hours when the car broke down.", es: "Llevaban horas viajando cuando el coche se averió." },
+          { en: "Her eyes were tired because she had been reading.", es: "Tenía los ojos cansados porque había estado leyendo." }
+        ],
+        mistake: "Past Perfect destaca resultado; Past Perfect Continuous destaca actividad o duración."
+      },
+      {
+        title: "Future Perfect",
+        goal: "Situar una acción completada antes de un punto futuro.",
+        structure: "will have + participio",
+        uses: ["Objetivos con fecha límite", "Predicciones sobre logros", "By + momento futuro"],
+        examples: [
+          { en: "By December, we will have completed the project.", es: "Para diciembre habremos terminado el proyecto." },
+          { en: "Will you have finished by six?", es: "¿Habrás terminado para las seis?" }
+        ],
+        mistake: "By marca el límite; until indica continuidad hasta ese punto."
+      },
+      {
+        title: "Narrative tenses",
+        goal: "Combinar pasado simple, continuo y perfecto en relatos claros.",
+        structure: "background: Past Continuous · events: Simple Past · earlier event: Past Perfect",
+        uses: ["Relatos", "Anécdotas", "Explicación del orden temporal"],
+        examples: [
+          { en: "It was snowing when we realised we had taken the wrong road.", es: "Nevaba cuando nos dimos cuenta de que habíamos tomado la carretera equivocada." },
+          { en: "She opened the box that her aunt had sent.", es: "Abrió la caja que su tía había enviado." }
+        ],
+        mistake: "No uses Past Perfect si el orden ya es evidente y no necesitas retroceder."
+      },
+      {
+        title: "Third y Mixed Conditionals",
+        goal: "Hablar de pasados irreales y sus consecuencias.",
+        structure: "if + had + participio, would have + participio · mixed: resultado presente",
+        uses: ["Arrepentimientos", "Crítica", "Consecuencia actual de una decisión pasada"],
+        examples: [
+          { en: "If we had left earlier, we would have caught the train.", es: "Si hubiéramos salido antes, habríamos cogido el tren." },
+          { en: "If I had accepted the job, I would live in Berlin now.", es: "Si hubiera aceptado, ahora viviría en Berlín." }
+        ],
+        mistake: "No uses would dentro de la cláusula con if."
+      },
+      {
+        title: "Passive Voice avanzada",
+        goal: "Construir pasivas con modales, perfectos y estructuras impersonales.",
+        structure: "modal + be + participio · have been + participio · it is said that...",
+        uses: ["Registro formal", "Noticias", "Cuando el agente no importa"],
+        examples: [
+          { en: "The issue should have been resolved.", es: "El problema debería haberse resuelto." },
+          { en: "It is believed that the painting is authentic.", es: "Se cree que el cuadro es auténtico." }
+        ],
+        mistake: "Mantén el tiempo en el auxiliar; el participio permanece estable."
+      },
+      {
+        title: "Reported Speech avanzado",
+        goal: "Transmitir preguntas, órdenes y afirmaciones con perspectiva temporal.",
+        structure: "asked + if/wh-clause · told + object + to-infinitive · backshift",
+        uses: ["Entrevistas", "Relatos", "Reformular instrucciones"],
+        examples: [
+          { en: "'Where have you been?' → She asked where I had been.", es: "Preguntó dónde había estado." },
+          { en: "'Don't touch it.' → He told us not to touch it.", es: "Nos dijo que no lo tocáramos." }
+        ],
+        mistake: "Una pregunta indirecta conserva orden afirmativo: she asked where I was."
+      },
+      {
+        title: "Participle clauses",
+        goal: "Reducir cláusulas cuando comparten sujeto.",
+        structure: "verb-ing · past participle · having + participle",
+        uses: ["Acciones simultáneas", "Causa", "Acción anterior"],
+        examples: [
+          { en: "Having finished the report, she went home.", es: "Tras terminar el informe, se fue a casa." },
+          { en: "Designed in Italy, the chair is made locally.", es: "Diseñada en Italia, la silla se fabrica localmente." }
+        ],
+        mistake: "El sujeto implícito debe coincidir con el de la oración principal."
+      },
+      {
+        title: "Modales sobre el pasado",
+        goal: "Deducir, criticar o imaginar alternativas pasadas.",
+        structure: "must/might/can't/should + have + participio",
+        uses: ["Deducción", "Posibilidad no confirmada", "Crítica o consejo retrospectivo"],
+        examples: [
+          { en: "She must have forgotten the meeting.", es: "Debe de haberse olvidado de la reunión." },
+          { en: "You should have told me earlier.", es: "Deberías habérmelo dicho antes." }
+        ],
+        mistake: "Must have expresa deducción; had to expresa obligación pasada."
+      }
+    ],
+    exercises: [
+      { topic: "Past Perfect Continuous", question: "Completa: 'They ___ (wait) for an hour when the bus came.'", answer: "had been waiting", hint: "Duración anterior a otra acción pasada." },
+      { topic: "Past Perfect Continuous", question: "Completa: 'He was wet because he ___ (run).'", answer: "had been running", hint: "Actividad anterior que explica el resultado." },
+      { topic: "Future Perfect", question: "Completa: 'By June, I ___ (finish) the course.'", answer: "will have finished", hint: "Will have + participio." },
+      { topic: "Future Perfect", question: "Forma la pregunta: 'You will have arrived by noon.'", answer: "Will you have arrived by noon", hint: "Will va delante del sujeto." },
+      { topic: "Narrative tenses", question: "Completa: 'It ___ (rain) when we left.'", answer: "was raining", hint: "Acción de fondo." },
+      { topic: "Narrative tenses", question: "Completa: 'I realised I ___ (lose) my keys.'", answer: "had lost", hint: "Perder ocurrió antes de darse cuenta." },
+      { topic: "Narrative tenses", question: "Completa: 'She ___ (open) the door and walked in.'", answer: "opened", hint: "Secuencia principal de eventos." },
+      { topic: "Third Conditional", question: "Completa: 'If I had known, I ___ (help) you.'", answer: "would have helped", hint: "Resultado pasado irreal." },
+      { topic: "Third Conditional", question: "Completa: 'If they ___ earlier, they would have won.'", answer: "had started", hint: "If + Past Perfect." },
+      { topic: "Mixed Conditional", question: "Completa: 'If she had accepted, she ___ here now.'", answer: "would work", answers: ["would be working"], hint: "Causa pasada y resultado presente." },
+      { topic: "Passive Voice", question: "Pasa a pasiva: 'They should have repaired it.'", answer: "It should have been repaired", hint: "Should have been + participio." },
+      { topic: "Passive Voice", question: "Completa: 'The results ___ (announce) tomorrow.'", answer: "will be announced", hint: "Pasiva futura: will be + participio." },
+      { topic: "Reported Speech", question: "Transforma: 'Where are you?' → She asked me...", answer: "She asked me where I was", hint: "Orden afirmativo y backshift." },
+      { topic: "Reported Speech", question: "Transforma: 'Don't wait.' → He told us...", answer: "He told us not to wait", hint: "Tell + objeto + not to." },
+      { topic: "Participle clauses", question: "Reduce: 'After she had finished, she left.'", answer: "Having finished, she left", hint: "Having + participio expresa anterioridad." },
+      { topic: "Participle clauses", question: "Completa: '___ (build) in 1920, the house needs repairs.'", answer: "Built", hint: "Participio pasivo." },
+      { topic: "Modales pasados", question: "Deducción: 'The lights are off. They ___ (leave).'", answer: "must have left", hint: "Conclusión casi segura sobre el pasado." },
+      { topic: "Modales pasados", question: "Crítica: 'You ___ (call) me.'", answer: "should have called", hint: "Acción recomendable que no ocurrió." },
+      { topic: "Modales pasados", question: "Imposibilidad: 'She ___ (see) us; she was abroad.'", answer: "can't have seen", answers: ["cannot have seen"], hint: "Can't have + participio." },
+      { topic: "Contraste perfecto", question: "Elige duración: 'Before lunch, I ___ for three hours.'", answer: "had been working", hint: "La duración pide una forma perfect continuous." }
+    ]
+  },
+  C2: {
+    lessons: [
+      {
+        title: "Tense and aspect shifts",
+        goal: "Manipular tiempo y aspecto para cambiar foco, distancia y perspectiva.",
+        structure: "simple ↔ progressive ↔ perfect según evento, proceso o resultado",
+        uses: ["Reencuadrar una afirmación", "Contrastar estado y actividad", "Gestionar perspectiva temporal"],
+        examples: [
+          { en: "I've considered your proposal. / I've been considering your proposal.", es: "He considerado la propuesta. / Llevo un tiempo considerándola." },
+          { en: "She was hoping you might help.", es: "Esperaba que quizá pudieras ayudar." }
+        ],
+        mistake: "La corrección gramatical no basta: el aspecto debe reflejar el foco comunicativo."
+      },
+      {
+        title: "Narrative viewpoint",
+        goal: "Cambiar la distancia narrativa mediante tiempos y aspecto.",
+        structure: "past narrative · historical present · free indirect style",
+        uses: ["Dar inmediatez", "Señalar un giro", "Representar la perspectiva de un personaje"],
+        examples: [
+          { en: "So I open the door, and there he is.", es: "Entonces abro la puerta y ahí está." },
+          { en: "She had trusted him. How could she have been so naive?", es: "Había confiado en él. ¿Cómo podía haber sido tan ingenua?" }
+        ],
+        mistake: "Un cambio temporal debe tener una función clara y mantenerse coherente."
+      },
+      {
+        title: "Modal remoteness",
+        goal: "Usar pasado y modales para expresar cortesía, irrealidad o distancia.",
+        structure: "past form ≠ past time · would/could/might · were to",
+        uses: ["Propuestas tentativas", "Hipótesis remotas", "Diplomacia"],
+        examples: [
+          { en: "I wondered whether you might reconsider.", es: "Me preguntaba si podría reconsiderarlo." },
+          { en: "Were the policy to fail, the consequences would be severe.", es: "Si la política fracasara, las consecuencias serían graves." }
+        ],
+        mistake: "La forma pasada puede marcar distancia social o modal, no tiempo pasado."
+      },
+      {
+        title: "Inversion and fronting",
+        goal: "Controlar énfasis y ritmo con inversión y elementos iniciales.",
+        structure: "negative adverbial + auxiliary + subject · fronted complement",
+        uses: ["Énfasis formal", "Contraste", "Cohesión textual"],
+        examples: [
+          { en: "Only later did the implications become clear.", es: "Solo después quedaron claras las implicaciones." },
+          { en: "Equally significant was the decline in trust.", es: "Igualmente significativa fue la caída de la confianza." }
+        ],
+        mistake: "La inversión exige auxiliar; si no existe, añade do/does/did."
+      },
+      {
+        title: "Ellipsis and substitution",
+        goal: "Evitar repetición manteniendo precisión y naturalidad.",
+        structure: "do so · so/not · one/ones · auxiliary ellipsis",
+        uses: ["Respuestas compactas", "Comparación", "Prosa cohesionada"],
+        examples: [
+          { en: "Some supported the plan; others did not.", es: "Algunos apoyaron el plan; otros no." },
+          { en: "The first proposal was stronger than the revised one.", es: "La primera propuesta era más sólida que la revisada." }
+        ],
+        mistake: "La elipsis solo funciona si el elemento omitido se recupera sin ambigüedad."
+      },
+      {
+        title: "Information structure",
+        goal: "Organizar información conocida y nueva para guiar al lector.",
+        structure: "theme → rheme · end-focus · cleft/pseudo-cleft",
+        uses: ["Introducir contraste", "Destacar el dato nuevo", "Conectar párrafos"],
+        examples: [
+          { en: "What the study fails to address is long-term cost.", es: "Lo que el estudio no aborda es el coste a largo plazo." },
+          { en: "Of greater concern is the lack of oversight.", es: "Más preocupante es la falta de supervisión." }
+        ],
+        mistake: "El énfasis sintáctico debe coincidir con la información realmente importante."
+      },
+      {
+        title: "Register and idiomatic grammar",
+        goal: "Elegir estructuras según género, relación y propósito.",
+        structure: "formal nominalisation ↔ neutral clause ↔ conversational chunk",
+        uses: ["Académico", "Profesional", "Conversación natural"],
+        examples: [
+          { en: "Implementation remains contingent upon approval.", es: "La aplicación sigue supeditada a la aprobación." },
+          { en: "It all comes down to whether they approve it.", es: "Todo depende de si lo aprueban." }
+        ],
+        mistake: "Una estructura sofisticada en el registro equivocado puede sonar menos competente."
+      },
+      {
+        title: "Nuance, ambiguity and editing",
+        goal: "Detectar ambigüedad estructural y editar con intención.",
+        structure: "scope · attachment · reference · parallelism",
+        uses: ["Edición avanzada", "Argumentación", "Evitar dobles lecturas"],
+        examples: [
+          { en: "Only Maya said she would resign.", es: "Solo Maya lo dijo; otras personas no lo dijeron." },
+          { en: "Maya said she would only resign.", es: "Maya dijo que únicamente dimitiría, no haría otra cosa." }
+        ],
+        mistake: "La posición de only, even o almost cambia el alcance y, con él, el significado."
+      }
+    ],
+    exercises: [
+      { topic: "Aspecto", question: "Elige duración aún relevante: 'I ___ your proposal all morning.'", answer: "have been reviewing", hint: "La actividad y su duración son el foco." },
+      { topic: "Aspecto", question: "Elige resultado: 'I ___ your proposal and accept the terms.'", answer: "have reviewed", hint: "La revisión está completada." },
+      { topic: "Aspecto", question: "Expresa cortesía: 'I ___ (hope) you could clarify this point.'", answer: "was hoping", hint: "Past Continuous crea distancia cortés." },
+      { topic: "Narrativa", question: "Completa con presente histórico: 'So he ___ (turn) around and sees the door.'", answer: "turns", hint: "El presente histórico aporta inmediatez." },
+      { topic: "Narrativa", question: "Completa: 'She ___ (trust) him for years. How could he betray her?'", answer: "had trusted", hint: "La confianza precede al punto narrativo." },
+      { topic: "Modal remoteness", question: "Completa formalmente: '___ the plan to fail, we would reconsider.'", answer: "Were", hint: "Were + sujeto + to-infinitive." },
+      { topic: "Modal remoteness", question: "Haz más diplomático: 'Will you reconsider?'", answer: "I wondered whether you might reconsider", hint: "Pasado + might crea distancia." },
+      { topic: "Inversión", question: "Completa: 'Only later ___ we understand the risk.'", answer: "did", hint: "Only later activa inversión." },
+      { topic: "Inversión", question: "Completa: 'Under no circumstances ___ this data be shared.'", answer: "should", answers: ["must", "can"], hint: "Expresión negativa inicial + auxiliar." },
+      { topic: "Fronting", question: "Completa: 'Equally important ___ the social consequences.'", answer: "are", hint: "Complemento inicial seguido del verbo y sujeto." },
+      { topic: "Ellipsis", question: "Evita repetición: 'Ana approved it, but Leo did not approve it.'", answer: "Ana approved it, but Leo did not", hint: "El auxiliar conserva el significado omitido." },
+      { topic: "Substitution", question: "Completa: 'I prefer the original proposal to the revised ___.'", answer: "one", hint: "One sustituye a un nombre contable singular." },
+      { topic: "Information structure", question: "Reescribe con What: 'We need greater transparency.'", answer: "What we need is greater transparency", hint: "Pseudo-cleft: What + clause + be + focus." },
+      { topic: "Information structure", question: "Completa: 'Of particular concern ___ the missing records.'", answer: "are", hint: "El sujeto real es plural y aparece después." },
+      { topic: "Registro", question: "Versión formal de 'It depends on approval':", answer: "It is contingent upon approval", answers: ["It is contingent on approval"], hint: "Contingent upon/on es una colocación formal." },
+      { topic: "Registro", question: "Versión conversacional de 'The outcome is contingent upon funding':", answer: "It all comes down to funding", answers: ["It depends on funding"], hint: "Usa un chunk conversacional natural." },
+      { topic: "Alcance", question: "Coloca only para indicar que únicamente Maya habló: 'Maya said she would resign.'", answer: "Only Maya said she would resign", hint: "Only modifica el elemento inmediatamente posterior." },
+      { topic: "Alcance", question: "Coloca only para indicar que dimitir era lo único que haría:", answer: "Maya said she would only resign", hint: "Only modifica resign." },
+      { topic: "Paralelismo", question: "Corrige: 'The role requires planning, to negotiate and clear writing.'", answer: "The role requires planning, negotiating and writing clearly", answers: ["The role requires planning, negotiation and clear writing"], hint: "Coordina elementos con la misma forma gramatical." },
+      { topic: "Edición", question: "Elimina ambigüedad: 'She saw the manager with the telescope' (ella usó el telescopio).", answer: "Using the telescope, she saw the manager", hint: "Explicita quién utiliza el instrumento." }
+    ]
+  }
+};
+
 const a0Level = {
   level: "A0",
   color: "#EEF2FF",
@@ -1439,7 +1784,24 @@ const a0Level = {
   lessons: grammarExpansion.A0.lessons
 };
 
-data.grammar.levels.unshift(a0Level);
+const originalGrammarLevels = Object.fromEntries(data.grammar.levels.map(level => [level.level, level]));
+const createAddedLevel = (level, color, textColor) => ({
+  level,
+  color,
+  textColor,
+  lessons: addedLevelCurriculum[level].lessons,
+  exercises: [...addedLevelCurriculum[level].exercises]
+});
+
+data.grammar.levels = [
+  a0Level,
+  originalGrammarLevels.A1,
+  createAddedLevel("A2", "#ECFDF5", "#047857"),
+  originalGrammarLevels.B1,
+  createAddedLevel("B2", "#EDE9FE", "#6D28D9"),
+  originalGrammarLevels.C1,
+  createAddedLevel("C2", "#FDF2F8", "#BE185D")
+];
 data.grammar.levels.forEach(level => {
   const expansion = grammarExpansion[level.level];
   if (!expansion) return;
@@ -1492,7 +1854,7 @@ data.grammar.tenseGuide = [
       {
         title: "Present Perfect Tense",
         also: "Present Perfect Simple",
-        level: "B1",
+        level: "A2",
         affirmative: "subject + have/has + past participle",
         negative: "subject + have/has not + past participle",
         question: "Have/Has + subject + past participle?",
@@ -1526,7 +1888,7 @@ data.grammar.tenseGuide = [
       {
         title: "Simple Past Tense",
         also: "Past Simple",
-        level: "A1",
+        level: "A2",
         affirmative: "subject + verb-ed / irregular past form",
         negative: "subject + did not + base verb",
         question: "Did + subject + base verb?",
@@ -1540,7 +1902,7 @@ data.grammar.tenseGuide = [
       {
         title: "Past Continuous Tense",
         also: "Past Progressive",
-        level: "B1",
+        level: "A2",
         affirmative: "subject + was/were + verb-ing",
         negative: "subject + was/were not + verb-ing",
         question: "Was/Were + subject + verb-ing?",
@@ -1588,7 +1950,7 @@ data.grammar.tenseGuide = [
       {
         title: "Simple Future Tense",
         also: "Future Simple",
-        level: "A1",
+        level: "A2",
         affirmative: "subject + will + base verb",
         negative: "subject + will not (won't) + base verb",
         question: "Will + subject + base verb?",
@@ -1616,7 +1978,7 @@ data.grammar.tenseGuide = [
       {
         title: "Future Perfect Tense",
         also: "Future Perfect Simple",
-        level: "B1",
+        level: "B2",
         affirmative: "subject + will have + past participle",
         negative: "subject + will not have + past participle",
         question: "Will + subject + have + past participle?",
@@ -1647,6 +2009,7 @@ data.grammar.tenseGuide = [
 
 data.grammar.verbGuide = {
   title: "Regular and Irregular Verbs",
+  levels: ["A1", "A2"],
   intro: "Los verbos regulares siguen reglas de escritura y pronunciación; los irregulares cambian de forma y deben aprenderse en tres columnas: infinitivo, pasado y participio.",
   regularRules: [
     { rule: "Regla general", form: "verb + ed", examples: "work → worked · clean → cleaned" },
@@ -1699,23 +2062,29 @@ const tenseExerciseExpansion = {
   A1: [
     { topic: "Simple Present Tense", question: "Completa: 'My brother ___ (study) English every day.'", answer: "studies", hint: "Con he/she/it, consonante + y cambia a -ies." },
     { topic: "Present Continuous Tense", question: "Completa: 'We ___ (wait) for the bus right now.'", answer: "are waiting", hint: "Acción actual: are + verbo-ing." },
-    { topic: "Simple Past Tense", question: "Completa con un verbo regular: 'They ___ (visit) us yesterday.'", answer: "visited", hint: "Visit forma el pasado añadiendo -ed." },
-    { topic: "Simple Past Tense", question: "Completa con un verbo irregular: 'She ___ (take) the train last night.'", answer: "took", hint: "Take–took–taken." },
-    { topic: "Simple Future Tense", question: "Completa la promesa: 'I ___ (call) you tomorrow.'", answer: "will call", hint: "Will + infinitivo." },
     { topic: "Regular Verbs", question: "Escribe el pasado de 'study':", answer: "studied", hint: "Consonante + y cambia a -ied." },
     { topic: "Irregular Verbs", question: "Escribe las formas de 'write': write – ___ – ___", answer: "wrote – written", answers: ["wrote - written", "wrote written"], hint: "Aprende infinitivo, pasado y participio juntos." }
   ],
-  B1: [
-    { topic: "Present Perfect Tense", question: "Completa: 'He ___ already ___ (finish) the task.'", answer: "has already finished", hint: "Has + already + participio." },
-    { topic: "Present Perfect Continuous Tense", question: "Completa: 'I ___ (learn) English for two years.'", answer: "have been learning", hint: "Destaca una actividad que continúa y su duración." },
+  A2: [
+    { topic: "Simple Past Tense", question: "Completa con un verbo regular: 'They ___ (visit) us yesterday.'", answer: "visited", hint: "Visit forma el pasado añadiendo -ed." },
+    { topic: "Simple Past Tense", question: "Completa con un verbo irregular: 'She ___ (take) the train last night.'", answer: "took", hint: "Take–took–taken." },
     { topic: "Past Continuous Tense", question: "Completa: 'At nine, they ___ (drive) home.'", answer: "were driving", hint: "Acción en progreso: were + verbo-ing." },
+    { topic: "Present Perfect Tense", question: "Completa: 'He ___ already ___ (finish) the task.'", answer: "has already finished", hint: "Has + already + participio." },
+    { topic: "Simple Future Tense", question: "Completa la promesa: 'I ___ (call) you tomorrow.'", answer: "will call", hint: "Will + infinitivo." }
+  ],
+  B1: [
+    { topic: "Present Perfect Continuous Tense", question: "Completa: 'I ___ (learn) English for two years.'", answer: "have been learning", hint: "Destaca una actividad que continúa y su duración." },
     { topic: "Past Perfect Tense", question: "Completa: 'The film ___ (start) before we arrived.'", answer: "had started", hint: "La película empezó antes de otro pasado." },
+    { topic: "Future Continuous Tense", question: "Completa: 'This time tomorrow, I ___ (take) my exam.'", answer: "will be taking", hint: "Acción en curso en un momento futuro." }
+  ],
+  B2: [
     { topic: "Past Perfect Continuous Tense", question: "Completa: 'She was tired because she ___ (work) all day.'", answer: "had been working", hint: "Actividad continua anterior que explica un resultado pasado." },
-    { topic: "Future Continuous Tense", question: "Completa: 'This time tomorrow, I ___ (take) my exam.'", answer: "will be taking", hint: "Acción en curso en un momento futuro." },
     { topic: "Future Perfect Tense", question: "Completa: 'By Friday, we ___ (complete) the project.'", answer: "will have completed", hint: "Acción terminada antes de un límite futuro." }
   ],
   C1: [
-    { topic: "Future Perfect Continuous Tense", question: "Completa: 'By 2030, she ___ (research) this topic for a decade.'", answer: "will have been researching", hint: "Duración acumulada hasta un punto futuro." },
+    { topic: "Future Perfect Continuous Tense", question: "Completa: 'By 2030, she ___ (research) this topic for a decade.'", answer: "will have been researching", hint: "Duración acumulada hasta un punto futuro." }
+  ],
+  C2: [
     { topic: "Contraste de tiempos", question: "Completa: 'By the time you arrive, I ___ (wait) for three hours.'", answer: "will have been waiting", hint: "Importa la duración hasta el momento de tu llegada." }
   ]
 };
@@ -1725,8 +2094,8 @@ data.grammar.levels.forEach(level => {
     level.exercises.push(...tenseExerciseExpansion[level.level]);
   }
 });
-data.grammar.count = `${data.grammar.levels.reduce((sum, level) => sum + level.exercises.length, 0)} ejercicios + 45 fichas`;
-data.grammar.description = "Curso A0–C1 con los 12 tiempos verbales, verbos regulares e irregulares, ejemplos y solucionarios";
+data.grammar.count = `${data.grammar.levels.reduce((sum, level) => sum + level.exercises.length, 0)} ejercicios · 7 niveles`;
+data.grammar.description = "Ruta A0–C2 con tiempos y verbos integrados por nivel, ejemplos, práctica y solucionarios";
 
 // ============================================================
 //  READING
