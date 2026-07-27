@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conoce StudyEnglish, un proyecto educativo gratuito para practicar inglés desde A0 hasta C2.">
+  <title>Sobre StudyEnglish · StudyEnglish</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📘</text></svg>">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    (function () {
+      var saved = localStorage.getItem('theme');
+      var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#page-content">Saltar al contenido</a>
+
+  <header class="header-compact info-header">
+    <a href="index.html" class="back-link">← Inicio</a>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">🌙</button>
+    <div class="badge"><span></span> Información del proyecto</div>
+    <h1><span aria-hidden="true">S/</span> Sobre StudyEnglish</h1>
+    <p>Una ruta abierta para aprender, practicar y comprobar tu progreso.</p>
+  </header>
+
+  <main class="info-page" id="page-content">
+    <section class="info-lead">
+      <span class="eyebrow">Proyecto educativo independiente</span>
+      <h2>Inglés práctico, organizado y accesible desde cualquier dispositivo.</h2>
+      <p>StudyEnglish es una web educativa gratuita que reúne gramática, vocabulario, lectura, comprensión auditiva, teoría y pruebas de repaso. Está diseñada para estudiar a tu ritmo y sin necesidad de crear una cuenta.</p>
+    </section>
+
+    <div class="info-sections">
+      <section class="info-section">
+        <span class="eyebrow">Propósito</span>
+        <h3>Aprender con una ruta clara</h3>
+        <p>El contenido avanza desde un nivel preparatorio A0 hasta C2. Cada módulo combina explicación, ejemplos, práctica y autocorrección para que puedas entender primero y comprobar después.</p>
+        <div class="info-grid">
+          <div><strong>Teoría útil</strong><span>Estructuras, usos, ejemplos traducidos y errores frecuentes.</span></div>
+          <div><strong>Práctica activa</strong><span>Ejercicios, pruebas, lecturas y actividades de listening.</span></div>
+          <div><strong>Progreso local</strong><span>Tu avance permanece en este navegador y no exige registro.</span></div>
+          <div><strong>Acceso gratuito</strong><span>Sin pagos, publicidad, suscripciones ni contenido patrocinado.</span></div>
+        </div>
+      </section>
+
+      <section class="info-section">
+        <span class="eyebrow">Alcance</span>
+        <h3>Qué es y qué no es</h3>
+        <p>StudyEnglish es una herramienta de apoyo al aprendizaje autónomo. No es una academia, no expide certificados oficiales y sus pruebas ofrecen una orientación educativa, no una acreditación del nivel de inglés.</p>
+        <p>Los contenidos pueden complementarse con clases, conversación real, lectura extensa y recursos oficiales de evaluación.</p>
+      </section>
+
+      <section class="info-section">
+        <span class="eyebrow">Responsabilidad</span>
+        <h3>Proyecto abierto y en mejora continua</h3>
+        <p>El proyecto se mantiene públicamente en GitHub. Puedes consultar su código, historial y actualizaciones en el <a href="https://github.com/alejandrocm02/web-estudio-ingles" rel="noopener noreferrer">repositorio de StudyEnglish</a>.</p>
+        <p>Para informar de un error, utiliza el repositorio sin publicar datos personales o información sensible.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p><strong>StudyEnglish</strong> · Aprende, practica y mide tu progreso.</p>
+    <nav class="site-footer-links" aria-label="Información del sitio">
+      <a href="about.html" aria-current="page">Sobre StudyEnglish</a>
+      <a href="methodology.html">Fuente y metodología</a>
+      <a href="privacy.html">Política de privacidad</a>
+      <a href="legal.html">Aviso legal</a>
+    </nav>
+  </footer>
+
+  <script src="info.js"></script>
+</body>
+</html>
