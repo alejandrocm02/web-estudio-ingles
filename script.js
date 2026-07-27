@@ -524,10 +524,6 @@ function renderGrammar(levelIndex = 0) {
   const doneArr = progress.grammar[lvl.level] || [];
   const doneCount = doneArr.filter(Boolean).length;
   const lessons = lvl.lessons || [];
-  const levelTenseGuide = (s.tenseGuide || [])
-    .map(group => ({ ...group, tenses: group.tenses.filter(tense => tense.level === lvl.level) }))
-    .filter(group => group.tenses.length);
-  const showVerbGuide = (s.verbGuide?.levels || []).includes(lvl.level);
 
   // Agrupar ejercicios por tema, conservando el orden de aparición.
   const topicOrder = [];
@@ -551,97 +547,6 @@ function renderGrammar(levelIndex = 0) {
       <div><span>03</span><strong>Practica</strong><small>${lvl.exercises.length} retos</small></div>
       <div><span>04</span><strong>Corrige</strong><small>Soluciones al final</small></div>
     </div>
-
-    <section class="tense-masterclass ${levelTenseGuide.length ? '' : 'is-hidden'}" id="twelve-tenses" aria-labelledby="tenses-title">
-      <div class="content-section-heading">
-        <span class="section-code">TIEMPOS VERBALES · NIVEL ${lvl.level}</span>
-        <h3 id="tenses-title">Los tiempos que corresponden a ${lvl.level}</h3>
-        <p>La ruta presenta cada tiempo cuando alcanzas el nivel adecuado. Estudia su afirmativa, negativa, pregunta, uso, marcadores y ejemplos antes de practicar.</p>
-      </div>
-      <div class="tense-quick-nav" aria-label="Navegación de tiempos verbales">
-        ${levelTenseGuide.map((group, groupIndex) => `
-          <a href="#tense-group-${groupIndex}">${group.group.replace(' Tenses', '')}<span>${String(group.tenses.length).padStart(2, '0')} tiempo${group.tenses.length === 1 ? '' : 's'}</span></a>
-        `).join('')}
-        ${showVerbGuide ? '<a href="#verb-forms">Verbos<span>Regular / irregular</span></a>' : ''}
-      </div>
-      <div class="tense-groups">
-        ${levelTenseGuide.map((group, groupIndex) => `
-          <details class="tense-group" id="tense-group-${groupIndex}" ${groupIndex === 0 ? 'open' : ''}>
-            <summary>
-              <span>0${groupIndex + 1}</span>
-              <div><h4>${group.group}</h4><p>${group.description}</p></div>
-              <small>${group.tenses.length} tiempo${group.tenses.length === 1 ? '' : 's'}</small>
-            </summary>
-            <div class="tense-grid">
-              ${group.tenses.map((tense, tenseIndex) => `
-                <article class="tense-card">
-                  <div class="tense-card-top">
-                    <span>${String(tenseIndex + 1).padStart(2, '0')}</span>
-                    <div><small>NIVEL ${tense.level} · ${tense.also}</small><h5>${tense.title}</h5></div>
-                  </div>
-                  <div class="tense-structures">
-                    <div><span>+</span><code>${tense.affirmative}</code></div>
-                    <div><span>−</span><code>${tense.negative}</code></div>
-                    <div><span>?</span><code>${tense.question}</code></div>
-                  </div>
-                  <div class="tense-use"><span class="control-label">Cuándo se usa</span><p>${tense.use}</p></div>
-                  <div class="tense-markers"><span>Marcadores</span><p>${tense.markers}</p></div>
-                  <div class="tense-examples">
-                    ${tense.examples.map(example => `<p><strong>${example.en}</strong><small>${example.es}</small></p>`).join('')}
-                  </div>
-                </article>
-              `).join('')}
-            </div>
-          </details>
-        `).join('')}
-      </div>
-    </section>
-
-    <section class="verb-masterclass ${showVerbGuide ? '' : 'is-hidden'}" id="verb-forms" aria-labelledby="verbs-title">
-      <div class="content-section-heading">
-        <span class="section-code">FORMACIÓN VERBAL · NIVEL ${lvl.level}</span>
-        <h3 id="verbs-title">${s.verbGuide.title} en ${lvl.level}</h3>
-        <p>${s.verbGuide.intro}</p>
-      </div>
-      <div class="verb-guide-grid">
-        <article class="verb-guide-panel">
-          <div class="verb-panel-heading"><span>01</span><div><small>FORMA ESCRITA</small><h4>Reglas de los verbos regulares</h4></div></div>
-          <div class="regular-rules">
-            ${s.verbGuide.regularRules.map(item => `
-              <div><strong>${item.rule}</strong><code>${item.form}</code><small>${item.examples}</small></div>
-            `).join('')}
-          </div>
-        </article>
-        <article class="verb-guide-panel">
-          <div class="verb-panel-heading"><span>02</span><div><small>PRONUNCIACIÓN</small><h4>Las tres terminaciones de -ed</h4></div></div>
-          <div class="ed-pronunciation">
-            ${s.verbGuide.pronunciation.map(item => `
-              <div><strong>${item.sound}</strong><p>${item.when}</p><small>${item.examples}</small></div>
-            `).join('')}
-          </div>
-          <p class="pronunciation-reminder">La escritura siempre termina en <strong>-ed</strong>, pero no se pronuncia siempre como una sílaba adicional.</p>
-        </article>
-      </div>
-      <article class="irregular-guide">
-        <div class="verb-panel-heading"><span>03</span><div><small>TRES FORMAS</small><h4>Cómo aprender los verbos irregulares</h4></div></div>
-        <div class="irregular-patterns">
-          ${s.verbGuide.irregularPatterns.map(item => `
-            <div><strong>${item.label}</strong><code>${item.examples}</code></div>
-          `).join('')}
-        </div>
-        <details class="irregular-table-details">
-          <summary><span>Consultar ${s.verbGuide.irregulars.length} verbos frecuentes</span><small>Infinitivo · pasado · participio</small></summary>
-          <div class="irregular-table-wrap">
-            <table class="irregular-table">
-              <thead><tr><th>Base form</th><th>Simple Past</th><th>Past Participle</th><th>Significado</th></tr></thead>
-              <tbody>
-                ${s.verbGuide.irregulars.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('')}
-              </tbody>
-            </table>
-          </div>
-        </details>
-      </article>
-    </section>
 
     <section class="grammar-theory" aria-labelledby="grammar-theory-title">
       <div class="content-section-heading">
