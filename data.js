@@ -1234,24 +1234,24 @@ const grammarExpansion = {
   B1: {
     lessons: [
       {
-        title: "Present Perfect",
-        goal: "Conectar una experiencia o acción pasada con el presente.",
-        structure: "have/has + participio",
-        uses: ["Experiencias sin fecha", "Resultados presentes", "Situaciones con since/for"],
+        title: "Present Perfect Continuous",
+        goal: "Destacar una actividad iniciada antes que continúa o tiene un efecto visible.",
+        structure: "have/has been + verbo-ing",
+        uses: ["Duración con since y for", "Actividad reciente", "Preguntas con How long?"],
         examples: [
-          { en: "I have lost my keys.", es: "He perdido las llaves." },
-          { en: "She has lived here for five years.", es: "Vive aquí desde hace cinco años." }
+          { en: "I have been studying for two hours.", es: "Llevo dos horas estudiando." },
+          { en: "How long has she been working here?", es: "¿Cuánto tiempo lleva trabajando aquí?" }
         ],
-        mistake: "Con una fecha pasada terminada usa Past Simple: I saw it yesterday."
+        mistake: "Usa Present Perfect Simple para el resultado y Continuous para la actividad o duración."
       },
       {
-        title: "Past Continuous y Past Perfect",
-        goal: "Ordenar acciones y dar contexto a una narración.",
-        structure: "was/were + -ing · had + participio",
-        uses: ["Acción en progreso interrumpida", "Acción anterior a otro pasado"],
+        title: "Past Perfect",
+        goal: "Mostrar que una acción ocurrió antes de otra referencia pasada.",
+        structure: "had + participio",
+        uses: ["Ordenar acontecimientos", "Explicar una causa anterior", "By the time, before y after"],
         examples: [
-          { en: "I was driving when you called.", es: "Estaba conduciendo cuando llamaste." },
-          { en: "They had left before we arrived.", es: "Se habían ido antes de que llegáramos." }
+          { en: "They had left before we arrived.", es: "Se habían ido antes de que llegáramos." },
+          { en: "By the time I called, she had finished.", es: "Cuando llamé, ya había terminado." }
         ],
         mistake: "No uses Past Perfect para todas las acciones; solo para aclarar anterioridad."
       },
@@ -1300,15 +1300,15 @@ const grammarExpansion = {
         mistake: "En una non-defining clause no uses that."
       },
       {
-        title: "Gerundio e infinitivo",
-        goal: "Elegir la forma que exige cada verbo.",
-        structure: "enjoy/avoid + -ing · want/decide + to-infinitive",
-        uses: ["Preferencias y actividades", "Planes y decisiones", "Cambios de significado"],
+        title: "Future Continuous",
+        goal: "Describir una acción que estará en progreso en un momento futuro.",
+        structure: "will be + verbo-ing",
+        uses: ["Acción futura en curso", "Situación prevista", "Pregunta cortés sobre planes"],
         examples: [
-          { en: "I enjoy learning languages.", es: "Disfruto aprendiendo idiomas." },
-          { en: "We decided to wait.", es: "Decidimos esperar." }
+          { en: "This time tomorrow, I will be flying to Paris.", es: "Mañana a esta hora estaré volando a París." },
+          { en: "Will you be using the car tonight?", es: "¿Vas a usar el coche esta noche?" }
         ],
-        mistake: "Stop doing es dejar de hacerlo; stop to do es parar para hacerlo."
+        mistake: "No lo confundas con Future Simple: Continuous enfoca una acción ya en desarrollo."
       },
       {
         title: "Modales de deducción",
@@ -1323,10 +1323,10 @@ const grammarExpansion = {
       }
     ],
     extraExercises: [
-      { topic: "Present Perfect", question: "Completa: '___ you ever ___ (try) surfing?'", answer: "Have you ever tried", hint: "Experiencia vital sin fecha concreta." },
-      { topic: "Past Continuous", question: "Completa: 'While I ___ (cook), the lights went out.'", answer: "was cooking", hint: "Acción en progreso interrumpida." },
+      { topic: "Present Perfect Continuous", question: "Completa: 'How long ___ you ___ (learn) English?'", answer: "have you been learning", hint: "How long + have + sujeto + been + verbo-ing." },
+      { topic: "Past Perfect", question: "Completa: 'When I arrived, they ___ already ___ (leave).'", answer: "had already left", hint: "La salida ocurrió antes de la llegada." },
       { topic: "Relative Clauses", question: "Completa: 'That's the café ___ we first met.'", answer: "where", hint: "El antecedente es un lugar." },
-      { topic: "Gerundio e infinitivo", question: "Completa: 'He promised ___ (help) us.'", answer: "to help", hint: "Promise va seguido de to-infinitive." },
+      { topic: "Future Continuous", question: "Completa: 'At ten tomorrow, he ___ (work).'", answer: "will be working", hint: "Acción en progreso en un momento futuro." },
       { topic: "Deducción", question: "Completa: 'He isn't answering. He ___ be asleep.'", answer: "might", answers: ["could", "may"], hint: "Expresa una posibilidad, no una certeza." }
     ]
   },
@@ -1410,15 +1410,15 @@ const grammarExpansion = {
         mistake: "Demasiadas nominalizaciones vuelven el texto pesado; combínalas con verbos claros."
       },
       {
-        title: "Concesión y contraste avanzado",
-        goal: "Construir argumentos equilibrados y sofisticados.",
-        structure: "much as · whereas · notwithstanding · albeit + adjective/phrase",
-        uses: ["Conceder un punto", "Contrastar perspectivas", "Limitar una afirmación"],
+        title: "Future Perfect Continuous",
+        goal: "Expresar cuánto tiempo llevará ocurriendo una actividad hasta un punto futuro.",
+        structure: "will have been + verbo-ing",
+        uses: ["Duración acumulada", "By + punto futuro", "Proyección de una actividad continua"],
         examples: [
-          { en: "Much as I value speed, accuracy comes first.", es: "Por mucho que valore la rapidez, la precisión es prioritaria." },
-          { en: "The plan was effective, albeit expensive.", es: "El plan fue eficaz, aunque caro." }
+          { en: "By June, she will have been teaching here for ten years.", es: "En junio llevará diez años enseñando aquí." },
+          { en: "How long will you have been living abroad?", es: "¿Cuánto tiempo llevarás viviendo en el extranjero?" }
         ],
-        mistake: "Albeit no introduce normalmente una oración completa con sujeto y verbo."
+        mistake: "Future Perfect enfoca el resultado; Future Perfect Continuous enfoca la duración."
       }
     ],
     extraExercises: [
@@ -1426,7 +1426,7 @@ const grammarExpansion = {
       { topic: "Cleft sentences", question: "Reescribe con What: 'I need a reliable partner.'", answer: "What I need is a reliable partner", hint: "What + cláusula + be + foco." },
       { topic: "Participle clauses", question: "Completa: '___ (warn) about the delay, we left early.'", answer: "Having been warned", hint: "Acción pasiva anterior a la principal." },
       { topic: "Hedging", question: "Haz más cauta la frase con may: 'The policy causes inequality.'", answer: "The policy may cause inequality", hint: "May + infinitivo reduce la certeza." },
-      { topic: "Concesión", question: "Completa: '___ as the task was, they completed it.'", answer: "Difficult", hint: "Adjetivo + as + sujeto + verbo." }
+      { topic: "Future Perfect Continuous", question: "Completa: 'By May, they ___ (develop) the system for a year.'", answer: "will have been developing", hint: "Duración acumulada hasta un punto futuro." }
     ]
   }
 };
