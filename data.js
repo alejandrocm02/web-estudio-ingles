@@ -1452,6 +1452,283 @@ data.grammar.count = `${data.grammar.levels.reduce((sum, level) => sum + level.e
 data.grammar.description = "Curso desde A0 con estructuras, ejemplos, errores frecuentes, práctica y solucionarios";
 
 // ============================================================
+//  GUÍA DE LOS 12 TIEMPOS VERBALES
+//  Incluye las cuatro formas de presente, pasado y futuro.
+// ============================================================
+
+data.grammar.tenseGuide = [
+  {
+    group: "Present Tenses",
+    description: "Acciones habituales, en progreso, conectadas con el presente o que llevan un tiempo ocurriendo.",
+    tenses: [
+      {
+        title: "Simple Present Tense",
+        also: "Present Simple",
+        level: "A1",
+        affirmative: "subject + base verb (+ s/es con he, she, it)",
+        negative: "subject + do/does not + base verb",
+        question: "Do/Does + subject + base verb?",
+        use: "Rutinas, hábitos, hechos generales, estados y horarios.",
+        markers: "always · usually · often · every day · never",
+        examples: [
+          { en: "She studies English every day.", es: "Ella estudia inglés todos los días." },
+          { en: "Does he work on Saturdays?", es: "¿Trabaja él los sábados?" }
+        ]
+      },
+      {
+        title: "Present Continuous Tense",
+        also: "Present Progressive",
+        level: "A1",
+        affirmative: "subject + am/is/are + verb-ing",
+        negative: "subject + am/is/are not + verb-ing",
+        question: "Am/Is/Are + subject + verb-ing?",
+        use: "Acciones que ocurren ahora, situaciones temporales y planes acordados.",
+        markers: "now · right now · at the moment · today",
+        examples: [
+          { en: "They are studying right now.", es: "Están estudiando ahora mismo." },
+          { en: "I am not working this week.", es: "No estoy trabajando esta semana." }
+        ]
+      },
+      {
+        title: "Present Perfect Tense",
+        also: "Present Perfect Simple",
+        level: "B1",
+        affirmative: "subject + have/has + past participle",
+        negative: "subject + have/has not + past participle",
+        question: "Have/Has + subject + past participle?",
+        use: "Experiencias sin fecha concreta, resultados presentes y periodos no terminados.",
+        markers: "ever · never · already · yet · just · since · for",
+        examples: [
+          { en: "I have already finished the report.", es: "Ya he terminado el informe." },
+          { en: "Has she ever visited Ireland?", es: "¿Ha visitado alguna vez Irlanda?" }
+        ]
+      },
+      {
+        title: "Present Perfect Continuous Tense",
+        also: "Present Perfect Progressive",
+        level: "B1",
+        affirmative: "subject + have/has been + verb-ing",
+        negative: "subject + have/has not been + verb-ing",
+        question: "Have/Has + subject + been + verb-ing?",
+        use: "Actividad iniciada antes que continúa ahora o cuyo efecto reciente es visible; destaca la duración.",
+        markers: "since · for · all day · lately · how long",
+        examples: [
+          { en: "We have been waiting for forty minutes.", es: "Llevamos cuarenta minutos esperando." },
+          { en: "Why has he been running?", es: "¿Por qué ha estado corriendo?" }
+        ]
+      }
+    ]
+  },
+  {
+    group: "Past Tenses",
+    description: "Acciones terminadas, en desarrollo o anteriores a otro punto del pasado.",
+    tenses: [
+      {
+        title: "Simple Past Tense",
+        also: "Past Simple",
+        level: "A1",
+        affirmative: "subject + verb-ed / irregular past form",
+        negative: "subject + did not + base verb",
+        question: "Did + subject + base verb?",
+        use: "Acciones terminadas en un momento pasado y secuencias narrativas.",
+        markers: "yesterday · last week · ago · in 2020",
+        examples: [
+          { en: "They moved here last year.", es: "Se mudaron aquí el año pasado." },
+          { en: "Did you see Marta yesterday?", es: "¿Viste a Marta ayer?" }
+        ]
+      },
+      {
+        title: "Past Continuous Tense",
+        also: "Past Progressive",
+        level: "B1",
+        affirmative: "subject + was/were + verb-ing",
+        negative: "subject + was/were not + verb-ing",
+        question: "Was/Were + subject + verb-ing?",
+        use: "Acción en progreso en un momento pasado, contexto o acción interrumpida.",
+        markers: "while · when · at 8 p.m. · all morning",
+        examples: [
+          { en: "I was cooking when you called.", es: "Estaba cocinando cuando llamaste." },
+          { en: "Were they sleeping at midnight?", es: "¿Estaban durmiendo a medianoche?" }
+        ]
+      },
+      {
+        title: "Past Perfect Tense",
+        also: "Past Perfect Simple",
+        level: "B1",
+        affirmative: "subject + had + past participle",
+        negative: "subject + had not + past participle",
+        question: "Had + subject + past participle?",
+        use: "Acción completada antes de otra acción o referencia pasada.",
+        markers: "before · after · already · by the time",
+        examples: [
+          { en: "The train had left before we arrived.", es: "El tren se había ido antes de que llegáramos." },
+          { en: "Had she finished when you called?", es: "¿Había terminado cuando llamaste?" }
+        ]
+      },
+      {
+        title: "Past Perfect Continuous Tense",
+        also: "Past Perfect Progressive",
+        level: "B2",
+        affirmative: "subject + had been + verb-ing",
+        negative: "subject + had not been + verb-ing",
+        question: "Had + subject + been + verb-ing?",
+        use: "Actividad continua que duró hasta otro punto pasado; explica duración o causa.",
+        markers: "for · since · before · until then · how long",
+        examples: [
+          { en: "She had been studying for hours before the exam.", es: "Llevaba horas estudiando antes del examen." },
+          { en: "Had it been raining all night?", es: "¿Había estado lloviendo toda la noche?" }
+        ]
+      }
+    ]
+  },
+  {
+    group: "Future Tenses",
+    description: "Decisiones y predicciones, acciones futuras en curso, completadas o acumuladas hasta un punto futuro.",
+    tenses: [
+      {
+        title: "Simple Future Tense",
+        also: "Future Simple",
+        level: "A1",
+        affirmative: "subject + will + base verb",
+        negative: "subject + will not (won't) + base verb",
+        question: "Will + subject + base verb?",
+        use: "Decisiones espontáneas, promesas, ofrecimientos y predicciones.",
+        markers: "tomorrow · next week · probably · I think",
+        examples: [
+          { en: "I will help you with that.", es: "Te ayudaré con eso." },
+          { en: "Will they arrive on time?", es: "¿Llegarán a tiempo?" }
+        ]
+      },
+      {
+        title: "Future Continuous Tense",
+        also: "Future Progressive",
+        level: "B1",
+        affirmative: "subject + will be + verb-ing",
+        negative: "subject + will not be + verb-ing",
+        question: "Will + subject + be + verb-ing?",
+        use: "Acción que estará en progreso en un momento futuro o pregunta cortés sobre planes.",
+        markers: "this time tomorrow · at 8 p.m. · next week",
+        examples: [
+          { en: "This time tomorrow, we will be flying to Rome.", es: "Mañana a esta hora estaremos volando a Roma." },
+          { en: "Will you be using the car tonight?", es: "¿Vas a estar usando el coche esta noche?" }
+        ]
+      },
+      {
+        title: "Future Perfect Tense",
+        also: "Future Perfect Simple",
+        level: "B1",
+        affirmative: "subject + will have + past participle",
+        negative: "subject + will not have + past participle",
+        question: "Will + subject + have + past participle?",
+        use: "Acción que estará completada antes de una fecha o punto futuro.",
+        markers: "by · by the time · before · by next year",
+        examples: [
+          { en: "By Friday, I will have finished the course.", es: "Para el viernes habré terminado el curso." },
+          { en: "Will they have arrived by noon?", es: "¿Habrán llegado para el mediodía?" }
+        ]
+      },
+      {
+        title: "Future Perfect Continuous Tense",
+        also: "Future Perfect Progressive",
+        level: "C1",
+        affirmative: "subject + will have been + verb-ing",
+        negative: "subject + will not have been + verb-ing",
+        question: "Will + subject + have been + verb-ing?",
+        use: "Duración acumulada de una actividad hasta un punto concreto del futuro.",
+        markers: "for + periodo · by + punto futuro · by then",
+        examples: [
+          { en: "By June, she will have been teaching here for ten years.", es: "En junio llevará diez años enseñando aquí." },
+          { en: "How long will you have been living abroad?", es: "¿Cuánto tiempo llevarás viviendo en el extranjero?" }
+        ]
+      }
+    ]
+  }
+];
+
+data.grammar.verbGuide = {
+  title: "Regular and Irregular Verbs",
+  intro: "Los verbos regulares siguen reglas de escritura y pronunciación; los irregulares cambian de forma y deben aprenderse en tres columnas: infinitivo, pasado y participio.",
+  regularRules: [
+    { rule: "Regla general", form: "verb + ed", examples: "work → worked · clean → cleaned" },
+    { rule: "Termina en -e", form: "verb + d", examples: "live → lived · love → loved" },
+    { rule: "Consonante + y", form: "y → ied", examples: "study → studied · carry → carried" },
+    { rule: "Vocal + y", form: "se mantiene y + ed", examples: "play → played · enjoy → enjoyed" },
+    { rule: "Consonante-vocal-consonante", form: "duplica la consonante final", examples: "stop → stopped · plan → planned" }
+  ],
+  pronunciation: [
+    { sound: "/t/", when: "Después de sonido sordo, excepto /t/", examples: "worked · washed · watched" },
+    { sound: "/d/", when: "Después de vocal o sonido sonoro, excepto /d/", examples: "played · cleaned · lived" },
+    { sound: "/ɪd/", when: "Después de los sonidos /t/ o /d/", examples: "wanted · needed · started" }
+  ],
+  irregularPatterns: [
+    { label: "Las tres formas iguales", examples: "cut–cut–cut · put–put–put · cost–cost–cost" },
+    { label: "Pasado y participio iguales", examples: "build–built–built · buy–bought–bought" },
+    { label: "Las tres formas diferentes", examples: "go–went–gone · write–wrote–written" }
+  ],
+  irregulars: [
+    ["be", "was/were", "been", "ser / estar"],
+    ["become", "became", "become", "convertirse"],
+    ["begin", "began", "begun", "empezar"],
+    ["break", "broke", "broken", "romper"],
+    ["bring", "brought", "brought", "traer"],
+    ["build", "built", "built", "construir"],
+    ["buy", "bought", "bought", "comprar"],
+    ["come", "came", "come", "venir"],
+    ["do", "did", "done", "hacer"],
+    ["drink", "drank", "drunk", "beber"],
+    ["drive", "drove", "driven", "conducir"],
+    ["eat", "ate", "eaten", "comer"],
+    ["find", "found", "found", "encontrar"],
+    ["get", "got", "got/gotten", "obtener"],
+    ["give", "gave", "given", "dar"],
+    ["go", "went", "gone", "ir"],
+    ["have", "had", "had", "tener"],
+    ["know", "knew", "known", "saber / conocer"],
+    ["make", "made", "made", "hacer / fabricar"],
+    ["read", "read", "read", "leer"],
+    ["run", "ran", "run", "correr"],
+    ["see", "saw", "seen", "ver"],
+    ["speak", "spoke", "spoken", "hablar"],
+    ["take", "took", "taken", "tomar / llevar"],
+    ["think", "thought", "thought", "pensar"],
+    ["write", "wrote", "written", "escribir"]
+  ]
+};
+
+const tenseExerciseExpansion = {
+  A1: [
+    { topic: "Simple Present Tense", question: "Completa: 'My brother ___ (study) English every day.'", answer: "studies", hint: "Con he/she/it, consonante + y cambia a -ies." },
+    { topic: "Present Continuous Tense", question: "Completa: 'We ___ (wait) for the bus right now.'", answer: "are waiting", hint: "Acción actual: are + verbo-ing." },
+    { topic: "Simple Past Tense", question: "Completa con un verbo regular: 'They ___ (visit) us yesterday.'", answer: "visited", hint: "Visit forma el pasado añadiendo -ed." },
+    { topic: "Simple Past Tense", question: "Completa con un verbo irregular: 'She ___ (take) the train last night.'", answer: "took", hint: "Take–took–taken." },
+    { topic: "Simple Future Tense", question: "Completa la promesa: 'I ___ (call) you tomorrow.'", answer: "will call", hint: "Will + infinitivo." },
+    { topic: "Regular Verbs", question: "Escribe el pasado de 'study':", answer: "studied", hint: "Consonante + y cambia a -ied." },
+    { topic: "Irregular Verbs", question: "Escribe las formas de 'write': write – ___ – ___", answer: "wrote – written", answers: ["wrote - written", "wrote written"], hint: "Aprende infinitivo, pasado y participio juntos." }
+  ],
+  B1: [
+    { topic: "Present Perfect Tense", question: "Completa: 'He ___ already ___ (finish) the task.'", answer: "has already finished", hint: "Has + already + participio." },
+    { topic: "Present Perfect Continuous Tense", question: "Completa: 'I ___ (learn) English for two years.'", answer: "have been learning", hint: "Destaca una actividad que continúa y su duración." },
+    { topic: "Past Continuous Tense", question: "Completa: 'At nine, they ___ (drive) home.'", answer: "were driving", hint: "Acción en progreso: were + verbo-ing." },
+    { topic: "Past Perfect Tense", question: "Completa: 'The film ___ (start) before we arrived.'", answer: "had started", hint: "La película empezó antes de otro pasado." },
+    { topic: "Past Perfect Continuous Tense", question: "Completa: 'She was tired because she ___ (work) all day.'", answer: "had been working", hint: "Actividad continua anterior que explica un resultado pasado." },
+    { topic: "Future Continuous Tense", question: "Completa: 'This time tomorrow, I ___ (take) my exam.'", answer: "will be taking", hint: "Acción en curso en un momento futuro." },
+    { topic: "Future Perfect Tense", question: "Completa: 'By Friday, we ___ (complete) the project.'", answer: "will have completed", hint: "Acción terminada antes de un límite futuro." }
+  ],
+  C1: [
+    { topic: "Future Perfect Continuous Tense", question: "Completa: 'By 2030, she ___ (research) this topic for a decade.'", answer: "will have been researching", hint: "Duración acumulada hasta un punto futuro." },
+    { topic: "Contraste de tiempos", question: "Completa: 'By the time you arrive, I ___ (wait) for three hours.'", answer: "will have been waiting", hint: "Importa la duración hasta el momento de tu llegada." }
+  ]
+};
+
+data.grammar.levels.forEach(level => {
+  if (tenseExerciseExpansion[level.level]) {
+    level.exercises.push(...tenseExerciseExpansion[level.level]);
+  }
+});
+data.grammar.count = `${data.grammar.levels.reduce((sum, level) => sum + level.exercises.length, 0)} ejercicios + 45 fichas`;
+data.grammar.description = "Curso A0–C1 con los 12 tiempos verbales, verbos regulares e irregulares, ejemplos y solucionarios";
+
+// ============================================================
 //  READING
 //  Las preguntas abiertas incluyen una respuesta orientativa:
 //  sirven para comparar ideas, no para invalidar otras lecturas razonadas.
