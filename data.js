@@ -1013,3 +1013,620 @@ const data = {
   }
 
 };
+
+// ============================================================
+//  CURSO DE GRAMÁTICA DESDE CERO
+//  Cada ficha incluye estructura, usos, ejemplos y un error típico.
+//  Los ejercicios se agrupan por nivel y el solucionario se genera
+//  automáticamente al final de cada hoja desde estos datos.
+// ============================================================
+
+const grammarExpansion = {
+  A0: {
+    lessons: [
+      {
+        title: "Orden básico de la oración",
+        goal: "Construir frases afirmativas sencillas sin traducir palabra por palabra.",
+        structure: "Sujeto + verbo + complemento",
+        uses: ["Decir quién hace una acción", "Añadir información de lugar, tiempo u objeto"],
+        examples: [
+          { en: "I study English every day.", es: "Estudio inglés todos los días." },
+          { en: "Mia lives in Madrid.", es: "Mia vive en Madrid." }
+        ],
+        mistake: "En inglés casi siempre debes escribir el sujeto: Is raining ✗ → It is raining ✓"
+      },
+      {
+        title: "Pronombres personales",
+        goal: "Sustituir nombres y reconocer quién realiza la acción.",
+        structure: "I · you · he · she · it · we · they",
+        uses: ["I para hablar de uno mismo", "It para cosas, animales o situaciones", "They para plural"],
+        examples: [
+          { en: "She is my sister.", es: "Ella es mi hermana." },
+          { en: "They are at home.", es: "Ellos están en casa." }
+        ],
+        mistake: "I siempre se escribe con mayúscula, incluso en mitad de una oración."
+      },
+      {
+        title: "Verbo to be",
+        goal: "Presentarse, describir y localizar personas o cosas.",
+        structure: "I am · you/we/they are · he/she/it is",
+        uses: ["Identidad y profesión", "Edad y estado", "Lugar y descripción"],
+        examples: [
+          { en: "I am twenty years old.", es: "Tengo veinte años." },
+          { en: "The books are on the table.", es: "Los libros están en la mesa." }
+        ],
+        mistake: "La edad se expresa con to be, no con have: I am 20 ✓"
+      },
+      {
+        title: "Artículos a, an y the",
+        goal: "Presentar objetos y hablar de algo ya conocido.",
+        structure: "a + sonido consonante · an + sonido vocal · the + referencia conocida",
+        uses: ["A/an para una cosa no identificada", "The cuando ambos saben de qué se habla"],
+        examples: [
+          { en: "I need a pen.", es: "Necesito un bolígrafo." },
+          { en: "The pen is blue.", es: "El bolígrafo es azul." }
+        ],
+        mistake: "El sonido manda: an hour, pero a university."
+      },
+      {
+        title: "Plural de los sustantivos",
+        goal: "Hablar de más de una persona, animal u objeto.",
+        structure: "noun + s/es · consonante + y → ies · plurales irregulares",
+        uses: ["-s en la mayoría", "-es tras s, sh, ch, x", "Formas irregulares frecuentes"],
+        examples: [
+          { en: "one class → two classes", es: "una clase → dos clases" },
+          { en: "one child → three children", es: "un niño → tres niños" }
+        ],
+        mistake: "Los adjetivos no tienen plural: two red cars, no two reds cars."
+      },
+      {
+        title: "Adjetivos y posesivos",
+        goal: "Describir y decir a quién pertenece algo.",
+        structure: "posesivo + adjetivo + sustantivo",
+        uses: ["my, your, his, her, its, our, their", "El adjetivo va antes del sustantivo"],
+        examples: [
+          { en: "This is her new phone.", es: "Este es su teléfono nuevo." },
+          { en: "Our house is small.", es: "Nuestra casa es pequeña." }
+        ],
+        mistake: "No confundas his (de él) con her (de ella)."
+      },
+      {
+        title: "Preguntas básicas",
+        goal: "Pedir información personal y responder de forma breve.",
+        structure: "Wh-word + to be + sujeto? · To be + sujeto...?",
+        uses: ["What, where, who, how", "Preguntas de sí/no con am/is/are"],
+        examples: [
+          { en: "Where are you from?", es: "¿De dónde eres?" },
+          { en: "Is she a student? Yes, she is.", es: "¿Es estudiante? Sí." }
+        ],
+        mistake: "En pregunta, el verbo va antes del sujeto: Where you are? ✗"
+      },
+      {
+        title: "There is y there are",
+        goal: "Decir qué existe o qué hay en un lugar.",
+        structure: "There is + singular · There are + plural",
+        uses: ["Describir habitaciones, ciudades o imágenes", "There isn't / there aren't para negar"],
+        examples: [
+          { en: "There is a café near here.", es: "Hay una cafetería cerca." },
+          { en: "There are two windows.", es: "Hay dos ventanas." }
+        ],
+        mistake: "No uses have para traducir hay: There is a problem ✓"
+      }
+    ],
+    exercises: [
+      { topic: "Orden básico", question: "Ordena: 'coffee / I / like'", answer: "I like coffee", hint: "Empieza por el sujeto y continúa con el verbo." },
+      { topic: "Pronombres", question: "Sustituye 'Laura' por un pronombre: '___ is my friend.'", answer: "She", hint: "Laura es una persona femenina singular." },
+      { topic: "Pronombres", question: "Sustituye 'the book': '___ is new.'", answer: "It", hint: "Para una cosa singular usamos it." },
+      { topic: "To be", question: "Completa: 'I ___ from Spain.'", answer: "am", hint: "To be con I." },
+      { topic: "To be", question: "Completa: 'Tom and Leo ___ brothers.'", answer: "are", hint: "Dos personas equivalen a they." },
+      { topic: "To be", question: "Forma la negativa: 'She is tired.'", answer: "She isn't tired", answers: ["She is not tired"], hint: "Añade not después de is." },
+      { topic: "Artículos", question: "Completa: 'It is ___ old house.'", answer: "an", hint: "Old empieza por sonido vocal." },
+      { topic: "Artículos", question: "Completa: 'I have a dog. ___ dog is friendly.'", answer: "The", hint: "Ya sabemos qué perro es." },
+      { topic: "Plurales", question: "Escribe el plural de 'box':", answer: "boxes", hint: "Tras x añadimos -es." },
+      { topic: "Plurales", question: "Escribe el plural de 'baby':", answer: "babies", hint: "Consonante + y cambia a -ies." },
+      { topic: "Posesivos", question: "Completa: 'We live here. This is ___ house.'", answer: "our", hint: "El posesivo correspondiente a we." },
+      { topic: "Preguntas", question: "Completa: '___ is your name?'", answer: "What", hint: "Pregunta por información o identidad." },
+      { topic: "Preguntas", question: "Forma la pregunta: 'She is at home.'", answer: "Is she at home", hint: "Coloca is delante del sujeto." },
+      { topic: "There is / are", question: "Completa: 'There ___ three chairs.'", answer: "are", hint: "Three chairs es plural." },
+      { topic: "There is / are", question: "Completa: 'There ___ not a bank here.'", answer: "is", hint: "A bank es singular." }
+    ],
+    extraExercises: []
+  },
+  A1: {
+    lessons: [
+      {
+        title: "Present Simple",
+        goal: "Hablar de rutinas, hábitos y hechos generales.",
+        structure: "I/you/we/they + verbo · he/she/it + verbo-s",
+        uses: ["Rutinas", "Hechos y gustos", "Horarios"],
+        examples: [
+          { en: "I walk to work.", es: "Voy andando al trabajo." },
+          { en: "She works on Saturdays.", es: "Ella trabaja los sábados." }
+        ],
+        mistake: "Con he/she/it añade -s, pero después de doesn't usa el infinitivo."
+      },
+      {
+        title: "Present Continuous",
+        goal: "Describir acciones en curso y situaciones temporales.",
+        structure: "am/is/are + verbo-ing",
+        uses: ["Ahora mismo", "Situaciones temporales", "Planes ya acordados"],
+        examples: [
+          { en: "They are studying now.", es: "Están estudiando ahora." },
+          { en: "I'm meeting Ana tonight.", es: "He quedado con Ana esta noche." }
+        ],
+        mistake: "No olvides el verbo to be: I studying ✗ → I am studying ✓"
+      },
+      {
+        title: "Past Simple",
+        goal: "Contar acciones terminadas en un momento pasado.",
+        structure: "afirmativa: verbo-ed/irregular · negativa: didn't + infinitivo",
+        uses: ["Historias y biografías", "Acciones con yesterday, last, ago"],
+        examples: [
+          { en: "We visited Rome last year.", es: "Visitamos Roma el año pasado." },
+          { en: "He didn't see the message.", es: "No vio el mensaje." }
+        ],
+        mistake: "Después de did/didn't usa infinitivo: didn't went ✗"
+      },
+      {
+        title: "Can, could y have to",
+        goal: "Expresar capacidad, permiso y obligación básica.",
+        structure: "can/could + infinitivo · have to + infinitivo",
+        uses: ["Can para capacidad presente", "Could para capacidad pasada o petición", "Have to para obligación"],
+        examples: [
+          { en: "Can you help me?", es: "¿Puedes ayudarme?" },
+          { en: "I have to leave early.", es: "Tengo que irme pronto." }
+        ],
+        mistake: "No añadas to después de can o could."
+      },
+      {
+        title: "Countable y uncountable",
+        goal: "Elegir correctamente much, many, some y any.",
+        structure: "many + contable plural · much + incontable · some/any + ambos",
+        uses: ["Preguntar por cantidad", "Ofrecer o pedir", "Expresar cantidad indefinida"],
+        examples: [
+          { en: "How many books do you have?", es: "¿Cuántos libros tienes?" },
+          { en: "We don't have much time.", es: "No tenemos mucho tiempo." }
+        ],
+        mistake: "Information, advice y furniture son incontables."
+      },
+      {
+        title: "Comparativos y superlativos",
+        goal: "Comparar personas, objetos y lugares.",
+        structure: "short: -er/-est · long: more/most + adjective",
+        uses: ["Comparar dos elementos", "Destacar uno dentro de un grupo"],
+        examples: [
+          { en: "This route is faster.", es: "Esta ruta es más rápida." },
+          { en: "It is the most interesting museum.", es: "Es el museo más interesante." }
+        ],
+        mistake: "No mezcles formas: more easier ✗ → easier ✓"
+      },
+      {
+        title: "Futuro básico",
+        goal: "Diferenciar decisiones, predicciones y planes.",
+        structure: "will + infinitivo · be going to + infinitivo",
+        uses: ["Will para decisión instantánea o predicción", "Going to para plan o evidencia"],
+        examples: [
+          { en: "I'll answer the phone.", es: "Yo cogeré el teléfono." },
+          { en: "We're going to travel in June.", es: "Vamos a viajar en junio." }
+        ],
+        mistake: "Tras will no uses to: will go, no will to go."
+      },
+      {
+        title: "Preposiciones de tiempo y lugar",
+        goal: "Situar acciones y objetos con precisión.",
+        structure: "at + punto · on + superficie/día · in + espacio/periodo",
+        uses: ["At 8 o'clock", "On Monday / on the table", "In July / in the room"],
+        examples: [
+          { en: "The class starts at nine.", es: "La clase empieza a las nueve." },
+          { en: "My keys are in the bag.", es: "Mis llaves están en el bolso." }
+        ],
+        mistake: "No traduzcas directamente desde español; aprende cada expresión completa."
+      }
+    ],
+    extraExercises: [
+      { topic: "Present Simple", question: "Completa: 'How often ___ she ___ (go) running?'", answer: "does she go", hint: "Pregunta con does + sujeto + infinitivo." },
+      { topic: "Present Continuous", question: "Completa: 'Be quiet! The baby ___ (sleep).'", answer: "is sleeping", hint: "La acción ocurre ahora mismo." },
+      { topic: "Cuantificadores", question: "Completa: 'How ___ water do you drink?'", answer: "much", hint: "Water es incontable." },
+      { topic: "Superlativos", question: "Completa: 'This is ___ (good) day of my life.'", answer: "the best", hint: "Good tiene una forma irregular." },
+      { topic: "Futuro", question: "Completa el plan: 'We ___ (visit) London next month.'", answer: "are going to visit", hint: "Es un plan decidido." }
+    ]
+  },
+  B1: {
+    lessons: [
+      {
+        title: "Present Perfect",
+        goal: "Conectar una experiencia o acción pasada con el presente.",
+        structure: "have/has + participio",
+        uses: ["Experiencias sin fecha", "Resultados presentes", "Situaciones con since/for"],
+        examples: [
+          { en: "I have lost my keys.", es: "He perdido las llaves." },
+          { en: "She has lived here for five years.", es: "Vive aquí desde hace cinco años." }
+        ],
+        mistake: "Con una fecha pasada terminada usa Past Simple: I saw it yesterday."
+      },
+      {
+        title: "Past Continuous y Past Perfect",
+        goal: "Ordenar acciones y dar contexto a una narración.",
+        structure: "was/were + -ing · had + participio",
+        uses: ["Acción en progreso interrumpida", "Acción anterior a otro pasado"],
+        examples: [
+          { en: "I was driving when you called.", es: "Estaba conduciendo cuando llamaste." },
+          { en: "They had left before we arrived.", es: "Se habían ido antes de que llegáramos." }
+        ],
+        mistake: "No uses Past Perfect para todas las acciones; solo para aclarar anterioridad."
+      },
+      {
+        title: "Conditionals 0, 1 y 2",
+        goal: "Expresar hechos, posibilidades reales e hipótesis.",
+        structure: "0: present + present · 1: present + will · 2: past + would",
+        uses: ["Reglas generales", "Futuro posible", "Situación imaginaria presente"],
+        examples: [
+          { en: "If you heat ice, it melts.", es: "Si calientas hielo, se derrite." },
+          { en: "If I had more time, I would read more.", es: "Si tuviera más tiempo, leería más." }
+        ],
+        mistake: "Normalmente no uses will dentro de la cláusula con if."
+      },
+      {
+        title: "Passive Voice",
+        goal: "Poner el foco en la acción o su resultado.",
+        structure: "objeto + to be en el tiempo correcto + participio",
+        uses: ["Cuando el agente es desconocido", "Procesos y noticias", "Registro formal"],
+        examples: [
+          { en: "The bridge was built in 1998.", es: "El puente fue construido en 1998." },
+          { en: "The results will be published tomorrow.", es: "Los resultados se publicarán mañana." }
+        ],
+        mistake: "El tiempo verbal está en to be; el participio no cambia."
+      },
+      {
+        title: "Reported Speech",
+        goal: "Contar lo que alguien dijo sin repetir sus palabras exactas.",
+        structure: "said (that) + backshift · told + persona + backshift",
+        uses: ["Transmitir afirmaciones", "Preguntas indirectas", "Órdenes y peticiones"],
+        examples: [
+          { en: "'I am busy.' → She said she was busy.", es: "Dijo que estaba ocupada." },
+          { en: "'Call me.' → He told me to call him.", es: "Me dijo que lo llamara." }
+        ],
+        mistake: "Tell necesita persona: she told me; say no la lleva directamente."
+      },
+      {
+        title: "Relative Clauses",
+        goal: "Unir información y evitar frases repetitivas.",
+        structure: "persona + who · cosa + which · posesión + whose · lugar + where",
+        uses: ["Definir exactamente", "Añadir información extra entre comas"],
+        examples: [
+          { en: "The woman who called is my manager.", es: "La mujer que llamó es mi jefa." },
+          { en: "Lisbon, which is beautiful, is near the coast.", es: "Lisboa, que es preciosa, está cerca de la costa." }
+        ],
+        mistake: "En una non-defining clause no uses that."
+      },
+      {
+        title: "Gerundio e infinitivo",
+        goal: "Elegir la forma que exige cada verbo.",
+        structure: "enjoy/avoid + -ing · want/decide + to-infinitive",
+        uses: ["Preferencias y actividades", "Planes y decisiones", "Cambios de significado"],
+        examples: [
+          { en: "I enjoy learning languages.", es: "Disfruto aprendiendo idiomas." },
+          { en: "We decided to wait.", es: "Decidimos esperar." }
+        ],
+        mistake: "Stop doing es dejar de hacerlo; stop to do es parar para hacerlo."
+      },
+      {
+        title: "Modales de deducción",
+        goal: "Expresar grados de certeza sobre una situación.",
+        structure: "must/might/could/can't + infinitivo · + have + participio para pasado",
+        uses: ["Must: casi seguro", "Might/could: posible", "Can't: imposible"],
+        examples: [
+          { en: "She must be at work.", es: "Debe de estar en el trabajo." },
+          { en: "They might have missed the train.", es: "Puede que perdieran el tren." }
+        ],
+        mistake: "Mustn't significa prohibición; can't expresa deducción negativa."
+      }
+    ],
+    extraExercises: [
+      { topic: "Present Perfect", question: "Completa: '___ you ever ___ (try) surfing?'", answer: "Have you ever tried", hint: "Experiencia vital sin fecha concreta." },
+      { topic: "Past Continuous", question: "Completa: 'While I ___ (cook), the lights went out.'", answer: "was cooking", hint: "Acción en progreso interrumpida." },
+      { topic: "Relative Clauses", question: "Completa: 'That's the café ___ we first met.'", answer: "where", hint: "El antecedente es un lugar." },
+      { topic: "Gerundio e infinitivo", question: "Completa: 'He promised ___ (help) us.'", answer: "to help", hint: "Promise va seguido de to-infinitive." },
+      { topic: "Deducción", question: "Completa: 'He isn't answering. He ___ be asleep.'", answer: "might", answers: ["could", "may"], hint: "Expresa una posibilidad, no una certeza." }
+    ]
+  },
+  C1: {
+    lessons: [
+      {
+        title: "Inversión negativa",
+        goal: "Dar énfasis con un registro formal o literario.",
+        structure: "expresión negativa + auxiliar + sujeto + verbo",
+        uses: ["Never, rarely, seldom", "Not only", "No sooner, hardly, scarcely"],
+        examples: [
+          { en: "Rarely have we faced such uncertainty.", es: "Rara vez hemos afrontado tanta incertidumbre." },
+          { en: "Not only did she apologise, but she offered a refund.", es: "No solo se disculpó, sino que ofreció un reembolso." }
+        ],
+        mistake: "Si no hay auxiliar, añade do/does/did."
+      },
+      {
+        title: "Cleft sentences",
+        goal: "Dirigir la atención hacia la información importante.",
+        structure: "It is/was X that... · What + clause + be...",
+        uses: ["Contrastar una persona, momento o causa", "Presentar la idea clave"],
+        examples: [
+          { en: "It was Maya who identified the flaw.", es: "Fue Maya quien identificó el fallo." },
+          { en: "What we need is a clear deadline.", es: "Lo que necesitamos es una fecha clara." }
+        ],
+        mistake: "Usarlas constantemente resta naturalidad; reserva la estructura para énfasis real."
+      },
+      {
+        title: "Participle clauses",
+        goal: "Condensar información y evitar repeticiones de sujeto.",
+        structure: "-ing / past participle / having + participle",
+        uses: ["Acciones simultáneas", "Causa o condición", "Acción anterior"],
+        examples: [
+          { en: "Having reviewed the data, we changed the plan.", es: "Tras revisar los datos, cambiamos el plan." },
+          { en: "Built in 1880, the house needs repairs.", es: "Construida en 1880, la casa necesita reparaciones." }
+        ],
+        mistake: "El sujeto implícito debe ser el mismo: Walking home, the rain started ✗"
+      },
+      {
+        title: "Mixed conditionals",
+        goal: "Relacionar una causa pasada con un resultado presente o viceversa.",
+        structure: "if + past perfect, would + infinitivo · if + past, would have + participio",
+        uses: ["Arrepentimiento con consecuencia actual", "Estado permanente que afectó al pasado"],
+        examples: [
+          { en: "If I had accepted, I would live in Berlin now.", es: "Si hubiera aceptado, ahora viviría en Berlín." },
+          { en: "If she were more organised, she wouldn't have missed it.", es: "Si fuera más organizada, no se lo habría perdido." }
+        ],
+        mistake: "Decide primero cuándo ocurre la causa y cuándo el resultado."
+      },
+      {
+        title: "Subjuntivo formal",
+        goal: "Formular recomendaciones y exigencias en registro formal.",
+        structure: "recommend/insist/essential + that + sujeto + forma base",
+        uses: ["Recomendaciones", "Exigencias", "Expresiones de necesidad"],
+        examples: [
+          { en: "They insisted that he resign.", es: "Insistieron en que dimitiera." },
+          { en: "It is vital that every member be informed.", es: "Es vital que todos estén informados." }
+        ],
+        mistake: "La forma base no cambia con he/she/it: that she attend."
+      },
+      {
+        title: "Hedging académico",
+        goal: "Matizar afirmaciones y evitar generalizaciones excesivas.",
+        structure: "may/might · tends to · appears to · arguably · to some extent",
+        uses: ["Mostrar cautela", "Reconocer límites", "Separar evidencia de interpretación"],
+        examples: [
+          { en: "The findings may indicate a broader trend.", es: "Los resultados pueden indicar una tendencia más amplia." },
+          { en: "This approach appears to be more effective.", es: "Este enfoque parece ser más eficaz." }
+        ],
+        mistake: "Matizar no significa ser impreciso; acompaña el hedge con evidencia."
+      },
+      {
+        title: "Nominalización",
+        goal: "Crear un estilo formal convirtiendo acciones en conceptos.",
+        structure: "verb/adjective → noun phrase",
+        uses: ["Textos académicos", "Foco en procesos o resultados", "Cohesión"],
+        examples: [
+          { en: "They analysed the data. → Their analysis of the data...", es: "Analizaron → Su análisis..." },
+          { en: "The system failed. → The system's failure...", es: "El sistema falló → El fallo del sistema..." }
+        ],
+        mistake: "Demasiadas nominalizaciones vuelven el texto pesado; combínalas con verbos claros."
+      },
+      {
+        title: "Concesión y contraste avanzado",
+        goal: "Construir argumentos equilibrados y sofisticados.",
+        structure: "much as · whereas · notwithstanding · albeit + adjective/phrase",
+        uses: ["Conceder un punto", "Contrastar perspectivas", "Limitar una afirmación"],
+        examples: [
+          { en: "Much as I value speed, accuracy comes first.", es: "Por mucho que valore la rapidez, la precisión es prioritaria." },
+          { en: "The plan was effective, albeit expensive.", es: "El plan fue eficaz, aunque caro." }
+        ],
+        mistake: "Albeit no introduce normalmente una oración completa con sujeto y verbo."
+      }
+    ],
+    extraExercises: [
+      { topic: "Inversión", question: "Completa: 'Hardly ___ we arrived when the meeting began.'", answer: "had", hint: "Hardly + Past Perfect + when." },
+      { topic: "Cleft sentences", question: "Reescribe con What: 'I need a reliable partner.'", answer: "What I need is a reliable partner", hint: "What + cláusula + be + foco." },
+      { topic: "Participle clauses", question: "Completa: '___ (warn) about the delay, we left early.'", answer: "Having been warned", hint: "Acción pasiva anterior a la principal." },
+      { topic: "Hedging", question: "Haz más cauta la frase con may: 'The policy causes inequality.'", answer: "The policy may cause inequality", hint: "May + infinitivo reduce la certeza." },
+      { topic: "Concesión", question: "Completa: '___ as the task was, they completed it.'", answer: "Difficult", hint: "Adjetivo + as + sujeto + verbo." }
+    ]
+  }
+};
+
+const a0Level = {
+  level: "A0",
+  color: "#EEF2FF",
+  textColor: "#4338CA",
+  exercises: grammarExpansion.A0.exercises,
+  lessons: grammarExpansion.A0.lessons
+};
+
+data.grammar.levels.unshift(a0Level);
+data.grammar.levels.forEach(level => {
+  const expansion = grammarExpansion[level.level];
+  if (!expansion) return;
+  level.lessons = expansion.lessons;
+  if (expansion.extraExercises?.length) {
+    level.exercises.push(...expansion.extraExercises);
+  }
+});
+data.grammar.count = `${data.grammar.levels.reduce((sum, level) => sum + level.exercises.length, 0)} ejercicios + 32 fichas`;
+data.grammar.description = "Curso desde A0 con estructuras, ejemplos, errores frecuentes, práctica y solucionarios";
+
+// ============================================================
+//  READING
+//  Las preguntas abiertas incluyen una respuesta orientativa:
+//  sirven para comparar ideas, no para invalidar otras lecturas razonadas.
+// ============================================================
+
+data.reading = {
+  title: "Reading",
+  icon: "R/",
+  description: "9 lecturas graduadas con comprensión, vocabulario contextual y respuestas orientativas",
+  count: "9 textos · 36 preguntas",
+  levels: [
+    {
+      level: "A1",
+      texts: [
+        {
+          title: "A New Routine",
+          genre: "Diario personal",
+          time: "2 min",
+          paragraphs: [
+            "My name is Eva and I live in Seville. I started a new job at a small hotel last month. I work from Monday to Friday. I usually get up at seven, have toast and fruit for breakfast, and take the bus at eight.",
+            "At the hotel, I answer emails and help guests. My colleagues are friendly, but the job is sometimes busy. After work, I walk home through the park. In the evening, I study English for thirty minutes because many hotel guests speak English.",
+            "On Fridays, I meet my friend Nora at a café. We talk about our week and plan something for the weekend. This new routine is tiring, but Eva feels proud because she is learning every day."
+          ],
+          questions: [
+            { type: "choice", q: "How does Eva travel to work?", options: ["By train", "By bus", "On foot"], correct: 1, explanation: "El primer párrafo dice que toma el autobús a las ocho." },
+            { type: "choice", q: "Why does she study English?", options: ["To change jobs", "To speak with hotel guests", "To travel on Fridays"], correct: 1, explanation: "Estudia porque muchos huéspedes hablan inglés." },
+            { type: "open", q: "Which part of Eva's routine seems most useful for her future?", guidance: "Respuesta orientativa: estudiar inglés parece especialmente útil porque mejora su capacidad para atender a huéspedes y puede abrirle oportunidades laborales. También sería válida otra elección bien explicada con datos del texto." },
+            { type: "open", q: "Write two sentences comparing Eva's routine with yours.", guidance: "Respuesta orientativa: Eva takes the bus to work, but I walk to school. She studies English in the evening, and I study it in the morning. Tu respuesta puede ser distinta si compara claramente dos hábitos." }
+          ]
+        },
+        {
+          title: "The Community Garden",
+          genre: "Historia cotidiana",
+          time: "2 min",
+          paragraphs: [
+            "There is a community garden behind Leo's apartment building. Ten families use it. Each family has a small area for vegetables or flowers. Leo and his daughter Mia grow tomatoes, onions and strawberries.",
+            "They go to the garden every Tuesday and Saturday. Mia waters the plants while Leo removes weeds. In summer, the garden is full of colour. Neighbours often share food and advice. Mrs Green gives Leo fresh herbs, and he gives her tomatoes.",
+            "The garden is more than a place for plants. It helps neighbours meet and work together. Mia says it is her favourite place because she can learn, play and talk to people of different ages."
+          ],
+          questions: [
+            { type: "choice", q: "When do Leo and Mia visit the garden?", options: ["Every day", "Tuesday and Saturday", "Only in summer"], correct: 1, explanation: "El segundo párrafo indica los dos días." },
+            { type: "choice", q: "What does Mrs Green give Leo?", options: ["Fresh herbs", "Strawberries", "Onions"], correct: 0, explanation: "Los vecinos intercambian productos y ella le da hierbas frescas." },
+            { type: "open", q: "Why is the garden important to the community?", guidance: "Respuesta orientativa: porque permite que los vecinos se conozcan, cooperen, compartan alimentos y aprendan unos de otros. No es únicamente un lugar para cultivar." },
+            { type: "open", q: "Would you like a community garden near your home? Explain.", guidance: "Respuesta orientativa: Yes, because I could grow fresh food and meet my neighbours. Una respuesta negativa también es válida si incluye una razón humana y coherente." }
+          ]
+        },
+        {
+          title: "A Different Birthday",
+          genre: "Correo electrónico",
+          time: "2 min",
+          paragraphs: [
+            "Hi Sam, Yesterday was my birthday, but I didn't have a big party this year. In the morning, my family made pancakes and gave me a blue backpack. Then we drove to a lake outside the city.",
+            "The weather was cool but sunny. We walked around the lake and had lunch under some trees. My little brother forgot the candles, so we put one small lamp next to the cake. It looked funny, and everyone laughed.",
+            "In the afternoon, I took lots of photos and read my birthday messages. It was a simple day, but I loved spending time with my family. Next weekend, I am going to watch a film with my friends. See you soon, Alex."
+          ],
+          questions: [
+            { type: "choice", q: "What present did Alex receive?", options: ["A camera", "A backpack", "A lamp"], correct: 1, explanation: "La familia le regaló una mochila azul." },
+            { type: "choice", q: "Why did they use a lamp?", options: ["It was dark", "They forgot the candles", "The cake was outside"], correct: 1, explanation: "El hermano pequeño olvidó las velas." },
+            { type: "open", q: "How did Alex feel about the simple celebration?", guidance: "Respuesta orientativa: Alex felt happy and satisfied because spending time with the family mattered more than having a large party." },
+            { type: "open", q: "What makes a celebration memorable for you?", guidance: "Respuesta orientativa: For me, a celebration is memorable when I share a relaxed moment with people I care about. No hay una única solución; se valora una opinión clara y explicada." }
+          ]
+        }
+      ]
+    },
+    {
+      level: "B1",
+      texts: [
+        {
+          title: "The Four-Day Experiment",
+          genre: "Artículo",
+          time: "3 min",
+          paragraphs: [
+            "Last spring, a small design company decided to test a four-day working week. Employees would work from Monday to Thursday without losing salary, but they had to keep the same deadlines and level of service. The director expected productivity to fall at first.",
+            "Instead, teams changed the way they organised their time. Meetings became shorter and only included people who needed to attend. Employees blocked periods for focused work and checked email less frequently. After two months, the company completed slightly more projects than during the previous period.",
+            "The change was not perfect. Customer support needed coverage on Fridays, so the team created a rotating schedule. Some employees also felt pressure to fit five days of work into four. The company responded by removing low-value reports rather than asking people to work faster.",
+            "At the end of the experiment, most employees reported less stress and better concentration. The director decided to continue for six more months, but she warned that the model might not suit every type of business."
+          ],
+          questions: [
+            { type: "choice", q: "What surprised the director?", options: ["Salaries increased", "Productivity did not fall", "Customers stopped calling"], correct: 1, explanation: "Esperaba una caída, pero terminaron ligeramente más proyectos." },
+            { type: "choice", q: "How did the company handle Friday support?", options: ["It closed support", "Managers answered every call", "It introduced a rotating schedule"], correct: 2, explanation: "El tercer párrafo describe un sistema rotativo." },
+            { type: "open", q: "Which change probably contributed most to productivity? Use evidence.", guidance: "Respuesta orientativa: shorter, more selective meetings probably saved time for focused work. También se puede defender la reducción de correos o informes si se conecta con información concreta." },
+            { type: "open", q: "What limitation of the experiment should readers remember?", guidance: "Respuesta orientativa: it involved one small design company, so the result may not apply to businesses requiring constant physical presence or different customer coverage." }
+          ]
+        },
+        {
+          title: "Learning to Repair",
+          genre: "Reportaje",
+          time: "3 min",
+          paragraphs: [
+            "Once a month, the central library in Brookdale becomes a repair café. Volunteers bring tools and help visitors fix broken lamps, clothes, bicycles and small electronic devices. The service is free, although visitors can donate money for replacement parts.",
+            "The project began when engineer Priya Shah noticed how many repairable objects were being thrown away. She wanted to reduce waste, but she also believed practical skills could bring generations together. Retired technicians now work beside university students, and both groups say they learn from each other.",
+            "Not every object can be saved. Modern devices are sometimes sealed or require parts that are no longer produced. Volunteers explain the problem instead of promising a repair. This honesty is important because visitors learn how products are designed and when replacement is unavoidable.",
+            "The café's success has changed the library too. People who first arrived with a broken toaster now borrow manuals, attend workshops or volunteer. The organisers argue that the most valuable repair may be the community itself."
+          ],
+          questions: [
+            { type: "choice", q: "What originally motivated Priya?", options: ["A shortage of library books", "The amount of repairable waste", "A university assignment"], correct: 1, explanation: "Observó que se tiraban objetos que podían repararse." },
+            { type: "choice", q: "Why do volunteers explain failed repairs?", options: ["To teach how products work", "To sell replacement devices", "To avoid using tools"], correct: 0, explanation: "La explicación ayuda a comprender el diseño y los límites de reparación." },
+            { type: "open", q: "Explain the final phrase: 'the most valuable repair may be the community itself.'", guidance: "Respuesta orientativa: repairing objects creates relationships, shared knowledge and new participation; therefore the project also strengthens a previously disconnected community." },
+            { type: "open", q: "Suggest one additional activity for the repair café.", guidance: "Respuesta orientativa: it could run a basic maintenance class so visitors learn to prevent common problems. Se acepta cualquier propuesta realista explicada." }
+          ]
+        },
+        {
+          title: "The Quiet Carriage Debate",
+          genre: "Opinión",
+          time: "3 min",
+          paragraphs: [
+            "Several rail companies have introduced quiet carriages where phone calls and loud conversations are discouraged. Supporters say these spaces allow passengers to work, read or rest during long journeys. Clear signs remind travellers to keep devices silent.",
+            "However, the policy often creates disagreement. Families with young children may enter the carriage by mistake, and some passengers interpret every sound as a rule violation. Staff members report that conflicts are usually caused not by noise itself, but by the unfriendly way people complain.",
+            "Transport researcher Daniel Cho suggests replacing strict silence with the idea of a considerate carriage. Necessary conversation would be allowed at a low volume, while calls and videos without headphones would remain unacceptable. He believes a flexible rule would be easier to understand and enforce.",
+            "Critics respond that flexible language creates uncertainty. In their view, passengers choose a quiet carriage precisely because the expectation is simple. The debate reveals how difficult it is to share public space when people have different needs."
+          ],
+          questions: [
+            { type: "choice", q: "According to staff, what often causes conflict?", options: ["The length of journeys", "The manner of complaints", "Unclear train tickets"], correct: 1, explanation: "El texto destaca la forma poco amable de quejarse." },
+            { type: "choice", q: "What does Daniel Cho propose?", options: ["Removing all rules", "A more flexible considerate-carriage rule", "Banning children from trains"], correct: 1, explanation: "Propone permitir conversaciones necesarias a volumen bajo." },
+            { type: "open", q: "Which policy seems more practical to you, and why?", guidance: "Respuesta orientativa: a considerate carriage may be more practical because it distinguishes avoidable noise from necessary communication. También es válida la defensa del silencio estricto si explica cómo mejora la claridad." },
+            { type: "open", q: "Identify one idea shared by both sides.", guidance: "Respuesta orientativa: both sides agree that passengers need a predictable environment and that loud calls or videos can disturb others; they disagree about how strict the rule should be." }
+          ]
+        }
+      ]
+    },
+    {
+      level: "C1",
+      texts: [
+        {
+          title: "The Efficiency Paradox",
+          genre: "Ensayo",
+          time: "4 min",
+          paragraphs: [
+            "Tools designed to save time do not necessarily leave us with more of it. Email reduced the cost of sending a message, yet the volume of expected communication expanded dramatically. Faster transport shortened individual journeys while enabling people to live farther from work. Efficiency, in other words, often changes behaviour rather than simply reducing effort.",
+            "Economists describe a related phenomenon as the rebound effect: when a resource becomes cheaper or easier to use, demand may rise enough to offset part of the anticipated saving. A more efficient car consumes less fuel per kilometre, but its owner may decide to drive more frequently. The technology succeeds on a narrow measure while producing a less impressive result at system level.",
+            "This does not make efficiency pointless. It suggests that technical improvement alone cannot determine the outcome. Institutions, incentives and social expectations shape how the saved resource is used. A company that automates routine reporting might give employees time for creative work; it might equally fill the gap with additional reporting.",
+            "The relevant question is therefore not merely whether a tool is faster, but what kind of behaviour its speed encourages. Without that broader perspective, societies risk mistaking capacity for progress."
+          ],
+          questions: [
+            { type: "choice", q: "What is the central claim?", options: ["Efficiency always increases consumption", "Time-saving tools can alter behaviour and reduce expected gains", "Technology should be rejected"], correct: 1, explanation: "La tesis no rechaza la eficiencia; cuestiona que el ahorro técnico se traduzca automáticamente en progreso." },
+            { type: "choice", q: "Why is the car example a rebound effect?", options: ["The car becomes slower", "Lower use per kilometre encourages more driving", "Fuel prices necessarily increase"], correct: 1, explanation: "El ahorro unitario puede quedar parcialmente compensado por un mayor uso." },
+            { type: "open", q: "Explain the distinction between capacity and progress.", guidance: "Respuesta orientativa: capacity is the technical ability to do more or act faster; progress depends on whether institutions and behaviour use that capacity to improve meaningful outcomes." },
+            { type: "open", q: "Apply the author's argument to an AI tool used for studying.", guidance: "Respuesta orientativa: an AI summariser may save reading time, but the benefit depends on whether the student uses that time for deeper practice or simply processes more material superficially. Otras aplicaciones razonadas son válidas." }
+          ]
+        },
+        {
+          title: "Who Owns a City’s Memory?",
+          genre: "Artículo cultural",
+          time: "4 min",
+          paragraphs: [
+            "City archives have traditionally preserved official documents: planning decisions, tax records and correspondence between public institutions. Such material is indispensable, yet it tends to describe a city from the perspective of those with administrative power. Everyday experience survives less reliably.",
+            "Digital collection projects seek to correct that imbalance by inviting residents to submit photographs, voice recordings and personal accounts. A bus ticket or a memory of a demolished market may reveal patterns that formal records overlook. The resulting archive is richer, but it raises difficult questions about consent, verification and representation.",
+            "If every contribution is treated as equally authoritative, misinformation can enter the historical record. If professional archivists impose overly strict standards, the same voices excluded in the past may be excluded again. Selection is unavoidable; neutrality is not. Even the decision to preserve one object rather than another creates an argument about what matters.",
+            "Some archivists now describe their role less as guarding a finished past and more as facilitating an ongoing conversation. Their task is to preserve disagreement alongside evidence, document the limits of each source and make the process of selection visible. A democratic archive, on this view, is not one without judgement, but one whose judgements can be examined."
+          ],
+          questions: [
+            { type: "choice", q: "What limitation of traditional archives does the text emphasise?", options: ["They contain no reliable material", "They privilege administrative perspectives", "They only preserve photographs"], correct: 1, explanation: "Los documentos oficiales tienden a reflejar a quienes tenían poder administrativo." },
+            { type: "choice", q: "What does 'neutrality is not' mean in context?", options: ["Selection can be avoided", "Every selection reflects judgement", "Archivists should remove evidence"], correct: 1, explanation: "La elección de qué conservar ya expresa una visión de importancia." },
+            { type: "open", q: "How does the final definition of a democratic archive address misinformation?", guidance: "Respuesta orientativa: it does not accept every claim uncritically; it preserves evidence, disagreement and source limitations while making curatorial decisions open to examination." },
+            { type: "open", q: "Whose everyday experience would you add to a city archive, and why?", guidance: "Respuesta orientativa: I would record night-shift workers because their use of transport and public space is often absent from daytime accounts. Se acepta cualquier grupo con una justificación concreta." }
+          ]
+        },
+        {
+          title: "The Value of Productive Disagreement",
+          genre: "Análisis",
+          time: "4 min",
+          paragraphs: [
+            "Organisations frequently claim to value disagreement while quietly rewarding consensus. A meeting may invite alternative views, yet the first confident proposal becomes an anchor around which later comments revolve. Employees learn that challenging a popular idea carries social risk, particularly when senior figures have already expressed support.",
+            "The solution is not to celebrate conflict for its own sake. Unstructured opposition can consume time, weaken trust and allow individuals to avoid responsibility. Productive disagreement requires a shared objective, evidence that participants can inspect and rules that separate criticism of an idea from judgement of the person presenting it.",
+            "Some teams collect written opinions before discussion begins. Others assign a rotating member to identify assumptions and construct the strongest counterargument, even when that person privately agrees with the proposal. These methods reduce the influence of hierarchy and prevent dissent from becoming a fixed personality trait.",
+            "Crucially, leaders must show that changing one's mind is evidence of judgement rather than weakness. If every concession is treated as defeat, participants will defend positions long after those positions cease to be useful. The quality of a decision depends not on the absence of disagreement, but on whether disagreement is converted into better reasoning."
+          ],
+          questions: [
+            { type: "choice", q: "Why can invitations to disagree be ineffective?", options: ["Meetings contain no proposals", "Hierarchy and social risk still shape responses", "Written evidence is always unavailable"], correct: 1, explanation: "El texto señala el anclaje y el riesgo de contradecir a figuras superiores." },
+            { type: "choice", q: "What is the purpose of assigning a counterargument role?", options: ["To create permanent opposition", "To test assumptions without personalising dissent", "To let leaders avoid decisions"], correct: 1, explanation: "El rol rota y separa la crítica de una identidad personal." },
+            { type: "open", q: "Why does the author distinguish disagreement from conflict?", guidance: "Respuesta orientativa: disagreement can improve reasoning when it is structured around evidence and a shared goal; conflict becomes harmful when it targets people, lacks structure or avoids responsibility." },
+            { type: "open", q: "Design one rule for a productive classroom debate.", guidance: "Respuesta orientativa: each claim must be followed by evidence or an example, and another student must summarise it fairly before responding. Son válidas otras reglas que protejan respeto y razonamiento." }
+          ]
+        }
+      ]
+    }
+  ]
+};

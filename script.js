@@ -20,10 +20,11 @@ function loadProgress() {
     p.tests      = p.tests      || {};
     p.vocabKnown = p.vocabKnown || {};
     p.listening  = p.listening  || {};
+    p.reading    = p.reading    || {};
     p.streak     = p.streak     || { count: 0, lastDate: '' };
     return p;
   } catch (e) {
-    return { grammar: {}, tests: {}, vocabKnown: {}, listening: {}, streak: { count: 0, lastDate: '' } };
+    return { grammar: {}, tests: {}, vocabKnown: {}, listening: {}, reading: {}, streak: { count: 0, lastDate: '' } };
   }
 }
 
@@ -57,19 +58,21 @@ function getTotals() {
   const grammar = data.grammar.levels.reduce((a, l) => a + l.exercises.length, 0);
   const tests = data.tests.levels.reduce((a, l) => a + l.questions.length, 0);
   const listening = data.listening.levels.reduce((a, l) => a + l.tracks.length, 0);
+  const reading = data.reading.levels.reduce((a, l) => a + l.texts.length, 0);
   let vocabulary = data.vocabulary.levels.reduce((a, l) => a + l.words.length, 0);
   if (vocabularyData) {
     vocabulary = Object.values(vocabularyData).reduce((a, arr) => a + arr.length, 0);
   }
-  return { grammar, tests, listening, vocabulary };
+  return { grammar, tests, listening, reading, vocabulary };
 }
 
 function getDone(progress) {
   const grammar = Object.values(progress.grammar).reduce((a, arr) => a + arr.filter(Boolean).length, 0);
   const tests = Object.values(progress.tests).reduce((a, o) => a + (o.best || 0), 0);
   const listening = Object.values(progress.listening).reduce((a, arr) => a + arr.filter(Boolean).length, 0);
+  const reading = Object.values(progress.reading).reduce((a, arr) => a + arr.filter(Boolean).length, 0);
   const vocabulary = Object.keys(progress.vocabKnown).length;
-  return { grammar, tests, listening, vocabulary };
+  return { grammar, tests, listening, reading, vocabulary };
 }
 
 function updateCardProgress(key) {
@@ -87,7 +90,7 @@ function updateCardProgress(key) {
 }
 
 function updateAllCardProgress() {
-  ['grammar', 'vocabulary', 'tests', 'listening'].forEach(updateCardProgress);
+  ['grammar', 'vocabulary', 'tests', 'listening', 'reading'].forEach(updateCardProgress);
   updateProgressOverview();
 }
 
@@ -101,7 +104,7 @@ function updateProgressOverview() {
   const done = getDone(loadProgress());
   const doneCount = Object.values(done).reduce((sum, n) => sum + n, 0);
   // Cada habilidad pesa lo mismo para que las 1.100+ palabras no oculten el
-  // progreso conseguido en gramática, tests o listening.
+  // progreso conseguido en gramática, tests, listening o reading.
   const sectionPercentages = Object.keys(totals).map(key =>
     totals[key] ? Math.min(1, (done[key] || 0) / totals[key]) : 0
   );
@@ -112,7 +115,7 @@ function updateProgressOverview() {
   value.textContent = `${pct}%`;
   fill.style.width = `${pct}%`;
   summary.textContent = doneCount
-    ? `${doneCount} actividades completadas · progreso equilibrado entre 4 habilidades.`
+    ? `${doneCount} actividades completadas · progreso equilibrado entre 5 habilidades.`
     : 'Empieza una actividad para ver aquí tu avance.';
 }
 
@@ -421,7 +424,7 @@ async function loadVocabulary() {
 //  Cada card es un enlace real a su propia pagina (grammar.html, etc.)
 
 const grid = document.getElementById('cards-grid');
-const sections = ['grammar', 'vocabulary', 'tests', 'listening', 'theory'];
+const sections = ['grammar', 'reading', 'vocabulary', 'tests', 'listening', 'theory'];
 
 function renderCards() {
   grid.innerHTML = '';
@@ -471,6 +474,7 @@ const content = document.getElementById('page-content');
 // ─── 5. SELECTOR DE NIVEL ──────────────────────────────────────────────────
 
 const levelColors = {
+  A0: { bg: '#EEF2FF', text: '#4338CA' },
   A1: { bg: '#E1F5EE', text: '#085041' },
   B1: { bg: '#E6F1FB', text: '#0C447C' },
   C1: { bg: '#FAEEDA', text: '#633806' },
@@ -512,13 +516,13 @@ function switchLevel(sectionKey, levelIndex) {
 function renderGrammar(levelIndex = 0) {
   const s = data.grammar;
   const lvl = s.levels[levelIndex];
-  const c = levelColors[lvl.level];
   const levelKeys = s.levels.map(l => l.level);
   const progress = loadProgress();
   const doneArr = progress.grammar[lvl.level] || [];
   const doneCount = doneArr.filter(Boolean).length;
+  const lessons = lvl.lessons || [];
 
-  // Agrupar ejercicios por tema, conservando el orden de aparicion
+  // Agrupar ejercicios por tema, conservando el orden de aparición.
   const topicOrder = [];
   const byTopic = {};
   lvl.exercises.forEach((ex, i) => {
@@ -529,11 +533,68 @@ function renderGrammar(levelIndex = 0) {
 
   let html = `
     <div class="section-intro">
-      <span class="section-code">GRAMMAR / ${lvl.level}</span>
-      <h2>Grammar Lab</h2>
-      <p class="subtitle">Completa cada reto, usa la pista si la necesitas y fija el patrón antes de pasar al siguiente.</p>
+      <span class="section-code">GRAMMAR COURSE / ${lvl.level}</span>
+      <h2>${lvl.level === 'A0' ? 'Empieza desde cero' : `Domina el nivel ${lvl.level}`}</h2>
+      <p class="subtitle">${lessons.length} fichas paso a paso y ${lvl.exercises.length} ejercicios. Primero entiende la estructura; después practica sin mirar el solucionario.</p>
     </div>
     ${renderLevelSelector(levelKeys, levelIndex, 'grammar')}
+    <div class="grammar-roadmap" aria-label="Ruta de esta hoja">
+      <div><span>01</span><strong>Comprende</strong><small>Estructura y uso</small></div>
+      <div><span>02</span><strong>Observa</strong><small>Ejemplos traducidos</small></div>
+      <div><span>03</span><strong>Practica</strong><small>${lvl.exercises.length} retos</small></div>
+      <div><span>04</span><strong>Corrige</strong><small>Soluciones al final</small></div>
+    </div>
+
+    <section class="grammar-theory" aria-labelledby="grammar-theory-title">
+      <div class="content-section-heading">
+        <span class="section-code">PARTE 01 · TEORÍA GUIADA</span>
+        <h3 id="grammar-theory-title">Aprende cada estructura</h3>
+        <p>Usa el índice para saltar a una ficha. Cada bloque explica qué construir, cuándo utilizarlo y qué error evitar.</p>
+      </div>
+      <nav class="grammar-lesson-index" aria-label="Índice de gramática">
+        ${lessons.map((lesson, i) => `
+          <button onclick="scrollToGrammarLesson(${i})"><span>${String(i + 1).padStart(2, '0')}</span>${lesson.title}</button>
+        `).join('')}
+      </nav>
+      <div class="grammar-lessons">
+        ${lessons.map((lesson, i) => `
+          <article class="grammar-lesson" id="grammar-lesson-${i}">
+            <div class="grammar-lesson-heading">
+              <span>${String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <small>NIVEL ${lvl.level}</small>
+                <h4>${lesson.title}</h4>
+                <p>${lesson.goal}</p>
+              </div>
+            </div>
+            <div class="grammar-formula">
+              <span>ESTRUCTURA</span>
+              <code>${lesson.structure}</code>
+            </div>
+            <div class="grammar-lesson-grid">
+              <div class="grammar-uses">
+                <span class="control-label">Cuándo se usa</span>
+                <ul>${lesson.uses.map(use => `<li>${use}</li>`).join('')}</ul>
+              </div>
+              <div class="grammar-examples">
+                <span class="control-label">Ejemplos</span>
+                ${lesson.examples.map(example => `
+                  <div><strong>${example.en}</strong><small>${example.es}</small></div>
+                `).join('')}
+              </div>
+            </div>
+            <div class="grammar-mistake"><span>EVITA ESTE ERROR</span><p>${lesson.mistake}</p></div>
+          </article>
+        `).join('')}
+      </div>
+    </section>
+
+    <section class="grammar-practice" aria-labelledby="grammar-practice-title">
+      <div class="content-section-heading">
+        <span class="section-code">PARTE 02 · EJERCICIOS</span>
+        <h3 id="grammar-practice-title">Practica sin mirar las respuestas</h3>
+        <p>Escribe la frase completa cuando sea necesario. Si fallas, revisa la ficha y vuelve a intentarlo; todas las soluciones están al final.</p>
+      </div>
     <div class="module-progress">
       <div><span>Nivel ${lvl.level}</span><strong><span id="grammar-done-count">${doneCount}</span> de ${lvl.exercises.length} retos</strong></div>
       <div class="module-progress-track"><span id="grammar-module-fill" style="width:${Math.round(doneCount / lvl.exercises.length * 100)}%"></span></div>
@@ -566,7 +627,36 @@ function renderGrammar(levelIndex = 0) {
     });
   });
 
+  html += `
+    </section>
+    <section class="grammar-answer-section" aria-labelledby="grammar-solutions-title">
+      <div class="content-section-heading">
+        <span class="section-code">PARTE 03 · AUTOCORRECCIÓN</span>
+        <h3 id="grammar-solutions-title">Soluciones de la hoja ${lvl.level}</h3>
+        <p>Ábrelas solo después de intentar los ejercicios. La pista explica el patrón que justifica cada respuesta.</p>
+      </div>
+      <details class="grammar-solutions">
+        <summary><span>Mostrar ${lvl.exercises.length} soluciones</span><small>Las respuestas están ocultas</small></summary>
+        <div class="solutions-grid">
+          ${lvl.exercises.map((exercise, i) => `
+            <div class="solution-item">
+              <span>${String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <small>${exercise.topic || 'General'}</small>
+                <strong>${exercise.answer}</strong>
+                <p>${exercise.hint}</p>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </details>
+    </section>`;
+
   return html;
+}
+
+function scrollToGrammarLesson(i) {
+  document.getElementById(`grammar-lesson-${i}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function checkGrammar(i, levelIndex) {
@@ -591,7 +681,7 @@ function checkGrammar(i, levelIndex) {
     input.style.borderColor = '#639922';
   } else {
     fb.classList.add('ko');
-    fb.textContent = 'Respuesta correcta: "' + lvl.exercises[i].answer + '"';
+    fb.textContent = 'Todavía no. Revisa la pista, consulta la ficha y vuelve a intentarlo. La solución está al final de la hoja.';
     input.style.borderColor = '#E24B4A';
   }
 
@@ -1231,8 +1321,153 @@ if ('speechSynthesis' in window) {
   window.speechSynthesis.addEventListener?.('voiceschanged', getEnglishVoices);
 }
 
+// ─── 10. READING ────────────────────────────────────────────────────────────
 
-// ─── 10. TEORIA ─────────────────────────────────────────────────────────────
+function renderReading(levelIndex = 0) {
+  const section = data.reading;
+  const level = section.levels[levelIndex];
+  const levelKeys = section.levels.map(item => item.level);
+  const done = loadProgress().reading[level.level] || [];
+  const completedCount = done.filter(Boolean).length;
+
+  let html = `
+    <div class="section-intro">
+      <span class="section-code">READING LAB / ${level.level}</span>
+      <h2>Lee, interpreta y responde</h2>
+      <p class="subtitle">Tres textos graduados por hoja. Las preguntas cerradas tienen una respuesta verificable; las abiertas incluyen un modelo orientativo, nunca una única opinión “correcta”.</p>
+    </div>
+    ${renderLevelSelector(levelKeys, levelIndex, 'reading')}
+    <div class="reading-overview">
+      <div><span class="section-code">HOJA ${level.level}</span><strong>${level.texts.length} lecturas · ${level.texts.reduce((sum, text) => sum + text.questions.length, 0)} preguntas</strong></div>
+      <div><span>Completadas</span><strong id="reading-completed-count">${completedCount}/${level.texts.length}</strong></div>
+      <div class="module-progress-track"><span id="reading-module-fill" style="width:${Math.round(completedCount / level.texts.length * 100)}%"></span></div>
+    </div>`;
+
+  level.texts.forEach((text, textIndex) => {
+    const isDone = !!done[textIndex];
+    html += `
+      <article class="reading-sheet ${isDone ? 'completed' : ''}" id="reading-text-${textIndex}">
+        <div class="reading-sheet-header">
+          <span class="reading-number">${String(textIndex + 1).padStart(2, '0')}</span>
+          <div>
+            <div class="reading-meta"><span>${text.genre}</span><span>${text.time}</span><span>Nivel ${level.level}</span></div>
+            <h3>${text.title}</h3>
+            <p id="reading-done-${textIndex}" class="reading-status">${isDone ? 'Lectura completada' : 'Pendiente de responder'}</p>
+          </div>
+        </div>
+        <div class="reading-text">
+          ${text.paragraphs.map((paragraph, paragraphIndex) => `
+            <p><span>${String(paragraphIndex + 1).padStart(2, '0')}</span>${paragraph}</p>
+          `).join('')}
+        </div>
+        <section class="reading-questions" aria-labelledby="reading-questions-${textIndex}">
+          <div class="reading-questions-heading">
+            <span class="control-label">Comprensión</span>
+            <h4 id="reading-questions-${textIndex}">Preguntas sobre el texto</h4>
+          </div>
+          ${text.questions.map((question, questionIndex) => `
+            <div class="reading-question" id="reading-question-${textIndex}-${questionIndex}" data-answered="false">
+              <div class="reading-question-title">
+                <span>${questionIndex + 1}</span>
+                <div><small>${question.type === 'open' ? 'RESPUESTA ABIERTA' : 'ELECCIÓN ÚNICA'}</small><p>${question.q}</p></div>
+              </div>
+              ${question.type === 'choice' ? `
+                <div class="reading-options" id="reading-options-${textIndex}-${questionIndex}">
+                  ${question.options.map((option, optionIndex) => `
+                    <button onclick="checkReadingChoice(${textIndex}, ${questionIndex}, ${levelIndex}, ${optionIndex}, this)">${option}</button>
+                  `).join('')}
+                </div>
+                <div class="reading-feedback" id="reading-feedback-${textIndex}-${questionIndex}" aria-live="polite"></div>
+              ` : `
+                <textarea id="reading-answer-${textIndex}-${questionIndex}" rows="3" placeholder="Escribe tu interpretación con tus propias palabras..."></textarea>
+                <button class="reading-guide-btn" onclick="showReadingGuidance(${textIndex}, ${questionIndex}, ${levelIndex})">Comparar con una respuesta orientativa</button>
+                <div class="reading-guidance" id="reading-guidance-${textIndex}-${questionIndex}"></div>
+              `}
+            </div>
+          `).join('')}
+        </section>
+        <details class="reading-solutions">
+          <summary><span>Ver respuestas y criterios de esta lectura</span><small>Comprueba después de responder</small></summary>
+          <div class="reading-solution-list">
+            ${text.questions.map((question, questionIndex) => `
+              <div>
+                <span>${questionIndex + 1}</span>
+                <p><strong>${question.type === 'choice' ? question.options[question.correct] : 'Respuesta orientativa'}</strong>${question.type === 'choice' ? question.explanation : question.guidance}</p>
+              </div>
+            `).join('')}
+          </div>
+          <p class="orientation-note"><strong>Sobre las preguntas abiertas:</strong> el modelo sirve para comparar argumentos, claridad y evidencias. Una respuesta humana diferente también es válida si está razonada y conectada con el texto.</p>
+        </details>
+      </article>`;
+  });
+
+  return html;
+}
+
+function checkReadingChoice(textIndex, questionIndex, levelIndex, selected, button) {
+  const level = data.reading.levels[levelIndex];
+  const question = level.texts[textIndex].questions[questionIndex];
+  const options = document.querySelectorAll(`#reading-options-${textIndex}-${questionIndex} button`);
+  const feedback = document.getElementById(`reading-feedback-${textIndex}-${questionIndex}`);
+  options.forEach((option, index) => {
+    option.disabled = true;
+    if (index === question.correct) option.classList.add('correct');
+  });
+  if (selected === question.correct) {
+    feedback.className = 'reading-feedback show ok';
+    feedback.textContent = `Correcto. ${question.explanation}`;
+  } else {
+    button.classList.add('wrong');
+    feedback.className = 'reading-feedback show ko';
+    feedback.textContent = `Revisa el fragmento. ${question.explanation}`;
+  }
+  document.getElementById(`reading-question-${textIndex}-${questionIndex}`).dataset.answered = 'true';
+  updateReadingCompletion(textIndex, levelIndex);
+}
+
+function showReadingGuidance(textIndex, questionIndex, levelIndex) {
+  const input = document.getElementById(`reading-answer-${textIndex}-${questionIndex}`);
+  const guidance = document.getElementById(`reading-guidance-${textIndex}-${questionIndex}`);
+  const question = data.reading.levels[levelIndex].texts[textIndex].questions[questionIndex];
+  guidance.className = 'reading-guidance show';
+  guidance.innerHTML = `<span>MODELO ORIENTATIVO</span><p>${question.guidance}</p>`;
+  if (!input.value.trim()) {
+    guidance.insertAdjacentHTML('afterbegin', '<small>Intenta escribir tu respuesta antes de comparar.</small>');
+    return;
+  }
+  document.getElementById(`reading-question-${textIndex}-${questionIndex}`).dataset.answered = 'true';
+  updateReadingCompletion(textIndex, levelIndex);
+}
+
+function updateReadingCompletion(textIndex, levelIndex) {
+  const sheet = document.getElementById(`reading-text-${textIndex}`);
+  const questions = sheet.querySelectorAll('.reading-question');
+  const answered = sheet.querySelectorAll('.reading-question[data-answered="true"]');
+  if (questions.length !== answered.length) return;
+  markReadingComplete(data.reading.levels[levelIndex].level, textIndex);
+}
+
+function markReadingComplete(level, textIndex) {
+  const progress = loadProgress();
+  if (!progress.reading[level]) progress.reading[level] = [];
+  const isNew = !progress.reading[level][textIndex];
+  progress.reading[level][textIndex] = true;
+  saveProgress(progress);
+  if (isNew) recordStudyActivity();
+  updateCardProgress('reading');
+
+  document.getElementById(`reading-text-${textIndex}`)?.classList.add('completed');
+  const status = document.getElementById(`reading-done-${textIndex}`);
+  if (status) status.textContent = 'Lectura completada';
+  const completed = progress.reading[level].filter(Boolean).length;
+  const count = document.getElementById('reading-completed-count');
+  const fill = document.getElementById('reading-module-fill');
+  if (count) count.textContent = `${completed}/${data.reading.levels.find(item => item.level === level).texts.length}`;
+  if (fill) fill.style.width = `${Math.round(completed / data.reading.levels.find(item => item.level === level).texts.length * 100)}%`;
+}
+
+
+// ─── 11. TEORIA ─────────────────────────────────────────────────────────────
 
 function renderTheory() {
   const s = data.theory;
@@ -1324,18 +1559,19 @@ function scrollToTheoryTopic(i) {
 }
 
 
-// ─── 11. DESPACHAR SECCION ─────────────────────────────────────────────────
+// ─── 12. DESPACHAR SECCION ─────────────────────────────────────────────────
 
 function renderSection(key, levelIndex) {
   if (key === 'grammar')    return renderGrammar(levelIndex);
   if (key === 'vocabulary') return renderVocabulary(levelIndex);
   if (key === 'tests')      return renderTests(levelIndex);
   if (key === 'listening')  return renderListening(levelIndex);
+  if (key === 'reading')    return renderReading(levelIndex);
   if (key === 'theory')     return renderTheory();
 }
 
 
-// ─── 12. ARRANQUE ───────────────────────────────────────────────────────────
+// ─── 13. ARRANQUE ───────────────────────────────────────────────────────────
 
 initTheme();
 updateStreakDisplay();
