@@ -1,6 +1,6 @@
 // ============================================================
 //  SCRIPT.JS — Logica completa del sitio
-//  El vocabulario se carga desde vocabulary.json (1000+ palabras)
+//  El vocabulario se carga desde vocabulary.json (1300+ palabras y expresiones)
 //  El resto del contenido viene de data.js
 // ============================================================
 
@@ -60,7 +60,9 @@ function getTotals() {
   const listening = data.listening.levels.reduce((a, l) => a + l.tracks.length, 0);
   const reading = data.reading.levels.reduce((a, l) => a + l.texts.length, 0);
   let vocabulary = data.vocabulary.levels.reduce((a, l) => a + l.words.length, 0);
-  if (vocabularyData) {
+  if (vocabularyIndexed) {
+    vocabulary = Object.values(vocabularyIndexed).reduce((a, arr) => a + arr.length, 0);
+  } else if (vocabularyData) {
     vocabulary = Object.values(vocabularyData).reduce((a, arr) => a + arr.length, 0);
   }
   return { grammar, tests, listening, reading, vocabulary };
@@ -350,6 +352,23 @@ const EXTRA_VOCABULARY = {
     ["Right now", "Ahora mismo", "I am studying right now."],
     ["On the left", "A la izquierda", "The bank is on the left."]
   ],
+  A2: [
+    ["In a hurry", "Con prisa", "I left home in a hurry."],
+    ["At least", "Al menos", "Try to study for at least twenty minutes."],
+    ["For a while", "Durante un rato", "We waited outside for a while."],
+    ["What happened?", "¿Qué ocurrió?", "You look worried. What happened?"],
+    ["I agree with you", "Estoy de acuerdo contigo", "I agree with you about the timetable."],
+    ["It sounds great", "Suena genial", "A weekend by the sea sounds great."],
+    ["I'm afraid that...", "Me temo que...", "I'm afraid that the shop is closed."],
+    ["How long does it take?", "¿Cuánto se tarda?", "How long does it take to get there?"],
+    ["As soon as possible", "Lo antes posible", "Please call me as soon as possible."],
+    ["On my way", "De camino", "I'm on my way to the station."],
+    ["Have you ever...?", "¿Alguna vez has...?", "Have you ever travelled alone?"],
+    ["It was worth it", "Mereció la pena", "The climb was difficult, but it was worth it."],
+    ["I'm planning to...", "Tengo pensado...", "I'm planning to take an evening course."],
+    ["It depends", "Depende", "Will you come? It depends on the weather."],
+    ["By the time", "Para cuando", "By the time we arrived, the café was closed."]
+  ],
   B1: [
     ["It depends on", "Depende de", "It depends on the weather."],
     ["As far as I know", "Por lo que sé", "As far as I know, the meeting is online."],
@@ -367,6 +386,23 @@ const EXTRA_VOCABULARY = {
     ["In the long run", "A largo plazo", "This habit will help in the long run."],
     ["By the way", "Por cierto", "By the way, have you called Sam?"]
   ],
+  B2: [
+    ["Take into account", "Tener en cuenta", "We must take the budget into account."],
+    ["Come up with", "Idear / proponer", "The team came up with a practical solution."],
+    ["Carry out", "Llevar a cabo", "Researchers carried out three experiments."],
+    ["In contrast to", "A diferencia de", "In contrast to last year, sales have risen."],
+    ["There is no point in", "No tiene sentido", "There is no point in arguing about it now."],
+    ["I would rather", "Preferiría", "I would rather discuss this in person."],
+    ["Had better", "Más vale que", "You had better save a copy of the file."],
+    ["Be likely to", "Ser probable que", "Prices are likely to remain stable."],
+    ["Turn out to be", "Resultar ser", "The rumour turned out to be false."],
+    ["In spite of", "A pesar de", "In spite of the delay, we finished on time."],
+    ["To some extent", "Hasta cierto punto", "The criticism is justified to some extent."],
+    ["Make the most of", "Aprovechar al máximo", "Make the most of your time abroad."],
+    ["Keep an eye on", "Vigilar / estar pendiente de", "Could you keep an eye on my bag?"],
+    ["It is widely believed", "Se cree ampliamente", "It is widely believed that habits shape performance."],
+    ["Under no circumstances", "Bajo ninguna circunstancia", "Under no circumstances should you share the password."]
+  ],
   C1: [
     ["Bear in mind", "Ten en cuenta", "Bear in mind that the figures are provisional."],
     ["By and large", "En general", "By and large, the policy has been effective."],
@@ -383,6 +419,23 @@ const EXTRA_VOCABULARY = {
     ["Rule out", "Descartar", "We cannot rule out further delays."],
     ["Strike a balance", "Encontrar un equilibrio", "We must strike a balance between speed and care."],
     ["With hindsight", "Visto en retrospectiva", "With hindsight, the warning signs were obvious."]
+  ],
+  C2: [
+    ["For all intents and purposes", "A todos los efectos", "For all intents and purposes, the project is complete."],
+    ["Notwithstanding", "No obstante / a pesar de", "Notwithstanding these concerns, the proposal was approved."],
+    ["By virtue of", "En virtud de", "She qualified by virtue of her previous experience."],
+    ["For the sake of argument", "A efectos del argumento", "For the sake of argument, let us assume the figures are accurate."],
+    ["To no avail", "Sin resultado", "They appealed repeatedly, but to no avail."],
+    ["Leave much to be desired", "Dejar mucho que desear", "The explanation leaves much to be desired."],
+    ["Give rise to", "Dar lugar a", "The ambiguity may give rise to conflicting interpretations."],
+    ["Insofar as", "En la medida en que", "The rule is useful insofar as it prevents arbitrary decisions."],
+    ["Be tantamount to", "Equivaler a", "Ignoring the evidence would be tantamount to negligence."],
+    ["On balance", "Considerándolo todo", "On balance, the benefits outweigh the risks."],
+    ["Beyond the scope of", "Fuera del alcance de", "That question lies beyond the scope of this report."],
+    ["In the absence of", "A falta de", "In the absence of evidence, no conclusion should be drawn."],
+    ["Not least because", "Sobre todo porque", "The plan is risky, not least because funding is uncertain."],
+    ["Make a compelling case", "Presentar argumentos convincentes", "The author makes a compelling case for reform."],
+    ["The extent to which", "La medida en que", "The study examines the extent to which context affects judgement."]
   ]
 };
 
@@ -392,10 +445,18 @@ function indexVocabulary() {
     const expressions = (EXTRA_VOCABULARY[level] || []).map(([word, translation, example]) => ({
       word, translation, example
     }));
-    vocabularyIndexed[level] = [...vocabularyData[level], ...expressions].map(w => ({
-      ...w,
-      category: categorizeWord(w.word, w.translation)
-    }));
+    const seen = new Set();
+    vocabularyIndexed[level] = [...vocabularyData[level], ...expressions]
+      .filter(word => {
+        const key = word.word.trim().toLowerCase();
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      })
+      .map(w => ({
+        ...w,
+        category: categorizeWord(w.word, w.translation)
+      }));
   });
 }
 
@@ -408,11 +469,9 @@ async function loadVocabulary() {
   } catch (error) {
     console.error('Error cargando vocabulary.json:', error);
     // Si falla, usa el vocabulario de data.js como respaldo
-    vocabularyData = {
-      A1: data.vocabulary.levels[0].words,
-      B1: data.vocabulary.levels[1].words,
-      C1: data.vocabulary.levels[2].words,
-    };
+    vocabularyData = Object.fromEntries(
+      data.vocabulary.levels.map(level => [level.level, level.words])
+    );
   }
   indexVocabulary();
   updateCardProgress('vocabulary');
@@ -447,7 +506,7 @@ function renderCards() {
       <p>${s.description}</p>
       ${progressHTML}
       <div class="card-footer">
-        <span class="count">${key === 'vocabulary' ? '1100+ palabras y expresiones' : s.count}</span>
+        <span class="count">${key === 'vocabulary' ? '1.300+ palabras y expresiones' : s.count}</span>
         <span class="card-btn" aria-hidden="true">
           Entrar
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
@@ -717,7 +776,7 @@ const WORDS_PER_PAGE = 24;
 let currentVocabLevel = 'A1';
 
 function renderVocabulary(levelIndex = 0) {
-  const levelKeys = ['A1', 'B1', 'C1'];
+  const levelKeys = data.vocabulary.levels.map(level => level.level);
   currentVocabLevel = levelKeys[levelIndex];
   vocabPage = 0;
   vocabSearch = '';
@@ -742,7 +801,7 @@ function escAttr(s) {
 }
 
 function buildVocabHTML(levelIndex = 0) {
-  const levelKeys = ['A1', 'B1', 'C1'];
+  const levelKeys = data.vocabulary.levels.map(level => level.level);
   currentVocabLevel = levelKeys[levelIndex];
   const c = levelColors[currentVocabLevel];
   const allWords = vocabularyIndexed[currentVocabLevel] || [];
