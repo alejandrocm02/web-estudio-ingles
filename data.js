@@ -1,5 +1,5 @@
 // ============================================================
-//  DATA.JS — Contenido completo con niveles A1, B1 y C1
+//  DATA.JS — Contenido completo con niveles A0/A1 a C2
 //  Cada seccion tiene un array "levels" con sus ejercicios
 //  organizados por nivel. Solo edita este archivo para
 //  añadir o modificar contenido.
@@ -2286,3 +2286,336 @@ data.reading = {
     }
   ]
 };
+
+// ============================================================
+//  NIVELES INTERMEDIOS DE HABILIDADES
+//  Completa Reading, Vocabulary, Tests y Listening con A2, B2 y C2.
+// ============================================================
+
+const additionalSkillLevels = {
+  vocabulary: {
+    A2: {
+      level: "A2",
+      color: "#ECFDF5",
+      textColor: "#047857",
+      borderColor: "rgba(4,120,87,0.2)",
+      words: [
+        { word: "Journey", translation: "Viaje / trayecto", example: "The train journey takes two hours." },
+        { word: "Improve", translation: "Mejorar", example: "Reading every day will improve your English." },
+        { word: "Crowded", translation: "Lleno de gente", example: "The bus was crowded this morning." },
+        { word: "Appointment", translation: "Cita", example: "I have a dentist appointment at four." },
+        { word: "Borrow", translation: "Pedir prestado", example: "Can I borrow your dictionary?" },
+        { word: "Healthy", translation: "Saludable", example: "Walking is a healthy habit." },
+        { word: "Neighbour", translation: "Vecino/a", example: "Our new neighbour is very friendly." },
+        { word: "Probably", translation: "Probablemente", example: "It will probably rain later." }
+      ]
+    },
+    B2: {
+      level: "B2",
+      color: "#EDE9FE",
+      textColor: "#6D28D9",
+      borderColor: "rgba(109,40,217,0.2)",
+      words: [
+        { word: "Outcome", translation: "Resultado", example: "The outcome depends on several factors." },
+        { word: "Accurate", translation: "Preciso/a", example: "The report provides accurate figures." },
+        { word: "Approach", translation: "Enfoque", example: "We need a more flexible approach." },
+        { word: "Awareness", translation: "Conciencia", example: "The campaign raised public awareness." },
+        { word: "Evidence", translation: "Pruebas / evidencia", example: "There is not enough evidence to support the claim." },
+        { word: "Maintain", translation: "Mantener", example: "It is difficult to maintain a healthy balance." },
+        { word: "Relevant", translation: "Pertinente", example: "Please include only relevant information." },
+        { word: "Shortcoming", translation: "Deficiencia", example: "The review identified several shortcomings." }
+      ]
+    },
+    C2: {
+      level: "C2",
+      color: "#FDF2F8",
+      textColor: "#BE185D",
+      borderColor: "rgba(190,24,93,0.2)",
+      words: [
+        { word: "Conundrum", translation: "Dilema complejo", example: "The policy presents an ethical conundrum." },
+        { word: "Contentious", translation: "Polémico/a", example: "The proposal remains highly contentious." },
+        { word: "Corroborate", translation: "Corroborar", example: "Independent records corroborate her account." },
+        { word: "Discrepancy", translation: "Discrepancia", example: "Auditors found a discrepancy in the figures." },
+        { word: "Scrutinise", translation: "Examinar minuciosamente", example: "The committee will scrutinise the evidence." },
+        { word: "Tenet", translation: "Principio / dogma", example: "Transparency is a central tenet of the system." },
+        { word: "Undermine", translation: "Socavar", example: "Poor communication can undermine trust." },
+        { word: "Viable", translation: "Viable", example: "The current model is no longer financially viable." }
+      ]
+    }
+  },
+
+  tests: {
+    A2: {
+      level: "A2",
+      color: "#ECFDF5",
+      textColor: "#047857",
+      questions: [
+        { topic: "Past Simple", q: "Complete: 'We ___ to the coast last weekend.'", options: ["go", "went", "have gone", "were go"], correct: 1, explanation: "Un momento pasado terminado pide Past Simple: go cambia a went." },
+        { topic: "Present Perfect", q: "Choose the correct sentence.", options: ["I have visited London in 2022.", "I visited London in 2022.", "I have visit London in 2022.", "I did visited London in 2022."], correct: 1, explanation: "Una fecha pasada terminada, 2022, requiere Past Simple." },
+        { topic: "Comparatives", q: "Complete: 'This exercise is ___ than the previous one.'", options: ["more easy", "easiest", "easier", "the easier"], correct: 2, explanation: "Easy cambia y por i y añade -er: easier." },
+        { topic: "Future plans", q: "Complete: 'They ___ visit their cousins next Saturday.'", options: ["are going to", "going", "will to", "are go to"], correct: 0, explanation: "Be going to + infinitivo expresa un plan ya decidido." },
+        { topic: "Quantifiers", q: "Choose the correct option: 'There isn't ___ milk left.'", options: ["many", "much", "a few", "several"], correct: 1, explanation: "Milk es incontable; en negativa usamos much." },
+        { topic: "First conditional", q: "Complete: 'If it rains, we ___ at home.'", options: ["stay", "stayed", "will stay", "would stay"], correct: 2, explanation: "First conditional: If + Present Simple, will + infinitivo." },
+        { topic: "Relative clauses", q: "Choose: 'The woman ___ lives next door is a doctor.'", options: ["which", "where", "who", "whose"], correct: 2, explanation: "Who introduce una relativa que se refiere a una persona." }
+      ]
+    },
+    B2: {
+      level: "B2",
+      color: "#EDE9FE",
+      textColor: "#6D28D9",
+      questions: [
+        { topic: "Third conditional", q: "Complete: 'If they had left earlier, they ___ the train.'", options: ["would catch", "would have caught", "had caught", "will have caught"], correct: 1, explanation: "Third conditional: if + Past Perfect, would have + participio." },
+        { topic: "Modal perfect", q: "The lights are off. They ___ home already.", options: ["must go", "must have gone", "should go", "can have go"], correct: 1, explanation: "Must have + participio expresa una deducción fuerte sobre el pasado." },
+        { topic: "Reporting passive", q: "Choose the formal equivalent of 'People believe the painting is authentic.'", options: ["The painting believes to be authentic.", "The painting is believed to be authentic.", "The painting has believed authentic.", "It believes the painting authentic."], correct: 1, explanation: "Reporting passive: sujeto + be + participio + to-infinitive." },
+        { topic: "Wish", q: "Complete: 'I wish I ___ so much work yesterday.'", options: ["didn't accept", "hadn't accepted", "wouldn't accept", "haven't accepted"], correct: 1, explanation: "Wish + Past Perfect expresa arrepentimiento sobre el pasado." },
+        { topic: "Participle clauses", q: "Choose: '___ the instructions, she started the machine.'", options: ["Having read", "Has read", "To reading", "Being read"], correct: 0, explanation: "Having + participio marca una acción completada antes de la principal." },
+        { topic: "Discourse markers", q: "Which connector introduces a contrasting result?", options: ["Consequently", "Likewise", "Nevertheless", "For instance"], correct: 2, explanation: "Nevertheless introduce un contraste con lo dicho anteriormente." },
+        { topic: "Vocabulary", q: "What is the closest meaning of 'a major shortcoming'?", options: ["A clear advantage", "A serious weakness", "A final decision", "A useful resource"], correct: 1, explanation: "Shortcoming significa deficiencia o punto débil." }
+      ]
+    },
+    C2: {
+      level: "C2",
+      color: "#FDF2F8",
+      textColor: "#BE185D",
+      questions: [
+        { topic: "Inversion", q: "Complete: 'Only after the audit ___ the scale of the problem.'", options: ["we understood", "did we understand", "we did understand", "had understood we"], correct: 1, explanation: "Only + complemento inicial exige inversión de auxiliar y sujeto." },
+        { topic: "Cleft sentences", q: "Which sentence emphasises the lack of transparency?", options: ["Transparency lacked the process.", "What the process lacked was transparency.", "The process was lacking what transparency.", "It lacked was transparency."], correct: 1, explanation: "La pseudo-cleft What + clause + be destaca el elemento final." },
+        { topic: "Modal remoteness", q: "Complete formally: '___ the evidence to change, the conclusion would be revised.'", options: ["Had", "Were", "Should have", "Would"], correct: 1, explanation: "Were + sujeto + to-infinitive expresa una hipótesis formal." },
+        { topic: "Ellipsis", q: "Choose the most natural completion: 'Mara approved the plan, but Leo ___. '", options: ["didn't approve the plan", "didn't", "not approved", "wasn't approve"], correct: 1, explanation: "El auxiliar permite omitir el verbo y su complemento ya mencionados." },
+        { topic: "Nuance", q: "Which sentence means that Maya was the only person who spoke?", options: ["Maya only said she would resign.", "Maya said she would only resign.", "Only Maya said she would resign.", "Maya said only she would resign."], correct: 2, explanation: "Only modifica el elemento inmediatamente posterior: Maya." },
+        { topic: "Collocation", q: "Complete: 'The new evidence ___ doubt on the original account.'", options: ["throws", "casts", "makes", "places"], correct: 1, explanation: "Cast doubt on es la colocación establecida." },
+        { topic: "Register", q: "Choose the most appropriately formal version.", options: ["The plan won't work because it costs loads.", "The plan is not viable owing to its prohibitive cost.", "The plan is bad as it is super expensive.", "The plan doesn't cut it on price."], correct: 1, explanation: "Viable, owing to y prohibitive cost pertenecen a un registro formal coherente." }
+      ]
+    }
+  },
+
+  listening: {
+    A2: {
+      level: "A2",
+      color: "#ECFDF5",
+      textColor: "#047857",
+      tracks: [
+        { title: "Changing an Appointment", desc: "Una llamada para cambiar la hora de una cita.", context: "Gestiones cotidianas", accent: "GB", script: "Hello, this is Riverside Dental Clinic. Your appointment is on Tuesday at half past three. The dentist will be unavailable then, so could you come at five o'clock instead? If five is too late, we also have an appointment on Wednesday morning at ten.", question: "What is the first new time offered?", options: ["Tuesday at five", "Wednesday at ten", "Tuesday at three thirty"], correct: 0 },
+        { title: "A Weekend Trip", desc: "Dos amigos organizan una escapada sencilla.", context: "Viajes", accent: "US", script: "Let's take the early train on Saturday. It leaves at eight fifteen and arrives before ten. We can visit the old town in the morning and have lunch near the river. The weather forecast says it may rain after four, so we should bring light jackets.", question: "Why should they take jackets?", options: ["The train is cold", "It may rain later", "They are visiting the river"], correct: 1 },
+        { title: "Library Instructions", desc: "Información práctica para usar una biblioteca.", context: "Servicios públicos", accent: "GB", script: "New members may borrow up to four books for three weeks. You can renew them online unless another reader has reserved them. Please return books to the desk on the ground floor. The study room closes at seven, one hour before the main library.", question: "When does the main library close?", options: ["At six", "At seven", "At eight"], correct: 2 },
+        { title: "A New Exercise Routine", desc: "Una persona explica un cambio de hábitos.", context: "Salud", accent: "US", script: "I used to drive to work every day, but last month I bought a bicycle. At first, the journey was tiring and took forty minutes. Now I can do it in half an hour, and I feel more energetic when I arrive at the office.", question: "What has improved since the speaker started cycling?", options: ["The journey is shorter and the speaker feels better", "The office opens later", "The speaker works fewer days"], correct: 0 },
+        { title: "The Wrong Delivery", desc: "Un cliente explica un problema con un pedido.", context: "Compras", accent: "GB", script: "My parcel arrived this morning, but it contained a blue medium jacket instead of the black large one I ordered. I do not need a refund because I still want the jacket. Could you send the correct item and tell me how to return this one?", question: "What solution does the customer want?", options: ["A full refund", "A different product", "The correct jacket and return instructions"], correct: 2 }
+      ]
+    },
+    B2: {
+      level: "B2",
+      color: "#EDE9FE",
+      textColor: "#6D28D9",
+      tracks: [
+        { title: "Flexible Working Trial", desc: "Resultados de una prueba de horario flexible.", context: "Trabajo", accent: "GB", script: "After a three-month trial, the company found that flexible starting times had reduced late arrivals and improved staff satisfaction. Overall productivity remained stable rather than increasing, but managers considered the trial successful because fewer employees requested time off for appointments. The policy will continue, although teams must share at least four working hours each day.", question: "Why did managers consider the trial successful?", options: ["Productivity doubled", "Staff needed less time off for appointments", "Everyone worked the same hours"], correct: 1 },
+        { title: "Museum Audio Guide", desc: "Interpretación de una pieza restaurada.", context: "Cultura", accent: "US", script: "The portrait was long believed to show the merchant's eldest daughter. During restoration, however, researchers discovered a date hidden beneath the frame. The date was two years before the daughter was born. Historians now think the subject may be the merchant's sister, although no written record confirms her identity.", question: "What caused historians to question the original identification?", options: ["A hidden date", "A letter from the merchant", "The colour of the frame"], correct: 0 },
+        { title: "Community Energy Meeting", desc: "Una propuesta vecinal con beneficios y límites.", context: "Sostenibilidad", accent: "GB", script: "The council proposes installing solar panels on the sports centre. The electricity would first supply the building, while any surplus would be sold to the grid. This should lower running costs, but it will not make the centre completely energy independent, especially during winter. Residents are being asked whether savings should fund cheaper memberships or further environmental improvements.", question: "What decision are residents being asked to consider?", options: ["Where to build a new centre", "How to use the financial savings", "Whether to close during winter"], correct: 1 },
+        { title: "Product Design Review", desc: "Un equipo analiza los resultados de usuarios.", context: "Tecnología", accent: "US", script: "Most testers completed the registration process without help, which is encouraging. Nevertheless, several people misunderstood the final confirmation screen and tried to register twice. Instead of adding more instructions, I suggest changing the button label and showing a clear success message. That would address the source of the confusion rather than making the page more crowded.", question: "What change does the speaker recommend?", options: ["A longer instruction page", "Removing registration", "Clearer labels and confirmation"], correct: 2 },
+        { title: "The Value of Urban Trees", desc: "Un informe distingue beneficios directos e indirectos.", context: "Medioambiente", accent: "GB", script: "Urban trees do more than improve the appearance of a street. Their shade can lower surface temperatures during heatwaves, while leaves capture a limited amount of airborne pollution. These benefits depend on choosing species suited to local conditions and maintaining them properly. Planting large numbers without long-term care may create impressive headlines but disappointing results.", question: "What warning does the speaker give?", options: ["Trees always increase pollution", "Planting without maintenance may be ineffective", "Only one species should be used"], correct: 1 }
+      ]
+    },
+    C2: {
+      level: "C2",
+      color: "#FDF2F8",
+      textColor: "#BE185D",
+      tracks: [
+        { title: "Interpreting Uncertainty", desc: "Comentario sobre cómo comunicar probabilidades.", context: "Comunicación científica", accent: "GB", script: "Public discussions of uncertainty often assume that greater precision will automatically produce greater trust. Yet a probability stated to two decimal places may conceal assumptions that are themselves highly contestable. Responsible communication does not eliminate uncertainty through confident language; it distinguishes what is measured, what is inferred and what remains unknown. Paradoxically, acknowledging those limits can strengthen credibility, provided that uncertainty is not used as an excuse for avoiding decisions altogether.", question: "What approach to uncertainty does the speaker support?", options: ["Hiding uncertainty behind precise figures", "Separating evidence, inference and unknowns", "Postponing every decision until certainty is possible"], correct: 1 },
+        { title: "The Limits of Personalisation", desc: "Análisis crítico de recomendaciones automatizadas.", context: "Ética digital", accent: "US", script: "Personalised systems promise relevance by learning from previous choices. The difficulty is that past behaviour does not merely predict future preference; when repeatedly reflected back to us, it can narrow what we encounter and therefore shape what we become interested in. This does not mean personalisation is inherently manipulative. It means that a system optimised exclusively for immediate engagement may mistake familiarity for value. A more defensible design would preserve room for surprise and make the reasons behind recommendations open to scrutiny.", question: "What central risk does the speaker identify?", options: ["Personalisation may reinforce and narrow existing preferences", "Recommendations are always technically inaccurate", "Users refuse all unfamiliar material"], correct: 0 },
+        { title: "Institutional Memory", desc: "Reflexión sobre lo que una organización recuerda.", context: "Gestión", accent: "GB", script: "When experienced employees leave, organisations often try to capture their knowledge in manuals. This is sensible but incomplete. Much expertise is situational: knowing which rule can be applied mechanically, which requires judgement and whom to consult when the usual process fails. A document can preserve procedures, yet it rarely reproduces the relationships through which those procedures become meaningful. Effective succession therefore requires shared practice and mentoring, not simply more comprehensive documentation.", question: "Why are manuals insufficient according to the speaker?", options: ["Procedures are never useful", "Situational judgement and relationships are difficult to document", "Experienced employees refuse to write"], correct: 1 },
+        { title: "Measuring Cultural Value", desc: "Debate sobre métricas y financiación cultural.", context: "Política cultural", accent: "US", script: "Funding bodies understandably ask cultural institutions to demonstrate impact. Attendance figures are convenient, but convenience is not neutrality. A small programme that transforms the opportunities available to an underserved community may appear insignificant beside a popular exhibition attracting thousands. The answer is not to abandon measurement, which would make decisions less accountable, but to use several forms of evidence and to state openly which values each measure privileges.", question: "What does the speaker propose?", options: ["Replacing all judgement with attendance figures", "Ending accountability requirements", "Combining measures and exposing their value assumptions"], correct: 2 },
+        { title: "Productive Intellectual Humility", desc: "Una conferencia distingue humildad de indecisión.", context: "Conferencia", accent: "GB", script: "Intellectual humility is sometimes caricatured as perpetual hesitation, as though acknowledging the possibility of error prevented firm judgement. In fact, the opposite may be true. A person who can identify what would change their mind is often better equipped to act than someone whose certainty depends on ignoring contrary evidence. Humility concerns the conditions under which a belief is held, not the absence of belief. It becomes unhelpful only when invoked to treat every claim as equally plausible regardless of the evidence.", question: "How does the speaker distinguish humility from indecision?", options: ["Humility permits firm views that remain responsive to evidence", "Humility requires treating all claims equally", "Indecision is always more rational than action"], correct: 0 }
+      ]
+    }
+  },
+
+  reading: {
+    A2: {
+      level: "A2",
+      texts: [
+        {
+          title: "A Different Way to Travel",
+          genre: "Blog de viaje",
+          time: "3 min",
+          paragraphs: [
+            "Last summer, Nina planned to fly from Madrid to Paris, but she changed her mind and travelled by train. The journey took much longer, so she stopped for one night in Barcelona and another in Lyon.",
+            "At first, Nina worried that the trip would be tiring. Instead, she enjoyed watching the landscape change and talking to other passengers. She also discovered two cities that were not part of her original holiday.",
+            "The train cost slightly more than the cheapest flight. However, Nina did not need to pay for airport transport or a large suitcase. She now says that travelling slowly can become part of the holiday rather than simply a way to reach it."
+          ],
+          questions: [
+            { type: "choice", q: "Why did Nina visit Barcelona and Lyon?", options: ["She missed her train", "She divided a long journey", "Her flight stopped there"], correct: 1, explanation: "Pasó una noche en cada ciudad para dividir el viaje largo." },
+            { type: "choice", q: "What surprised Nina?", options: ["She enjoyed the journey itself", "The train was the cheapest option", "She travelled without luggage"], correct: 0, explanation: "Esperaba cansarse, pero disfrutó del paisaje y de las conversaciones." },
+            { type: "open", q: "What does Nina mean by making travel part of the holiday?", guidance: "Respuesta orientativa: she means enjoying the journey, stops and people instead of treating transport only as a way to reach the destination." },
+            { type: "open", q: "Would this kind of trip suit you? Explain.", guidance: "Respuesta orientativa: yes, because I would enjoy seeing several places, although I would need enough time. También es válida una respuesta negativa razonada." }
+          ]
+        },
+        {
+          title: "The Shared Garden",
+          genre: "Noticia local",
+          time: "3 min",
+          paragraphs: [
+            "Residents of Green Street have turned an empty piece of land into a shared garden. The land belonged to the town, but nobody had used it for years. Volunteers removed rubbish, built wooden boxes and planted vegetables.",
+            "Anyone in the neighbourhood can join. Members work for two hours each month and share what the garden produces. Older residents teach children how to grow food, while newer neighbours use the project to meet people.",
+            "The garden has faced some problems. There is not enough water during hot weeks, and a few plants have been damaged. The group is now collecting rainwater and planning a stronger fence."
+          ],
+          questions: [
+            { type: "choice", q: "What must members do?", options: ["Pay for every vegetable", "Work two hours each month", "Own a house on Green Street"], correct: 1, explanation: "Los miembros aportan dos horas de trabajo al mes." },
+            { type: "choice", q: "How is the group responding to the water problem?", options: ["Collecting rainwater", "Buying different land", "Closing in summer"], correct: 0, explanation: "El texto dice que están recogiendo agua de lluvia." },
+            { type: "open", q: "Name two social benefits of the garden.", guidance: "Respuesta orientativa: children learn from older residents and new neighbours meet local people. También crea cooperación entre generaciones." },
+            { type: "open", q: "Suggest another way to improve the garden.", guidance: "Respuesta orientativa: the group could organise a weekly watering rota. Se acepta cualquier propuesta realista y explicada." }
+          ]
+        },
+        {
+          title: "One Month Without Buying Clothes",
+          genre: "Diario personal",
+          time: "3 min",
+          paragraphs: [
+            "Leo often bought clothes online when he was bored. The packages were exciting, but he sometimes forgot what he had ordered. In January, he decided not to buy any clothes for one month.",
+            "During the first week, advertisements made the challenge difficult. Leo removed shopping apps from his phone and stopped following several brands. He also looked carefully at the clothes he already owned and repaired two shirts.",
+            "At the end of the month, Leo had saved money, but the biggest change was different: he no longer checked shopping websites every evening. He still buys clothes when he needs them, but he now waits two days before ordering."
+          ],
+          questions: [
+            { type: "choice", q: "Why did Leo often shop online?", options: ["He needed work clothes", "He was bored", "His friends asked him"], correct: 1, explanation: "El texto relaciona sus compras frecuentes con el aburrimiento." },
+            { type: "choice", q: "What habit does Leo use now?", options: ["He waits before ordering", "He buys only in January", "He never uses the internet"], correct: 0, explanation: "Ahora espera dos días antes de hacer un pedido." },
+            { type: "open", q: "Which action probably helped Leo most during the challenge?", guidance: "Respuesta orientativa: removing the shopping apps probably reduced temptation and interrupted his automatic evening habit." },
+            { type: "open", q: "Describe one habit you would like to change.", guidance: "Respuesta orientativa: I would like to use my phone less before bed, so I could leave it outside the bedroom. Se aceptan otras respuestas personales." }
+          ]
+        }
+      ]
+    },
+    B2: {
+      level: "B2",
+      texts: [
+        {
+          title: "When the Office Became Quieter",
+          genre: "Reportaje laboral",
+          time: "4 min",
+          paragraphs: [
+            "A software company redesigned its office after employees complained that constant conversation made focused work difficult. The new layout included silent rooms, shared project areas and small booths for video calls.",
+            "Six months later, staff reported fewer interruptions, but collaboration had not improved as expected. Employees working in silent rooms were often reluctant to leave them, and informal conversations became less frequent. New colleagues found it particularly difficult to learn whom to ask for help.",
+            "The company responded by introducing two daily periods for quiet work rather than assigning permanent silent areas. Teams also began holding short optional sessions where people could describe current problems and request advice.",
+            "The experience showed that concentration and collaboration cannot be solved entirely through furniture. A useful workplace needs physical options, but it also needs shared expectations about when people should be available."
+          ],
+          questions: [
+            { type: "choice", q: "What unintended problem followed the redesign?", options: ["Video calls became impossible", "Informal collaboration decreased", "The office became noisier"], correct: 1, explanation: "Las conversaciones informales disminuyeron y los nuevos empleados tenían dificultades para pedir ayuda." },
+            { type: "choice", q: "How did the company modify its approach?", options: ["It removed every silent room", "It introduced time-based quiet periods", "It required permanent remote work"], correct: 1, explanation: "Sustituyó en parte la separación espacial por periodos diarios de concentración." },
+            { type: "open", q: "What is the article's broader lesson?", guidance: "Respuesta orientativa: workplace design can support behaviour, but teams also need norms that balance availability, concentration and collaboration." },
+            { type: "open", q: "Propose one rule for a balanced study space.", guidance: "Respuesta orientativa: set visible quiet periods and separate times when discussion is welcome. Otras normas razonadas son válidas." }
+          ]
+        },
+        {
+          title: "Should Repairs Be Designed In?",
+          genre: "Artículo de consumo",
+          time: "4 min",
+          paragraphs: [
+            "Modern devices are often thinner and more powerful than earlier models, yet many are harder to repair. Batteries may be glued in place and replacement parts may require specialised tools or software.",
+            "Manufacturers argue that tightly integrated designs improve safety, water resistance and performance. Repair advocates accept these goals but question whether every restriction is necessary. They point out that a product which lasts longer may reduce both household costs and electronic waste.",
+            "Several governments are considering rules that would require spare parts, repair information and clear durability scores. Critics worry that compliance could increase prices or expose technical information that helps counterfeiters.",
+            "The debate is not simply about choosing repairability over innovation. It concerns who should control a product after purchase and how the hidden environmental cost of replacement should be represented in its price."
+          ],
+          questions: [
+            { type: "choice", q: "Which benefit do manufacturers associate with integrated designs?", options: ["Unlimited repair access", "Water resistance", "Lower electronic waste"], correct: 1, explanation: "Los fabricantes citan seguridad, resistencia al agua y rendimiento." },
+            { type: "choice", q: "What do proposed rules include?", options: ["Free devices", "Durability information and spare parts", "A ban on software updates"], correct: 1, explanation: "Las propuestas incluyen repuestos, información de reparación y puntuaciones de durabilidad." },
+            { type: "open", q: "Why does the author call environmental cost hidden?", guidance: "Respuesta orientativa: the purchase price may not show the waste and resource use caused when a difficult-to-repair product is replaced early." },
+            { type: "open", q: "Which side presents the stronger argument?", guidance: "Respuesta orientativa: repair advocates may be stronger because longer product life benefits users and the environment, but a defence of safety restrictions is valid if supported." }
+          ]
+        },
+        {
+          title: "The Problem With Perfect Reviews",
+          genre: "Análisis digital",
+          time: "4 min",
+          paragraphs: [
+            "Online ratings help people compare restaurants, products and services, but extremely high scores can be difficult to interpret. A five-star average may reflect excellent quality, a small number of reviews or a business that pressures dissatisfied customers not to comment.",
+            "Some platforms now give greater weight to verified purchases and recent experiences. Others identify unusual patterns, such as many reviews appearing within a few hours. These systems reduce manipulation but cannot determine whether every opinion is honest.",
+            "Ratings also influence expectations. A customer who sees an almost perfect score may interpret an ordinary delay as a serious failure, while a lower expectation can make the same service feel acceptable.",
+            "Useful review systems therefore need more than an average. Distribution, sample size, date and written detail help users understand what the number can and cannot support."
+          ],
+          questions: [
+            { type: "choice", q: "Why can a five-star average be misleading?", options: ["All customers dislike numbers", "It may be based on limited or influenced feedback", "Verified purchases are always false"], correct: 1, explanation: "Una puntuación perfecta puede tener pocas reseñas o estar afectada por presión o manipulación." },
+            { type: "choice", q: "What additional information does the author value?", options: ["Only the newest score", "Distribution, sample size and detail", "The business logo"], correct: 1, explanation: "El último párrafo enumera esos elementos para interpretar la media." },
+            { type: "open", q: "How can ratings change a customer's experience?", guidance: "Respuesta orientativa: ratings create expectations, so the same delay may feel worse after a perfect score and acceptable after a moderate one." },
+            { type: "open", q: "Write one question you would ask before trusting a rating.", guidance: "Respuesta orientativa: how many verified and recent reviews produced this average? Se aceptan otras preguntas críticas relevantes." }
+          ]
+        }
+      ]
+    },
+    C2: {
+      level: "C2",
+      texts: [
+        {
+          title: "The Politics of a Baseline",
+          genre: "Ensayo analítico",
+          time: "5 min",
+          paragraphs: [
+            "Public targets are usually expressed as changes from a baseline: emissions will fall relative to a chosen year, attainment will improve compared with an earlier cohort, or spending will rise above a previous settlement. The arithmetic may be impeccable while the comparison remains politically loaded.",
+            "A favourable baseline can make modest progress appear dramatic. An unusually poor year exaggerates subsequent recovery, whereas an exceptional year makes ordinary performance look like decline. None of this requires falsifying data; the persuasive work is done by selecting the point from which movement is measured.",
+            "The obvious response is to demand several comparisons, but additional figures do not automatically produce clarity. A dense table can obscure judgement as effectively as a selective headline. Transparency therefore involves explaining why a baseline is relevant, how sensitive the conclusion is to alternatives and which contextual changes complicate comparison.",
+            "Numbers discipline public argument only when their framing is itself open to argument. Treating the baseline as a neutral technical detail places one of the most consequential decisions beyond scrutiny."
+          ],
+          questions: [
+            { type: "choice", q: "How can a claim mislead without falsifying data?", options: ["By selecting an advantageous comparison point", "By showing several baselines", "By using correct arithmetic"], correct: 0, explanation: "La selección del punto de partida puede alterar la impresión de progreso sin cambiar los datos." },
+            { type: "choice", q: "Why are more figures not always sufficient?", options: ["All tables contain errors", "Complexity can also hide judgement", "Readers reject numerical evidence"], correct: 1, explanation: "Una tabla densa puede ocultar decisiones interpretativas." },
+            { type: "open", q: "Explain the phrase 'the framing is itself open to argument'.", guidance: "Respuesta orientativa: the assumptions and comparison choices that give numbers meaning must be visible and contestable, not treated as neutral facts." },
+            { type: "open", q: "Give a real or invented example of a misleading baseline.", guidance: "Respuesta orientativa: a company could claim rapid growth by comparing sales with a month when stores were closed. Cualquier ejemplo coherente es válido." }
+          ]
+        },
+        {
+          title: "Friction as a Public Good",
+          genre: "Comentario",
+          time: "5 min",
+          paragraphs: [
+            "Digital services compete to remove friction: one-click purchases, automatic renewal and instant sharing reduce the interval between intention and action. In many contexts this is genuinely beneficial. A person renewing an essential prescription gains little from a deliberately complicated process.",
+            "Yet friction is not merely inefficiency. A short delay before publishing an angry message, a clear summary before accepting a contract or a second confirmation before transferring a large sum can protect reflection. The relevant distinction is between friction that obstructs a legitimate goal and friction that helps people recognise the consequences of achieving it.",
+            "Designers cannot resolve that distinction through user preference alone. People may prefer the fastest route in the moment while later valuing a safeguard that slowed them down. Nor should every protective pause be compulsory; excessive paternalism can deny users agency and disproportionately burden those with limited time.",
+            "Good friction is therefore accountable. Its purpose is explicit, its cost is proportionate to the risk and, where possible, experienced users can adjust it. Speed remains valuable, but it should be treated as one design objective among several rather than as an unquestioned definition of progress."
+          ],
+          questions: [
+            { type: "choice", q: "What distinction structures the argument?", options: ["Digital and physical services", "Obstructive and protective friction", "Expert and inexperienced users"], correct: 1, explanation: "El texto contrasta la fricción que bloquea con la que favorece decisiones conscientes." },
+            { type: "choice", q: "Which feature belongs to 'good friction'?", options: ["Its purpose is hidden", "Its cost matches the risk", "It is always compulsory"], correct: 1, explanation: "El último párrafo exige propósito explícito y coste proporcional." },
+            { type: "open", q: "Why is immediate preference an incomplete guide?", guidance: "Respuesta orientativa: users may choose convenience in the moment but later appreciate safeguards, so short-term preference does not capture all interests." },
+            { type: "open", q: "Design one example of proportionate friction.", guidance: "Respuesta orientativa: a bank could require a clear second confirmation for an unusually large transfer but not for a small payment." }
+          ]
+        },
+        {
+          title: "What Institutions Choose Not to Know",
+          genre: "Ensayo crítico",
+          time: "5 min",
+          paragraphs: [
+            "Organisations are often described as suffering from information overload, yet they can be remarkably selective about what becomes visible. A delivery company may record speed to the second while collecting little evidence about worker fatigue. A university may monitor completion rates while treating students who quietly withdraw as administratively inconvenient exceptions.",
+            "Such gaps are not always conspiratorial. Measurement follows existing responsibilities, budgets and professional habits. Once a metric is embedded in reporting systems, it attracts attention because it can be compared, audited and presented. Experiences that resist standardisation become easier to classify as anecdotal.",
+            "The result is institutional ignorance: not a simple absence of information, but a patterned inability to recognise certain problems. Collecting more data will not necessarily help if the categories through which data are interpreted remain unchanged.",
+            "A serious review must therefore ask not only whether the available evidence is reliable, but whose experience would be impossible to express within it. The most revealing question may concern the observation the system was never designed to record."
+          ],
+          questions: [
+            { type: "choice", q: "What does 'institutional ignorance' mean here?", options: ["Employees deliberately destroy all data", "Systems repeatedly fail to recognise certain experiences", "Institutions have too little storage"], correct: 1, explanation: "Se trata de una incapacidad estructurada para ver ciertos problemas." },
+            { type: "choice", q: "Why do established metrics attract attention?", options: ["They are easy to compare and report", "They capture every relevant experience", "They remove professional responsibility"], correct: 0, explanation: "Los indicadores integrados pueden compararse, auditarse y presentarse." },
+            { type: "open", q: "Why might collecting more data fail to solve the problem?", guidance: "Respuesta orientativa: new observations may still be forced into categories that exclude the experiences or harms the institution has not learned to recognise." },
+            { type: "open", q: "Apply the argument to education or work.", guidance: "Respuesta orientativa: a school tracking grades but not anxiety may miss students who perform adequately at an unsustainable personal cost. Otros ejemplos bien explicados son válidos." }
+          ]
+        }
+      ]
+    }
+  }
+};
+
+const orderWithAdditionalLevels = (existingLevels, additions) => [
+  existingLevels.find(item => item.level === "A1"),
+  additions.A2,
+  existingLevels.find(item => item.level === "B1"),
+  additions.B2,
+  existingLevels.find(item => item.level === "C1"),
+  additions.C2
+];
+
+data.vocabulary.levels = orderWithAdditionalLevels(data.vocabulary.levels, additionalSkillLevels.vocabulary);
+data.tests.levels = orderWithAdditionalLevels(data.tests.levels, additionalSkillLevels.tests);
+data.listening.levels = orderWithAdditionalLevels(data.listening.levels, additionalSkillLevels.listening);
+data.reading.levels = orderWithAdditionalLevels(data.reading.levels, additionalSkillLevels.reading);
+
+data.vocabulary.description = "Más de 1.300 palabras y expresiones de A1 a C2 con ejemplo, pronunciación y seguimiento";
+data.vocabulary.count = "1.300+ palabras y expresiones";
+data.tests.description = "42 preguntas tipo examen de A1 a C2 con feedback y resultados por tema";
+data.tests.count = `${data.tests.levels.reduce((sum, level) => sum + level.questions.length, 0)} preguntas`;
+data.listening.description = "30 audios de A1 a C2 con voces inglesas, velocidad regulable y comprensión";
+data.listening.count = `${data.listening.levels.reduce((sum, level) => sum + level.tracks.length, 0)} audios`;
+data.reading.description = "18 lecturas de A1 a C2 con comprensión, vocabulario y respuestas orientativas";
+data.reading.count = `${data.reading.levels.reduce((sum, level) => sum + level.texts.length, 0)} textos · ${data.reading.levels.reduce((sum, level) => sum + level.texts.reduce((subtotal, text) => subtotal + text.questions.length, 0), 0)} preguntas`;

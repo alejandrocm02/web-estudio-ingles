@@ -92,7 +92,7 @@ function renderGameSetup() {
       <fieldset id="game-level-setting">
         <legend>Nivel</legend>
         <div class="game-pills">
-          ${['A1', 'B1', 'C1'].map(level => `
+          ${['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map(level => `
             <button class="game-pill ${gameState.level === level ? 'active' : ''}"
               type="button" data-setting="level" data-value="${level}">${level}</button>`).join('')}
         </div>
