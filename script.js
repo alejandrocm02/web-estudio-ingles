@@ -10,26 +10,31 @@
 //  palabras de vocabulario marcadas como aprendidas, audios escuchados
 //  y racha de dias de estudio.
 
-const PROGRESS_KEY = 'studyProgressV1';
+const LEGACY_PROGRESS_KEY = 'studyProgressV1';
+
+function getProgressStorageKey() {
+  return window.StudyAuth?.getProgressKey?.() || LEGACY_PROGRESS_KEY;
+}
 
 function loadProgress() {
   try {
-    const raw = localStorage.getItem(PROGRESS_KEY);
+    const raw = localStorage.getItem(getProgressStorageKey());
     const p = raw ? JSON.parse(raw) : {};
     p.grammar    = p.grammar    || {};
     p.tests      = p.tests      || {};
     p.vocabKnown = p.vocabKnown || {};
     p.listening  = p.listening  || {};
     p.reading    = p.reading    || {};
+    p.readingAnswers = p.readingAnswers || {};
     p.streak     = p.streak     || { count: 0, lastDate: '' };
     return p;
   } catch (e) {
-    return { grammar: {}, tests: {}, vocabKnown: {}, listening: {}, reading: {}, streak: { count: 0, lastDate: '' } };
+    return { grammar: {}, tests: {}, vocabKnown: {}, listening: {}, reading: {}, readingAnswers: {}, streak: { count: 0, lastDate: '' } };
   }
 }
 
 function saveProgress(p) {
-  localStorage.setItem(PROGRESS_KEY, JSON.stringify(p));
+  localStorage.setItem(getProgressStorageKey(), JSON.stringify(p));
 }
 
 function getLocalDateKey(date = new Date()) {
@@ -73,7 +78,7 @@ function getDone(progress) {
   const tests = Object.values(progress.tests).reduce((a, o) => a + (o.best || 0), 0);
   const listening = Object.values(progress.listening).reduce((a, arr) => a + arr.filter(Boolean).length, 0);
   const reading = Object.values(progress.reading).reduce((a, arr) => a + arr.filter(Boolean).length, 0);
-  const vocabulary = Object.keys(progress.vocabKnown).length;
+  const vocabulary = Object.values(progress.vocabKnown).filter(Boolean).length;
   return { grammar, tests, listening, reading, vocabulary };
 }
 
@@ -458,6 +463,31 @@ function indexVocabulary() {
         category: categorizeWord(w.word, w.translation)
       }));
   });
+  migrateVocabularyProgress();
+}
+
+function getVocabProgressKey(level, word) {
+  return `${level}::${String(word).trim().toLowerCase()}`;
+}
+
+function isVocabularyKnown(progress, level, word) {
+  return !!progress.vocabKnown[getVocabProgressKey(level, word)];
+}
+
+function migrateVocabularyProgress() {
+  const progress = loadProgress();
+  const legacyKeys = Object.keys(progress.vocabKnown).filter(key => !key.includes('::'));
+  if (!legacyKeys.length) return;
+
+  legacyKeys.forEach(wordKey => {
+    Object.entries(vocabularyIndexed).forEach(([level, words]) => {
+      if (words.some(item => item.word.trim().toLowerCase() === wordKey)) {
+        progress.vocabKnown[getVocabProgressKey(level, wordKey)] = true;
+      }
+    });
+    delete progress.vocabKnown[wordKey];
+  });
+  saveProgress(progress);
 }
 
 async function loadVocabulary() {
@@ -800,13 +830,21 @@ function escAttr(s) {
   return String(s).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
 }
 
+function escapeHTML(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 function buildVocabHTML(levelIndex = 0) {
   const levelKeys = data.vocabulary.levels.map(level => level.level);
   currentVocabLevel = levelKeys[levelIndex];
   const c = levelColors[currentVocabLevel];
   const allWords = vocabularyIndexed[currentVocabLevel] || [];
   const progress = loadProgress();
-  const knownInLevel = allWords.filter(w => progress.vocabKnown[w.word.toLowerCase()]).length;
+  const knownInLevel = allWords.filter(w => isVocabularyKnown(progress, currentVocabLevel, w.word)).length;
 
   // Categorias presentes en este nivel, con recuento
   const countsByCategory = {};
@@ -861,6 +899,7 @@ function buildVocabHTML(levelIndex = 0) {
 
     <!-- Barra de busqueda -->
     <div style="margin-bottom:16px; position:relative">
+      <label class="sr-only" for="vocab-search">Buscar una palabra o traducción</label>
       <input type="text" id="vocab-search" value="${vocabSearch}"
         placeholder="Buscar palabra o traduccion..."
         oninput="searchVocab(this.value, ${levelIndex})"
@@ -888,23 +927,26 @@ function buildVocabHTML(levelIndex = 0) {
       No se encontraron palabras con ese termino.</div>`;
   } else {
     pageWords.forEach((w, i) => {
-      const isKnown = !!progress.vocabKnown[w.word.toLowerCase()];
+      const isKnown = isVocabularyKnown(progress, currentVocabLevel, w.word);
       const catInfo = getCategoryInfo(w.category);
       html += `
-        <div class="vocab-card" id="vc-${i}"
-             style="background:${c.bg}; border-color:rgba(0,0,0,0.08)"
-             onclick="revealWord(${i})">
+        <article class="vocab-card" id="vc-${i}"
+             style="background:${c.bg}; border-color:rgba(0,0,0,0.08)">
           <button class="speak-word-btn"
             onclick="speakVocabulary('${escAttr(w.word)}', event)"
             aria-label="Escuchar ${w.word}">AUDIO</button>
           <button class="know-btn ${isKnown ? 'known' : ''}" id="kb-${i}"
             onclick="toggleKnown('${escAttr(w.word)}', this, event)"
-            aria-label="Marcar como aprendida">${isKnown ? '✓' : '☆'}</button>
+            aria-label="${isKnown ? 'Desmarcar' : 'Marcar'} ${w.word} como aprendida">${isKnown ? '✓' : '☆'}</button>
           <div class="word" style="color:${c.text}">${w.word}</div>
           <div class="translation" style="color:${c.text}; opacity:0.8">${w.translation}</div>
           <div class="translation" style="font-style:italic; font-size:12px; color:${c.text}; opacity:0.6">"${w.example}"</div>
-          <div class="hint" style="color:${c.text}; opacity:0.5">${catInfo.icon} ${catInfo.label} · Toca para revelar</div>
-        </div>`;
+          <div class="vocab-card-footer">
+            <span class="hint" style="color:${c.text}; opacity:0.5">${catInfo.icon} ${catInfo.label}</span>
+            <button class="reveal-word-btn" type="button" onclick="revealWord(${i}, this)"
+              aria-expanded="false">Revelar</button>
+          </div>
+        </article>`;
     });
   }
 
@@ -960,33 +1002,39 @@ function changeVocabPage(levelIndex, newPage) {
   content.scrollTop = 0;
 }
 
-function revealWord(i) {
+function revealWord(i, button) {
   const card = document.getElementById(`vc-${i}`);
   card.classList.toggle('revealed');
-  const hint = card.querySelector('.hint');
-  hint.textContent = card.classList.contains('revealed') ? 'Toca para ocultar' : 'Toca para revelar';
+  const revealed = card.classList.contains('revealed');
+  const control = button || card.querySelector('.reveal-word-btn');
+  if (control) {
+    control.textContent = revealed ? 'Ocultar' : 'Revelar';
+    control.setAttribute('aria-expanded', String(revealed));
+  }
 }
 
 function toggleKnown(word, btnEl, event) {
   event.stopPropagation();
   const progress = loadProgress();
-  const key = word.toLowerCase();
+  const key = getVocabProgressKey(currentVocabLevel, word);
   const isLearning = !progress.vocabKnown[key];
   if (progress.vocabKnown[key]) {
     delete progress.vocabKnown[key];
     btnEl.classList.remove('known');
     btnEl.textContent = '☆';
+    btnEl.setAttribute('aria-label', `Marcar ${word} como aprendida`);
   } else {
     progress.vocabKnown[key] = true;
     btnEl.classList.add('known');
     btnEl.textContent = '✓';
+    btnEl.setAttribute('aria-label', `Desmarcar ${word} como aprendida`);
   }
   saveProgress(progress);
   if (isLearning) recordStudyActivity();
   updateCardProgress('vocabulary');
 
   const allWords = vocabularyIndexed[currentVocabLevel] || [];
-  const knownInLevel = allWords.filter(w => progress.vocabKnown[w.word.toLowerCase()]).length;
+  const knownInLevel = allWords.filter(w => isVocabularyKnown(progress, currentVocabLevel, w.word)).length;
   const countEl = document.getElementById('vocab-known-count');
   if (countEl) countEl.textContent = knownInLevel;
 }
@@ -1389,7 +1437,9 @@ function renderReading(levelIndex = 0) {
   const section = data.reading;
   const level = section.levels[levelIndex];
   const levelKeys = section.levels.map(item => item.level);
-  const done = loadProgress().reading[level.level] || [];
+  const progress = loadProgress();
+  const done = progress.reading[level.level] || [];
+  const savedLevelAnswers = progress.readingAnswers[level.level] || {};
   const completedCount = done.filter(Boolean).length;
 
   let html = `
@@ -1407,6 +1457,7 @@ function renderReading(levelIndex = 0) {
 
   level.texts.forEach((text, textIndex) => {
     const isDone = !!done[textIndex];
+    const savedTextAnswers = savedLevelAnswers[textIndex] || {};
     html += `
       <article class="reading-sheet ${isDone ? 'completed' : ''}" id="reading-text-${textIndex}">
         <div class="reading-sheet-header">
@@ -1427,8 +1478,11 @@ function renderReading(levelIndex = 0) {
             <span class="control-label">Comprensión</span>
             <h4 id="reading-questions-${textIndex}">Preguntas sobre el texto</h4>
           </div>
-          ${text.questions.map((question, questionIndex) => `
-            <div class="reading-question" id="reading-question-${textIndex}-${questionIndex}" data-answered="false">
+          ${text.questions.map((question, questionIndex) => {
+            const saved = savedTextAnswers[questionIndex] || {};
+            const answered = !!saved.answered;
+            return `
+            <div class="reading-question" id="reading-question-${textIndex}-${questionIndex}" data-answered="${answered}">
               <div class="reading-question-title">
                 <span>${questionIndex + 1}</span>
                 <div><small>${question.type === 'open' ? 'RESPUESTA ABIERTA' : 'ELECCIÓN ÚNICA'}</small><p>${question.q}</p></div>
@@ -1436,17 +1490,27 @@ function renderReading(levelIndex = 0) {
               ${question.type === 'choice' ? `
                 <div class="reading-options" id="reading-options-${textIndex}-${questionIndex}">
                   ${question.options.map((option, optionIndex) => `
-                    <button onclick="checkReadingChoice(${textIndex}, ${questionIndex}, ${levelIndex}, ${optionIndex}, this)">${option}</button>
+                    <button
+                      class="${answered && optionIndex === question.correct ? 'correct' : ''} ${answered && optionIndex === saved.selected && saved.selected !== question.correct ? 'wrong' : ''}"
+                      ${answered ? 'disabled' : ''}
+                      onclick="checkReadingChoice(${textIndex}, ${questionIndex}, ${levelIndex}, ${optionIndex}, this)">${option}</button>
                   `).join('')}
                 </div>
-                <div class="reading-feedback" id="reading-feedback-${textIndex}-${questionIndex}" aria-live="polite"></div>
+                <div class="reading-feedback ${answered ? `show ${saved.selected === question.correct ? 'ok' : 'ko'}` : ''}"
+                  id="reading-feedback-${textIndex}-${questionIndex}" aria-live="polite">${answered
+                    ? `${saved.selected === question.correct ? 'Correcto.' : 'Revisa el fragmento.'} ${question.explanation}`
+                    : ''}</div>
               ` : `
-                <textarea id="reading-answer-${textIndex}-${questionIndex}" rows="3" placeholder="Escribe tu interpretación con tus propias palabras..."></textarea>
+                <textarea id="reading-answer-${textIndex}-${questionIndex}" rows="3"
+                  oninput="saveReadingDraft(${textIndex}, ${questionIndex}, ${levelIndex}, this.value)"
+                  placeholder="Escribe tu interpretación con tus propias palabras...">${escapeHTML(saved.text || '')}</textarea>
                 <button class="reading-guide-btn" onclick="showReadingGuidance(${textIndex}, ${questionIndex}, ${levelIndex})">Comparar con una respuesta orientativa</button>
-                <div class="reading-guidance" id="reading-guidance-${textIndex}-${questionIndex}"></div>
+                <div class="reading-guidance ${answered ? 'show' : ''}" id="reading-guidance-${textIndex}-${questionIndex}">${answered
+                  ? `<span>MODELO ORIENTATIVO</span><p>${question.guidance}</p>`
+                  : ''}</div>
               `}
             </div>
-          `).join('')}
+          `}).join('')}
         </section>
         <details class="reading-solutions">
           <summary><span>Ver respuestas y criterios de esta lectura</span><small>Comprueba después de responder</small></summary>
@@ -1466,6 +1530,26 @@ function renderReading(levelIndex = 0) {
   return html;
 }
 
+function saveReadingAnswer(level, textIndex, questionIndex, answer) {
+  const progress = loadProgress();
+  if (!progress.readingAnswers[level]) progress.readingAnswers[level] = {};
+  if (!progress.readingAnswers[level][textIndex]) progress.readingAnswers[level][textIndex] = {};
+  progress.readingAnswers[level][textIndex][questionIndex] = {
+    ...(progress.readingAnswers[level][textIndex][questionIndex] || {}),
+    ...answer
+  };
+  saveProgress(progress);
+}
+
+function saveReadingDraft(textIndex, questionIndex, levelIndex, text) {
+  const level = data.reading.levels[levelIndex].level;
+  const previous = loadProgress().readingAnswers[level]?.[textIndex]?.[questionIndex] || {};
+  saveReadingAnswer(level, textIndex, questionIndex, {
+    text,
+    answered: !!previous.answered
+  });
+}
+
 function checkReadingChoice(textIndex, questionIndex, levelIndex, selected, button) {
   const level = data.reading.levels[levelIndex];
   const question = level.texts[textIndex].questions[questionIndex];
@@ -1483,6 +1567,7 @@ function checkReadingChoice(textIndex, questionIndex, levelIndex, selected, butt
     feedback.className = 'reading-feedback show ko';
     feedback.textContent = `Revisa el fragmento. ${question.explanation}`;
   }
+  saveReadingAnswer(level.level, textIndex, questionIndex, { selected, answered: true });
   document.getElementById(`reading-question-${textIndex}-${questionIndex}`).dataset.answered = 'true';
   updateReadingCompletion(textIndex, levelIndex);
 }
@@ -1497,6 +1582,10 @@ function showReadingGuidance(textIndex, questionIndex, levelIndex) {
     guidance.insertAdjacentHTML('afterbegin', '<small>Intenta escribir tu respuesta antes de comparar.</small>');
     return;
   }
+  saveReadingAnswer(data.reading.levels[levelIndex].level, textIndex, questionIndex, {
+    text: input.value,
+    answered: true
+  });
   document.getElementById(`reading-question-${textIndex}-${questionIndex}`).dataset.answered = 'true';
   updateReadingCompletion(textIndex, levelIndex);
 }

@@ -3647,6 +3647,386 @@ html[data-theme="dark"] .reading-feedback.ko {
   line-height: 1.6;
 }
 
+/* ============================================================
+   CUENTAS LOCALES Y CONTROLES ACCESIBLES
+   ============================================================ */
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.vocab-card-footer {
+  display: flex;
+  gap: 10px;
+  margin-top: 11px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.vocab-card-footer .hint {
+  margin-top: 0;
+}
+
+.reveal-word-btn {
+  padding: 6px 9px;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font-family: "Manrope", sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.reveal-word-btn:hover,
+.reveal-word-btn:focus-visible {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.account-toggle {
+  position: absolute;
+  z-index: 4;
+  top: 25px;
+  right: max(78px, calc(50% - 444px));
+  display: inline-flex;
+  min-height: 40px;
+  padding: 7px 13px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #eefaff;
+  font: 700 10px "Manrope", sans-serif;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+}
+
+.account-toggle > span:first-child {
+  color: var(--neon);
+}
+
+.account-toggle:hover,
+.account-toggle:focus-visible {
+  border-color: rgba(53, 242, 208, 0.55);
+  background: rgba(53, 242, 208, 0.1);
+}
+
+.hero .account-toggle {
+  position: static;
+}
+
+.account-overlay[hidden] {
+  display: none;
+}
+
+.account-overlay {
+  position: fixed;
+  z-index: 500;
+  inset: 0;
+  display: grid;
+  padding: 20px;
+  place-items: center;
+  background: rgba(2, 9, 16, 0.74);
+  backdrop-filter: blur(16px);
+}
+
+.account-open {
+  overflow: hidden;
+}
+
+.account-dialog {
+  position: relative;
+  width: min(440px, 100%);
+  max-height: min(720px, calc(100vh - 32px));
+  padding: clamp(25px, 5vw, 36px);
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 25px 9px 25px 9px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(53, 242, 208, 0.09), transparent 17rem),
+    var(--surface-solid);
+  color: var(--text);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.38);
+}
+
+.account-close {
+  position: absolute;
+  top: 13px;
+  right: 13px;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface-soft);
+  color: var(--text-muted);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.account-eyebrow {
+  color: var(--neon);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.account-dialog h2 {
+  margin: 8px 0 7px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(27px, 6vw, 38px);
+  letter-spacing: -0.045em;
+}
+
+.account-copy {
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.account-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  margin: 23px 0 20px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--surface-soft);
+}
+
+.account-tabs button {
+  padding: 9px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-muted);
+  font: 700 10px "Manrope", sans-serif;
+  cursor: pointer;
+}
+
+.account-tabs button[aria-selected="true"] {
+  background: var(--surface-solid);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+}
+
+#account-form {
+  display: grid;
+  gap: 8px;
+}
+
+#account-form > label {
+  margin-top: 5px;
+  color: var(--text-muted);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+#account-form input {
+  width: 100%;
+  min-height: 45px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  outline: none;
+  background: var(--surface-soft);
+  color: var(--text);
+  font: 600 13px "Manrope", sans-serif;
+}
+
+#account-form input:focus {
+  border-color: var(--blue-500);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.account-password-row {
+  position: relative;
+}
+
+.account-password-row input {
+  padding-right: 70px !important;
+}
+
+.account-password-row button {
+  position: absolute;
+  top: 50%;
+  right: 7px;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--border);
+  color: var(--text-muted);
+  font: 700 9px "Manrope", sans-serif;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.account-password-hint,
+.account-local-note {
+  color: var(--text-muted);
+  font-size: 9px;
+  line-height: 1.55;
+}
+
+.account-message {
+  min-height: 18px;
+  color: #c33f27;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.account-message.success {
+  color: #17825f;
+}
+
+.account-primary,
+.account-secondary,
+.account-delete {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 5px;
+  border-radius: 10px;
+  font: 800 11px "Manrope", sans-serif;
+  cursor: pointer;
+}
+
+.account-primary {
+  border: 0;
+  background: var(--blue-600);
+  color: #fff;
+}
+
+.account-primary:hover {
+  background: var(--blue-800);
+}
+
+.account-primary:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.account-secondary {
+  border: 1px solid var(--border);
+  background: var(--surface-soft);
+  color: var(--text-muted);
+}
+
+.account-delete {
+  min-height: 36px;
+  border: 0;
+  background: transparent;
+  color: #c33f27;
+  font-size: 9px;
+}
+
+.account-local-note {
+  margin-top: 14px;
+  text-align: center;
+}
+
+.account-local-note span {
+  color: var(--neon);
+}
+
+.account-profile-card {
+  display: flex;
+  gap: 13px;
+  margin: 22px 0 12px;
+  padding: 14px;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: var(--surface-soft);
+}
+
+.account-profile-card > span {
+  display: grid;
+  width: 41px;
+  height: 41px;
+  place-items: center;
+  border: 1px solid rgba(53, 242, 208, 0.35);
+  border-radius: 12px 4px 12px 4px;
+  color: var(--neon);
+  font: 800 15px "Space Grotesk", sans-serif;
+}
+
+.account-profile-card div {
+  display: grid;
+  gap: 3px;
+}
+
+.account-profile-card strong {
+  font-size: 13px;
+}
+
+.account-profile-card small {
+  color: var(--text-muted);
+  font-size: 9px;
+}
+
+.account-notice {
+  margin-bottom: 17px;
+  padding: 13px;
+  border-left: 2px solid var(--neon);
+  border-radius: 0 10px 10px 0;
+  background: var(--surface-soft);
+}
+
+.account-notice strong {
+  font-size: 10px;
+}
+
+.account-notice p {
+  margin-top: 4px;
+  color: var(--text-muted);
+  font-size: 9px;
+  line-height: 1.55;
+}
+
+@media (max-width: 640px) {
+  .header-compact .account-toggle {
+    top: 18px;
+    right: 58px;
+    max-width: 92px;
+  }
+
+  .header-compact .account-toggle > span:last-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .topbar-status {
+    display: none;
+  }
+
+  .topbar-actions {
+    gap: 7px;
+  }
+
+  .hero .account-toggle {
+    min-height: 34px;
+    padding: 6px 9px;
+  }
+}
+
 .irregular-guide {
   margin-top: 12px;
 }
