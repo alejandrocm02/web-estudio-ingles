@@ -29,9 +29,9 @@
   <main class="info-page" id="page-content">
     <section class="info-lead">
       <span class="eyebrow">Resumen claro</span>
-      <h2>StudyEnglish no pide registro ni recopila directamente tus datos personales.</h2>
-      <p>La web no tiene formularios, cuentas, publicidad, analítica propia ni sistemas de perfilado. El tema visual y el progreso de estudio se guardan localmente en tu navegador.</p>
-      <span class="info-updated">Vigente desde el 27 de julio de 2026</span>
+      <h2>Tu cuenta y tu progreso permanecen en tu dispositivo.</h2>
+      <p>StudyEnglish permite crear perfiles locales, pero no envía el usuario, la contraseña ni el progreso a una base de datos. La web no incorpora publicidad, analítica propia ni sistemas de perfilado.</p>
+      <span class="info-updated">Vigente desde el 28 de julio de 2026</span>
     </section>
 
     <div class="info-sections">
@@ -47,9 +47,12 @@
         <p>StudyEnglish usa el almacenamiento local del navegador, una función técnica similar a la memoria interna de una aplicación, para conservar:</p>
         <ul>
           <li><strong>theme:</strong> la preferencia de tema claro u oscuro.</li>
-          <li><strong>studyProgressV1:</strong> ejercicios completados, mejores resultados, vocabulario marcado, audios y lecturas realizados y racha de estudio.</li>
+          <li><strong>studyEnglishAccountsV1:</strong> nombre de usuario, identificador local, fecha de creación, sal aleatoria y resultado derivado de la contraseña.</li>
+          <li><strong>studyEnglishSessionV1:</strong> identificador de la cuenta local que mantiene la sesión activa.</li>
+          <li><strong>studyProgressV1:</strong> ejercicios completados, mejores resultados, vocabulario marcado, audios, lecturas, respuestas y racha de estudio, separados por cuenta.</li>
         </ul>
-        <p>Esta información permanece en tu dispositivo y el código de StudyEnglish no la envía al responsable del proyecto ni a una base de datos. Puedes eliminarla borrando los datos del sitio desde la configuración de tu navegador.</p>
+        <p>La contraseña no se conserva en texto legible: el navegador deriva una huella mediante PBKDF2 con SHA-256, una sal aleatoria y múltiples iteraciones. Aun así, se trata de una cuenta local, no de una cuenta sincronizada en la nube.</p>
+        <p>Esta información permanece en tu dispositivo y el código de StudyEnglish no la envía al responsable del proyecto ni a una base de datos. Puedes eliminar una cuenta y su progreso desde el panel de usuario o borrar todos los datos del sitio desde la configuración del navegador.</p>
       </section>
 
       <section class="info-section">
@@ -72,19 +75,19 @@
       <section class="info-section">
         <span class="eyebrow">Base y conservación</span>
         <h3>Por qué se usa el almacenamiento local</h3>
-        <p>El almacenamiento local es estrictamente funcional: permite recordar una preferencia solicitada y mostrar el avance educativo. Se conserva hasta que lo elimines, restablezcas el navegador o el sitio cambie la versión de almacenamiento.</p>
+        <p>El almacenamiento local es estrictamente funcional: permite mantener una sesión solicitada, separar perfiles, recordar preferencias y mostrar el avance educativo. Se conserva hasta que elimines la cuenta, borres los datos del sitio, restablezcas el navegador o el sitio cambie la versión de almacenamiento.</p>
         <p>StudyEnglish no realiza decisiones automatizadas con efectos jurídicos, no crea perfiles comerciales y no vende ni cede datos.</p>
       </section>
 
       <section class="info-section">
         <span class="eyebrow">Derechos y cambios</span>
         <h3>Control sobre la información</h3>
-        <p>Como el responsable de StudyEnglish no recibe el progreso guardado localmente, puedes ejercer el control directamente desde tu navegador: consultar, borrar o bloquear el almacenamiento del sitio. Para datos técnicos tratados por GitHub, consulta sus canales de privacidad y ejercicio de derechos.</p>
-        <p>Esta política se revisará si se incorporan formularios, cuentas, analítica, publicidad, nuevas integraciones externas o cualquier tratamiento adicional.</p>
+        <p>Como el responsable de StudyEnglish no recibe las cuentas ni el progreso local, puedes ejercer el control directamente desde el panel de usuario y desde tu navegador: consultar, eliminar o bloquear el almacenamiento del sitio. Para datos técnicos tratados por GitHub, consulta sus canales de privacidad y ejercicio de derechos.</p>
+        <p>Esta política se revisará antes de incorporar sincronización en la nube, analítica, publicidad, nuevas integraciones externas o cualquier tratamiento adicional.</p>
       </section>
     </div>
 
-    <aside class="info-notice"><strong>Importante:</strong> si en el futuro StudyEnglish solicita información personal, se mostrará una información específica antes de recogerla y se actualizará esta política.</aside>
+    <aside class="info-notice"><strong>Importante:</strong> una cuenta local no puede recuperarse desde otro dispositivo. Si borras los datos del navegador o eliminas la cuenta, su progreso también se elimina.</aside>
   </main>
 
   <footer class="site-footer">
@@ -97,6 +100,7 @@
     </nav>
   </footer>
 
+  <script src="auth.js"></script>
   <script src="info.js"></script>
 </body>
 </html>
