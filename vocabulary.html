@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Más de 1.300 palabras y expresiones de inglés organizadas por categoría y nivel A1, A2, B1, B2, C1 y C2.">
+  <meta name="description" content="Más de 1.500 palabras y expresiones de inglés organizadas por categoría y nivel A1, A2, B1, B2, C1 y C2.">
   <title>Vocabulary · StudyEnglish</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
   <!-- Nuestro CSS -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20260927">
 
   <!-- Aplica el tema guardado antes de pintar, para evitar parpadeo -->
   <script>
     (function () {
-      var saved = localStorage.getItem('theme');
+      var saved; try { saved = localStorage.getItem('theme'); } catch (_) {}
       var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', theme);
     })();
@@ -46,9 +46,11 @@
   </footer>
 
   <!-- IMPORTANTE: data.js siempre antes que script.js -->
-  <script src="data.js"></script>
-  <script src="auth.js"></script>
-  <script src="script.js"></script>
+  <script src="data.js?v=20260927"></script>
+  <script src="curriculum-update.js?v=20260927"></script>
+  <script src="auth.js?v=20260927"></script>
+  <script src="progress-tools.js?v=20260927"></script>
+  <script src="script.js?v=20260927"></script>
 
 </body>
 </html>

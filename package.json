@@ -1,0 +1,6 @@
+{
+  "name": "studyenglish",
+  "private": true,
+  "scripts": { "test": "node --test tests/regression.cjs" },
+  "devDependencies": { "jsdom": "26.1.0" }
+}

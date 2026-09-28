@@ -321,7 +321,7 @@ header p {
   display: block;
   margin-bottom: 5px;
   color: var(--blue-600);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -656,7 +656,7 @@ header p {
 .vocab-card.revealed .translation { display: block; }
 
 .vocab-card .hint {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--teal-500);
   margin-top: 8px;
   opacity: 0.7;
@@ -829,7 +829,7 @@ header p {
   .modal { padding: 22px; max-height: 90vh; }
   .vocab-grid { grid-template-columns: 1fr; }
   .theme-toggle { top: 14px; right: 14px; width: 34px; height: 34px; font-size: 15px; }
-  .streak-badge { font-size: 11px; padding: 5px 12px; }
+  .streak-badge { font-size: 12px; padding: 5px 12px; }
 }
 
 @media (max-width: 400px) {
@@ -894,7 +894,7 @@ header.hero { padding-bottom: 104px; }
 .game-mode-card.active { border: 2px solid var(--blue-500); background: var(--blue-50); color: var(--blue-900); }
 .game-mode-icon { margin-bottom: 14px; font-size: 25px; }
 .game-mode-card strong { font-size: 14px; }
-.game-mode-card small { margin-top: 4px; color: var(--text-muted); font-size: 11px; }
+.game-mode-card small { margin-top: 4px; color: var(--text-muted); font-size: 12px; }
 .game-pills { display: flex; flex-wrap: wrap; gap: 8px; }
 .game-pill {
   padding: 8px 15px;
@@ -932,7 +932,7 @@ header.hero { padding-bottom: 104px; }
 .game-round-progress { height: 6px; margin: 16px 0 30px; overflow: hidden; border-radius: 99px; background: var(--border); }
 .game-round-progress span { display: block; height: 100%; border-radius: inherit; background: var(--blue-500); transition: width .3s; }
 .flashcard-stage { text-align: center; }
-.language-route { display: flex; justify-content: center; gap: 9px; margin-bottom: 12px; color: var(--blue-600); font-size: 10px; font-weight: 600; letter-spacing: .09em; }
+.language-route { display: flex; justify-content: center; gap: 9px; margin-bottom: 12px; color: var(--blue-600); font-size: 12px; font-weight: 600; letter-spacing: .09em; }
 .flashcard {
   display: flex;
   min-height: 215px;
@@ -964,7 +964,7 @@ header.hero { padding-bottom: 104px; }
   cursor: pointer;
 }
 .answer-option:hover:not(:disabled) { border-color: var(--blue-500); background: var(--blue-50); }
-.answer-option span { display: grid; width: 27px; height: 27px; flex: 0 0 27px; place-items: center; border-radius: 50%; background: var(--bg); color: var(--text-muted); font-size: 11px; }
+.answer-option span { display: grid; width: 27px; height: 27px; flex: 0 0 27px; place-items: center; border-radius: 50%; background: var(--bg); color: var(--text-muted); font-size: 12px; }
 .answer-option.correct { border-color: #639922; background: #eaf3de; color: #27500a; }
 .answer-option.wrong { border-color: #e24b4a; background: #fcebeb; color: #501313; }
 .game-feedback { display: none; }
@@ -989,7 +989,7 @@ header.hero { padding-bottom: 104px; }
 .result-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 30px auto; max-width: 540px; }
 .result-stats div { padding: 18px 8px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg); }
 .result-stats strong { display: block; color: var(--blue-600); font-family: 'DM Serif Display', serif; font-size: 28px; font-weight: 400; }
-.result-stats span { color: var(--text-muted); font-size: 11px; }
+.result-stats span { color: var(--text-muted); font-size: 12px; }
 .result-actions { display: flex; justify-content: center; gap: 10px; }
 .result-actions .game-primary-btn { margin-top: 0; }
 .game-secondary-btn { padding: 12px 20px; border: 1px solid var(--border-strong); background: var(--surface); color: var(--text); }
@@ -1157,7 +1157,7 @@ header::before {
   border-radius: 10px 4px 10px 4px;
   background: rgba(53, 242, 208, 0.08);
   color: var(--neon);
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.08em;
 }
 
@@ -1172,7 +1172,7 @@ header::before {
   align-items: center;
   gap: 8px;
   color: #9cb2c5;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1213,7 +1213,7 @@ header::before {
   background: transparent;
   color: #91a9bb;
   font-family: "Space Grotesk", sans-serif;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.14em;
 }
 
@@ -1301,7 +1301,7 @@ header::before {
 
 .hero-metrics span {
   color: #768ea1;
-  font-size: 11px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
@@ -1372,7 +1372,7 @@ header::before {
 .control-label {
   color: var(--blue-600);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1595,7 +1595,7 @@ header::before {
 
 .module-progress > div:first-child span {
   color: var(--text-muted);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1654,7 +1654,7 @@ header::before {
   border-radius: 9px;
   color: var(--blue-600);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
 }
 
@@ -1694,7 +1694,7 @@ header::before {
   gap: 8px;
   margin: 10px 0 0 41px;
   color: var(--text-muted);
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .exercise-hint span {
@@ -1741,7 +1741,7 @@ header::before {
 
 .vocab-card .hint {
   color: var(--text-muted) !important;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.02em;
 }
 
@@ -1761,7 +1761,7 @@ header::before {
   background: transparent;
   color: var(--blue-600);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
   cursor: pointer;
@@ -1812,7 +1812,7 @@ header::before {
   border-radius: 9px;
   background: rgba(255,255,255,0.04);
   color: #8ba2b3;
-  font-size: 10px;
+  font-size: 12px;
   cursor: pointer;
 }
 
@@ -1829,7 +1829,7 @@ header::before {
   gap: 8px !important;
   padding-bottom: 9px;
   color: #8ba2b3;
-  font-size: 10px;
+  font-size: 12px;
   white-space: nowrap;
 }
 
@@ -1867,7 +1867,7 @@ header::before {
 .track-number {
   color: var(--blue-600);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
 }
 
@@ -1885,7 +1885,7 @@ header::before {
 .audio-title span {
   color: var(--teal-500);
   font-family: "Manrope", sans-serif;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -1903,7 +1903,7 @@ header::before {
   border: 1px solid var(--border);
   border-radius: 99px;
   color: var(--text-muted);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -1932,7 +1932,7 @@ header::before {
 }
 
 .play-icon {
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .waveform {
@@ -1980,7 +1980,7 @@ header::before {
 .transcript-box > span {
   color: var(--blue-600);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.12em;
 }
@@ -2014,7 +2014,7 @@ header::before {
   border-radius: 9px;
   background: var(--surface);
   color: var(--text);
-  font-size: 11px;
+  font-size: 12px;
   cursor: pointer;
 }
 
@@ -2037,7 +2037,7 @@ header::before {
 .listening-feedback {
   display: none;
   margin-top: 9px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
 }
 
@@ -2077,7 +2077,7 @@ header::before {
 
 .theory-index-heading > span {
   color: var(--text-muted);
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .theory-index-group {
@@ -2089,7 +2089,7 @@ header::before {
 
 .theory-index-group > p {
   color: var(--text-muted);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -2110,7 +2110,7 @@ header::before {
   border-radius: 9px;
   background: var(--surface-solid);
   color: var(--text);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -2118,7 +2118,7 @@ header::before {
 .theory-index-group button span {
   color: var(--blue-600);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 8px;
+  font-size: 12px;
 }
 
 .theory-topic {
@@ -2139,7 +2139,7 @@ header::before {
 .theory-topic-heading > span {
   color: var(--blue-600);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
 }
 
@@ -2157,7 +2157,7 @@ header::before {
 
 .theory-topic-meta span {
   color: var(--text-muted);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -2198,7 +2198,7 @@ header::before {
   display: block;
   margin-bottom: 4px;
   color: var(--blue-600);
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.09em;
   text-transform: uppercase;
@@ -2210,7 +2210,7 @@ header::before {
 
 .theory-insights strong,
 .theory-insights p {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -2224,7 +2224,7 @@ header::before {
 .theory-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .theory-table th {
@@ -2232,7 +2232,7 @@ header::before {
   border-bottom: 1px solid var(--border);
   background: var(--table-head-bg);
   color: var(--text-muted);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.05em;
   text-align: left;
@@ -2322,7 +2322,7 @@ header::before {
   }
 
   .hero-metrics span {
-    font-size: 8px;
+    font-size: 12px;
   }
 
   .hero-orbit {
@@ -2508,7 +2508,7 @@ header::before {
 .grammar-roadmap small {
   margin-top: 3px;
   color: var(--text-muted);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .grammar-lesson-index {
@@ -2532,7 +2532,7 @@ header::before {
   background: transparent;
   color: var(--text-muted);
   cursor: pointer;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   text-align: left;
   transition: 0.18s ease;
@@ -2548,7 +2548,7 @@ header::before {
 .grammar-lesson-index button span {
   color: var(--blue-600);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .grammar-lessons {
@@ -2593,13 +2593,13 @@ header::before {
   color: var(--neon);
   background: #071926;
   font-family: "Space Grotesk", sans-serif;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
 }
 
 .grammar-lesson-heading small {
   color: var(--blue-600);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.12em;
 }
@@ -2631,7 +2631,7 @@ header::before {
 
 .grammar-formula span {
   color: #71a498;
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.13em;
 }
@@ -2682,7 +2682,7 @@ header::before {
 
 .grammar-examples small {
   color: var(--text-muted);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .grammar-mistake {
@@ -2697,14 +2697,14 @@ header::before {
 .grammar-mistake span {
   flex: 0 0 auto;
   color: var(--coral-500);
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.1em;
 }
 
 .grammar-mistake p {
   color: var(--text-muted);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.6;
 }
 
@@ -2743,7 +2743,7 @@ header::before {
 .grammar-solutions summary small,
 .reading-solutions summary small {
   color: var(--text-muted);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .grammar-solutions summary::after,
@@ -2782,7 +2782,7 @@ header::before {
 .solution-item > span {
   color: var(--blue-600);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 700;
 }
 
@@ -2794,7 +2794,7 @@ header::before {
 
 .solution-item small {
   color: var(--text-muted);
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -2806,7 +2806,7 @@ header::before {
 
 .solution-item p {
   color: var(--text-muted);
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.55;
 }
 
@@ -2832,7 +2832,7 @@ header::before {
 
 .reading-overview > div:nth-child(2) span {
   color: var(--text-muted);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -2896,7 +2896,7 @@ header::before {
   border-radius: 14px 5px 14px 5px;
   color: var(--violet);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 800;
 }
 
@@ -2912,7 +2912,7 @@ header::before {
   border: 1px solid var(--border);
   border-radius: 99px;
   color: var(--text-muted);
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -2927,7 +2927,7 @@ header::before {
 .reading-status {
   margin-top: 4px;
   color: var(--text-muted);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .reading-sheet.completed .reading-status {
@@ -2957,7 +2957,7 @@ header::before {
   padding-top: 5px;
   color: var(--text-muted);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 8px;
+  font-size: 12px;
 }
 
 .reading-questions {
@@ -2994,13 +2994,13 @@ header::before {
   border: 1px solid var(--border);
   border-radius: 9px;
   color: var(--violet);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 800;
 }
 
 .reading-question-title small {
   color: var(--text-muted);
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.08em;
 }
@@ -3027,7 +3027,7 @@ header::before {
   background: var(--surface-soft);
   color: var(--text);
   cursor: pointer;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   text-align: left;
   transition: 0.15s ease;
@@ -3081,7 +3081,7 @@ header::before {
   margin: 10px 0 0 40px;
   padding: 11px 13px;
   border-radius: 10px;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.6;
 }
 
@@ -3115,7 +3115,7 @@ html[data-theme="dark"] .reading-feedback.ko {
 
 .reading-guidance span {
   color: var(--violet);
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.09em;
 }
@@ -3151,13 +3151,13 @@ html[data-theme="dark"] .reading-feedback.ko {
 .reading-solution-list > div > span {
   color: var(--violet);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 800;
 }
 
 .reading-solution-list p {
   color: var(--text-muted);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.65;
 }
 
@@ -3171,7 +3171,7 @@ html[data-theme="dark"] .reading-feedback.ko {
   padding: 17px;
   border-top: 1px solid var(--border);
   color: var(--text-muted);
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.65;
 }
 
@@ -3311,7 +3311,7 @@ html[data-theme="dark"] .reading-feedback.ko {
 .tense-quick-nav span {
   color: var(--text-muted);
   font-family: "Manrope", sans-serif;
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -3357,7 +3357,7 @@ html[data-theme="dark"] .reading-feedback.ko {
   background: #071926;
   color: var(--neon);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 800;
 }
 
@@ -3371,7 +3371,7 @@ html[data-theme="dark"] .reading-feedback.ko {
   max-width: 670px;
   margin-top: 2px;
   color: var(--text-muted);
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -3380,7 +3380,7 @@ html[data-theme="dark"] .reading-feedback.ko {
   border: 1px solid var(--border);
   border-radius: 99px;
   color: var(--text-muted);
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.07em;
   text-transform: uppercase;
@@ -3426,7 +3426,7 @@ html[data-theme="dark"] .reading-feedback.ko {
   border-radius: 8px;
   color: var(--violet);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 800;
 }
 
@@ -3469,7 +3469,7 @@ html[data-theme="dark"] .reading-feedback.ko {
   border-radius: 6px;
   background: #071926;
   color: var(--neon);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 900;
 }
 
@@ -3477,7 +3477,7 @@ html[data-theme="dark"] .reading-feedback.ko {
   overflow-wrap: anywhere;
   color: var(--text);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -3485,7 +3485,7 @@ html[data-theme="dark"] .reading-feedback.ko {
 .tense-markers p {
   margin-top: 4px;
   color: var(--text-muted);
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.6;
 }
 
@@ -3495,7 +3495,7 @@ html[data-theme="dark"] .reading-feedback.ko {
 
 .tense-markers > span {
   color: var(--violet);
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -3517,12 +3517,12 @@ html[data-theme="dark"] .reading-feedback.ko {
 }
 
 .tense-examples strong {
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .tense-examples small {
   color: var(--text-muted);
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .verb-guide-grid {
@@ -3557,7 +3557,7 @@ html[data-theme="dark"] .reading-feedback.ko {
   border-radius: 10px 4px 10px 4px;
   color: var(--violet);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 800;
 }
 
@@ -3595,7 +3595,7 @@ html[data-theme="dark"] .reading-feedback.ko {
 .regular-rules strong,
 .regular-rules code,
 .regular-rules small {
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .regular-rules code {
@@ -3628,13 +3628,13 @@ html[data-theme="dark"] .reading-feedback.ko {
 .ed-pronunciation p {
   margin: 5px 0;
   color: var(--text);
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
 .ed-pronunciation small {
   color: var(--text-muted);
-  font-size: 8px;
+  font-size: 12px;
 }
 
 .pronunciation-reminder {
@@ -3643,7 +3643,7 @@ html[data-theme="dark"] .reading-feedback.ko {
   border-left: 2px solid var(--neon);
   background: var(--surface-soft);
   color: var(--text-muted);
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.6;
 }
 
@@ -3681,7 +3681,7 @@ html[data-theme="dark"] .reading-feedback.ko {
   background: transparent;
   color: inherit;
   font-family: "Manrope", sans-serif;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -3707,7 +3707,7 @@ html[data-theme="dark"] .reading-feedback.ko {
   border-radius: 99px;
   background: rgba(255, 255, 255, 0.07);
   color: #eefaff;
-  font: 700 10px "Manrope", sans-serif;
+  font: 700 14px "Manrope", sans-serif;
   letter-spacing: 0.03em;
   cursor: pointer;
   backdrop-filter: blur(12px);
@@ -3780,7 +3780,7 @@ html[data-theme="dark"] .reading-feedback.ko {
 .account-eyebrow {
   color: var(--neon);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.13em;
 }
@@ -3815,11 +3815,11 @@ html[data-theme="dark"] .reading-feedback.ko {
   border-radius: 8px;
   background: transparent;
   color: var(--text-muted);
-  font: 700 10px "Manrope", sans-serif;
+  font: 700 14px "Manrope", sans-serif;
   cursor: pointer;
 }
 
-.account-tabs button[aria-selected="true"] {
+.account-tabs button[aria-pressed="true"] {
   background: var(--surface-solid);
   color: var(--text);
   box-shadow: var(--shadow-sm);
@@ -3833,7 +3833,7 @@ html[data-theme="dark"] .reading-feedback.ko {
 #account-form > label {
   margin-top: 5px;
   color: var(--text-muted);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -3873,7 +3873,7 @@ html[data-theme="dark"] .reading-feedback.ko {
   border-radius: 7px;
   background: var(--border);
   color: var(--text-muted);
-  font: 700 9px "Manrope", sans-serif;
+  font: 700 14px "Manrope", sans-serif;
   cursor: pointer;
   transform: translateY(-50%);
 }
@@ -3881,14 +3881,14 @@ html[data-theme="dark"] .reading-feedback.ko {
 .account-password-hint,
 .account-local-note {
   color: var(--text-muted);
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.55;
 }
 
 .account-message {
   min-height: 18px;
   color: #c33f27;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
 }
 
@@ -3903,7 +3903,7 @@ html[data-theme="dark"] .reading-feedback.ko {
   min-height: 44px;
   margin-top: 5px;
   border-radius: 10px;
-  font: 800 11px "Manrope", sans-serif;
+  font: 800 14px "Manrope", sans-serif;
   cursor: pointer;
 }
 
@@ -3933,7 +3933,7 @@ html[data-theme="dark"] .reading-feedback.ko {
   border: 0;
   background: transparent;
   color: #c33f27;
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .account-local-note {
@@ -3978,7 +3978,7 @@ html[data-theme="dark"] .reading-feedback.ko {
 
 .account-profile-card small {
   color: var(--text-muted);
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .account-notice {
@@ -3990,13 +3990,13 @@ html[data-theme="dark"] .reading-feedback.ko {
 }
 
 .account-notice strong {
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .account-notice p {
   margin-top: 4px;
   color: var(--text-muted);
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.55;
 }
 
@@ -4048,13 +4048,13 @@ html[data-theme="dark"] .reading-feedback.ko {
 }
 
 .irregular-patterns strong {
-  font-size: 9px;
+  font-size: 12px;
 }
 
 .irregular-patterns code {
   color: var(--text-muted);
   font-family: "Space Grotesk", sans-serif;
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.6;
 }
 
@@ -4081,13 +4081,13 @@ html[data-theme="dark"] .reading-feedback.ko {
 
 .irregular-table-details > summary span {
   font-family: "Space Grotesk", sans-serif;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
 }
 
 .irregular-table-details > summary small {
   color: var(--text-muted);
-  font-size: 8px;
+  font-size: 12px;
 }
 
 .irregular-table-wrap {
@@ -4097,7 +4097,7 @@ html[data-theme="dark"] .reading-feedback.ko {
 .irregular-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .irregular-table th,
@@ -4110,7 +4110,7 @@ html[data-theme="dark"] .reading-feedback.ko {
 .irregular-table th {
   background: var(--table-head-bg);
   color: var(--text-muted);
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
@@ -4190,7 +4190,7 @@ html[data-theme="dark"] .reading-feedback.ko {
 }
 
 .site-footer-meta {
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .info-header {
@@ -4223,7 +4223,7 @@ html[data-theme="dark"] .reading-feedback.ko {
   display: block;
   margin-bottom: 9px;
   color: var(--blue-600);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -4252,7 +4252,7 @@ html[data-theme="dark"] .reading-feedback.ko {
   border-radius: 99px;
   background: var(--blue-50);
   color: var(--blue-800);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 800;
 }
 
@@ -4359,3 +4359,19 @@ html[data-theme="dark"] .reading-feedback.ko {
     gap: 8px 12px;
   }
 }
+
+/* Legibilidad, teclado y controles de estudio */
+button, input, select, textarea { font-size: max(0.875rem, 14px); }
+input, textarea { font-size: 1rem; }
+button { min-height: 40px; }
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid var(--teal-500, #00a58b); outline-offset: 3px; }
+.reading-text, .grammar-lesson p, .account-copy, .account-notice p { font-size: 1rem; line-height: 1.7; }
+.reading-reset, .backup-controls button { padding: 8px 14px; border: 1px solid var(--border-strong); border-radius: 8px; color: var(--text); background: var(--surface); }
+.backup-controls { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 18px auto; }
+.backup-status { text-align: center; font-size: 14px; }
+@media (max-width: 640px) { .topbar { flex-wrap: wrap; gap: 12px; } .header-compact .account-toggle { max-width: 120px; } .account-dialog { padding: 32px 20px 20px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+
+.listening-console select { max-width: 100%; }
+.listening-console > div { min-width: 0; }
+#voice-help { font-size: .875rem; line-height: 1.5; max-width: 38ch; }
