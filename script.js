@@ -24,6 +24,7 @@ function loadProgress() {
     p.tests      = p.tests      || {};
     p.vocabKnown = p.vocabKnown || {};
     p.listening  = p.listening  || {};
+    p.listeningVerified = p.listeningVerified || {};
     p.reading    = p.reading    || {};
     p.readingAnswers = p.readingAnswers || {};
     p.streak     = p.streak     || { count: 0, lastDate: '' };
@@ -34,7 +35,8 @@ function loadProgress() {
 }
 
 function saveProgress(p) {
-  localStorage.setItem(getProgressStorageKey(), JSON.stringify(p));
+  try { localStorage.setItem(getProgressStorageKey(), JSON.stringify(p)); }
+  catch (_) { window.showStorageWarning?.(); }
 }
 
 function getLocalDateKey(date = new Date()) {
@@ -76,7 +78,7 @@ function getTotals() {
 function getDone(progress) {
   const grammar = Object.values(progress.grammar).reduce((a, arr) => a + arr.filter(Boolean).length, 0);
   const tests = Object.values(progress.tests).reduce((a, o) => a + (o.best || 0), 0);
-  const listening = Object.values(progress.listening).reduce((a, arr) => a + arr.filter(Boolean).length, 0);
+  const listening = Object.values(progress.listeningVerified || {}).reduce((a, arr) => a + arr.filter(Boolean).length, 0);
   const reading = Object.values(progress.reading).reduce((a, arr) => a + arr.filter(Boolean).length, 0);
   const vocabulary = Object.values(progress.vocabKnown).filter(Boolean).length;
   return { grammar, tests, listening, reading, vocabulary };
@@ -131,7 +133,8 @@ function updateStreakDisplay() {
 
   const badge = document.getElementById('streak-badge');
   if (badge) {
-    const n = progress.streak.count;
+    const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
+    const n = [getLocalDateKey(), getLocalDateKey(yesterday)].includes(progress.streak.lastDate) ? progress.streak.count : 0;
     badge.textContent = n
       ? `🔥 Racha de estudio: ${n} día${n === 1 ? '' : 's'}`
       : '✨ Tu primera actividad empieza hoy';
@@ -156,7 +159,7 @@ function initTheme() {
     const current = document.documentElement.getAttribute('data-theme');
     const next = current === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
+    try { localStorage.setItem('theme', next); } catch (_) { window.showStorageWarning?.(); }
     updateIcon();
   });
 }
@@ -492,7 +495,7 @@ function migrateVocabularyProgress() {
 
 async function loadVocabulary() {
   try {
-    const response = await fetch('vocabulary.json');
+    const response = await fetch('vocabulary.json?v=20260927');
     vocabularyData = await response.json();
     console.log('Vocabulario cargado:',
       Object.values(vocabularyData).reduce((acc, arr) => acc + arr.length, 0), 'palabras');
@@ -580,7 +583,7 @@ function renderLevelSelector(levelKeys, activeIndex, sectionKey) {
     const c = levelColors[lvlKey] || { bg: 'var(--border)', text: 'var(--text-muted)' };
     html += `
       <button
-        onclick="switchLevel('${sectionKey}', ${i})"
+        aria-pressed="${active}" onclick="switchLevel('${sectionKey}', ${i})"
         style="padding:7px 18px; border-radius:99px;
                border:${active ? '1.5px solid ' + c.text : '0.5px solid var(--border-strong)'};
                background:${active ? c.bg : 'var(--surface)'};
@@ -600,6 +603,7 @@ function switchLevel(sectionKey, levelIndex) {
   if ('speechSynthesis' in window) window.speechSynthesis.cancel();
   if (typeof currentSpeechId !== 'undefined') currentSpeechId = null;
   content.innerHTML = renderSection(sectionKey, levelIndex);
+  if (sectionKey === 'listening') refreshVoiceChoices();
 }
 
 
@@ -1060,6 +1064,8 @@ function speakVocabulary(word, event) {
 let currentQ = 0;
 let score = 0;
 let currentTestLevel = 0;
+let testQuestions = [];
+let testReview = false;
 let testResultsByQ = []; // true/false por pregunta respondida en esta ronda
 
 function renderTests(levelIndex = 0) {
@@ -1067,7 +1073,16 @@ function renderTests(levelIndex = 0) {
   currentQ = 0;
   score = 0;
   testResultsByQ = [];
+  testReview = false;
+  testQuestions = shuffleTest(data.tests.levels[levelIndex].questions);
   return renderQuestion(levelIndex);
+}
+
+function shuffleTest(questions) {
+  return questions.map(q => ({ q, order: Math.random() })).sort((a, b) => a.order - b.order).map(({ q }) => {
+    const options = q.options.map((text, index) => ({ text, right: index === q.correct, order: Math.random() })).sort((a, b) => a.order - b.order);
+    return { ...q, options: options.map(o => o.text), correct: options.findIndex(o => o.right) };
+  });
 }
 
 function renderQuestion(levelIndex) {
@@ -1077,8 +1092,8 @@ function renderQuestion(levelIndex) {
   const c = levelColors[lvl.level];
   const levelKeys = s.levels.map(l => l.level);
 
-  if (currentQ >= lvl.questions.length) {
-    const total = lvl.questions.length;
+  if (currentQ >= testQuestions.length) {
+    const total = testQuestions.length;
     const emoji = score === total ? '🏆' : score >= Math.ceil(total / 2) ? '🎉' : '💪';
     const msg = score >= total - 1 ? 'Excelente nivel'
       : score >= Math.ceil(total / 2) ? 'Buen trabajo, sigue practicando'
@@ -1086,15 +1101,17 @@ function renderQuestion(levelIndex) {
 
     const progress = loadProgress();
     const prevBest = (progress.tests[lvl.level] && progress.tests[lvl.level].best) || 0;
-    progress.tests[lvl.level] = { best: Math.max(prevBest, score), total };
-    saveProgress(progress);
+    if (!testReview) {
+      progress.tests[lvl.level] = { best: Math.max(prevBest, score), total };
+      saveProgress(progress);
+    }
     recordStudyActivity();
     updateCardProgress('tests');
-    const isNewBest = score > prevBest;
+    const isNewBest = !testReview && score > prevBest;
 
     // Desglose de aciertos por tema
     const byTopic = {};
-    lvl.questions.forEach((q, i) => {
+    testQuestions.forEach((q, i) => {
       const topic = q.topic || 'General';
       if (!byTopic[topic]) byTopic[topic] = { correct: 0, total: 0 };
       byTopic[topic].total++;
@@ -1119,27 +1136,29 @@ function renderQuestion(levelIndex) {
       ${renderLevelSelector(levelKeys, levelIndex, 'tests')}
       <div style="text-align:center; padding:32px 20px 12px">
         <div style="font-size:48px; margin-bottom:16px">${emoji}</div>
+        ${testReview ? '<p>Repaso de errores · no modifica tu mejor resultado</p>' : ''}
         <h3 style="font-family:'Space Grotesk',sans-serif; font-size:26px; font-weight:600; margin-bottom:8px">
           ${score} / ${total} correctas
         </h3>
         <p style="color:var(--text-muted); margin-bottom:8px">${msg}</p>
-        ${isNewBest ? `<p style="color:var(--teal-500); font-size:13px; margin-bottom:20px">Nuevo mejor resultado 🎉</p>` : `<p style="color:var(--text-muted); font-size:13px; margin-bottom:20px">Mejor resultado: ${Math.max(prevBest, score)} / ${total}</p>`}
+        ${testReview ? '' : isNewBest ? `<p style="color:var(--teal-500); font-size:13px; margin-bottom:20px">Nuevo mejor resultado 🎉</p>` : `<p style="color:var(--text-muted); font-size:13px; margin-bottom:20px">Mejor resultado: ${Math.max(prevBest, score)} / ${total}</p>`}
       </div>
       <div class="exercise-block" style="text-align:left">
         <p class="question">Desglose por tema</p>
         ${breakdownHTML}
       </div>
-      <button class="card-btn" style="margin:16px auto 0" onclick="restartTest(${levelIndex})">Repetir test</button>`;
+      ${testResultsByQ.some(value => !value) ? `<button class="card-btn" onclick="reviewTestErrors(${levelIndex})">Repasar errores</button>` : ''}
+      <button class="card-btn" style="margin:16px auto 0" onclick="restartTest(${levelIndex})">Nuevo test</button>`;
   }
 
-  const q = lvl.questions[currentQ];
+  const q = testQuestions[currentQ];
   return `
     <h2>✏️ Tests</h2>
     ${renderLevelSelector(levelKeys, levelIndex, 'tests')}
     <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:16px">
       <div style="display:inline-block; background:${c.bg}; color:${c.text};
                   padding:4px 12px; border-radius:99px; font-size:12px; font-weight:600;">
-        Nivel ${lvl.level} · Pregunta ${currentQ + 1} de ${lvl.questions.length} · Puntos: ${score}
+        Nivel ${lvl.level} · Pregunta ${currentQ + 1} de ${testQuestions.length} · Puntos: ${score}
       </div>
       ${q.topic ? `<div style="display:inline-block; background:var(--border); color:var(--text-muted);
                   padding:4px 12px; border-radius:99px; font-size:12px;">🏷️ ${q.topic}</div>` : ''}
@@ -1150,13 +1169,13 @@ function renderQuestion(levelIndex) {
         <button class="option-btn" id="opt-${i}" onclick="checkAnswer(${i}, ${levelIndex})">
           ${String.fromCharCode(65 + i)}. ${opt}
         </button>`).join('')}
-      <div id="test-fb" class="feedback-msg"></div>
+      <div id="test-fb" class="feedback-msg" role="status"></div>
       <button class="next-btn" id="next-btn" onclick="nextQuestion(${levelIndex})">Siguiente →</button>
     </div>`;
 }
 
 function checkAnswer(chosen, levelIndex) {
-  const q  = data.tests.levels[levelIndex].questions[currentQ];
+  const q  = testQuestions[currentQ];
   const fb = document.getElementById('test-fb');
   document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
   document.getElementById(`opt-${q.correct}`).classList.add('correct');
@@ -1180,16 +1199,22 @@ function nextQuestion(levelIndex) {
 }
 
 function restartTest(levelIndex) {
-  currentQ = 0; score = 0; testResultsByQ = [];
-  content.innerHTML = renderQuestion(levelIndex);
+  content.innerHTML = renderTests(levelIndex);
 }
 
+
+function reviewTestErrors(levelIndex) {
+  testQuestions = shuffleTest(testQuestions.filter((_, index) => !testResultsByQ[index]));
+  currentQ = 0; score = 0; testResultsByQ = []; testReview = true;
+  content.innerHTML = renderQuestion(levelIndex);
+}
 
 // ─── 9. LISTENING STUDIO ───────────────────────────────────────────────────
 
 let currentSpeechId = null;
 let listeningRate = 0.9;
 let listeningVoiceMode = 'auto';
+let selectedVoiceURI = '';
 
 function getEnglishVoices() {
   if (!('speechSynthesis' in window)) return [];
@@ -1203,6 +1228,8 @@ function getEnglishVoices() {
 
 function selectListeningVoice(track) {
   const voices = getEnglishVoices();
+  const chosen = voices.find(voice => voice.voiceURI === selectedVoiceURI);
+  if (chosen) return chosen;
   const requestedAccent = listeningVoiceMode === 'auto'
     ? (track.accent || 'GB')
     : listeningVoiceMode;
@@ -1220,7 +1247,8 @@ function renderListening(levelIndex = 0) {
   const lvl = s.levels[levelIndex];
   const levelKeys = s.levels.map(l => l.level);
   const progress = loadProgress();
-  const doneArr = progress.listening[lvl.level] || [];
+  const doneArr = (progress.listeningVerified || {})[lvl.level] || [];
+  const heardArr = progress.listening[lvl.level] || [];
   const supported = 'speechSynthesis' in window;
 
   let html = `
@@ -1238,6 +1266,12 @@ function renderListening(levelIndex = 0) {
           <option value="GB" ${listeningVoiceMode === 'GB' ? 'selected' : ''}>Inglés británico</option>
           <option value="US" ${listeningVoiceMode === 'US' ? 'selected' : ''}>Inglés americano</option>
         </select>
+        <label for="voice-choice" class="control-label">Voz de este dispositivo</label>
+        <select id="voice-choice" onchange="chooseListeningVoice(this.value)" aria-describedby="voice-help">
+          <option value="">Mejor voz disponible para el acento</option>
+          ${getEnglishVoices().map(voice => `<option value="${escapeHTML(voice.voiceURI)}" ${voice.voiceURI === selectedVoiceURI ? 'selected' : ''}>${escapeHTML(voice.name)} (${escapeHTML(voice.lang)})</option>`).join('')}
+        </select>
+        <p id="voice-help">La calidad depende de las voces instaladas. Puedes comparar las disponibles.</p>
       </div>
       <div>
         <span class="control-label">Velocidad</span>
@@ -1262,7 +1296,7 @@ function renderListening(levelIndex = 0) {
         <div class="audio-topline">
           <span class="track-number">${String(i + 1).padStart(2, '0')}</span>
           <div class="audio-heading">
-            <div class="audio-title">${track.title}<span id="done-${i}">${isDone ? ' · Completado' : ''}</span></div>
+            <div class="audio-title">${track.title}<span id="done-${i}" aria-live="polite">${isDone ? ' · Comprensión superada' : heardArr[i] ? ' · Escuchada' : ''}</span></div>
             <div class="audio-meta">
               <span>${track.context || 'Listening'}</span>
               <span>${track.accent === 'US' ? 'US English' : 'UK English'}</span>
@@ -1273,12 +1307,12 @@ function renderListening(levelIndex = 0) {
         <p class="audio-desc">${track.desc}</p>
         <div class="audio-player">
           ${supported ? `
-            <button class="play-btn" id="play-${i}" onclick="toggleListen(${i}, ${levelIndex})" aria-label="Reproducir ${track.title}">
+            <button class="play-btn" id="play-${i}" onclick="toggleListen(${i}, ${levelIndex})" data-track-title="${escapeHTML(track.title)}" aria-label="Reproducir ${escapeHTML(track.title)}">
               <span class="play-icon">▶</span><span class="play-label">Reproducir</span>
             </button>
             <div class="waveform" aria-hidden="true">${Array.from({length: 28}, (_, n) => `<i style="--h:${22 + ((n * 17) % 66)}%"></i>`).join('')}</div>
           ` : ''}
-          <button class="transcript-toggle" onclick="toggleTranscript(${i}, this)">Ver transcripción</button>
+          <button class="transcript-toggle" aria-expanded="${!supported}" aria-controls="transcript-${i}" onclick="toggleTranscript(${i}, this)">Ver transcripción</button>
         </div>
         <div class="progress-bar" aria-hidden="true">
           <div class="progress-bar-fill" id="prog-${i}" style="width:${isDone ? 100 : 0}%"></div>
@@ -1303,10 +1337,29 @@ function renderListening(levelIndex = 0) {
   return html;
 }
 
-function setListeningVoice(mode) {
-  listeningVoiceMode = mode;
+function chooseListeningVoice(uri) {
+  selectedVoiceURI = uri;
   if ('speechSynthesis' in window) window.speechSynthesis.cancel();
   currentSpeechId = null;
+  document.querySelectorAll('.play-btn').forEach(resetPlayButton);
+}
+
+function refreshVoiceChoices() {
+  const select = document.getElementById('voice-choice');
+  if (!select) return;
+  select.innerHTML = '<option value="">Mejor voz disponible para el acento</option>' + getEnglishVoices().map(voice => `<option value="${escapeHTML(voice.voiceURI)}">${escapeHTML(voice.name)} (${escapeHTML(voice.lang)})</option>`).join('');
+  select.value = selectedVoiceURI;
+  const help = document.getElementById('voice-help');
+  if (help) help.textContent = getEnglishVoices().length ? 'La calidad depende de las voces instaladas. Puedes comparar las disponibles.' : 'Aún no hay voces inglesas disponibles. Comprueba las voces del dispositivo o utiliza la transcripción.';
+}
+
+function setListeningVoice(mode) {
+  listeningVoiceMode = mode;
+  selectedVoiceURI = '';
+  const choice = document.getElementById('voice-choice'); if (choice) choice.value = '';
+  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+  currentSpeechId = null;
+  document.querySelectorAll('.play-btn').forEach(resetPlayButton);
 }
 
 function setListeningRate(rate, levelIndex) {
@@ -1314,18 +1367,20 @@ function setListeningRate(rate, levelIndex) {
   if ('speechSynthesis' in window) window.speechSynthesis.cancel();
   currentSpeechId = null;
   content.innerHTML = renderListening(levelIndex);
+  refreshVoiceChoices();
 }
 
 function toggleTranscript(i, btn) {
   const box = document.getElementById(`transcript-${i}`);
   box.classList.toggle('show');
-  if (btn) btn.textContent = box.classList.contains('show') ? 'Ocultar transcripción' : 'Ver transcripción';
+  if (btn) { btn.textContent = box.classList.contains('show') ? 'Ocultar transcripción' : 'Ver transcripción'; btn.setAttribute('aria-expanded', box.classList.contains('show')); }
 }
 
 function resetPlayButton(btn) {
   if (!btn) return;
   btn.querySelector('.play-icon').textContent = '▶';
   btn.querySelector('.play-label').textContent = 'Reproducir';
+  btn.setAttribute('aria-label', `Reproducir ${btn.dataset.trackTitle || ''}`);
 }
 
 function toggleListen(i, levelIndex) {
@@ -1338,9 +1393,15 @@ function toggleListen(i, levelIndex) {
   const thisId = `${lvl.level}-${i}`;
 
   if (currentSpeechId === thisId) {
-    window.speechSynthesis.cancel();
-    currentSpeechId = null;
-    resetPlayButton(btn);
+    if (window.speechSynthesis.paused) {
+      window.speechSynthesis.resume();
+      btn.querySelector('.play-label').textContent = 'Pausar';
+      btn.setAttribute('aria-label', `Pausar ${track.title}`);
+    } else {
+      window.speechSynthesis.pause();
+      btn.querySelector('.play-label').textContent = 'Continuar';
+      btn.setAttribute('aria-label', `Continuar ${track.title}`);
+    }
     return;
   }
 
@@ -1350,7 +1411,8 @@ function toggleListen(i, levelIndex) {
 
   currentSpeechId = thisId;
   btn.querySelector('.play-icon').textContent = '■';
-  btn.querySelector('.play-label').textContent = 'Detener';
+  btn.querySelector('.play-label').textContent = 'Pausar';
+      btn.setAttribute('aria-label', `Pausar ${track.title}`);
   prog.style.width = '0%';
 
   const text = track.script || track.desc;
@@ -1379,6 +1441,7 @@ function toggleListen(i, levelIndex) {
     };
 
     utterance.onerror = event => {
+      if (currentSpeechId !== thisId) return;
       if (event.error === 'canceled' || event.error === 'interrupted') return;
       if (!retried && currentSpeechId === thisId) {
         retried = true;
@@ -1388,6 +1451,8 @@ function toggleListen(i, levelIndex) {
       prog.style.width = '0%';
       resetPlayButton(btn);
       currentSpeechId = null;
+      const feedback = document.getElementById(`listen-feedback-${i}`);
+      if (feedback) feedback.textContent = 'No se pudo reproducir la voz. Prueba otra voz o utiliza la transcripción.';
     };
 
     window.speechSynthesis.speak(utterance);
@@ -1405,7 +1470,7 @@ function markListeningComplete(level, i) {
   if (isNew) recordStudyActivity();
   updateCardProgress('listening');
   const done = document.getElementById(`done-${i}`);
-  if (done) done.textContent = ' · Completado';
+  if (done) done.textContent = progress.listeningVerified?.[level]?.[i] ? ' · Comprensión superada' : ' · Escuchada';
 }
 
 function checkListeningAnswer(i, levelIndex, selected, button) {
@@ -1419,7 +1484,15 @@ function checkListeningAnswer(i, levelIndex, selected, button) {
   if (selected === track.correct) {
     feedback.textContent = 'Correcto. Has captado la idea clave.';
     feedback.className = 'listening-feedback show ok';
-    markListeningComplete(data.listening.levels[levelIndex].level, i);
+    const level = data.listening.levels[levelIndex].level;
+    const progress = loadProgress();
+    progress.listeningVerified ||= {};
+    progress.listeningVerified[level] ||= [];
+    progress.listeningVerified[level][i] = true;
+    saveProgress(progress);
+    recordStudyActivity();
+    updateCardProgress('listening');
+    document.getElementById(`done-${i}`).textContent = ' · Comprensión superada';
   } else {
     button.classList.add('wrong');
     feedback.textContent = `Casi. La respuesta correcta es: ${track.options[track.correct]}.`;
@@ -1428,7 +1501,7 @@ function checkListeningAnswer(i, levelIndex, selected, button) {
 }
 
 if ('speechSynthesis' in window) {
-  window.speechSynthesis.addEventListener?.('voiceschanged', getEnglishVoices);
+  window.speechSynthesis.addEventListener?.('voiceschanged', refreshVoiceChoices);
 }
 
 // ─── 10. READING ────────────────────────────────────────────────────────────
@@ -1446,7 +1519,7 @@ function renderReading(levelIndex = 0) {
     <div class="section-intro">
       <span class="section-code">READING LAB / ${level.level}</span>
       <h2>Lee, interpreta y responde</h2>
-      <p class="subtitle">Tres textos graduados por hoja. Las preguntas cerradas tienen una respuesta verificable; las abiertas incluyen un modelo orientativo, nunca una única opinión “correcta”.</p>
+      <p class="subtitle">Lecturas breves y extensas graduadas por nivel. Las preguntas cerradas tienen una respuesta verificable; las abiertas incluyen un modelo orientativo, nunca una única opinión “correcta”.</p>
     </div>
     ${renderLevelSelector(levelKeys, levelIndex, 'reading')}
     <div class="reading-overview">
@@ -1465,6 +1538,7 @@ function renderReading(levelIndex = 0) {
           <div>
             <div class="reading-meta"><span>${text.genre}</span><span>${text.time}</span><span>Nivel ${level.level}</span></div>
             <h3>${text.title}</h3>
+            <button class="reading-reset" onclick="resetReading(${textIndex}, ${levelIndex})">Repetir lectura</button>
             <p id="reading-done-${textIndex}" class="reading-status">${isDone ? 'Lectura completada' : 'Pendiente de responder'}</p>
           </div>
         </div>
@@ -1501,7 +1575,7 @@ function renderReading(levelIndex = 0) {
                     ? `${saved.selected === question.correct ? 'Correcto.' : 'Revisa el fragmento.'} ${question.explanation}`
                     : ''}</div>
               ` : `
-                <textarea id="reading-answer-${textIndex}-${questionIndex}" rows="3"
+                <textarea aria-label="${escapeHTML(question.q)}" id="reading-answer-${textIndex}-${questionIndex}" rows="3"
                   oninput="saveReadingDraft(${textIndex}, ${questionIndex}, ${levelIndex}, this.value)"
                   placeholder="Escribe tu interpretación con tus propias palabras...">${escapeHTML(saved.text || '')}</textarea>
                 <button class="reading-guide-btn" onclick="showReadingGuidance(${textIndex}, ${questionIndex}, ${levelIndex})">Comparar con una respuesta orientativa</button>
@@ -1596,6 +1670,17 @@ function updateReadingCompletion(textIndex, levelIndex) {
   const answered = sheet.querySelectorAll('.reading-question[data-answered="true"]');
   if (questions.length !== answered.length) return;
   markReadingComplete(data.reading.levels[levelIndex].level, textIndex);
+}
+
+function resetReading(textIndex, levelIndex) {
+  if (!window.confirm('¿Repetir esta lectura? Se borrarán sus respuestas guardadas.')) return;
+  const level = data.reading.levels[levelIndex].level;
+  const progress = loadProgress();
+  if (progress.readingAnswers[level]) delete progress.readingAnswers[level][textIndex];
+  if (progress.reading[level]) progress.reading[level][textIndex] = false;
+  saveProgress(progress);
+  content.innerHTML = renderReading(levelIndex);
+  document.getElementById(`reading-text-${textIndex}`)?.scrollIntoView();
 }
 
 function markReadingComplete(level, textIndex) {
@@ -1737,4 +1822,5 @@ const currentSection = document.body.dataset.section;
 if (currentSection && content) {
   // Estamos en una pagina de seccion (grammar.html, vocabulary.html...)
   content.innerHTML = renderSection(currentSection, 0);
+  if (currentSection === 'listening') refreshVoiceChoices();
 }

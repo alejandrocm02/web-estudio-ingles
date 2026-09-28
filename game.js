@@ -55,7 +55,7 @@ function normalizeAnswer(value) {
 function getSourceCards() {
   if (gameState.mode === 'verbs') return VERB_CARDS;
   if (gameState.mode === 'pronouns') return PRONOUN_CARDS;
-  return (vocabularyData && vocabularyData[gameState.level]) || [];
+  return (vocabularyIndexed && vocabularyIndexed[gameState.level]) || [];
 }
 
 function getRoundDirection() {
@@ -272,7 +272,7 @@ function showResults() {
 }
 
 function waitForVocabulary() {
-  if (vocabularyData) {
+  if (vocabularyIndexed) {
     renderGameSetup();
     return;
   }

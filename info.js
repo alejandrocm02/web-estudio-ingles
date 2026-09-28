@@ -13,7 +13,7 @@ if (infoThemeButton) {
     const dark = document.documentElement.getAttribute('data-theme') === 'dark';
     const nextTheme = dark ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', nextTheme);
-    localStorage.setItem('theme', nextTheme);
+    try { localStorage.setItem('theme', nextTheme); } catch (_) { window.showStorageWarning?.(); }
     updateInfoThemeIcon();
   });
 }

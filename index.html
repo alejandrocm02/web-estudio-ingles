@@ -7,12 +7,12 @@
   <title>StudyEnglish</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
   <!-- Nuestro CSS -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20260927">
 
   <!-- Aplica el tema guardado antes de pintar, para evitar parpadeo -->
   <script>
     (function () {
-      var saved = localStorage.getItem('theme');
+      var saved; try { saved = localStorage.getItem('theme'); } catch (_) {}
       var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', theme);
     })();
@@ -38,7 +38,7 @@
     <div class="hero-content">
       <div class="badge"><span aria-hidden="true"></span> English learning system</div>
       <h1>Tu inglés, en<br><em>modo avance.</em></h1>
-      <p>Gramática desde cero, vocabulario real, reading y listening adaptativo. Una ruta completa para avanzar desde A0 hasta C2.</p>
+      <p>Gramática desde cero, vocabulario real, reading y listening por niveles. Una ruta completa para avanzar desde A0 hasta C2.</p>
       <div class="hero-actions">
         <a class="hero-cta hero-cta-primary" href="#learning-paths">Empezar a aprender <span aria-hidden="true">↗</span></a>
         <a class="hero-cta" href="theory.html">Explorar teoría</a>
@@ -46,8 +46,8 @@
       <div class="hero-metrics" aria-label="Contenido disponible">
         <div><strong>151</strong><span>retos de gramática</span></div>
         <div><strong>56</strong><span>fichas de teoría</span></div>
-        <div><strong>18</strong><span>lecturas graduadas</span></div>
-        <div><strong>1.300+</strong><span>palabras y expresiones</span></div>
+        <div><strong>22</strong><span>lecturas graduadas</span></div>
+        <div><strong>1.500+</strong><span>palabras y expresiones</span></div>
       </div>
       <div class="streak-badge" id="streak-badge"></div>
     </div>
@@ -93,9 +93,11 @@
   </footer>
 
   <!-- IMPORTANTE: data.js siempre antes que script.js -->
-  <script src="data.js"></script>
-  <script src="auth.js"></script>
-  <script src="script.js"></script>
+  <script src="data.js?v=20260927"></script>
+  <script src="curriculum-update.js?v=20260927"></script>
+  <script src="auth.js?v=20260927"></script>
+  <script src="progress-tools.js?v=20260927"></script>
+  <script src="script.js?v=20260927"></script>
 
 </body>
 </html>

@@ -30,7 +30,7 @@
 
   function getAccounts() {
     const accounts = readJSON(ACCOUNTS_KEY, []);
-    return Array.isArray(accounts) ? accounts : [];
+    return Array.isArray(accounts) ? accounts.filter(item => item && typeof item.id === 'string' && typeof item.username === 'string' && !validateUsername(item.username) && typeof item.salt === 'string' && typeof item.passwordHash === 'string') : [];
   }
 
   function getSession() {
@@ -182,7 +182,7 @@
     toggle.innerHTML = account
       ? `<span aria-hidden="true">●</span><span>${account.username}</span>`
       : '<span aria-hidden="true">◎</span><span>Entrar</span>';
-    toggle.setAttribute('aria-label', account ? `Cuenta de ${account.username}` : 'Iniciar sesión o crear una cuenta');
+    toggle.setAttribute('aria-label', account ? `Perfil local de ${account.username}` : 'Abrir perfiles locales');
 
     const themeToggle = header.querySelector('.theme-toggle');
     if (themeToggle) themeToggle.insertAdjacentElement('beforebegin', toggle);
@@ -204,7 +204,7 @@
       toggle.focus();
     };
     const open = () => {
-      renderAccountView(account ? 'profile' : 'login');
+      renderAccountView(getSession() ? 'profile' : 'login');
       overlay.hidden = false;
       document.body.classList.add('account-open');
       requestAnimationFrame(() => overlay.querySelector('input, button')?.focus());
@@ -216,7 +216,14 @@
       if (event.target === overlay) close();
     });
     document.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && !overlay.hidden) close();
+      if (overlay.hidden) return;
+      if (event.key === 'Escape') close();
+      if (event.key === 'Tab') {
+        const controls = [...overlay.querySelectorAll('button, input, a[href], textarea, select, [tabindex="0"]')].filter(el => !el.disabled && !el.hidden && el.getClientRects().length);
+        const first = controls[0], last = controls[controls.length - 1];
+        if (event.shiftKey && (document.activeElement === first || !overlay.contains(document.activeElement))) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && (document.activeElement === last || !overlay.contains(document.activeElement))) { event.preventDefault(); first?.focus(); }
+      }
     });
   }
 
@@ -239,11 +246,11 @@
         <p class="account-copy">Tu progreso está separado del resto de usuarios de este dispositivo.</p>
         <div class="account-profile-card">
           <span aria-hidden="true">${account.username.charAt(0).toUpperCase()}</span>
-          <div><strong>${account.username}</strong><small>Cuenta local activa</small></div>
+          <div><strong>${account.username}</strong><small>Perfil local activo</small></div>
         </div>
         <div class="account-notice">
-          <strong>Guardado privado en este navegador</strong>
-          <p>La contraseña nunca se guarda sin proteger. Para sincronizar entre dispositivos será necesario conectar un servicio de autenticación en la nube.</p>
+          <strong>Guardado en este navegador</strong>
+          <p>La contraseña bloquea el acceso desde esta pantalla, pero no cifra el progreso. No uses una contraseña de otros servicios. Exporta una copia antes de borrar los datos del navegador; aún no hay sincronización automática.</p>
         </div>
         <button class="account-primary" id="account-continue" type="button">Seguir estudiando</button>
         <button class="account-secondary" id="account-logout" type="button">Cerrar sesión</button>
@@ -252,6 +259,7 @@
       document.getElementById('account-continue').addEventListener('click', () => {
         document.getElementById('account-overlay').hidden = true;
         document.body.classList.remove('account-open');
+        document.getElementById('account-toggle')?.focus();
       });
       document.getElementById('account-logout').addEventListener('click', () => {
         logout();
@@ -271,13 +279,13 @@
     const isRegister = view === 'register';
     root.innerHTML = `
       <span class="account-eyebrow">PROGRESO PERSONAL</span>
-      <h2 id="account-title">${isRegister ? 'Crea tu cuenta' : 'Vuelve a tu ruta'}</h2>
+      <h2 id="account-title">${isRegister ? 'Crea tu perfil local' : 'Vuelve a tu ruta'}</h2>
       <p class="account-copy">${isRegister
         ? 'Crea un perfil para conservar tu avance separado en este dispositivo.'
         : 'Inicia sesión para recuperar tus palabras, ejercicios y lecturas.'}</p>
-      <div class="account-tabs" role="tablist" aria-label="Acceso">
-        <button type="button" role="tab" aria-selected="${!isRegister}" data-account-view="login">Entrar</button>
-        <button type="button" role="tab" aria-selected="${isRegister}" data-account-view="register">Crear cuenta</button>
+      <div class="account-tabs" role="group" aria-label="Acceso al perfil local">
+        <button type="button" aria-pressed="${!isRegister}" data-account-view="login">Entrar</button>
+        <button type="button" aria-pressed="${isRegister}" data-account-view="register">Crear perfil local</button>
       </div>
       <form id="account-form" novalidate>
         <label for="account-username">Usuario</label>
@@ -294,13 +302,16 @@
           <p class="account-password-hint">Mínimo 8 caracteres, con al menos una letra y un número.</p>
         ` : ''}
         <p class="account-message" id="account-message" role="status" aria-live="polite"></p>
-        <button class="account-primary" id="account-submit" type="submit">${isRegister ? 'Crear cuenta' : 'Iniciar sesión'}</button>
+        <button class="account-primary" id="account-submit" type="submit">${isRegister ? 'Crear perfil local' : 'Iniciar sesión'}</button>
       </form>
-      <p class="account-local-note"><span aria-hidden="true">◈</span> Cuenta local: no envía tus datos a servidores externos.</p>
+      <p class="account-local-note"><span aria-hidden="true">◈</span> Perfil local: solo funciona en este navegador. No permite recuperar una contraseña olvidada.</p>
     `;
 
     root.querySelectorAll('[data-account-view]').forEach(button => {
-      button.addEventListener('click', () => renderAccountView(button.dataset.accountView));
+      button.addEventListener('click', () => {
+        renderAccountView(button.dataset.accountView);
+        document.getElementById('account-username')?.focus();
+      });
     });
     document.getElementById('account-show-password').addEventListener('click', event => {
       const input = document.getElementById('account-password');
@@ -323,18 +334,21 @@
       submit.textContent = isRegister ? 'Creando…' : 'Entrando…';
       try {
         await (isRegister ? register(username, password) : login(username, password));
-        accountMessage(isRegister ? 'Cuenta creada. Recuperando tu progreso…' : 'Sesión iniciada. Recuperando tu progreso…', 'success');
+        accountMessage(isRegister ? 'Perfil creado. Recuperando tu progreso…' : 'Sesión iniciada. Recuperando tu progreso…', 'success');
         dispatchAccountChange();
         setTimeout(() => location.reload(), 450);
       } catch (error) {
         accountMessage(error.message || 'No se pudo completar la operación.');
         submit.disabled = false;
-        submit.textContent = isRegister ? 'Crear cuenta' : 'Iniciar sesión';
+        submit.textContent = isRegister ? 'Crear perfil local' : 'Iniciar sesión';
       }
     });
   }
 
-  migrateLegacyProgress();
+  try { migrateLegacyProgress(); } catch (_) { /* La página educativa sigue disponible sin almacenamiento. */ }
+  window.addEventListener('storage', event => {
+    if (event.key === SESSION_KEY || event.key === ACCOUNTS_KEY) location.reload();
+  });
 
   window.StudyAuth = {
     getCurrentUser: getSession,
