@@ -1,6 +1,6 @@
 // ============================================================
 //  SCRIPT.JS — Logica completa del sitio
-//  El vocabulario se carga desde vocabulary.json (1300+ palabras y expresiones)
+//  El vocabulario se carga desde vocabulary.json (1500+ palabras y expresiones)
 //  El resto del contenido viene de data.js
 // ============================================================
 
@@ -539,7 +539,7 @@ function renderCards() {
       <p>${s.description}</p>
       ${progressHTML}
       <div class="card-footer">
-        <span class="count">${key === 'vocabulary' ? '1.300+ palabras y expresiones' : s.count}</span>
+        <span class="count">${s.count}</span>
         <span class="card-btn" aria-hidden="true">
           Entrar
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
