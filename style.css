@@ -4375,3 +4375,37 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .listening-console select { max-width: 100%; }
 .listening-console > div { min-width: 0; }
 #voice-help { font-size: .875rem; line-height: 1.5; max-width: 38ch; }
+
+/* Personal route uses the existing cards, colours and typography. */
+#study-plan h2 { margin-bottom: 1rem; }
+#study-plan p { margin: .8rem 0; }
+#study-plan label { display: block; margin: 1.5rem 0 .4rem; }
+#study-plan select, .study-actions button { font: inherit; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); border-radius: 8px; min-height: 44px; padding: .6rem 1rem; }
+.study-route { padding-left: 1.5rem; }
+.study-route a, .study-history a { display: inline-block; padding: .7rem 0; color: var(--text); text-decoration: underline; }
+.study-history { list-style: none; }
+.study-history li { padding: 1rem 0; border-bottom: 1px solid var(--border-strong); }
+.study-history span { display: block; }
+.study-word { font-size: clamp(1.6rem, 6vw, 2.5rem); overflow-wrap: anywhere; }
+.study-actions { display: flex; gap: .8rem; flex-wrap: wrap; }
+#study-plan button, #study-plan a { min-height: 44px; }
+#study-plan button:disabled { opacity: .6; cursor: default; }
+#study-plan h2:focus { outline-offset: 6px; }
+@media (max-width: 480px) { #study-plan .exercise-block { padding: 20px 16px; } }
+
+/* Contrast fixes preserve the palette in both themes. */
+html:not([data-theme="dark"]) { --text-muted: #596478; --violet: #6b4bd1; }
+html[data-theme="dark"] .eyebrow,
+html[data-theme="dark"] .section-code,
+html[data-theme="dark"] .control-label { color: #83b8ff; }
+html:not([data-theme="dark"]) .progress-overview .eyebrow { color: #104eab; }
+
+html[data-theme="dark"] { --blue-600: #83b8ff; }
+html[data-theme="dark"] .account-primary { background: #1464d9; color: white; }
+html:not([data-theme="dark"]) .theory-topic-meta span:first-child { color: #087660; }
+html:not([data-theme="dark"]) .theory-insights .pitfall > span { color: #b63c25; }
+.grammar-roadmap > div > span { color: var(--text-muted); opacity: 1; }
+
+html:not([data-theme="dark"]) .eyebrow { color: #104eab; }
+html[data-theme="dark"] #start-game { color: #071019; }
+.theory-table-wrap:focus-visible { outline: 3px solid var(--blue-600); outline-offset: 3px; }

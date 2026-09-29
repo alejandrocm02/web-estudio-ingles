@@ -6,7 +6,7 @@
   <meta name="description" content="Política de privacidad de StudyEnglish: almacenamiento local, alojamiento y derechos de las personas usuarias.">
   <title>Política de privacidad · StudyEnglish</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔒</text></svg>">
-  <link rel="stylesheet" href="style.css?v=20260927">
+  <link rel="stylesheet" href="style.css?v=20260929b">
   <script>
     (function () {
       var saved; try { saved = localStorage.getItem('theme'); } catch (_) {}
@@ -52,6 +52,7 @@
           <li><strong>studyProgressV1:</strong> ejercicios completados, mejores resultados, vocabulario marcado, audios, lecturas, respuestas y racha de estudio, separados por cuenta.</li>
         </ul>
         <p>La contraseña no cifra el progreso ni impide acceder a los datos desde las herramientas del navegador. No debe reutilizarse una contraseña de otro servicio. La contraseña no se conserva en texto legible: el navegador deriva una huella mediante PBKDF2 con SHA-256, una sal aleatoria y múltiples iteraciones. Aun así, se trata de una cuenta local, no de una cuenta sincronizada en la nube.</p>
+        <p>El progreso incluye las fechas de repaso de palabras, el nivel orientativo y elegido, y hasta 2.000 intentos recientes con fecha, habilidad, tema y resultado. Estos datos se incluyen en las copias de progreso.</p>
         <p>Esta información permanece en tu dispositivo y el código de StudyEnglish no la envía al responsable del proyecto ni a una base de datos. Puedes descargar y restaurar una copia de progreso desde el pie de página. Esa copia incluye tus respuestas escritas y no incluye contraseñas ni sesiones; guárdala de forma privada. Puedes eliminar una cuenta y su progreso desde el panel de usuario o borrar todos los datos del sitio desde la configuración del navegador.</p>
       </section>
 
@@ -93,6 +94,7 @@
   <footer class="site-footer">
     <p><strong>StudyEnglish</strong> · Aprende, practica y mide tu progreso.</p>
     <nav class="site-footer-links" aria-label="Información del sitio">
+      <a href="learn.html">Mi ruta y repaso</a>
       <a href="about.html">Sobre StudyEnglish</a>
       <a href="methodology.html">Fuente y metodología</a>
       <a href="privacy.html" aria-current="page">Política de privacidad</a>
@@ -101,7 +103,8 @@
   </footer>
 
   <script src="auth.js?v=20260927"></script>
-  <script src="progress-tools.js?v=20260927"></script>
+  <script src="learning.js?v=20260929b"></script>
+  <script src="progress-tools.js?v=20260929b"></script>
   <script src="info.js?v=20260927"></script>
 </body>
 </html>

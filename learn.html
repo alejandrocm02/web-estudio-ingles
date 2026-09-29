@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Juego de fichas para practicar vocabulario, verbos y pronombres en español e inglés.">
-  <title>Flashcards · StudyEnglish</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🃏</text></svg>">
+  <meta name="description" content="Ruta de inglés con prueba orientativa, repaso espaciado de vocabulario e historial por tema.">
+  <title>Mi ruta · StudyEnglish</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
+  <!-- Nuestro CSS -->
   <link rel="stylesheet" href="style.css?v=20260929b">
+
+  <!-- Aplica el tema guardado antes de pintar, para evitar parpadeo -->
   <script>
     (function () {
       var saved; try { saved = localStorage.getItem('theme'); } catch (_) {}
@@ -15,20 +18,21 @@
     })();
   </script>
 </head>
-<body>
-  <a class="skip-link" href="#game-content">Saltar al juego</a>
+<body data-page="study-plan">
+  <a class="skip-link" href="#page-content">Saltar al contenido</a>
+
+  <!-- CABECERA -->
   <header class="header-compact">
     <a href="index.html" class="back-link">← Inicio</a>
     <button class="theme-toggle" id="theme-toggle" aria-label="Activar tema oscuro" title="Cambiar tema">🌙</button>
-    <div class="badge"><span></span> Practice lab</div>
-    <h1><span aria-hidden="true">F/</span> Flashcards</h1>
-    <p>Adivina vocabulario, verbos y pronombres en ambos idiomas mediante partidas rápidas.</p>
+    <div class="badge"><span></span> Personal learning</div>
+    <h1><span aria-hidden="true">R/</span> Mi ruta</h1>
+    <p>Encuentra tu punto de partida y vuelve a lo que necesitas practicar.</p>
   </header>
 
-  <main class="page-main game-page-main">
-    <div class="page-content game-shell" id="game-content">
-      <div class="game-loading" role="status">Preparando las fichas…</div>
-    </div>
+  <!-- El contenido se genera aquí desde script.js -->
+  <main class="page-main">
+    <div class="page-content" id="page-content"><div id="study-plan" aria-busy="true">Cargando tu ruta…</div></div>
   </main>
 
   <footer class="site-footer">
@@ -42,6 +46,7 @@
     </nav>
   </footer>
 
+  <!-- IMPORTANTE: data.js siempre antes que script.js -->
   <script src="data.js?v=20260927"></script>
   <script src="curriculum-update.js?v=20260927"></script>
   <script src="auth.js?v=20260927"></script>
@@ -49,6 +54,6 @@
   <script src="progress-tools.js?v=20260929b"></script>
   <script src="script.js?v=20260929b"></script>
   <script src="study-plan.js?v=20260929b"></script>
-  <script src="game.js?v=20260927"></script>
+
 </body>
 </html>

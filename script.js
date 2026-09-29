@@ -768,6 +768,7 @@ function checkGrammar(i, levelIndex) {
   const valor = normalizeAnswer(input.value);
   const accepted = [lvl.exercises[i].answer, ...(lvl.exercises[i].answers || [])].map(normalizeAnswer);
   const isCorrect = accepted.includes(valor);
+  if (valor) window.recordLearningAttempt?.('grammar', lvl.level, lvl.exercises[i].topic, String(i), isCorrect);
 
   fb.className = 'feedback-msg show';
   if (isCorrect) {
@@ -1175,11 +1176,13 @@ function renderQuestion(levelIndex) {
 }
 
 function checkAnswer(chosen, levelIndex) {
+  if (testResultsByQ[currentQ] !== undefined) return;
   const q  = testQuestions[currentQ];
   const fb = document.getElementById('test-fb');
   document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
   document.getElementById(`opt-${q.correct}`).classList.add('correct');
   const isCorrect = chosen === q.correct;
+  window.recordLearningAttempt?.('tests', data.tests.levels[levelIndex].level, q.topic, q.q, isCorrect);
   testResultsByQ[currentQ] = isCorrect;
   if (isCorrect) {
     score++;
@@ -1196,6 +1199,8 @@ function checkAnswer(chosen, levelIndex) {
 function nextQuestion(levelIndex) {
   currentQ++;
   content.innerHTML = renderQuestion(levelIndex);
+  const target = content.querySelector('.question, h3');
+  if (target) { target.tabIndex = -1; target.focus(); }
 }
 
 function restartTest(levelIndex) {
@@ -1474,7 +1479,9 @@ function markListeningComplete(level, i) {
 }
 
 function checkListeningAnswer(i, levelIndex, selected, button) {
+  if (button.disabled) return;
   const track = data.listening.levels[levelIndex].tracks[i];
+  window.recordLearningAttempt?.('listening', data.listening.levels[levelIndex].level, track.context || track.title, String(i), selected === track.correct);
   const options = document.querySelectorAll(`#listen-options-${i} button`);
   const feedback = document.getElementById(`listen-feedback-${i}`);
   options.forEach((option, index) => {
@@ -1625,8 +1632,10 @@ function saveReadingDraft(textIndex, questionIndex, levelIndex, text) {
 }
 
 function checkReadingChoice(textIndex, questionIndex, levelIndex, selected, button) {
+  if (button.disabled) return;
   const level = data.reading.levels[levelIndex];
   const question = level.texts[textIndex].questions[questionIndex];
+  window.recordLearningAttempt?.('reading', level.level, level.texts[textIndex].title, `${textIndex}:${questionIndex}`, selected === question.correct);
   const options = document.querySelectorAll(`#reading-options-${textIndex}-${questionIndex} button`);
   const feedback = document.getElementById(`reading-feedback-${textIndex}-${questionIndex}`);
   options.forEach((option, index) => {
@@ -1766,7 +1775,7 @@ function renderTheory() {
               ${topic.tip ? `<div><span>Atajo útil</span><p>${topic.tip}</p></div>` : ''}
               ${topic.pitfall ? `<div class="pitfall"><span>Error frecuente</span><p>${topic.pitfall}</p></div>` : ''}
             </div>` : ''}
-          <div class="theory-table-wrap">
+          <div class="theory-table-wrap" tabindex="0" role="region" aria-label="Tabla de ${escapeHTML(topic.title)}">
             <table class="theory-table">
               <thead>
                 <tr>${topic.table.headers.map(h => `
@@ -1811,7 +1820,7 @@ function renderSection(key, levelIndex) {
 
 initTheme();
 updateStreakDisplay();
-loadVocabulary();
+const vocabularyReady = loadVocabulary();
 
 if (grid) {
   // Estamos en index.html
@@ -1821,6 +1830,8 @@ if (grid) {
 const currentSection = document.body.dataset.section;
 if (currentSection && content) {
   // Estamos en una pagina de seccion (grammar.html, vocabulary.html...)
-  content.innerHTML = renderSection(currentSection, 0);
+  const requestedLevel = new URLSearchParams(location.search).get('level');
+  const initialLevel = Math.max(0, data[currentSection]?.levels?.findIndex(l => l.level === requestedLevel) ?? 0);
+  content.innerHTML = renderSection(currentSection, initialLevel);
   if (currentSection === 'listening') refreshVoiceChoices();
 }

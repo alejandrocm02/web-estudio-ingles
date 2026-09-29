@@ -41,6 +41,7 @@
     }
     const streak = input.streak || {};
     out.streak = { count: Number.isInteger(streak.count) ? Math.max(0, Math.min(100000, streak.count)) : 0, lastDate: /^\d{4}-\d{2}-\d{2}$/.test(streak.lastDate || '') ? streak.lastDate : '' };
+    out.learning = window.StudyLearning?.clean(input.learning) || {};
     return out;
   }
   function mergeProgress(current, incoming) {
@@ -58,6 +59,7 @@
       }
     }
     Object.assign(a.vocabKnown, b.vocabKnown);
+    a.learning = window.StudyLearning?.merge(a.learning, b.learning) || {};
     if (b.streak.lastDate > a.streak.lastDate) a.streak = b.streak;
     return a;
   }
