@@ -10,7 +10,9 @@ Se necesita Node.js 20 o posterior para las pruebas. La web publicada no depende
 ```sh
 npm ci
 npm test
-python3 -m http.server 8765
+npx playwright install chromium webkit
+npm run test:browser
+node tests/server.cjs
 ```
 
 Abre `http://localhost:8765`. Cada habilidad conserva su propia página HTML.
@@ -21,6 +23,33 @@ Abre `http://localhost:8765`. Cada habilidad conserva su propia página HTML.
 Los tests comprueban datos, los niveles de las seis secciones, la separación de perfiles,
 el progreso de vocabulario, comprensión de Listening, repaso de errores y copias de progreso.
 La síntesis de voz se simula en las pruebas; su calidad real depende del navegador.
+
+## Ruta, repaso e historial
+
+`learn.html` ofrece una prueba orientativa de 18 preguntas, un nivel de ruta editable,
+enlaces a las actividades de ese nivel y repaso de hasta diez palabras pendientes.
+La prueba toma tres temas distintos por nivel cuando están disponibles; exige dos
+aciertos de tres en niveles consecutivos para sugerir el siguiente punto de partida.
+Es una orientación breve de gramática/vocabulario, no una certificación MCER.
+
+Las palabras marcadas como aprendidas se incorporan al repaso al abrir la ruta.
+Recordarlas programa revisiones a 1, 3, 7, 14, 30 y 60 días; un olvido vuelve a
+programarlas a diez minutos. Los 2.000 intentos más recientes se conservan por
+perfil, habilidad, nivel y tema, incluidos los aciertos posteriores. El historial
+empieza con esta versión; los fallos antiguos no pueden reconstruirse.
+
+`learning.js` valida y combina estos datos en las copias existentes. `study-plan.js`
+implementa la interfaz y el registro de intentos. La prueba inicial no modifica
+las mejores puntuaciones de los tests ni el progreso previo.
+
+GitHub Actions ejecuta regresiones y pruebas de navegador en cada PR y en `main`:
+Chromium de escritorio/móvil y WebKit móvil, orientación, persistencia, repaso,
+foco del diálogo, anchura móvil y auditoría axe en claro/oscuro. La auditoría
+automática no sustituye las pruebas manuales con lectores de pantalla reales.
+La publicación sigue saliendo de `main` en el mismo GitHub Pages.
+
+Consulta [el estado y las dependencias pendientes](docs/STATUS.md) antes de
+activar cuentas o sustituir las voces del dispositivo.
 
 ## Progreso y perfiles
 

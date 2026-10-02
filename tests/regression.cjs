@@ -24,7 +24,7 @@ async function page(section = 'reading', initial = {}) {
   w.SpeechSynthesisUtterance = class { constructor(text) { this.text = text; } };
   w.speechSynthesis = { speaking: false, pending: false, paused: false, getVoices: () => [{ name: 'English', lang: 'en-GB', voiceURI: 'test-en' }], addEventListener: () => {}, cancel() { this.speaking = false; }, pause() { this.paused = true; }, resume() { this.paused = false; }, speak(u) { this.speaking = true; w.lastUtterance = u; } };
   for (const [key, value] of Object.entries(initial)) w.localStorage.setItem(key, JSON.stringify(value));
-  for (const file of ['data.js', 'curriculum-update.js', 'auth.js', 'progress-tools.js', 'script.js']) vm.runInContext(read(file),dom.getInternalVMContext(),{filename:file});
+  for (const file of ['data.js', 'curriculum-update.js', 'auth.js', 'learning.js', 'progress-tools.js', 'script.js', 'study-plan.js']) vm.runInContext(read(file),dom.getInternalVMContext(),{filename:file});
   await sleep(30);
   return { dom, w, errors };
 }
@@ -97,6 +97,10 @@ test('backup validates data, excludes credentials and merges rather than erases 
   assert.equal(merged.readingAnswers.A1[0][0].text,'A valid draft');
   assert.equal(merged.tests.A1.best,15);
   assert.throws(()=>w.StudyProgressBackup.cleanProgress(null));
+  const first = w.StudyProgressBackup.cleanProgress({learning:{reviews:{'A1::apple':{step:1,due:1000,updatedAt:100}}}});
+  const combined = w.StudyProgressBackup.mergeProgress(first,{learning:{reviews:{'A1::apple':{step:0,due:2000,updatedAt:200}}}});
+  assert.equal(combined.learning.reviews['A1::apple'].due,2000);
+  assert.doesNotThrow(()=>w.StudyProgressBackup.cleanProgress({learning:null}));
   dom.window.close();
 });
 
@@ -104,12 +108,15 @@ test('local accounts stay separate and passwords are not stored as clear text', 
   const {dom,w}=await page();
   await w.StudyAuth.register('TestOne','Testing123!');
   const one=w.StudyAuth.getProgressKey();w.localStorage.setItem(one,JSON.stringify({grammar:{A1:[true]}}));
+  w.recordLearningAttempt('grammar','A1','Present simple','0',false);
   w.StudyAuth.logout();await w.StudyAuth.register('TestTwo','Different456!');
   assert.notEqual(w.StudyAuth.getProgressKey(),one);
   assert.equal(w.loadProgress().grammar.A1,undefined);
+  assert.equal(w.loadProgress().learning,undefined);
   assert.ok(!w.localStorage.getItem('studyEnglishAccountsV1').includes('Testing123!'));
   w.StudyAuth.logout();await assert.rejects(w.StudyAuth.login('TestOne','WrongPassword9'));
   await w.StudyAuth.login('TestOne','Testing123!');assert.equal(w.loadProgress().grammar.A1[0],true);
+  assert.equal(Object.keys(w.loadProgress().learning.attempts).length,1);
   dom.window.close();
 });
 
