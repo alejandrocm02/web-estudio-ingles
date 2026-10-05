@@ -10,19 +10,22 @@
   incluidos los reintentos tras un fallo de red en WebKit.
 - 1.594 entradas de vocabulario, 120 preguntas de tests, 22 lecturas y 96 preguntas.
 
-## Preparado en esta rama, todavía sin publicar
+## Publicación gradual de cuentas · PR #15
 
 - Cuenta de StudyEnglish, cliente Supabase fijado en 2.117.2, caché por UID,
   importación explícita con copia previa y sincronización con control de versiones.
 - Recuperación y cambio de contraseña implementados; recorrido por correo pendiente.
 - Pruebas de integridad de los 30 audios, reproducción, fallos, conflictos,
   reconexión y separación de cuentas simuladas.
+- Se publica account.html para recibir las confirmaciones y comprobar los
+  recorridos reales. Las altas y solicitudes de recuperación públicas siguen
+  desactivadas con emailReady=false hasta superar esas comprobaciones.
 
 ## Infraestructura creada y comprobada
 
 - Proyecto independiente StudyEnglish (vjghrnmunzbjvkhrauao), organización
   AlejandroCM, Free, París. Coste de creación confirmado: 0 USD/mes.
-- CornerMaximo no se ha usado ni modificado.
+- El proyecto Supabase de CornerMaximo no se ha usado ni modificado.
 - Tabla study_progress y función de guardado con revisión; RLS habilitado,
   sin acceso anónimo, USING y WITH CHECK para cada usuario.
 - verify-isolation.sql pasa todos los asserts y revierte sus datos de prueba.
@@ -38,15 +41,20 @@
   directamente en Supabase, sin incluirla en el chat ni en el repositorio.
 - Remitente StudyEnglish añadido por separado y verificado por el titular mediante
   el código enviado por Brevo. El remitente CornerMaximo existente se conserva.
-- El titular activó el bloqueo de IP no autorizadas para SMTP en Brevo, con
-  lista permitida vacía. Falta identificar y autorizar la salida de Supabase.
+- Brevo rechazó el primer registro con error 525 / 5.7.1 Unauthorized IP address.
+  Tras autorización del titular se permitió 35.180.215.59, detectada durante
+  el intento. El bloqueo SMTP de las demás IP permanece activo. Una nueva salida
+  de Supabase podría requerir otra autorización; no se ha contratado IP fija.
+- El segundo registro del titular fue aceptado por Supabase; la cuenta está
+  pendiente de confirmar. La llegada del correo todavía no se ha comprobado.
 - Verificar entrega de confirmación y recuperación y retorno a account.html.
 - emailReady permanece false: altas y solicitud de recuperación desactivadas.
 - Verificar acceso/sincronización reales en dos navegadores. El titular autorizó
   crear y eliminar dos cuentas de prueba, pero la revisión automática rechazó
   ejecutar la prueba porque exigía incluir la eliminación dentro de su proceso.
   Todas las cuentas temporales se eliminaron; ninguna prueba real de acceso pasó.
-- Ejecutar CI en GitHub, revisar y publicar en el mismo Pages tras superar controles.
+- CI comprueba también que las altas/recuperación sigan pausadas y que el acceso
+  esté disponible durante la publicación gradual en el mismo GitHub Pages.
 
 ## Límites de verificación
 
