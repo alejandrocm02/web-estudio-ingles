@@ -37,6 +37,9 @@ test('a failed recording offers a transcript and never grants listening credit',
   await page.getByRole('button',{name:'Ver transcripción',exact:true}).first().click();
   await expect(page.locator('#transcript-0')).toBeVisible();
   expect(await page.evaluate(()=>loadProgress().listening.A1?.[0])).toBeFalsy();
+  await page.unroute('**/audio/*.mp3');
+  await page.locator('#play-0').click();
+  await expect.poll(()=>page.locator('#recording-0').evaluate(a=>a.currentTime)).toBeGreaterThan(0);
 });
 
 test('all 30 MP3 assets decode with audible samples and matching duration',async({page,browserName})=>{

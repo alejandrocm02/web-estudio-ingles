@@ -14,11 +14,13 @@
     if (!audio.paused) { audio.pause(); return; }
     const status = document.getElementById(`audio-status-${index}`);
     try {
+      if (audio.error) audio.load();
       delete audio.dataset.failed;
       status.textContent = 'Cargando audio…';
       audio.playbackRate = window.recordedRate || 1;
       await audio.play();
-    } catch (_) {
+    } catch (error) {
+      if (error.name === 'AbortError') { status.textContent = 'Audio en pausa.'; return; }
       audio.dataset.failed = 'true';
       status.textContent = 'No se pudo reproducir el audio. Comprueba la conexión y vuelve a intentarlo. La transcripción sigue disponible.';
     }
