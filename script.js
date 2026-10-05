@@ -600,10 +600,9 @@ function renderLevelSelector(levelKeys, activeIndex, sectionKey) {
 }
 
 function switchLevel(sectionKey, levelIndex) {
-  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-  if (typeof currentSpeechId !== 'undefined') currentSpeechId = null;
+  window.stopListeningAudio?.();
+  window.speechSynthesis?.cancel();
   content.innerHTML = renderSection(sectionKey, levelIndex);
-  if (sectionKey === 'listening') refreshVoiceChoices();
 }
 
 
@@ -1051,7 +1050,7 @@ function speakVocabulary(word, event) {
   const utterance = new SpeechSynthesisUtterance(word);
   utterance.lang = 'en-GB';
   utterance.rate = 0.82;
-  const voices = getEnglishVoices();
+  const voices = window.speechSynthesis.getVoices().filter(voice => /^en[-_]/i.test(voice.lang));
   utterance.voice = voices.find(v => /natural|premium|enhanced/i.test(v.name))
     || voices.find(v => /^en-GB/i.test(v.lang))
     || voices[0]
@@ -1216,254 +1215,30 @@ function reviewTestErrors(levelIndex) {
 
 // ─── 9. LISTENING STUDIO ───────────────────────────────────────────────────
 
-let currentSpeechId = null;
-let listeningRate = 0.9;
-let listeningVoiceMode = 'auto';
-let selectedVoiceURI = '';
-
-function getEnglishVoices() {
-  if (!('speechSynthesis' in window)) return [];
-  return window.speechSynthesis.getVoices()
-    .filter(voice => /^en[-_]/i.test(voice.lang))
-    .sort((a, b) => {
-      const score = voice => /natural|premium|enhanced|neural|online/i.test(voice.name) ? 0 : 1;
-      return score(a) - score(b);
-    });
-}
-
-function selectListeningVoice(track) {
-  const voices = getEnglishVoices();
-  const chosen = voices.find(voice => voice.voiceURI === selectedVoiceURI);
-  if (chosen) return chosen;
-  const requestedAccent = listeningVoiceMode === 'auto'
-    ? (track.accent || 'GB')
-    : listeningVoiceMode;
-  const locale = requestedAccent === 'US' ? 'en-US' : 'en-GB';
-  return voices.find(v => v.lang.replace('_', '-').toLowerCase() === locale.toLowerCase() &&
-      /natural|premium|enhanced|neural|online/i.test(v.name))
-    || voices.find(v => v.lang.replace('_', '-').toLowerCase() === locale.toLowerCase())
-    || voices.find(v => v.lang.toLowerCase().startsWith(`en-${requestedAccent.toLowerCase()}`))
-    || voices[0]
-    || null;
-}
-
 function renderListening(levelIndex = 0) {
-  const s = data.listening;
-  const lvl = s.levels[levelIndex];
-  const levelKeys = s.levels.map(l => l.level);
+  const lvl = data.listening.levels[levelIndex];
   const progress = loadProgress();
-  const doneArr = (progress.listeningVerified || {})[lvl.level] || [];
-  const heardArr = progress.listening[lvl.level] || [];
-  const supported = 'speechSynthesis' in window;
-
-  let html = `
-    <div class="section-intro">
-      <span class="section-code">LISTEN / 0${levelIndex + 1}</span>
-      <h2>${s.title} Studio</h2>
-      <p class="subtitle">Escucha sin mirar el texto, responde y repite a otra velocidad. El sistema prioriza las voces inglesas de mayor calidad de tu dispositivo.</p>
-    </div>
-    ${renderLevelSelector(levelKeys, levelIndex, 'listening')}
-    <div class="listening-console">
-      <div>
-        <span class="control-label">Voz</span>
-        <select id="voice-mode" onchange="setListeningVoice(this.value)" aria-label="Acento de la voz">
-          <option value="auto" ${listeningVoiceMode === 'auto' ? 'selected' : ''}>Automática · según pista</option>
-          <option value="GB" ${listeningVoiceMode === 'GB' ? 'selected' : ''}>Inglés británico</option>
-          <option value="US" ${listeningVoiceMode === 'US' ? 'selected' : ''}>Inglés americano</option>
-        </select>
-        <label for="voice-choice" class="control-label">Voz de este dispositivo</label>
-        <select id="voice-choice" onchange="chooseListeningVoice(this.value)" aria-describedby="voice-help">
-          <option value="">Mejor voz disponible para el acento</option>
-          ${getEnglishVoices().map(voice => `<option value="${escapeHTML(voice.voiceURI)}" ${voice.voiceURI === selectedVoiceURI ? 'selected' : ''}>${escapeHTML(voice.name)} (${escapeHTML(voice.lang)})</option>`).join('')}
-        </select>
-        <p id="voice-help">La calidad depende de las voces instaladas. Puedes comparar las disponibles.</p>
-      </div>
-      <div>
-        <span class="control-label">Velocidad</span>
-        <div class="speed-control" role="group" aria-label="Velocidad de reproducción">
-          ${[0.75, 0.9, 1].map(rate => `
-            <button class="${listeningRate === rate ? 'active' : ''}" onclick="setListeningRate(${rate}, ${levelIndex})">
-              ${rate === 0.75 ? 'Lenta' : rate === 0.9 ? 'Clara' : 'Natural'} · ${rate}×
-            </button>`).join('')}
-        </div>
-      </div>
-      <div class="console-status"><i></i>${supported ? 'Motor de voz disponible' : 'Solo transcripción'}</div>
-    </div>`;
-
-  if (!supported) {
-    html += `<p class="audio-warning">Tu navegador no admite síntesis de voz. Puedes usar las transcripciones y los retos de comprensión.</p>`;
-  }
-
-  lvl.tracks.forEach((track, i) => {
-    const isDone = !!doneArr[i];
-    html += `
-      <article class="audio-block ${isDone ? 'completed' : ''}">
-        <div class="audio-topline">
-          <span class="track-number">${String(i + 1).padStart(2, '0')}</span>
-          <div class="audio-heading">
-            <div class="audio-title">${track.title}<span id="done-${i}" aria-live="polite">${isDone ? ' · Comprensión superada' : heardArr[i] ? ' · Escuchada' : ''}</span></div>
-            <div class="audio-meta">
-              <span>${track.context || 'Listening'}</span>
-              <span>${track.accent === 'US' ? 'US English' : 'UK English'}</span>
-              <span>≈ ${Math.max(1, Math.ceil((track.script || '').split(/\s+/).length / 115))} min</span>
-            </div>
-          </div>
-        </div>
-        <p class="audio-desc">${track.desc}</p>
-        <div class="audio-player">
-          ${supported ? `
-            <button class="play-btn" id="play-${i}" onclick="toggleListen(${i}, ${levelIndex})" data-track-title="${escapeHTML(track.title)}" aria-label="Reproducir ${escapeHTML(track.title)}">
-              <span class="play-icon">▶</span><span class="play-label">Reproducir</span>
-            </button>
-            <div class="waveform" aria-hidden="true">${Array.from({length: 28}, (_, n) => `<i style="--h:${22 + ((n * 17) % 66)}%"></i>`).join('')}</div>
-          ` : ''}
-          <button class="transcript-toggle" aria-expanded="${!supported}" aria-controls="transcript-${i}" onclick="toggleTranscript(${i}, this)">Ver transcripción</button>
-        </div>
-        <div class="progress-bar" aria-hidden="true">
-          <div class="progress-bar-fill" id="prog-${i}" style="width:${isDone ? 100 : 0}%"></div>
-        </div>
-        <div class="transcript-box ${!supported ? 'show' : ''}" id="transcript-${i}">
-          <span>TRANSCRIPT</span>
-          <p>${track.script || track.desc}</p>
-        </div>
-        <div class="listening-challenge">
-          <span class="control-label">Comprueba tu oído</span>
-          <p>${track.question}</p>
-          <div class="listening-options" id="listen-options-${i}">
-            ${track.options.map((option, optionIndex) => `
-              <button onclick="checkListeningAnswer(${i}, ${levelIndex}, ${optionIndex}, this)">${option}</button>
-            `).join('')}
-          </div>
-          <div class="listening-feedback" id="listen-feedback-${i}" aria-live="polite"></div>
-        </div>
-      </article>`;
-  });
-
-  return html;
-}
-
-function chooseListeningVoice(uri) {
-  selectedVoiceURI = uri;
-  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-  currentSpeechId = null;
-  document.querySelectorAll('.play-btn').forEach(resetPlayButton);
-}
-
-function refreshVoiceChoices() {
-  const select = document.getElementById('voice-choice');
-  if (!select) return;
-  select.innerHTML = '<option value="">Mejor voz disponible para el acento</option>' + getEnglishVoices().map(voice => `<option value="${escapeHTML(voice.voiceURI)}">${escapeHTML(voice.name)} (${escapeHTML(voice.lang)})</option>`).join('');
-  select.value = selectedVoiceURI;
-  const help = document.getElementById('voice-help');
-  if (help) help.textContent = getEnglishVoices().length ? 'La calidad depende de las voces instaladas. Puedes comparar las disponibles.' : 'Aún no hay voces inglesas disponibles. Comprueba las voces del dispositivo o utiliza la transcripción.';
-}
-
-function setListeningVoice(mode) {
-  listeningVoiceMode = mode;
-  selectedVoiceURI = '';
-  const choice = document.getElementById('voice-choice'); if (choice) choice.value = '';
-  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-  currentSpeechId = null;
-  document.querySelectorAll('.play-btn').forEach(resetPlayButton);
-}
-
-function setListeningRate(rate, levelIndex) {
-  listeningRate = rate;
-  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-  currentSpeechId = null;
-  content.innerHTML = renderListening(levelIndex);
-  refreshVoiceChoices();
+  const done = progress.listeningVerified?.[lvl.level] || [];
+  const heard = progress.listening[lvl.level] || [];
+  return `<div class="section-intro"><span class="section-code">LISTEN / 0${levelIndex + 1}</span><h2>Listening Studio</h2><p class="subtitle">Grabaciones con voz sintética fija: el mismo audio en móvil y ordenador. Escucha, responde y repite a tu ritmo.</p></div>
+    ${renderLevelSelector(data.listening.levels.map(l=>l.level), levelIndex, 'listening')}
+    <div class="listening-console"><div><label for="recorded-rate">Velocidad de reproducción</label><select id="recorded-rate" onchange="setRecordedRate(this.value)">${[.75,.9,1,1.25].map(r=>`<option value="${r}" ${r === (window.recordedRate || 1) ? 'selected' : ''}>${r}×</option>`).join('')}</select></div><p>Voz británica o americana según la pista. Sin reproducción automática.</p></div>
+    ${lvl.tracks.map((track,i)=> {
+      const asset=window.StudyAudioAssets?.[lvl.level+'-'+i];
+      return `<article class="audio-block ${done[i] ? 'completed' : ''}"><div class="audio-topline"><span class="track-number">${String(i+1).padStart(2,'0')}</span><div class="audio-heading"><h3 class="audio-title" id="audio-title-${i}">${escapeHTML(track.title)}<span id="done-${i}" aria-live="polite">${done[i] ? ' · Comprensión superada' : heard[i] ? ' · Escuchada' : ''}</span></h3><div class="audio-meta"><span>${escapeHTML(track.context || 'Listening')}</span><span>${track.accent==='US' ? 'US English' : 'UK English'}</span><span>${asset ? Math.ceil(asset.duration)+' s' : 'Transcripción disponible'}</span></div></div></div><p class="audio-desc">${escapeHTML(track.desc)}</p>
+        ${asset ? `<audio id="recording-${i}" controls preload="none" data-study-track="${i}" data-level="${lvl.level}" data-title="${escapeHTML(track.title)}" aria-labelledby="audio-title-${i}" aria-describedby="audio-status-${i}" src="${asset.src}">Tu navegador no admite audio HTML. Puedes leer la transcripción.</audio><div class="audio-player"><button class="play-btn" id="play-${i}" onclick="toggleRecordedAudio(${i})" aria-label="Reproducir ${escapeHTML(track.title)}">Reproducir</button><a href="${asset.src}" download>Descargar audio</a></div>` : ''}
+        <p id="audio-status-${i}" class="audio-status" role="status"></p>
+        <button class="transcript-toggle" aria-expanded="false" aria-controls="transcript-${i}" onclick="toggleTranscript(${i},this)">Ver transcripción</button><div class="transcript-box" id="transcript-${i}"><span>TRANSCRIPT</span><p lang="en">${escapeHTML(track.script)}</p></div>
+        <div class="listening-challenge"><span class="control-label">Comprueba tu oído</span><p lang="en">${escapeHTML(track.question)}</p><div class="listening-options" id="listen-options-${i}">${track.options.map((o,n)=>`<button lang="en" onclick="checkListeningAnswer(${i},${levelIndex},${n},this)">${escapeHTML(o)}</button>`).join('')}</div><div class="listening-feedback" id="listen-feedback-${i}" aria-live="polite"></div></div></article>`;
+    }).join('')}
+  `;
 }
 
 function toggleTranscript(i, btn) {
-  const box = document.getElementById(`transcript-${i}`);
-  box.classList.toggle('show');
-  if (btn) { btn.textContent = box.classList.contains('show') ? 'Ocultar transcripción' : 'Ver transcripción'; btn.setAttribute('aria-expanded', box.classList.contains('show')); }
-}
-
-function resetPlayButton(btn) {
-  if (!btn) return;
-  btn.querySelector('.play-icon').textContent = '▶';
-  btn.querySelector('.play-label').textContent = 'Reproducir';
-  btn.setAttribute('aria-label', `Reproducir ${btn.dataset.trackTitle || ''}`);
-}
-
-function toggleListen(i, levelIndex) {
-  if (!('speechSynthesis' in window)) return;
-
-  const lvl = data.listening.levels[levelIndex];
-  const track = lvl.tracks[i];
-  const btn = document.getElementById(`play-${i}`);
-  const prog = document.getElementById(`prog-${i}`);
-  const thisId = `${lvl.level}-${i}`;
-
-  if (currentSpeechId === thisId) {
-    if (window.speechSynthesis.paused) {
-      window.speechSynthesis.resume();
-      btn.querySelector('.play-label').textContent = 'Pausar';
-      btn.setAttribute('aria-label', `Pausar ${track.title}`);
-    } else {
-      window.speechSynthesis.pause();
-      btn.querySelector('.play-label').textContent = 'Continuar';
-      btn.setAttribute('aria-label', `Continuar ${track.title}`);
-    }
-    return;
-  }
-
-  document.querySelectorAll('.play-btn').forEach(resetPlayButton);
-  const wasBusy = window.speechSynthesis.speaking || window.speechSynthesis.pending;
-  if (wasBusy) window.speechSynthesis.cancel();
-
-  currentSpeechId = thisId;
-  btn.querySelector('.play-icon').textContent = '■';
-  btn.querySelector('.play-label').textContent = 'Pausar';
-      btn.setAttribute('aria-label', `Pausar ${track.title}`);
-  prog.style.width = '0%';
-
-  const text = track.script || track.desc;
-  let retried = false;
-
-  const speakNow = () => {
-    if (currentSpeechId !== thisId) return;
-    const utterance = new SpeechSynthesisUtterance(text);
-    const voice = selectListeningVoice(track);
-    utterance.lang = voice?.lang || (track.accent === 'US' ? 'en-US' : 'en-GB');
-    utterance.voice = voice;
-    utterance.rate = listeningRate;
-    utterance.pitch = 1;
-
-    utterance.onboundary = event => {
-      if (!text.length || currentSpeechId !== thisId) return;
-      prog.style.width = `${Math.min(100, Math.round((event.charIndex / text.length) * 100))}%`;
-    };
-
-    utterance.onend = () => {
-      if (currentSpeechId !== thisId) return;
-      prog.style.width = '100%';
-      resetPlayButton(btn);
-      currentSpeechId = null;
-      markListeningComplete(lvl.level, i);
-    };
-
-    utterance.onerror = event => {
-      if (currentSpeechId !== thisId) return;
-      if (event.error === 'canceled' || event.error === 'interrupted') return;
-      if (!retried && currentSpeechId === thisId) {
-        retried = true;
-        setTimeout(speakNow, 180);
-        return;
-      }
-      prog.style.width = '0%';
-      resetPlayButton(btn);
-      currentSpeechId = null;
-      const feedback = document.getElementById(`listen-feedback-${i}`);
-      if (feedback) feedback.textContent = 'No se pudo reproducir la voz. Prueba otra voz o utiliza la transcripción.';
-    };
-
-    window.speechSynthesis.speak(utterance);
-  };
-
-  setTimeout(speakNow, wasBusy ? 140 : 0);
+  const box=document.getElementById('transcript-'+i);
+  const open=box.classList.toggle('show');
+  btn.setAttribute('aria-expanded',String(open));
+  btn.textContent=open ? 'Ocultar transcripción' : 'Ver transcripción';
 }
 
 function markListeningComplete(level, i) {
@@ -1507,9 +1282,7 @@ function checkListeningAnswer(i, levelIndex, selected, button) {
   }
 }
 
-if ('speechSynthesis' in window) {
-  window.speechSynthesis.addEventListener?.('voiceschanged', refreshVoiceChoices);
-}
+
 
 // ─── 10. READING ────────────────────────────────────────────────────────────
 
@@ -1833,5 +1606,5 @@ if (currentSection && content) {
   const requestedLevel = new URLSearchParams(location.search).get('level');
   const initialLevel = Math.max(0, data[currentSection]?.levels?.findIndex(l => l.level === requestedLevel) ?? 0);
   content.innerHTML = renderSection(currentSection, initialLevel);
-  if (currentSection === 'listening') refreshVoiceChoices();
+
 }

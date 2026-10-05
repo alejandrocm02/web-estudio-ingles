@@ -22,7 +22,7 @@ Abre `http://localhost:8765`. Cada habilidad conserva su propia página HTML.
 
 Los tests comprueban datos, los niveles de las seis secciones, la separación de perfiles,
 el progreso de vocabulario, comprensión de Listening, repaso de errores y copias de progreso.
-La síntesis de voz se simula en las pruebas; su calidad real depende del navegador.
+Listening usa 30 MP3 fijos; se verifican hashes, transcripciones, decodificación y reproducción. La pronunciación de vocabulario conserva la voz del dispositivo.
 
 ## Ruta, repaso e historial
 
@@ -70,3 +70,9 @@ Para activarlos hay que seleccionar un proyecto propio, confirmar su organizaci�
 coste, configurar autenticación y recuperación, aislar cada usuario mediante políticas
 RLS, migrar el progreso con confirmación del titular y probar sesiones en dos dispositivos.
 El proyecto Supabase de CornerMaximo no se utiliza para esta web.
+## Grabaciones de Listening
+
+Los mismos MP3 se reproducen en móvil y ordenador, con controles nativos, pausa,
+velocidad, descarga y transcripción. Son voces sintéticas británica/americana
+generadas localmente con Kokoro; no hay un servicio TTS durante las visitas.
+Consulta audio/README.md para procedencia, licencias y reproducción del proceso.

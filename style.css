@@ -4409,3 +4409,7 @@ html:not([data-theme="dark"]) .theory-insights .pitfall > span { color: #b63c25;
 html:not([data-theme="dark"]) .eyebrow { color: #104eab; }
 html[data-theme="dark"] #start-game { color: #071019; }
 .theory-table-wrap:focus-visible { outline: 3px solid var(--blue-600); outline-offset: 3px; }
+
+.audio-block audio { width: 100%; margin: 12px 0; }
+.audio-status { min-height: 1.5em; font-size: .9rem; }
+.audio-player a { color: var(--text); text-decoration: underline; padding: 10px; }
