@@ -5,12 +5,13 @@
 - PR #11 y #12: currículo ampliado, perfiles locales, copias y repaso de fallos.
 - PR #13, main a14b5f9: ruta orientativa, repaso espaciado, historial por tema,
   ajustes de contraste y CI en Chromium/WebKit.
+- PR #14, main 3f322d8: 30 MP3 fijos con transcripción y controles accesibles.
+  Las 17 regresiones y 24 comprobaciones de navegador pasan en Linux CI,
+  incluidos los reintentos tras un fallo de red en WebKit.
 - 1.594 entradas de vocabulario, 120 preguntas de tests, 22 lecturas y 96 preguntas.
 
 ## Preparado en esta rama, todavía sin publicar
 
-- 30 MP3 fijos con voces sintéticas británica/americana, controles accesibles,
-  transcripción, velocidad, descarga y aviso de fallo. Vocabulario mantiene voz local.
 - Cuenta de StudyEnglish, cliente Supabase fijado en 2.117.2, caché por UID,
   importación explícita con copia previa y sincronización con control de versiones.
 - Recuperación y cambio de contraseña implementados; recorrido por correo pendiente.
