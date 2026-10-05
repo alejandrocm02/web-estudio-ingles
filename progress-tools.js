@@ -72,7 +72,7 @@
     const footer = document.querySelector('footer');
     if (!footer) return;
     const section = document.createElement('section');
-    section.setAttribute('aria-label', 'Copia del progreso local');
+    section.setAttribute('aria-label', 'Copia de tu progreso');
     section.innerHTML = '<div class="backup-controls"><button type="button" id="export-progress">Descargar progreso</button><button type="button" id="import-progress">Restaurar progreso</button><input type="file" id="progress-file" accept="application/json,.json" hidden></div><p class="backup-status" id="backup-status" role="status">Copia del perfil activo o de invitado. Incluye tus respuestas; guárdala en un lugar privado.</p>';
     footer.append(section);
     document.getElementById('export-progress').addEventListener('click', () => {

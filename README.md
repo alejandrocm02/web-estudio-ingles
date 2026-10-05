@@ -53,7 +53,7 @@ activar el registro público de cuentas.
 
 ## Progreso y perfiles
 
-Los perfiles siguen siendo locales al navegador. La contraseña se deriva con PBKDF2,
+Los perfiles locales permanecen en el navegador. Su contraseña se deriva con PBKDF2,
 pero no cifra los datos de estudio ni proporciona autenticación de servidor.
 Las copias contienen únicamente progreso y respuestas; nunca credenciales o sesiones.
 La restauración combina el avance con el perfil activo y conserva las respuestas locales
