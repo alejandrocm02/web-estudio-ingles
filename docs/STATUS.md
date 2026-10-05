@@ -33,8 +33,13 @@
 ## Pendiente antes de abrir el registro público
 
 - Brevo gratuito creado: el panel indica 300 correos diarios; el titular ha
-  verificado el teléfono. Falta completar/verificar remitente y guardar SMTP.
-  Los campos no secretos de Supabase están preparados.
+  verificado el teléfono y creado la clave SMTP. Supabase tiene SMTP guardado
+  con smtp-relay.brevo.com, puerto 587 y nombre StudyEnglish. La clave se introdujo
+  directamente en Supabase, sin incluirla en el chat ni en el repositorio.
+- Remitente StudyEnglish añadido por separado; pendiente de verificar mediante
+  el código enviado por Brevo. El remitente CornerMaximo existente se conserva.
+- El titular activó el bloqueo de IP no autorizadas para SMTP en Brevo, con
+  lista permitida vacía. Falta identificar y autorizar la salida de Supabase.
 - Verificar entrega de confirmación y recuperación y retorno a account.html.
 - emailReady permanece false: altas y solicitud de recuperación desactivadas.
 - Verificar acceso/sincronización reales en dos navegadores. El titular autorizó
@@ -45,8 +50,8 @@
 
 ## Límites de verificación
 
-- Preparación de cuentas: 25 pruebas de lógica/regresión pasan; 22 comprobaciones
-  de navegador pasan localmente y 2 se omiten en Windows WebKit. Las pruebas de
+- Preparación de cuentas: 25 pruebas de lógica/regresión y 24 comprobaciones
+  de navegador pasan en Linux CI (ejecución 37286421040). Las pruebas de
   sincronización usan un servidor simulado; el aislamiento SQL se verificó en
   Supabase mediante una transacción que revierte todos los datos de prueba.
 - En Windows, WebKit simula parte del sistema multimedia y no ofrece Web Audio:
