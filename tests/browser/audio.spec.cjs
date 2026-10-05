@@ -1,6 +1,9 @@
 const {test,expect}=require('@playwright/test');
 
 test('recordings play, pause, change speed and finish without device voices',async({page})=>{
+  // Linux WebKit's real media backend makes the complete playback/seek flow
+  // slower than Chromium. Individual assertions retain their normal timeouts.
+  test.setTimeout(60000);
   await page.addInitScript(()=>Object.defineProperty(window,'speechSynthesis',{value:undefined,configurable:true}));
   await page.goto('/listening.html');
   const audio=page.locator('#recording-0');
