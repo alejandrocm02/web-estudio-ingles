@@ -23,7 +23,8 @@ test('recordings play, pause, change speed and finish without device voices',asy
   expect(progress.listeningVerified?.A1?.[0]).toBeFalsy();
   await page.locator('#play-1').click();
   await expect.poll(()=>page.locator('#recording-1').evaluate(a=>a.paused)).toBe(false);
-  await page.getByRole('button',{name:'A2',exact:true}).click();
+  await page.getByRole('button',{name:'A2',exact:true}).focus();
+  await page.keyboard.press('Enter');
   await expect(page.locator('#recording-0')).toHaveAttribute('data-level','A2');
   expect(await page.locator('audio').evaluateAll(a=>a.every(x=>x.paused))).toBe(true);
 });

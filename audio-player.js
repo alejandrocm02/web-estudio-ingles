@@ -11,11 +11,14 @@
   window.toggleRecordedAudio = async (index) => {
     const audio = document.getElementById(`recording-${index}`);
     if (!audio) return;
-    if (!audio.paused) { audio.pause(); return; }
+    const retry = Boolean(audio.error || audio.dataset.failed);
+    if (!audio.paused && !retry) { audio.pause(); return; }
     const status = document.getElementById(`audio-status-${index}`);
     try {
-      if (audio.error) audio.load();
       delete audio.dataset.failed;
+      // A rejected play() can leave WebKit unpaused without a MediaError yet.
+      // Reset that failed load before requesting playback again.
+      if (retry) audio.load();
       status.textContent = 'Cargando audio…';
       audio.playbackRate = window.recordedRate || 1;
       await audio.play();
