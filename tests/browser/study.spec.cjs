@@ -44,10 +44,21 @@ test('keyboard opens, contains and returns modal focus', async ({ page }) => {
   await expect(page.locator('#account-toggle')).toBeFocused();
 });
 
+test('public registration and recovery stay paused while email flows are verified', async ({ page }) => {
+  await page.goto('/account.html');
+  await page.getByRole('button',{name:'Crear cuenta',exact:true}).click();
+  await expect(page.getByRole('button',{name:'Registrarme',exact:true})).toBeDisabled();
+  await expect(page.getByText('Las altas públicas todavía no están disponibles.',{exact:false})).toBeVisible();
+  await page.getByRole('button',{name:'He olvidado mi contraseña',exact:true}).click();
+  await expect(page.getByRole('button',{name:'Enviar enlace',exact:true})).toBeDisabled();
+  await page.getByRole('button',{name:'Iniciar sesión',exact:true}).click();
+  await expect(page.getByRole('button',{name:'Entrar',exact:true})).toBeEnabled();
+});
+
 for (const theme of ['light','dark']) test(`core pages fit the viewport and expose accessible structure (${theme})`, async ({ page }) => {
   test.setTimeout(60000);
   await page.addInitScript(theme => localStorage.setItem('theme',theme),theme);
-  for (const path of ['index.html','learn.html','vocabulary.html','tests.html','reading.html','listening.html','grammar.html','theory.html','game.html']) {
+  for (const path of ['index.html','learn.html','vocabulary.html','tests.html','reading.html','listening.html','grammar.html','theory.html','game.html','account.html']) {
     const errors=[]; const onError=e=>errors.push(e.message); page.on('pageerror',onError);
     await page.goto('/'+path);
     await expect(page.getByRole('heading',{level:1})).toBeVisible();

@@ -1,30 +1,68 @@
 # Estado de StudyEnglish · 5 de octubre de 2026
 
-## Ya publicado
+## Publicado
 
-PR #11 y #12: currículo, perfiles locales, accesibilidad y copias. PR #13: ruta
-orientativa, repaso espaciado, historial por tema y CI en Chromium/WebKit.
+- PR #11 y #12: currículo ampliado, perfiles locales, copias y repaso de fallos.
+- PR #13, main a14b5f9: ruta orientativa, repaso espaciado, historial por tema,
+  ajustes de contraste y CI en Chromium/WebKit.
+- PR #14, main 3f322d8: 30 MP3 fijos con transcripción y controles accesibles.
+  Las 17 regresiones y 24 comprobaciones de navegador pasan en Linux CI,
+  incluidos los reintentos tras un fallo de red en WebKit.
+- 1.594 entradas de vocabulario, 120 preguntas de tests, 22 lecturas y 96 preguntas.
 
-## Esta entrega: audios estables
+## Publicación gradual de cuentas · PR #15
 
-30 MP3 fijos para las pistas existentes. Voz sintética británica/americana,
-transcripción, controles nativos accesibles, velocidad, descarga y fallo anunciado.
-Se conservan guiones, índices y progreso. Comprensión sigue separada de escucha.
-El botón de pronunciación de vocabulario conserva la voz del dispositivo.
+- Cuenta de StudyEnglish, cliente Supabase fijado en 2.117.2, caché por UID,
+  importación explícita con copia previa y sincronización con control de versiones.
+- Recuperación y cambio de contraseña implementados; recorrido por correo pendiente.
+- Pruebas de integridad de los 30 audios, reproducción, fallos, conflictos,
+  reconexión y separación de cuentas simuladas.
+- Se publica account.html para recibir las confirmaciones y comprobar los
+  recorridos reales. Las altas y solicitudes de recuperación públicas siguen
+  desactivadas con emailReady=false hasta superar esas comprobaciones.
 
-17 pruebas de regresión; 24 comprobaciones de navegador. En Windows WebKit
-se omiten dos pruebas por limitaciones multimedia; se ejecutan en Linux CI.
-La revisión pedagógica de pronunciación requiere escucha humana adicional.
+## Infraestructura creada y comprobada
 
-## Pendiente: cuentas reales y sincronización
+- Proyecto independiente StudyEnglish (vjghrnmunzbjvkhrauao), organización
+  AlejandroCM, Free, París. Coste de creación confirmado: 0 USD/mes.
+- El proyecto Supabase de CornerMaximo no se ha usado ni modificado.
+- Tabla study_progress y función de guardado con revisión; RLS habilitado,
+  sin acceso anónimo, USING y WITH CHECK para cada usuario.
+- verify-isolation.sql pasa todos los asserts y revierte sus datos de prueba.
+  Advisors de seguridad: ninguna incidencia.
+- Redirección de autenticación a account.html de GitHub Pages configurada.
+- Confirmación de correo permanece activada por decisión del titular.
 
-Proyecto independiente StudyEnglish creado en AlejandroCM, plan Free, París,
-coste confirmado de 0 USD/mes. CornerMaximo no se ha usado ni modificado.
-La confirmación de correo permanece activada por decisión del titular.
-Brevo gratuito creado: falta verificar teléfono y configurar/verificar SMTP.
-La interfaz y sincronización están en desarrollo separado y no forman parte de
-esta entrega. No marcar cuentas como terminadas sin verificar el recorrido real.
+## Pendiente antes de abrir el registro público
 
-## Pendiente de verificación humana
+- Brevo gratuito creado: el panel indica 300 correos diarios; el titular ha
+  verificado el teléfono y creado la clave SMTP. Supabase tiene SMTP guardado
+  con smtp-relay.brevo.com, puerto 587 y nombre StudyEnglish. La clave se introdujo
+  directamente en Supabase, sin incluirla en el chat ni en el repositorio.
+- Remitente StudyEnglish añadido por separado y verificado por el titular mediante
+  el código enviado por Brevo. El remitente CornerMaximo existente se conserva.
+- Brevo rechazó el primer registro con error 525 / 5.7.1 Unauthorized IP address.
+  Tras autorización del titular se permitió 35.180.215.59, detectada durante
+  el intento. El bloqueo SMTP de las demás IP permanece activo. Una nueva salida
+  de Supabase podría requerir otra autorización; no se ha contratado IP fija.
+- El segundo registro del titular fue aceptado por Supabase; la cuenta está
+  pendiente de confirmar. La llegada del correo todavía no se ha comprobado.
+- Verificar entrega de confirmación y recuperación y retorno a account.html.
+- emailReady permanece false: altas y solicitud de recuperación desactivadas.
+- Verificar acceso/sincronización reales en dos navegadores. El titular autorizó
+  crear y eliminar dos cuentas de prueba, pero la revisión automática rechazó
+  ejecutar la prueba porque exigía incluir la eliminación dentro de su proceso.
+  Todas las cuentas temporales se eliminaron; ninguna prueba real de acceso pasó.
+- CI comprueba también que las altas/recuperación sigan pausadas y que el acceso
+  esté disponible durante la publicación gradual en el mismo GitHub Pages.
 
-Sesión con VoiceOver/TalkBack/NVDA reales; axe y teclado no la sustituyen.
+## Límites de verificación
+
+- Preparación de cuentas: 25 pruebas de lógica/regresión y 24 comprobaciones
+  de navegador pasan en Linux CI (ejecución 37286421040). Las pruebas de
+  sincronización usan un servidor simulado; el aislamiento SQL se verificó en
+  Supabase mediante una transacción que revierte todos los datos de prueba.
+- En Windows, WebKit simula parte del sistema multimedia y no ofrece Web Audio:
+  dos pruebas se omiten allí, pero se ejecutan en Linux en GitHub Actions.
+- La auditoría axe y el teclado no sustituyen una sesión con VoiceOver/TalkBack/NVDA.
+- La pronunciación pedagógica de las grabaciones necesita revisión humana adicional.

@@ -35,7 +35,7 @@ function loadProgress() {
 }
 
 function saveProgress(p) {
-  try { localStorage.setItem(getProgressStorageKey(), JSON.stringify(p)); }
+  try { localStorage.setItem(getProgressStorageKey(), JSON.stringify(p)); window.dispatchEvent(new Event('studyprogresssaved')); }
   catch (_) { window.showStorageWarning?.(); }
 }
 
@@ -1592,8 +1592,9 @@ function renderSection(key, levelIndex) {
 // ─── 13. ARRANQUE ───────────────────────────────────────────────────────────
 
 initTheme();
+const vocabularyReady = (window.StudyCloud?.ready || Promise.resolve()).then(async () => {
 updateStreakDisplay();
-const vocabularyReady = loadVocabulary();
+await loadVocabulary();
 
 if (grid) {
   // Estamos en index.html
@@ -1608,3 +1609,5 @@ if (currentSection && content) {
   content.innerHTML = renderSection(currentSection, initialLevel);
 
 }
+});
+window.addEventListener('studyprogresschange',()=>{updateAllCardProgress();updateStreakDisplay();});

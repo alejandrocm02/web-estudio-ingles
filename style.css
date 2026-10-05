@@ -4413,3 +4413,14 @@ html[data-theme="dark"] #start-game { color: #071019; }
 .audio-block audio { width: 100%; margin: 12px 0; }
 .audio-status { min-height: 1.5em; font-size: .9rem; }
 .audio-player a { color: var(--text); text-decoration: underline; padding: 10px; }
+/* Account page shares the existing controls and typography. */
+.cloud-account { max-width: 720px; margin: 0 auto; overflow-wrap: anywhere; }
+.cloud-account h1 { margin-bottom: 1rem; }
+.cloud-account p { margin: 1rem 0; line-height: 1.6; }
+.cloud-account .account-form { max-width: 520px; }
+.cloud-account input:not([type=checkbox]) { width: 100%; box-sizing: border-box; }
+.cloud-account .exercise-block { margin-top: 1.5rem; }
+.cloud-account label:has(input[type=checkbox]) { display: block; margin: 1rem 0; }
+.cloud-status { max-width: 1100px; margin: .5rem auto; padding: 0 1rem; font-size: .85rem; }
+#cloud-link { text-decoration: none; white-space: normal; }
+header { flex-wrap: wrap; }
