@@ -25,7 +25,8 @@ test('recordings play, pause, change speed and finish without device voices',asy
   const progress=await page.evaluate(()=>loadProgress());
   expect(progress.listening.A1[0]).toBe(true);
   expect(progress.listeningVerified?.A1?.[0]).toBeFalsy();
-  await page.locator('#play-1').click();
+  await page.locator('#play-1').focus();
+  await page.keyboard.press('Enter');
   await expect.poll(()=>page.locator('#recording-1').evaluate(a=>a.paused)).toBe(false);
   await page.getByRole('button',{name:'A2',exact:true}).focus();
   await page.keyboard.press('Enter');
