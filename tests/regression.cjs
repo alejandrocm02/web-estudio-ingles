@@ -19,12 +19,13 @@ async function page(section = 'reading', initial = {}) {
   w.matchMedia = () => ({ matches: false });
   w.scrollTo = () => {};
   w.HTMLElement.prototype.scrollIntoView = () => {};
+  w.HTMLMediaElement.prototype.pause = () => {};
   w.fetch = async () => ({ ok: true, json: async () => JSON.parse(read('vocabulary.json')) });
   Object.defineProperty(w, 'crypto', { value: webcrypto });
   w.SpeechSynthesisUtterance = class { constructor(text) { this.text = text; } };
   w.speechSynthesis = { speaking: false, pending: false, paused: false, getVoices: () => [{ name: 'English', lang: 'en-GB', voiceURI: 'test-en' }], addEventListener: () => {}, cancel() { this.speaking = false; }, pause() { this.paused = true; }, resume() { this.paused = false; }, speak(u) { this.speaking = true; w.lastUtterance = u; } };
   for (const [key, value] of Object.entries(initial)) w.localStorage.setItem(key, JSON.stringify(value));
-  for (const file of ['data.js', 'curriculum-update.js', 'auth.js', 'learning.js', 'progress-tools.js', 'script.js', 'study-plan.js']) vm.runInContext(read(file),dom.getInternalVMContext(),{filename:file});
+  for (const file of ['data.js', 'curriculum-update.js', 'auth.js', 'learning.js', 'progress-tools.js', 'audio-assets.js', 'audio-player.js', 'script.js', 'study-plan.js']) vm.runInContext(read(file),dom.getInternalVMContext(),{filename:file});
   await sleep(30);
   return { dom, w, errors };
 }
@@ -63,7 +64,8 @@ test('vocabulary progress reaches 100% with all level keys', async () => {
 
 test('listening playback alone does not certify comprehension; a correct answer does', async () => {
   const {dom,w}=await page('listening');
-  w.toggleListen(0,0); await sleep(10); w.lastUtterance.onend();
+  w.document.getElementById('recording-0').dispatchEvent(new w.Event('ended'));
+  assert.equal(w.lastUtterance,undefined);
   assert.equal(w.loadProgress().listening.A1[0],true);
   assert.equal(w.getDone(w.loadProgress()).listening,0);
   const correct=w.eval('data.listening.levels[0].tracks[0].correct');
@@ -71,6 +73,28 @@ test('listening playback alone does not certify comprehension; a correct answer 
   assert.equal(w.getDone(w.loadProgress()).listening,1);
   assert.match(w.document.getElementById('done-0').textContent,/Comprensión superada/);
   dom.window.close();
+});
+
+test('vocabulary pronunciation keeps its independent device voice control', async () => {
+  const {dom,w}=await page('vocabulary');
+  w.speakVocabulary('apple',{stopPropagation(){}});
+  assert.equal(w.lastUtterance.text,'apple');
+  dom.window.close();
+});
+
+test('every listening recording matches its transcript and published manifest', () => {
+  const ctx=vm.createContext({window:{}});
+  vm.runInContext(read('data.js')+'\n'+read('curriculum-update.js')+'\n'+read('audio-assets.js')+';globalThis.d=data',ctx);
+  const hash=value=>require('node:crypto').createHash('sha256').update(value).digest('hex');
+  const manifest=JSON.parse(read('audio/manifest.json'));
+  assert.equal(Object.keys(manifest).length,30);
+  for(const level of ctx.d.listening.levels) for(const [i,track] of level.tracks.entries()) {
+    const asset=manifest[level.level+'-'+i];
+    assert.equal(asset.scriptSha256,hash(track.script));
+    assert.equal(asset.sha256,hash(fs.readFileSync(path.join(root,asset.src))));
+    assert.ok(asset.duration>5 && asset.duration<120);
+    assert.equal(JSON.stringify(asset),JSON.stringify(ctx.window.StudyAudioAssets[level.level+'-'+i]));
+  }
 });
 
 test('test review contains only mistakes and never overwrites the full result', async () => {
