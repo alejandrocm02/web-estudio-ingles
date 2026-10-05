@@ -25,11 +25,20 @@ test('recordings play, pause, change speed and finish without device voices',asy
   const progress=await page.evaluate(()=>loadProgress());
   expect(progress.listening.A1[0]).toBe(true);
   expect(progress.listeningVerified?.A1?.[0]).toBeFalsy();
-  await page.locator('#play-1').focus();
-  await page.keyboard.press('Enter');
-  await expect.poll(()=>page.locator('#recording-1').evaluate(a=>a.paused)).toBe(false);
-  await page.getByRole('button',{name:'A2',exact:true}).focus();
-  await page.keyboard.press('Enter');
+});
+
+test('switching recordings pauses the previous track and changing level stops playback',async({page})=>{
+  // Give track switching its own page: Linux WebKit can hang its media process
+  // when a programmatic seek-to-end immediately precedes a second pipeline.
+  // Both end-of-track credit and live switching retain real playback assertions.
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await page.goto('/listening.html');
+  await page.locator('#play-0').click();
+  await expect.poll(()=>page.locator('#recording-0').evaluate(a=>a.currentTime)).toBeGreaterThan(0);
+  await page.locator('#play-1').click();
+  await expect.poll(()=>page.locator('#recording-1').evaluate(a=>a.currentTime)).toBeGreaterThan(0);
+  await expect.poll(()=>page.locator('#recording-0').evaluate(a=>a.paused)).toBe(true);
+  await page.getByRole('button',{name:'A2',exact:true}).click();
   await expect(page.locator('#recording-0')).toHaveAttribute('data-level','A2');
   expect(await page.locator('audio').evaluateAll(a=>a.every(x=>x.paused))).toBe(true);
 });
