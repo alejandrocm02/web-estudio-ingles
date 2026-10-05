@@ -181,7 +181,7 @@
     toggle.type = 'button';
     toggle.innerHTML = account
       ? `<span aria-hidden="true">●</span><span>${account.username}</span>`
-      : '<span aria-hidden="true">◎</span><span>Entrar</span>';
+      : '<span aria-hidden="true">◎</span><span>Perfil local</span>';
     toggle.setAttribute('aria-label', account ? `Perfil local de ${account.username}` : 'Abrir perfiles locales');
 
     const themeToggle = header.querySelector('.theme-toggle');

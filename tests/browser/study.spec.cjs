@@ -47,7 +47,7 @@ test('keyboard opens, contains and returns modal focus', async ({ page }) => {
 for (const theme of ['light','dark']) test(`core pages fit the viewport and expose accessible structure (${theme})`, async ({ page }) => {
   test.setTimeout(60000);
   await page.addInitScript(theme => localStorage.setItem('theme',theme),theme);
-  for (const path of ['index.html','learn.html','vocabulary.html','tests.html','reading.html','listening.html','grammar.html','theory.html','game.html']) {
+  for (const path of ['index.html','learn.html','vocabulary.html','tests.html','reading.html','listening.html','grammar.html','theory.html','game.html','account.html']) {
     const errors=[]; const onError=e=>errors.push(e.message); page.on('pageerror',onError);
     await page.goto('/'+path);
     await expect(page.getByRole('heading',{level:1})).toBeVisible();

@@ -22,7 +22,7 @@ Abre `http://localhost:8765`. Cada habilidad conserva su propia página HTML.
 
 Los tests comprueban datos, los niveles de las seis secciones, la separación de perfiles,
 el progreso de vocabulario, comprensión de Listening, repaso de errores y copias de progreso.
-Listening usa 30 MP3 fijos; se verifican hashes, transcripciones, decodificación y reproducción. La pronunciación de vocabulario conserva la voz del dispositivo.
+Listening usa 30 MP3 fijos; se verifican hashes, transcripciones, decodificación y reproducción. La pronunciación de vocabulario conserva la síntesis del dispositivo.
 
 ## Ruta, repaso e historial
 
@@ -49,7 +49,7 @@ automática no sustituye las pruebas manuales con lectores de pantalla reales.
 La publicación sigue saliendo de `main` en el mismo GitHub Pages.
 
 Consulta [el estado y las dependencias pendientes](docs/STATUS.md) antes de
-activar cuentas o sustituir las voces del dispositivo.
+activar el registro público de cuentas.
 
 ## Progreso y perfiles
 
@@ -63,16 +63,22 @@ Los audios previamente terminados se conservan como «escuchados». El indicador
 Listening mide ahora respuestas de comprensión correctas, en un campo separado.
 Los índices originales de ejercicios y lecturas se mantienen para conservar el avance.
 
-## Pendiente: sincronización entre dispositivos
+## Cuentas y sincronización
 
-Aún no hay servicio de autenticación ni base de datos de StudyEnglish configurados.
-Para activarlos hay que seleccionar un proyecto propio, confirmar su organización y
-coste, configurar autenticación y recuperación, aislar cada usuario mediante políticas
-RLS, migrar el progreso con confirmación del titular y probar sesiones en dos dispositivos.
-El proyecto Supabase de CornerMaximo no se utiliza para esta web.
-## Grabaciones de Listening
+Proyecto independiente StudyEnglish en Supabase, organización AlejandroCM, plan Free.
+La confirmación de correo se mantiene activada. El registro y la recuperación públicos
+se controlan con emailReady en cloud.js; solo activarlo tras verificar SMTP y los enlaces.
 
-Los mismos MP3 se reproducen en móvil y ordenador, con controles nativos, pausa,
-velocidad, descarga y transcripción. Son voces sintéticas británica/americana
-generadas localmente con Kokoro; no hay un servicio TTS durante las visitas.
-Consulta audio/README.md para procedencia, licencias y reproducción del proceso.
+account.html permite acceso, importación explícita del perfil local, sincronización y
+cambio de contraseña. cloud.js separa cachés por UID y reintenta conflictos con revisión
+del servidor. cloud-merge.js combina cambios respecto a la última versión confirmada;
+conserva borrados, mejores notas y cambios independientes. Si dos dispositivos editan
+la misma respuesta, prevalece el último cambio confirmado. Una copia local permite
+reintentar la sincronización al recuperar conexión.
+
+El servidor valida propiedad con RLS; solo se distribuye una clave publicable.
+La biblioteca oficial Supabase 2.117.2 se sirve desde vendor, con licencia y versión
+fijadas en el lockfile. supabase/verify-isolation.sql comprueba aislamiento y conflictos
+y revierte todos sus datos de prueba. No se usa CornerMaximo.
+
+Consulta audio/README.md para procedencia y generación de las grabaciones.

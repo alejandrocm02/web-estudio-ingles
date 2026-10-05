@@ -98,6 +98,7 @@
         if (targetKey !== key()) throw new Error('El perfil ha cambiado. Vuelve a seleccionar el archivo.');
         const merged = mergeProgress(JSON.parse(localStorage.getItem(targetKey) || '{}'), parsed.progress);
         localStorage.setItem(targetKey, JSON.stringify(merged));
+        window.dispatchEvent(new Event('studyprogresssaved'));
         status('Progreso restaurado. Recargando…');
         setTimeout(() => location.reload(), 700);
       } catch (error) { status(error.message || 'No se pudo restaurar la copia.'); }
