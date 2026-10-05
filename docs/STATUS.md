@@ -36,7 +36,7 @@
   verificado el teléfono y creado la clave SMTP. Supabase tiene SMTP guardado
   con smtp-relay.brevo.com, puerto 587 y nombre StudyEnglish. La clave se introdujo
   directamente en Supabase, sin incluirla en el chat ni en el repositorio.
-- Remitente StudyEnglish añadido por separado; pendiente de verificar mediante
+- Remitente StudyEnglish añadido por separado y verificado por el titular mediante
   el código enviado por Brevo. El remitente CornerMaximo existente se conserva.
 - El titular activó el bloqueo de IP no autorizadas para SMTP en Brevo, con
   lista permitida vacía. Falta identificar y autorizar la salida de Supabase.
