@@ -28,22 +28,26 @@
   }
   function form(mode='login'){
     const signup=mode==='signup',reset=mode==='reset';
+    const unavailable=(signup&&!cloud.config.emailReady)||(reset&&!cloud.config.recoveryReady);
     root.innerHTML=`<h1>Tu cuenta de StudyEnglish</h1><p>Continúa con el mismo progreso en móvil y ordenador. También puedes seguir usando los perfiles locales.</p>
       <div class="account-tabs"><button id="show-login" class="account-secondary">Iniciar sesión</button><button id="show-signup" class="account-secondary">Crear cuenta</button></div>
       <form id="cloud-form" class="account-form"><h2>${reset?'Recuperar contraseña':signup?'Crear cuenta':'Iniciar sesión'}</h2>
-      <label for="cloud-email">Correo electrónico</label><input id="cloud-email" type="email" autocomplete="email" required maxlength="254">
+      ${reset?'<p>Recibirás un enlace para elegir una nueva contraseña. No necesitas recordar la anterior.</p>':''}
+      <label for="cloud-email">Correo electrónico</label><input id="cloud-email" type="email" autocomplete="email" required maxlength="254" value="${reset&&user?escape(user.email):''}">
       ${reset?'':`<label for="cloud-password">Contraseña</label><input id="cloud-password" type="password" autocomplete="${signup?'new-password':'current-password'}" ${signup?'minlength="10"':''} required>`}
       ${signup?'<label for="cloud-confirm">Repite la contraseña</label><input id="cloud-confirm" type="password" autocomplete="new-password" minlength="10" required><p>Usa al menos 10 caracteres. Tendrás que confirmar tu correo para entrar.</p>':''}
-      <p id="account-status" role="status"></p><button class="account-primary" type="submit" ${((signup||reset)&&!cloud.config.emailReady)?'disabled':''}>${reset?'Enviar enlace':signup?'Registrarme':'Entrar'}</button></form>
+      <p id="account-status" role="status"></p><button class="account-primary" type="submit" ${unavailable?'disabled':''}>${reset?'Enviar enlace':signup?'Registrarme':'Entrar'}</button></form>
       <button id="show-reset" class="account-secondary">He olvidado mi contraseña</button>
-      ${!cloud.config.emailReady?'<p class="info-notice">Estamos configurando los correos de confirmación y recuperación. Las altas públicas todavía no están disponibles. Puedes seguir estudiando con tu perfil local.</p>':''}
+      ${!cloud.config.emailReady?'<p class="info-notice">Las altas públicas todavía no están disponibles. Puedes acceder con una cuenta existente o seguir estudiando con tu perfil local.</p>':''}
+      ${reset&&!cloud.config.recoveryReady?'<p class="info-notice">La recuperación por correo no está disponible temporalmente. Inténtalo más tarde.</p>':''}
+      ${user?'<p><a href="account.html">Volver a mi cuenta</a></p>':''}
       <p>Consulta cómo protegemos tus datos en la <a href="privacy.html">política de privacidad</a>.</p>`;
     document.getElementById('show-login').onclick=()=>form('login');
     document.getElementById('show-signup').onclick=()=>form('signup');
     document.getElementById('show-reset').onclick=()=>form('reset');
     document.getElementById('cloud-form').onsubmit=async event=>{
       event.preventDefault();
-      if((signup||reset)&&!cloud.config.emailReady)return;
+      if(unavailable)return;
       const email=document.getElementById('cloud-email').value.trim(),password=document.getElementById('cloud-password')?.value;
       if(signup&&password!==document.getElementById('cloud-confirm').value){status('Las contraseñas no coinciden.');return;}
       const submit=event.submitter;submit.disabled=true;status('Procesando…');
@@ -60,12 +64,14 @@
       }catch(error){status(errorText(error));}finally{submit.disabled=false;}
     };
   }
+  if(new URLSearchParams(location.search).get('mode')==='recovery'){form('reset');return;}
   if(!user){form();return;}
   const source=cloud.localSource();
   root.innerHTML=`<h1>Mi cuenta</h1><p>Sesión iniciada como <strong>${escape(user.email)}</strong>.</p><p data-cloud-status role="status">${escape(cloud.getStatus())}</p>
     <div class="account-tabs"><button id="sync-now" class="account-primary">Sincronizar ahora</button><button id="cloud-logout" class="account-secondary">Cerrar sesión</button></div>
     <section class="exercise-block"><h2>Traer mi progreso local</h2><p>Origen: perfil local <strong>${escape(source.name)}</strong> de este navegador. Destino: <strong>${escape(user.email)}</strong>.</p><p>Se combinarán los avances y se guardará una copia local previa. No se copiarán contraseñas ni otros perfiles.</p><label><input id="confirm-migration" type="checkbox"> Quiero copiar ese progreso a mi cuenta.</label><button id="migrate-local" class="account-primary" disabled>Importar progreso local</button></section>
     <section class="exercise-block"><h2>Cambiar mi contraseña</h2><form id="password-form" class="account-form"><label for="current-password">Contraseña actual</label><input id="current-password" type="password" autocomplete="current-password" required><label for="new-password">Nueva contraseña</label><input id="new-password" type="password" autocomplete="new-password" minlength="10" required><label for="confirm-new-password">Repite la nueva contraseña</label><input id="confirm-new-password" type="password" autocomplete="new-password" minlength="10" required><button class="account-primary">Guardar contraseña</button></form></section>
+    <p><a id="recover-password-link" href="account.html?mode=recovery">He olvidado mi contraseña</a></p>
     <p id="account-status" role="status"></p><p><a href="learn.html">Continuar mi ruta de estudio</a></p>`;
   document.getElementById('sync-now').onclick=()=>cloud.sync();
   document.getElementById('confirm-migration').onchange=e=>{document.getElementById('migrate-local').disabled=!e.target.checked;};
