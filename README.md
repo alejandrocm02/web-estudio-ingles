@@ -66,8 +66,10 @@ Los índices originales de ejercicios y lecturas se mantienen para conservar el 
 ## Cuentas y sincronización
 
 Proyecto independiente StudyEnglish en Supabase, organización AlejandroCM, plan Free.
-La confirmación de correo se mantiene activada. El registro y la recuperación públicos
-se controlan con emailReady en cloud.js; solo activarlo tras verificar SMTP y los enlaces.
+La confirmación de correo se mantiene activada. El registro público permanece pausado
+con emailReady=false en cloud.js. La recuperación se controla por separado con
+recoveryReady=true, tras verificar la entrega por Brevo. Está disponible sin cerrar
+sesión en account.html?mode=recovery y mediante «He olvidado mi contraseña» en Mi cuenta.
 
 account.html permite acceso, importación explícita del perfil local, sincronización y
 cambio de contraseña. cloud.js separa cachés por UID y reintenta conflictos con revisión

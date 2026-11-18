@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-  const config={url:'https://vjghrnmunzbjvkhrauao.supabase.co',key:'sb_publishable_psC5fvCQOv4UU7rin_pGqQ_HuXTB416',emailReady:false};
+  const config={url:'https://vjghrnmunzbjvkhrauao.supabase.co',key:'sb_publishable_psC5fvCQOv4UU7rin_pGqQ_HuXTB416',emailReady:false,recoveryReady:true};
   const localKey=window.StudyAuth.getProgressKey;
   const read=(key,fallback={})=>{try{return JSON.parse(localStorage.getItem(key))||fallback;}catch(_){return fallback;}};
   const write=(key,value)=>localStorage.setItem(key,JSON.stringify(value));

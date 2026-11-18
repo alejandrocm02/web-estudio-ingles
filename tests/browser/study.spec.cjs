@@ -44,13 +44,24 @@ test('keyboard opens, contains and returns modal focus', async ({ page }) => {
   await expect(page.locator('#account-toggle')).toBeFocused();
 });
 
-test('public registration and recovery stay paused while email flows are verified', async ({ page }) => {
+test('registration stays paused while password recovery is available', async ({ page }) => {
+  let recoveryRequest;
+  await page.route('**/auth/v1/recover*',async route=>{
+    recoveryRequest={url:route.request().url(),body:route.request().postDataJSON()};
+    await route.fulfill({status:200,contentType:'application/json',body:'{}'});
+  });
   await page.goto('/account.html');
   await page.getByRole('button',{name:'Crear cuenta',exact:true}).click();
   await expect(page.getByRole('button',{name:'Registrarme',exact:true})).toBeDisabled();
   await expect(page.getByText('Las altas públicas todavía no están disponibles.',{exact:false})).toBeVisible();
   await page.getByRole('button',{name:'He olvidado mi contraseña',exact:true}).click();
-  await expect(page.getByRole('button',{name:'Enviar enlace',exact:true})).toBeDisabled();
+  await expect(page.getByRole('button',{name:'Enviar enlace',exact:true})).toBeEnabled();
+  await page.goto('/account.html?mode=recovery');
+  await page.getByLabel('Correo electrónico',{exact:true}).fill('learner@example.com');
+  await page.getByRole('button',{name:'Enviar enlace',exact:true}).click();
+  await expect(page.getByRole('status').filter({hasText:'Si existe una cuenta'})).toBeVisible();
+  expect(recoveryRequest.body.email).toBe('learner@example.com');
+  expect(new URL(recoveryRequest.url).searchParams.get('redirect_to')).toBe('https://alejandrocm02.github.io/web-estudio-ingles/account.html');
   await page.getByRole('button',{name:'Iniciar sesión',exact:true}).click();
   await expect(page.getByRole('button',{name:'Entrar',exact:true})).toBeEnabled();
 });

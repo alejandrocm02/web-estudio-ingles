@@ -1,5 +1,16 @@
 # Estado de StudyEnglish · 5 de octubre de 2026
 
+## Actualización · 18 de noviembre de 2026
+
+- Supabase reactivado después de una pausa. RLS y permisos comprobados.
+- Corregido el bloqueo de IP de salida en Brevo con aprobación del titular;
+  confirmación entregada y cuenta confirmada con primer acceso verificado.
+- Recuperación habilitada por separado con recoveryReady=true. Enlace visible
+  dentro de Mi cuenta y acceso directo account.html?mode=recovery, sin cerrar sesión.
+- El registro público permanece pausado con emailReady=false. El recorrido real
+  de recuperación y la sincronización entre dispositivos siguen pendientes.
+- El resto de este documento conserva el estado histórico de octubre.
+
 ## Publicado
 
 - PR #11 y #12: currículo ampliado, perfiles locales, copias y repaso de fallos.

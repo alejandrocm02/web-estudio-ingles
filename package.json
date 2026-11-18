@@ -2,7 +2,7 @@
   "name": "studyenglish",
   "private": true,
   "scripts": {
-    "test": "node --test tests/regression.cjs tests/learning.cjs tests/cloud.cjs",
+    "test": "node --test tests/regression.cjs tests/learning.cjs tests/cloud.cjs tests/account.cjs",
     "test:browser": "playwright test"
   },
   "devDependencies": {
